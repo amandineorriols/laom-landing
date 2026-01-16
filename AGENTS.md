@@ -342,6 +342,11 @@ The LAOM landing page is designed with a **luxury wellness aesthetic** inspired 
 - Never commit sensitive data (use GitHub Secrets)
 - Always run SEO check before deployment
 
+### 8. Development Server
+- **NEVER run the development server** (`bun run dev`) - The server is already running when the project starts
+- You can test if the project is working or building (`bun run build`), but do not start the dev server
+- The user manages the server lifecycle themselves
+
 ## Project Structure
 
 ```
@@ -582,6 +587,7 @@ When working on this project:
 5. **Check translations** - Ensure both FR and EN are updated
 6. **Follow structure** - Use existing component patterns
 7. **Reference Nomad** - Look at that project for patterns when needed
+8. **Never run the server** - The development server is already running; you can test builds but do not start the dev server
 
 ## Contact & Support
 
