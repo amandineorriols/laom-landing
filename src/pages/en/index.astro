@@ -28,7 +28,7 @@ const trustLogos = [
   { src: '/images/logo-image01.png', alt: t.trust.logos[2] },
 ]
 
-const testimonialVideoSrc = '/videos/laom-testimonial/master.m3u8'
+const testimonialVideoSrc = '/videos/laom-testimonial.mp4'
 ---
 
 <Layout 
@@ -203,31 +203,14 @@ const testimonialVideoSrc = '/videos/laom-testimonial/master.m3u8'
             playsinline
             preload="metadata"
             poster="/images/hero-bg.jpg"
-            data-src={testimonialVideoSrc}
           >
-            <source src={testimonialVideoSrc} type="application/vnd.apple.mpegurl" />
+            <source src={testimonialVideoSrc} type="video/mp4" />
           </video>
         </div>
         <div class="p-6 text-sm text-black/60">{t.testimonials.caption}</div>
       </div>
     </div>
   </section>
-
-  <script
-    is:inline
-    src="https://cdn.jsdelivr.net/npm/hls.js@1.5.8/dist/hls.min.js"
-    crossorigin="anonymous"
-  ></script>
-  <script is:inline>
-    const video = document.getElementById('testimonial-video')
-    if (video && window.Hls && window.Hls.isSupported()) {
-      const hls = new window.Hls()
-      hls.loadSource(video.dataset.src)
-      hls.attachMedia(video)
-    } else if (video && video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = video.dataset.src
-    }
-  </script>
 
   <!-- Contact Section - Minimalist -->
   <section id="contact" class="py-32 lg:py-40 px-10 sm:px-16 lg:px-24 bg-[#1a1a1a] text-white">

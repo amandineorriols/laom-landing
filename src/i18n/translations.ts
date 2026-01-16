@@ -87,6 +87,19 @@ export const translations = {
         heroSubtitle: 'Une aventure collective pour un éco-coliving régénérateur.',
         intro:
           'LAOM est né d\'une vision simple : créer un lieu vivant où nature, création et vie collective s\'entrelacent. Quatre ans de bataille administrative ont forgé une expertise unique et un modèle réplicable.',
+        storyTitle: 'Une histoire vraie, sans vernis',
+        storyParagraphs: [
+          'LAOM a commencé par une impulsion de joie : construire un lieu qui redonne de l\'énergie plutôt qu\'en consommer.',
+          'Nous avons traversé les lenteurs administratives, les doutes, les départs et les rebonds. C\'est cette réalité qui fait notre force.',
+          'Aujourd\'hui, LAOM est un éco-coliving en construction active, avec une communauté engagée et un modèle juridique unique.',
+        ],
+        philosophyTitle: 'Notre philosophie régénérative',
+        philosophyPoints: [
+          'Régénération plutôt qu\'extraction : pour la terre, les relations et l\'économie.',
+          'Wabi-sabi : la beauté de l\'imperfection et des cycles naturels.',
+          'Gouvernance partagée : des décisions conscientes et collectives.',
+          'SCIA : un modèle de propriété réplicable et viable.',
+        ],
         statsTitle: 'L\'histoire en chiffres',
         stats: [
           '21 hectares en Aveyron',
@@ -98,6 +111,24 @@ export const translations = {
         modelTitle: 'Un modèle unique',
         modelDescription:
           'LAOM a développé une structure juridique innovante (SCIA) qui rend l\'habitat participatif viable et accessible.',
+        teamTitle: 'L\'équipe et la communauté',
+        teamMembers: [
+          {
+            name: 'Charly Aubert',
+            role: 'Fondateur & bâtisseur',
+            description: 'Artiste-philosophe devenu expert administratif, il porte la vision et la construction.',
+          },
+          {
+            name: 'Amandine',
+            role: 'Stratégie & narration',
+            description: 'Elle transforme l\'aventure LAOM en contenus, ressources et formations.',
+          },
+          {
+            name: 'Équipe chantier',
+            role: 'Constructeurs & artisans',
+            description: 'Une équipe engagée (Khaldoun, Théo, Lorenzo…) pour faire émerger le lieu.',
+          },
+        ],
         timelineTitle: 'Chronologie',
         timeline: [
           '2020 – Achat collectif du terrain',
@@ -106,6 +137,9 @@ export const translations = {
           '2025 – Construction phase 2 (472m²)',
           '2025 – Lancement LAOM School',
         ],
+        ctaTitle: 'Envie de créer votre projet ?',
+        ctaDescription: 'Rejoignez LAOM School pour transformer une idée en lieu vivant et viable.',
+        ctaButton: 'Découvrir LAOM School',
       },
       school: {
         heroTitle: 'LAOM School',
@@ -118,6 +152,9 @@ export const translations = {
           'Gouvernance collective non cadrée',
           'Manque d\'expertise technique',
         ],
+        solutionTitle: 'La solution : LAOM School',
+        solutionDescription:
+          'Nous enseignons ce que nous avons appris à nos dépens : comment naviguer la complexité de A à Z et bâtir un projet durable.',
         programTitle: 'Le programme',
         program: [
           'Vision et modèle économique',
@@ -128,16 +165,36 @@ export const translations = {
           'Gouvernance et décisions collectives',
           'Lancement et exploitation',
         ],
+        whyTitle: 'Pourquoi nous ?',
+        whyPoints: [
+          '4 ans de bataille administrative transformés en expertise concrète',
+          '1,4M€ levés collectivement',
+          'Plus grand bâtiment paille porteur au monde',
+          'Modèle SCIA validé et réplicable',
+        ],
+        formatTitle: 'Format & expérience',
+        formatPoints: [
+          'Approche pragmatique, orientée action',
+          'Études de cas et outils réels',
+          'Accompagnement collectif et réseau',
+          'Accès aux ressources et templates LAOM',
+        ],
         audienceTitle: 'À qui s\'adresse LAOM School ?',
         audience: [
           'Porteurs de projets d\'habitat participatif',
           'Collectifs en recherche de structure juridique',
           'Professionnels accompagnant des projets',
         ],
+        ctaTitle: 'Rejoignez la liste d\'attente',
+        ctaDescription: 'Recevez les infos du programme et l\'ouverture des inscriptions.',
+        ctaButton: 'Être prévenu',
       },
       resources: {
         heroTitle: 'Ressources',
         heroSubtitle: 'Guides, outils et contenus pour avancer pas à pas.',
+        introTitle: 'Apprendre, structurer, avancer',
+        introDescription:
+          'Nous partageons ce que nous apprenons en construisant LAOM. Des outils concrets pour ceux qui veulent créer un lieu vivant.',
         items: [
           {
             title: 'Newsletter',
@@ -156,20 +213,184 @@ export const translations = {
             description: 'Comprendre le modèle juridique qui rend LAOM possible.',
           },
         ],
+        leadMagnetsTitle: 'Lead magnets gratuits',
+        leadMagnets: [
+          {
+            title: 'Les 7 erreurs à éviter',
+            description: 'Le PDF essentiel pour éviter les pièges classiques de l\'habitat participatif.',
+          },
+          {
+            title: 'SCIA expliqué simplement',
+            description: 'Comprendre la structure qui a rendu LAOM possible.',
+          },
+          {
+            title: 'Calculateur budget éco-coliving',
+            description: 'Tableur prêt à l\'emploi pour modéliser un projet viable.',
+          },
+        ],
+        ebooksTitle: 'Ebooks premium',
+        ebooks: [
+          {
+            title: 'Le Projet LAOM',
+            description: 'Le récit complet de 5 ans d\'aventure collective, avec les leçons clés.',
+          },
+          {
+            title: 'Le Modèle LAOM',
+            description: 'Guide stratégique : SCIA, gouvernance, modèle économique et activités.',
+          },
+          {
+            title: 'Le Grand Shambala',
+            description: 'Guide technique sur la construction en paille porteuse (800m²).',
+          },
+        ],
+        toolsTitle: 'Outils pratiques',
+        tools: [
+          {
+            title: 'Template budget',
+            description: 'Prévisions financières et seuil de rentabilité sur 5 ans.',
+          },
+          {
+            title: 'Checklist lancement',
+            description: 'Les étapes clés pour passer de l\'idée au terrain.',
+          },
+        ],
+        guidesTitle: 'Guides techniques',
+        guides: [
+          {
+            title: 'Guide STECAL',
+            description: 'Comprendre et obtenir un permis de construire spécifique.',
+          },
+          {
+            title: 'Guide financement participatif',
+            description: 'Structurer une campagne réaliste et crédible.',
+          },
+        ],
+        videosTitle: 'Vidéos & web-série',
+        videos: [
+          {
+            title: 'YouTube – Vlogs chantier',
+            description: 'Suivre l\'avancée de la construction, semaine après semaine.',
+          },
+          {
+            title: 'Instagram – Web-série LAOM',
+            description: '30 épisodes pour raconter l\'histoire du projet.',
+          },
+        ],
+        ctaTitle: 'Aller plus loin',
+        ctaDescription: 'Pour un accompagnement complet, découvrez LAOM School.',
+        ctaButton: 'Découvrir la formation',
       },
       eventsPage: {
         heroTitle: 'Événements',
         heroSubtitle: 'Des rencontres pour créer, se ressourcer, partager.',
+        introTitle: 'Des expériences immersives',
+        introDescription:
+          'Retraites, workshops, rencontres collectives : LAOM accueille des événements qui reconnectent à la nature, au corps et au projet.',
+        hostTitle: 'Organiser un événement à LAOM',
+        hostPoints: [
+          '21 hectares de forêt, rivière et prairies',
+          'Hébergements chaleureux et cuisine partagée',
+          'Espaces de travail intérieurs et extérieurs',
+          'Accompagnement logistique sur place',
+        ],
+        ctaTitle: 'Proposer votre événement',
+        ctaDescription: 'Écrivez-nous pour imaginer une résidence, un stage ou une retraite.',
+        ctaButton: 'Contacter LAOM',
       },
       contactPage: {
         heroTitle: 'Contact',
         heroSubtitle: 'Parlons de vos idées et de votre projet.',
+        introTitle: 'Une question, un projet, une visite ?',
+        introDescription:
+          'Nous répondons aux demandes de coliving, de stages, de partenariats et de presse. Écrivez-nous, on vous répond.',
+        topicsTitle: 'Sujets fréquents',
+        topics: [
+          'LAOM School et formation',
+          'Événements et retraites',
+          'Partenariats et mécénat',
+          'Presse et médias',
+        ],
+        responseTitle: 'Délai de réponse',
+        responseDescription: 'Nous répondons généralement sous 48 à 72h.',
+        ctaTitle: 'Vous préférez commencer autrement ?',
+        ctaDescription: 'Rejoignez la newsletter pour suivre l\'aventure et recevoir nos ressources.',
+        ctaButton: 'S\'inscrire à la newsletter',
       },
+    },
+    home: {
+      statsTitle: 'LAOM en chiffres',
+      stats: [
+        '21 hectares de nature préservée',
+        '800m² de bâtiment paille porteur',
+        '11 copropriétaires engagés',
+        '1,4M€ investis collectivement',
+      ],
+      channelsTitle: 'Ce que l\'on partage',
+      channels: [
+        {
+          title: 'Newsletter',
+          description: 'Coulisses hebdo, décisions clés, apprentissages terrain.',
+        },
+        {
+          title: 'YouTube',
+          description: 'Vlogs chantier et retours d\'expérience détaillés.',
+        },
+        {
+          title: 'Instagram',
+          description: 'Web-série LAOM pour suivre l\'histoire du projet.',
+        },
+      ],
+      ctaTitle: 'Prêt à créer votre éco-coliving ?',
+      ctaDescription: 'Recevez nos ressources et l\'actualité de LAOM School.',
+      ctaButton: 'Rejoindre la newsletter',
     },
     footer: {
       description: 'Un écolieu niché dans une vallée sauvage du sud de l\'Aveyron, où nature, création et vie collective s\'entrelacent.',
       explore: 'Explorer',
       connect: 'Se connecter',
+      highlightsTitle: 'Repères LAOM',
+      highlights: [
+        {
+          title: 'Qui sommes-nous',
+          description:
+            'Un collectif d’habitant·es et de praticien·nes qui vivent sur place et mettent leurs compétences en commun : santé holistique, accompagnements, création et ancrage local.',
+        },
+        {
+          title: 'Manifeste',
+          description:
+            'Face aux ruptures de connexion, nous défendons un habitat et un travail régénératifs : liberté, collaboration, écologie et économie vivante.',
+        },
+        {
+          title: 'LAOMFEST',
+          description:
+            'Trois jours de rencontres, ateliers, concerts et micro-conférences pour créer son mode de vie et vivre une communauté éphémère.',
+        },
+        {
+          title: 'Coliving',
+          description:
+            'Ouverture fin 2026 : 7 chambres, salon/cuisine partagés, cuisine d’été, salle polyvalente, coworking, rivière, prairies et sentiers.',
+        },
+        {
+          title: 'Présentation',
+          description:
+            'Un tiers-lieu rural pour co-créer un futur souhaitable : habitat collectif intergénérationnel, ferme régénératrice et éco-construction.',
+        },
+        {
+          title: 'Planification',
+          description:
+            'Plan d’aménagement du domaine : rénovation du hameau, gîtes, maisons écologiques, ferme du Verseau, salle polyvalente et éco-lodges.',
+        },
+        {
+          title: 'Financement participatif',
+          description:
+            'Campagne de prêts pour finaliser la phase 2 : finitions des Shambalas, aménagements extérieurs et ouverture à l’accueil dès 2025.',
+        },
+        {
+          title: 'Grand Shambala',
+          description:
+            'Bâtiment paille porteuse en construction : fondations, terrassement, structure et façades, au cœur du chantier collectif.',
+        },
+      ],
       copyright: '© {year} Laom. Tous droits réservés.',
     },
   },
@@ -261,6 +482,19 @@ export const translations = {
         heroSubtitle: 'A collective journey toward regenerative coliving.',
         intro:
           'LAOM was born from a simple vision: create a living place where nature, creation, and collective life intertwine. Four years of administrative battles forged a unique, replicable model.',
+        storyTitle: 'A true story, without polish',
+        storyParagraphs: [
+          'LAOM started from a joy impulse: build a place that gives energy back instead of taking it.',
+          'We went through long permits, doubts, departures and comebacks. That reality is our strength.',
+          'Today, LAOM is an eco-coliving in active construction, with a committed community and a unique legal model.',
+        ],
+        philosophyTitle: 'Our regenerative philosophy',
+        philosophyPoints: [
+          'Regeneration over extraction: for land, relationships and economy.',
+          'Wabi-sabi: beauty in imperfection and natural cycles.',
+          'Shared governance: conscious, collective decisions.',
+          'SCIA: a replicable and viable ownership model.',
+        ],
         statsTitle: 'The story in numbers',
         stats: [
           '21 hectares in Aveyron',
@@ -272,6 +506,24 @@ export const translations = {
         modelTitle: 'A unique model',
         modelDescription:
           'LAOM developed an innovative legal structure (SCIA) that makes participatory housing viable and accessible.',
+        teamTitle: 'Team and community',
+        teamMembers: [
+          {
+            name: 'Charly Aubert',
+            role: 'Founder & builder',
+            description: 'Artist-philosopher turned administrative expert, he carries the vision and construction.',
+          },
+          {
+            name: 'Amandine',
+            role: 'Strategy & storytelling',
+            description: 'She turns the LAOM adventure into content, resources and training.',
+          },
+          {
+            name: 'Construction team',
+            role: 'Builders & artisans',
+            description: 'A committed team bringing the place to life (Khaldoun, Théo, Lorenzo…).',
+          },
+        ],
         timelineTitle: 'Timeline',
         timeline: [
           '2020 – Collective land purchase',
@@ -280,6 +532,9 @@ export const translations = {
           '2025 – Construction phase 2 (472m²)',
           '2025 – LAOM School launch',
         ],
+        ctaTitle: 'Ready to build your project?',
+        ctaDescription: 'Join LAOM School to turn an idea into a viable place.',
+        ctaButton: 'Discover LAOM School',
       },
       school: {
         heroTitle: 'LAOM School',
@@ -292,6 +547,9 @@ export const translations = {
           'Collective governance not defined',
           'Lack of technical expertise',
         ],
+        solutionTitle: 'The solution: LAOM School',
+        solutionDescription:
+          'We teach what we learned the hard way: how to navigate complexity from A to Z and build a sustainable project.',
         programTitle: 'The program',
         program: [
           'Vision and economic model',
@@ -302,16 +560,36 @@ export const translations = {
           'Governance and collective decisions',
           'Launch and operations',
         ],
+        whyTitle: 'Why us?',
+        whyPoints: [
+          '4 years of administrative battles turned into real expertise',
+          '€1.4M raised collectively',
+          'Largest straw load-bearing building in the world',
+          'Validated, replicable SCIA model',
+        ],
+        formatTitle: 'Format & experience',
+        formatPoints: [
+          'Pragmatic, action-oriented approach',
+          'Real case studies and tools',
+          'Collective support and network',
+          'Access to LAOM resources and templates',
+        ],
         audienceTitle: 'Who is LAOM School for?',
         audience: [
           'Participatory housing project leaders',
           'Collectives looking for a legal structure',
           'Professionals supporting such projects',
         ],
+        ctaTitle: 'Join the waitlist',
+        ctaDescription: 'Get program updates and early registration access.',
+        ctaButton: 'Notify me',
       },
       resources: {
         heroTitle: 'Resources',
         heroSubtitle: 'Guides, tools and content to move forward.',
+        introTitle: 'Learn, structure, progress',
+        introDescription:
+          'We share what we learn while building LAOM. Concrete tools for those who want to create a living place.',
         items: [
           {
             title: 'Newsletter',
@@ -330,20 +608,184 @@ export const translations = {
             description: 'Understand the legal model that makes LAOM possible.',
           },
         ],
+        leadMagnetsTitle: 'Free lead magnets',
+        leadMagnets: [
+          {
+            title: '7 mistakes to avoid',
+            description: 'The essential PDF to avoid classic participatory housing pitfalls.',
+          },
+          {
+            title: 'SCIA explained simply',
+            description: 'Understand the structure that made LAOM possible.',
+          },
+          {
+            title: 'Eco-coliving budget calculator',
+            description: 'Ready-to-use sheet to model a viable project.',
+          },
+        ],
+        ebooksTitle: 'Premium ebooks',
+        ebooks: [
+          {
+            title: 'The LAOM Project',
+            description: 'The full story of five years of collective adventure and lessons.',
+          },
+          {
+            title: 'The LAOM Model',
+            description: 'Strategic guide: SCIA, governance, business model and activities.',
+          },
+          {
+            title: 'The Grand Shambala',
+            description: 'Technical guide on straw load-bearing construction (800m²).',
+          },
+        ],
+        toolsTitle: 'Practical tools',
+        tools: [
+          {
+            title: 'Budget template',
+            description: 'Financial projections and break-even over 5 years.',
+          },
+          {
+            title: 'Launch checklist',
+            description: 'Key steps from idea to land.',
+          },
+        ],
+        guidesTitle: 'Technical guides',
+        guides: [
+          {
+            title: 'STECAL guide',
+            description: 'Understand and obtain a specific building permit.',
+          },
+          {
+            title: 'Crowdfunding guide',
+            description: 'Structure a realistic and credible campaign.',
+          },
+        ],
+        videosTitle: 'Videos & web series',
+        videos: [
+          {
+            title: 'YouTube – Construction vlogs',
+            description: 'Follow the build week after week.',
+          },
+          {
+            title: 'Instagram – LAOM web series',
+            description: '30 episodes telling the project story.',
+          },
+        ],
+        ctaTitle: 'Go further',
+        ctaDescription: 'For full support, discover LAOM School.',
+        ctaButton: 'Discover the program',
       },
       eventsPage: {
         heroTitle: 'Events',
         heroSubtitle: 'Gatherings to create, recharge, and connect.',
+        introTitle: 'Immersive experiences',
+        introDescription:
+          'Retreats, workshops, collective gatherings: LAOM hosts events that reconnect with nature, the body and the project.',
+        hostTitle: 'Host your event at LAOM',
+        hostPoints: [
+          '21 hectares of forest, river and meadows',
+          'Warm accommodation and shared kitchen',
+          'Indoor and outdoor workspaces',
+          'On-site logistics support',
+        ],
+        ctaTitle: 'Propose your event',
+        ctaDescription: 'Write to us to imagine a residency, workshop or retreat.',
+        ctaButton: 'Contact LAOM',
       },
       contactPage: {
         heroTitle: 'Contact',
         heroSubtitle: 'Let\'s talk about your ideas and your project.',
+        introTitle: 'A question, a project, a visit?',
+        introDescription:
+          'We answer requests about coliving, trainings, partnerships and press. Write to us and we will respond.',
+        topicsTitle: 'Common topics',
+        topics: [
+          'LAOM School and training',
+          'Events and retreats',
+          'Partnerships and sponsorship',
+          'Press and media',
+        ],
+        responseTitle: 'Response time',
+        responseDescription: 'We usually reply within 48 to 72h.',
+        ctaTitle: 'Prefer another start?',
+        ctaDescription: 'Join the newsletter to follow the adventure and receive resources.',
+        ctaButton: 'Join the newsletter',
       },
+    },
+    home: {
+      statsTitle: 'LAOM in numbers',
+      stats: [
+        '21 hectares of preserved nature',
+        '800m² straw load-bearing building',
+        '11 committed co-owners',
+        '€1.4M invested collectively',
+      ],
+      channelsTitle: 'What we share',
+      channels: [
+        {
+          title: 'Newsletter',
+          description: 'Weekly behind the scenes, decisions and learnings.',
+        },
+        {
+          title: 'YouTube',
+          description: 'Construction vlogs and detailed feedback.',
+        },
+        {
+          title: 'Instagram',
+          description: 'LAOM web series to follow the project story.',
+        },
+      ],
+      ctaTitle: 'Ready to build your eco-coliving?',
+      ctaDescription: 'Get our resources and LAOM School updates.',
+      ctaButton: 'Join the newsletter',
     },
     footer: {
       description: 'An ecolieu nestled in a wild valley in the south of Aveyron, where nature, creation and collective life intertwine.',
       explore: 'Explore',
       connect: 'Connect',
+      highlightsTitle: 'LAOM Highlights',
+      highlights: [
+        {
+          title: 'Who we are',
+          description:
+            'A collective of residents and practitioners living on site, sharing skills in holistic health, guidance, creation, and local impact.',
+        },
+        {
+          title: 'Manifesto',
+          description:
+            'A response to disconnection: regenerative living and work grounded in freedom, collaboration, ecology, and a living economy.',
+        },
+        {
+          title: 'LAOMFEST',
+          description:
+            'Three days of gatherings, workshops, concerts, and talks to explore chosen lifestyles and a temporary community.',
+        },
+        {
+          title: 'Coliving',
+          description:
+            'Opening late 2026: 7 rooms, shared lounge/kitchen, summer kitchen, multipurpose hall, coworking, river, meadows, and trails.',
+        },
+        {
+          title: 'Presentation',
+          description:
+            'A rural third place to co-create a desirable future: intergenerational living, regenerative farm, and eco-building.',
+        },
+        {
+          title: 'Planning',
+          description:
+            'Estate development plan: hamlet renovation, guesthouses, eco-homes, Ferme du Verseau, multipurpose hall, and eco-lodges.',
+        },
+        {
+          title: 'Crowdfunding',
+          description:
+            'Peer-to-peer loan campaign to finish phase 2: Shambala finishes, outdoor works, and opening to the public by 2025.',
+        },
+        {
+          title: 'Grand Shambala',
+          description:
+            'Load-bearing straw building in progress: foundations, earthworks, structure, and facades at the heart of the collective build.',
+        },
+      ],
       copyright: '© {year} Laom. All rights reserved.',
     },
   },
