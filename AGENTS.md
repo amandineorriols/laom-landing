@@ -89,6 +89,163 @@ bun run seo:check
 bun run seo:check:report
 ```
 
+## Design References and Inspiration
+
+### Design Philosophy
+
+The LAOM landing page is designed with a **luxury wellness aesthetic** inspired by high-end wellness retreats and eco-lodges. The design emphasizes:
+
+- **Minimal elegance**: Clean, uncluttered layouts with generous white space
+- **Nature connection**: Earthy tones, organic shapes, and natural imagery
+- **Sophisticated typography**: Light weights, generous tracking, elegant hierarchy
+- **Immersive experiences**: Full-screen hero sections, beautiful photography
+- **Thoughtful interactions**: Smooth animations, subtle hover effects
+
+### Primary Design References
+
+#### 1. Our Habitas Tulum
+**URL**: https://www.ourhabitas.com/tulum/
+
+**Key Design Elements**:
+- Large hero section with location tag and immersive background
+- Minimal navigation with transparent/backdrop blur header
+- Typography: Light, elegant sans-serif with generous spacing
+- Color palette: Natural greens, whites, blacks with subtle gradients
+- Section layout: Generous padding, centered content, clear hierarchy
+- Button style: Minimal borders, uppercase text, subtle hover effects
+- Image treatment: Full-width immersive images with overlay gradients
+- Content sections: Clear separation, elegant cards, community focus
+
+**Design Patterns to Implement**:
+- Hero: Large typography, location subtitle, CTA buttons
+- Navigation: Fixed header with backdrop blur, minimal menu items
+- Sections: Room/experience cards with images and descriptions
+- Footer: Dark background with organized links and social proof
+
+#### 2. The House of AïA
+**URL**: https://thehouseofaia.com/
+
+**Key Design Elements**:
+- Welcoming hero with large text overlay
+- Serene, calming color palette
+- Emphasis on wellness and sanctuary
+- Elegant form design
+- Smooth scroll animations
+
+**Design Patterns to Implement**:
+- Hero messaging focused on sanctuary/soul
+- Wellness-focused imagery
+- Calming color transitions
+
+#### 3. Current LAOM Website
+**URL**: https://www.laom.fr/
+
+**Key Content Elements**:
+- **Tagline**: "LAOM is a rural coliving in sud of Aveyron in France"
+- **Description**: "Mountain houses with 'offices' and gardens where you can stay and work on your project. Enjoy the company of curious people, homemade food, and supportive ambiance."
+- **Features**:
+  - 21 hectares of forest, river, and meadow
+  - Cozy rooms
+  - Shared kitchen with homemade open-source recipes
+  - Creative workspaces (wooden desks, sunny sofas, tipis, flower-filled nooks)
+- **Community**: Dancers, permaculturists, eco hackers, therapists, makers, coaches
+- **Location**: Natural Park access, trails, rivers, climbing, nature immersion
+- **Events**: Upcoming events section
+- **Contact**: Aubert Charly (orion.aubert@gmail.com, 06.73.68.35.73)
+
+**Visual Elements to Extract**:
+- Natural, rustic imagery
+- Mountain/rural setting photography
+- Community and workspace photos
+- Forest and nature backgrounds
+- Event imagery
+
+### Design System
+
+#### Typography
+- **Headings**: Light weight (300-400), generous tracking (0.02em - 0.05em)
+- **Body**: Regular weight (400), comfortable line-height (1.6-1.8)
+- **Font families**: System fonts (San Francisco, Helvetica, Arial) for performance
+- **Scale**: Responsive, fluid typography from mobile to desktop
+
+#### Color Palette
+- **Primary**: `#1a1a1a` (Almost black)
+- **Secondary**: `#2d5016` (Forest green - nature connection)
+- **Accent**: `#d4af37` (Warm gold - luxury touch, optional)
+- **Background**: `#fafafa` (Off-white, warm)
+- **Text**: `#1a1a1a` on light, `#ffffff` on dark
+- **Overlays**: Black with opacity (30-50%) for text readability
+
+#### Spacing
+- **Section padding**: `py-24` (6rem vertical) on desktop, `py-16` on mobile
+- **Container max-width**: `max-w-7xl` (80rem) for content sections
+- **Grid gaps**: `gap-12` (3rem) for grid layouts
+- **Component spacing**: Consistent 4px base unit
+
+#### Component Styles
+
+**Hero Section**:
+- Full viewport height (`min-h-screen`)
+- Centered content with max-width constraint
+- Background image with gradient overlay
+- Large typography (5xl to 8xl for title)
+- CTA buttons: Primary (white bg) and secondary (outlined)
+
+**Navigation**:
+- Fixed position with backdrop blur
+- Light background with transparency (`bg-white/80`)
+- Minimal border bottom
+- Hover states with opacity transitions
+
+**Cards/Sections**:
+- Generous padding
+- Subtle background colors or borders
+- Image overlays with text
+- Hover effects: subtle scale or opacity changes
+
+**Buttons**:
+- Uppercase text with letter-spacing
+- Minimal borders or solid backgrounds
+- Smooth transitions (300ms)
+- Focus states for accessibility
+
+#### Animation Principles
+- **Fade in up**: Content appears with slight upward motion
+- **Intersection Observer**: Trigger animations on scroll
+- **Hover effects**: Subtle, not distracting
+- **Transitions**: 300ms duration, ease-out timing
+- **Reduce motion**: Respect user preferences
+
+### Image Guidelines
+
+**Hero Image Requirements**:
+- Format: JPG or WebP
+- Resolution: Minimum 1920x1080px (Full HD)
+- Aspect ratio: 16:9 or wider (landscape)
+- Content: Natural scenery, LAOM property, community activities
+- Location: `/public/images/hero-bg.jpg`
+
+**Section Images**:
+- Format: WebP preferred for performance
+- Resolution: 1200px width for full-width, 800px for cards
+- Aspect ratio: Match design needs (16:9, 4:3, square)
+- Alt text: Always include descriptive alt text for SEO
+
+**Recommended Image Sources**:
+1. LAOM property photos (mountain houses, gardens, workspaces)
+2. Natural surroundings (forest, river, meadows)
+3. Community activities (workshops, meals, events)
+4. Workspace details (desks, tipis, cozy nooks)
+5. Events and gatherings
+
+### Implementation Notes
+
+- All design decisions should maintain the **luxury wellness aesthetic**
+- Prioritize **performance**: Optimize images, lazy loading
+- Ensure **accessibility**: Proper contrast ratios, focus states
+- Maintain **responsiveness**: Mobile-first approach
+- Keep **SEO in mind**: Semantic HTML, proper heading hierarchy
+
 ## Project Rules and Guidelines
 
 ### 1. Package Manager
@@ -171,7 +328,7 @@ laom-landing/
 │       └── schema.ts         # JSON-LD schema helpers
 ├── .gitignore                # Git ignore rules
 ├── .prettierrc               # Prettier configuration
-├── AGENT.md                  # This file
+├── AGENTS.md                 # This file
 ├── Cloud.md                  # Quick reference
 ├── astro.config.mjs          # Astro configuration
 ├── package.json              # Dependencies and scripts
