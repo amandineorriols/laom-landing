@@ -28,7 +28,6 @@ const trustLogos = [
   { src: '/images/logo-image01.png', alt: t.trust.logos[2] },
 ]
 
-const testimonialVideoSrc = '/videos/laom-testimonial.mp4'
 ---
 
 <Layout 
@@ -214,29 +213,6 @@ const testimonialVideoSrc = '/videos/laom-testimonial.mp4'
             </div>
           </div>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials + Video -->
-  <section class="py-32 lg:py-40 bg-[#faf9f6]">
-    <div class="max-w-5xl mx-auto px-8 sm:px-12 lg:px-20 text-center">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-light text-black mb-6">{t.testimonials.title}</h2>
-      <p class="text-black/60 font-light text-lg mb-12">{t.testimonials.subtitle}</p>
-      <div class="bg-white border border-black/10 rounded-sm overflow-hidden shadow-sm">
-        <div class="aspect-[9/16] bg-black">
-          <video
-            id="testimonial-video"
-            class="w-full h-full object-cover"
-            controls
-            playsinline
-            preload="metadata"
-            poster="/images/hero-bg.jpg"
-          >
-            <source src={testimonialVideoSrc} type="video/mp4" />
-          </video>
-        </div>
-        <div class="p-6 text-sm text-black/60">{t.testimonials.caption}</div>
       </div>
     </div>
   </section>
