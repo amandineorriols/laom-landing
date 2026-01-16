@@ -1,0 +1,168 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import { createWebPageSchema } from '~/utils/schema'
+
+const pageSchema = createWebPageSchema({
+  name: 'Presentation',
+  url: Astro.url.toString(),
+  description:
+    'LAOM, a rural third place to co-create a desirable future: collective living, regenerative farm, eco-building, and immersive experiences.',
+})
+---
+
+<Layout
+  title="Presentation – LAOM"
+  description="LAOM, a rural third place to co-create a desirable future: collective living, regenerative farm, eco-building, and immersive experiences."
+  seo={{ ldJSON: pageSchema }}
+>
+  <section class="py-32 lg:py-40 bg-white">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
+      <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-6">LAOM</span>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-black mb-6 tracking-tight">
+        A rural third place to co-create a desirable future
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-black/60 leading-relaxed">
+        We move forward every day to build a future where resources are honored, our homes are healthy for people and
+        the Earth, we live together harmoniously, and we work with heart.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#faf9f6]">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24">
+      <p class="text-lg font-light text-black/70 leading-relaxed mb-6">
+        LAOM is a rural third place that includes:
+      </p>
+      <ul class="grid gap-4 md:grid-cols-2 text-lg font-light text-black/70">
+        <li>a collective living space,</li>
+        <li>a learning farm using regenerative agriculture,</li>
+        <li>eco-built buildings,</li>
+        <li>a welcome center,</li>
+        <li>and immersive experiences for entrepreneurs, artists, and creators.</li>
+      </ul>
+      <p class="mt-6 text-lg font-light text-black/70 leading-relaxed">All on the same site!</p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24 space-y-16">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-light text-black mb-6">A collective and intergenerational living place</h2>
+        <div class="space-y-5 text-lg font-light text-black/70 leading-relaxed">
+          <p>
+            LAOM is first and foremost a collective living place, a place where we experiment with living well
+            together, with respect and autonomy for everyone. Housing is shared between permanent residents and
+            temporary visitors.
+          </p>
+          <p>
+            Shared spaces are designed (some still under construction) to facilitate moments of exchange.
+          </p>
+          <p>
+            Our collective is intergenerational, from ages 2 to 69. We place special attention on the education of
+            children, convinced that everything depends on how they grow up. By offering them a living environment
+            where respect, connection to nature, cooperation, and care prevail, we prepare future generations to build
+            a better world.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-3xl md:text-4xl font-light text-black mb-6">A learning farm with regenerative agriculture</h2>
+        <div class="space-y-5 text-lg font-light text-black/70 leading-relaxed">
+          <p>
+            We practice regenerative agriculture, a proactive approach that revitalizes ecosystems by enriching
+            biodiversity and soil while preserving water resources.
+          </p>
+          <p>
+            With only 60 harvests left before irreversible soil degradation, our commitment goes far beyond farming.
+            It is an invitation to learn and grow with nature to ensure the continuity of our soils and, with them,
+            humanity.
+          </p>
+          <p>
+            Through hands-on workshops and open awareness initiatives for everyone, children and adults alike, we are
+            committed to sharing everything we learn and experiment with on this educational market garden farm.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-3xl md:text-4xl font-light text-black mb-6">Eco-built buildings</h2>
+        <div class="space-y-5 text-lg font-light text-black/70 leading-relaxed">
+          <p>
+            At the crossroads of modernity and nature, new buildings are designed according to eco-construction
+            principles, using local, renewable, or recycled materials. Load-bearing straw building, raw earth floors,
+            and earth plasters: we are experimenters in search of durability, comfort, and health while reducing
+            ecological footprint.
+          </p>
+          <p>
+            These constructions are not only places to live or stay; they also serve as educational models for
+            sustainable building.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-3xl md:text-4xl font-light text-black mb-6">A welcome space for courses and retreats</h2>
+        <div class="space-y-5 text-lg font-light text-black/70 leading-relaxed">
+          <p>
+            In this oasis of biodiversity, at the heart of the Grands Causses natural park, our welcome space offers
+            an immersive experience to visitors who want to discover the beauty of the place and interact with the
+            other dimensions of the project (regenerative agriculture, living together, eco-construction).
+          </p>
+          <p>
+            Disconnect from an overly busy life, synchronize with the frequencies of nature, connect with your inner
+            magic to share it with the world. Nourish yourself to nourish the world.
+          </p>
+          <p>
+            We imagine LAOM as a place to discover and learn from the best practitioners in dance, yoga, MovNat, and
+            all other arts of presence. In formats of 2 to 7 days, the courses and retreats are open to all humans on
+            the path toward a life with more presence and awareness.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-3xl md:text-4xl font-light text-black mb-6">
+          Immersive experiences, micro-festivals, residencies, and co-livings
+        </h2>
+        <div class="space-y-5 text-lg font-light text-black/70 leading-relaxed">
+          <p>
+            The immersive experiences we imagine are transformative for creators, entrepreneurs, leaders, and
+            artists. In return, these inspired and transformed people will spread their positive energy and wisdom in
+            their own communities, contributing to a global impact of well-being and harmony. It is the butterfly
+            effect.
+          </p>
+          <p>
+            Micro-festivals are moments of celebration, learning, and inspiration. The first micro-festival will be
+            the Festival de la Terre in the fall of 2024.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-3xl md:text-4xl font-light text-black mb-6">Why "LAOM"</h2>
+        <div class="space-y-5 text-lg font-light text-black/70 leading-relaxed">
+          <p>
+            The name "LAOM" combines two important sounds: "LAM" and "OM". Together, they symbolize the balance
+            between earth and the universe, representing a space where these dimensions meet to foster personal growth
+            and collective evolution.
+          </p>
+          <p>
+            The sound LAM is associated with the root chakra, linked to our fundamental needs for security and
+            stability. It highlights the importance of having solid foundations and creating an environment that
+            nourishes us.
+          </p>
+          <p>
+            The sound OM is sacred in many traditions and is considered the primordial sound of the universe,
+            encompassing the totality of existence. It symbolizes unity and connection with everything around us.
+          </p>
+          <p>
+            Thus, "LAOM" represents a space where the grounding and stability of the earth (LAM) meet the unity of the
+            universe (OM). It is a place that fosters both material well-being and personal growth, a space where we
+            can feel safe, connected to ourselves, to others, to nature, and to something greater.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

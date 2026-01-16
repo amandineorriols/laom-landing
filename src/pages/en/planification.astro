@@ -1,0 +1,92 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import { createWebPageSchema } from '~/utils/schema'
+
+const pageSchema = createWebPageSchema({
+  name: 'Planning and development',
+  url: Astro.url.toString(),
+  description:
+    'Planning and development of the LAOM third place: hamlet renovation, cottages, eco homes, Ferme du Verseau, dining, and eco-lodges.',
+})
+---
+
+<Layout
+  title="Planning and development – LAOM"
+  description="Planning and development of the LAOM third place: hamlet renovation, cottages, eco homes, Ferme du Verseau, dining, and eco-lodges."
+  seo={{ ldJSON: pageSchema }}
+>
+  <section class="py-32 lg:py-40 bg-white">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
+      <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-6">LAOM third place</span>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-black mb-6 tracking-tight">
+        Planning and development
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-black/60 leading-relaxed">
+        Site plan of the overall project on the Margue estate and presentation of the infrastructures.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24 space-y-12">
+      <div class="border border-black/10 bg-white p-8 lg:p-10 shadow-sm">
+        <h2 class="text-2xl md:text-3xl font-light text-black mb-4">Historic hamlet zone (2021 - 2027)</h2>
+        <ul class="space-y-3 text-lg font-light text-black/70 leading-relaxed">
+          <li>
+            Hamlet renovation (2021 - 2022): preservation of the historic buildings, ground-floor stabilization,
+            restoration of the dovecote roof, thermal and acoustic insulation.
+          </li>
+          <li>
+            Creation of two new cottages: renovation of a barn to create two cottages (35&nbsp;m2 and 25&nbsp;m2),
+            designed to preserve the traditional architectural style of the hamlet.
+          </li>
+          <li>
+            Residential homes (2025 - 2027): construction of two ecological homes integrated into the hamlet style
+            (red stone from the Rougier de Camarès), with materials and techniques respectful of the environment.
+          </li>
+        </ul>
+      </div>
+
+      <div class="border border-black/10 bg-white p-8 lg:p-10 shadow-sm">
+        <h2 class="text-2xl md:text-3xl font-light text-black mb-4">Agri-tourism zone (2023 - 2027)</h2>
+        <div class="space-y-4 text-lg font-light text-black/70 leading-relaxed">
+          <p>
+            Ferme du Verseau: launched in 2021, this farm is dedicated to sharing regenerative agriculture practices
+            and producing organic vegetables and wellness hemp. It also serves as an educational center for the
+            community and visitors.
+          </p>
+          <p>
+            Multipurpose hall and dining space: the space currently hosts about fifteen people, but it is undergoing a
+            complete renovation to welcome a professional dining area for groups of up to 30 people.
+          </p>
+        </div>
+      </div>
+
+      <div class="border border-black/10 bg-white p-8 lg:p-10 shadow-sm">
+        <h2 class="text-2xl md:text-3xl font-light text-black mb-4">Tourist accommodations</h2>
+        <p class="text-lg font-light text-black/70 leading-relaxed">
+          Development of light tourist accommodations, including tiny house units for seasonal hospitality in harmony
+          with the landscape.
+        </p>
+      </div>
+
+      <div class="border border-black/10 bg-white p-8 lg:p-10 shadow-sm">
+        <h2 class="text-2xl md:text-3xl font-light text-black mb-4">Eco-lodge zone (early summer 2025 - late 2026)</h2>
+        <p class="text-lg font-light text-black/70 leading-relaxed">
+          Construction of five eco-lodges on stilts, designed to blend into the natural environment while offering
+          high-quality accommodation. These structures aim to promote sustainable tourism and minimize ecological
+          footprint.
+        </p>
+      </div>
+
+      <div class="text-center">
+        <a
+          href="/en/financement-participatif/"
+          class="inline-flex items-center justify-center rounded-sm border border-black/20 px-8 py-3 text-xs tracking-[0.25em] uppercase text-black/70 hover:border-black/40 hover:text-black transition-colors"
+        >
+          See our community financing
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

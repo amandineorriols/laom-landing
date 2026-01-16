@@ -1,0 +1,93 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import { createWebPageSchema } from '~/utils/schema'
+
+const pageSchema = createWebPageSchema({
+  name: 'Who we are',
+  url: Astro.url.toString(),
+  description:
+    'The people who live and carry LAOM every day: holistic health, creation, regenerative agriculture, and guidance.',
+})
+---
+
+<Layout
+  title="Who we are – LAOM"
+  description="The people who live and carry LAOM every day: holistic health, creation, regenerative agriculture, and guidance."
+  seo={{ ldJSON: pageSchema }}
+>
+  <section class="py-32 lg:py-40 bg-white">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
+      <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-6">LAOM</span>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-black mb-6 tracking-tight">
+        Who we are
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-black/60 leading-relaxed">
+        A collective project embodied by people who live on site and bring their skills together to help LAOM shine.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <article class="border border-black/10 bg-white p-6 lg:p-8 shadow-sm">
+          <p class="text-xs tracking-[0.25em] uppercase text-black/40 mb-3">Founder</p>
+          <h2 class="text-xl font-light text-black mb-4">Amandine Orriols</h2>
+          <p class="text-sm font-light text-black/60 leading-relaxed">
+            Sister and co-founder of Amawe, a company that brings together a community of 50,000 people around holistic
+            health. She hosts this community with guidance, online programs, and in-person retreats. Living on site,
+            she mobilizes her community to help LAOM shine.
+          </p>
+        </article>
+
+        <article class="border border-black/10 bg-white p-6 lg:p-8 shadow-sm">
+          <p class="text-xs tracking-[0.25em] uppercase text-black/40 mb-3">Naturopathic practitioner</p>
+          <h2 class="text-xl font-light text-black mb-4">Claire Orriols</h2>
+          <p class="text-sm font-light text-black/60 leading-relaxed">
+            Sister and co-founder of Amawe. She leads guidance and retreats around holistic health, animates the
+            community, and contributes to on-site hosting, while actively supporting the radiance of the place.
+          </p>
+        </article>
+
+        <article class="border border-black/10 bg-white p-6 lg:p-8 shadow-sm">
+          <p class="text-xs tracking-[0.25em] uppercase text-black/40 mb-3">Trainer, influencer, dancer</p>
+          <h2 class="text-xl font-light text-black mb-4">Eliott Meunier</h2>
+          <p class="text-sm font-light text-black/60 leading-relaxed">
+            Founder of ATOMIC, a training school on knowledge management, creativity, and business, bringing together
+            a community of 100,000 people. Living on site, he plants his company and a project incubator in Aveyron.
+            A former Opera de Paris dancer, he also leads dance workshops.
+          </p>
+        </article>
+
+        <article class="border border-black/10 bg-white p-6 lg:p-8 shadow-sm">
+          <p class="text-xs tracking-[0.25em] uppercase text-black/40 mb-3">President of Ferme du Verseau</p>
+          <h2 class="text-xl font-light text-black mb-4">Charly Aubert</h2>
+          <p class="text-sm font-light text-black/60 leading-relaxed">
+            Founder of Ferme du Verseau, whose activity is market gardening production and workshops around
+            regenerative farming practices. Living on site, he coordinates the overall development of the LAOM
+            project.
+          </p>
+        </article>
+
+        <article class="border border-black/10 bg-white p-6 lg:p-8 shadow-sm">
+          <p class="text-xs tracking-[0.25em] uppercase text-black/40 mb-3">NVC & psychotherapy</p>
+          <h2 class="text-xl font-light text-black mb-4">Patricia Salgon</h2>
+          <p class="text-sm font-light text-black/60 leading-relaxed">
+            Trainer in Nonviolent Communication and psychotherapist. She leads therapeutic group and individual
+            support. Living on site, she actively participates in the vision and financing of LAOM.
+          </p>
+        </article>
+
+        <article class="border border-black/10 bg-white p-6 lg:p-8 shadow-sm">
+          <p class="text-xs tracking-[0.25em] uppercase text-black/40 mb-3">Coach</p>
+          <h2 class="text-xl font-light text-black mb-4">Gregoire Renevier</h2>
+          <p class="text-sm font-light text-black/60 leading-relaxed">
+            Creator of a third place in Montpellier (The Island) and former associate of a communications agency
+            dedicated to CSR and the ecological transition (Patte Blanche). Living on site, he is a personal
+            development coach based in Aveyron where he runs his courses at LAOM.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</Layout>
