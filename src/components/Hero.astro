@@ -6,35 +6,52 @@ const t = getTranslations(lang as 'fr' | 'en')
 ---
 
 <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-  <!-- Background Image - Replace with your actual image -->
+  <!-- Background Image with natural fallback -->
   <div class="absolute inset-0 z-0">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/50 z-10"></div>
-    <div class="w-full h-full bg-[#2d5016] opacity-20"></div>
-    <!-- Placeholder for hero image - replace with actual image -->
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/hero-bg.jpg'); background-position: center; background-size: cover;"></div>
+    <!-- Natural gradient background as fallback (forest/rural colors) -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#2d5016] via-[#3a6030] to-[#1a3320]"></div>
+    <!-- Image overlay -->
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/hero-bg.jpg'); background-position: center; background-size: cover;">
+      <!-- Gradient overlay for text readability (inspired by Our Habitas) -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
+    </div>
+    <!-- Additional natural overlay -->
+    <div class="absolute inset-0 bg-[#2d5016]/10"></div>
   </div>
 
-  <!-- Content -->
-  <div class="relative z-20 text-center px-6 lg:px-8 max-w-4xl mx-auto opacity-0" animate-fade-in-up>
-    <h1 class="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-white mb-6">
+  <!-- Content - Inspired by Our Habitas hero layout -->
+  <div class="relative z-20 text-center px-6 lg:px-8 max-w-5xl mx-auto opacity-0" animate-fade-in-up>
+    <!-- Location tag (like Our Habitas) -->
+    <p class="text-sm md:text-base font-light tracking-[0.2em] text-white/80 mb-6 uppercase">
+      Aveyron, France
+    </p>
+    
+    <!-- Main title -->
+    <h1 class="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light tracking-tight text-white mb-8 leading-[0.95]">
       {t.hero.title}
     </h1>
-    <p class="text-xl md:text-2xl lg:text-3xl font-light text-white/90 mb-4 tracking-wide">
+    
+    <!-- Subtitle -->
+    <p class="text-xl md:text-2xl lg:text-3xl font-light text-white/95 mb-6 tracking-wide max-w-3xl mx-auto">
       {t.hero.subtitle}
     </p>
-    <p class="text-lg md:text-xl text-white/80 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+    
+    <!-- Description -->
+    <p class="text-lg md:text-xl text-white/85 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
       {t.hero.description}
     </p>
+    
+    <!-- CTA Buttons - Minimal elegant style -->
     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
       <a 
         href="#experience" 
-        class="px-8 py-4 bg-white text-black font-light tracking-wider hover:bg-white/90 transition-all duration-300 uppercase text-sm"
+        class="px-10 py-4 bg-white text-black font-light tracking-[0.15em] hover:bg-white/95 hover:scale-[1.02] transition-all duration-300 uppercase text-sm min-w-[180px] text-center"
       >
         {t.hero.cta.explore}
       </a>
       <a 
         href="#contact" 
-        class="px-8 py-4 border-2 border-white text-white font-light tracking-wider hover:bg-white/10 transition-all duration-300 uppercase text-sm"
+        class="px-10 py-4 border border-white/80 text-white font-light tracking-[0.15em] hover:bg-white/10 hover:border-white transition-all duration-300 uppercase text-sm min-w-[180px] text-center"
       >
         {t.hero.cta.contact}
       </a>

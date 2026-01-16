@@ -21,87 +21,113 @@ const siteSchema = createWebSiteSchema({
 >
   <Hero />
   
-  <!-- About Section -->
-  <section id="experience" class="py-24 px-6 lg:px-8 bg-white">
-    <div class="max-w-4xl mx-auto opacity-0" animate-fade-in-up>
-      <h2 class="text-4xl md:text-5xl font-light tracking-tight text-black mb-6 text-center">
-        {t.about.title}
-      </h2>
-      <p class="text-xl font-light text-black/80 mb-4 text-center">
-        {t.about.subtitle}
-      </p>
-      <p class="text-lg font-light text-black/70 mb-12 leading-relaxed">
-        {t.about.description}
-      </p>
-      
-      <div class="space-y-6 mb-12">
-        <div class="flex items-start gap-4">
-          <span class="text-2xl">🌲</span>
-          <p class="text-lg font-light text-black/70">{t.about.features.space}</p>
-        </div>
-        <div class="flex items-start gap-4">
-          <span class="text-2xl">🛏️</span>
-          <p class="text-lg font-light text-black/70">{t.about.features.rooms}</p>
-        </div>
-        <div class="flex items-start gap-4">
-          <span class="text-2xl">🍲</span>
-          <p class="text-lg font-light text-black/70">{t.about.features.kitchen}</p>
-        </div>
-        <div class="flex items-start gap-4">
-          <span class="text-2xl">🧠</span>
-          <p class="text-lg font-light text-black/70">{t.about.features.workspace}</p>
-        </div>
-      </div>
-
-      <div class="bg-black/5 p-8 rounded-lg mb-12">
-        <p class="text-lg font-light text-black/70 leading-relaxed">
-          {t.about.community}
+  <!-- About Section - Elegant spacing inspired by Our Habitas -->
+  <section id="experience" class="py-32 px-6 lg:px-8 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <!-- Section Header -->
+      <div class="max-w-4xl mx-auto mb-20 opacity-0" animate-fade-in-up>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-black mb-8 text-center">
+          {t.about.title}
+        </h2>
+        <p class="text-xl md:text-2xl font-light text-black/70 mb-6 text-center leading-relaxed">
+          {t.about.subtitle}
+        </p>
+        <p class="text-lg font-light text-black/60 mb-12 leading-relaxed text-center max-w-3xl mx-auto">
+          {t.about.description}
         </p>
       </div>
+      
+      <!-- Features Grid - Inspired by Our Habitas room cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 opacity-0" animate-fade-in-up>
+        <div class="flex items-start gap-6 p-8 hover:bg-black/5 transition-colors duration-300 rounded-lg">
+          <div class="text-4xl flex-shrink-0">🌲</div>
+          <div>
+            <h3 class="text-lg font-light text-black mb-2 tracking-wide">Espace Naturel</h3>
+            <p class="text-base font-light text-black/70 leading-relaxed">{t.about.features.space}</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-6 p-8 hover:bg-black/5 transition-colors duration-300 rounded-lg">
+          <div class="text-4xl flex-shrink-0">🛏️</div>
+          <div>
+            <h3 class="text-lg font-light text-black mb-2 tracking-wide">Hébergement</h3>
+            <p class="text-base font-light text-black/70 leading-relaxed">{t.about.features.rooms}</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-6 p-8 hover:bg-black/5 transition-colors duration-300 rounded-lg">
+          <div class="text-4xl flex-shrink-0">🍲</div>
+          <div>
+            <h3 class="text-lg font-light text-black mb-2 tracking-wide">Cuisine Partagée</h3>
+            <p class="text-base font-light text-black/70 leading-relaxed">{t.about.features.kitchen}</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-6 p-8 hover:bg-black/5 transition-colors duration-300 rounded-lg">
+          <div class="text-4xl flex-shrink-0">🧠</div>
+          <div>
+            <h3 class="text-lg font-light text-black mb-2 tracking-wide">Espaces de Travail</h3>
+            <p class="text-base font-light text-black/70 leading-relaxed">{t.about.features.workspace}</p>
+          </div>
+        </div>
+      </div>
 
-      <p class="text-lg font-light text-black/70 leading-relaxed">
-        {t.about.location}
-      </p>
+      <!-- Community Section - Elegant card design -->
+      <div class="max-w-4xl mx-auto mb-12 opacity-0" animate-fade-in-up>
+        <div class="bg-gradient-to-br from-black/5 to-black/3 p-10 md:p-12 rounded-lg border border-black/10">
+          <p class="text-xl md:text-2xl font-light text-black/80 leading-relaxed text-center">
+            {t.about.community}
+          </p>
+        </div>
+      </div>
+
+      <!-- Location Section -->
+      <div class="max-w-3xl mx-auto text-center opacity-0" animate-fade-in-up>
+        <p class="text-lg md:text-xl font-light text-black/70 leading-relaxed">
+          {t.about.location}
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- Events Section -->
-  <section id="events" class="py-24 px-6 lg:px-8 bg-black/5">
-    <div class="max-w-4xl mx-auto opacity-0" animate-fade-in-up>
-      <h2 class="text-4xl md:text-5xl font-light tracking-tight text-black mb-12 text-center">
+  <!-- Events Section - Minimal elegant design -->
+  <section id="events" class="py-32 px-6 lg:px-8 bg-gradient-to-b from-white to-black/5">
+    <div class="max-w-6xl mx-auto opacity-0" animate-fade-in-up>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-black mb-16 text-center">
         {t.events.title}
       </h2>
-      <p class="text-lg font-light text-black/70 text-center">
-        {t.events.comingSoon}
-      </p>
+      <div class="max-w-2xl mx-auto">
+        <p class="text-lg md:text-xl font-light text-black/60 text-center leading-relaxed">
+          {t.events.comingSoon}
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-24 px-6 lg:px-8 bg-white">
-    <div class="max-w-4xl mx-auto opacity-0" animate-fade-in-up>
-      <h2 class="text-4xl md:text-5xl font-light tracking-tight text-black mb-12 text-center">
+  <!-- Contact Section - Elegant centered design -->
+  <section id="contact" class="py-32 px-6 lg:px-8 bg-white">
+    <div class="max-w-5xl mx-auto opacity-0" animate-fade-in-up>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-black mb-16 text-center">
         {t.contact.title}
       </h2>
-      <div class="bg-black/5 p-8 rounded-lg max-w-md mx-auto">
-        <p class="text-sm font-light tracking-widest uppercase text-black/60 mb-2">
+      <div class="max-w-lg mx-auto bg-gradient-to-br from-black/5 to-black/3 p-12 rounded-lg border border-black/10">
+        <p class="text-xs font-light tracking-[0.2em] uppercase text-black/50 mb-4 text-center">
           {t.contact.development}
         </p>
-        <p class="text-xl font-light text-black mb-4">
+        <p class="text-2xl md:text-3xl font-light text-black mb-8 text-center tracking-wide">
           {t.contact.name}
         </p>
-        <a 
-          href={`mailto:${t.contact.email}`}
-          class="text-lg font-light text-black/70 hover:text-black transition-colors block mb-2"
-        >
-          {t.contact.email}
-        </a>
-        <a 
-          href={`tel:${t.contact.phone.replace(/\s/g, '')}`}
-          class="text-lg font-light text-black/70 hover:text-black transition-colors block"
-        >
-          {t.contact.phone}
-        </a>
+        <div class="space-y-4 text-center">
+          <a 
+            href={`mailto:${t.contact.email}`}
+            class="block text-lg font-light text-black/70 hover:text-black transition-colors duration-300"
+          >
+            {t.contact.email}
+          </a>
+          <a 
+            href={`tel:${t.contact.phone.replace(/\s/g, '')}`}
+            class="block text-lg font-light text-black/70 hover:text-black transition-colors duration-300"
+          >
+            {t.contact.phone}
+          </a>
+        </div>
       </div>
     </div>
   </section>

@@ -48,7 +48,7 @@ const seoProps = {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={Astro.currentLocale || 'fr'}>
   <head>
     <SEO {...seoProps} />
   </head>
