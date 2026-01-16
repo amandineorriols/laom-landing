@@ -8,6 +8,26 @@ const pageSchema = createWebPageSchema({
   description:
     'Ouverture fin 2026 : 7 chambres, salon/cuisine partagés, cuisine d’été, salle polyvalente, coworking, rivière et prairies.',
 })
+
+const galleryImages = [
+  '/images/laom/coliving/capture-d-cran-2023-10-24-22-30-40-95f74a2c.webp',
+  '/images/laom/coliving/capture-d-cran-2024-05-12-17-17-04-copie-9da29b45.webp',
+  '/images/laom/coliving/capture-d-cran-2024-07-15-19-48-05-f53c1637.webp',
+  '/images/laom/coliving/capture-d-cran-2024-11-20-22-48-19-3d59ffca.webp',
+  '/images/laom/coliving/capture-d-cran-2025-02-07-00-57-31-43a2b343.webp',
+  '/images/laom/coliving/capture-d-cran-2025-02-07-01-01-43-9e5e26ed.webp',
+  '/images/laom/coliving/capture-d-cran-2025-02-07-01-38-49-90f61194.webp',
+  '/images/laom/coliving/capture-d-cran-2025-02-07-01-41-24-3ea1947f.webp',
+  '/images/laom/coliving/capture-d-cran-2025-02-07-01-44-24-6d56c2b8.webp',
+  '/images/laom/coliving/capture-d-cran-2025-02-07-02-01-00-6585dc9e.webp',
+  '/images/laom/coliving/capture-d-cran-2025-02-07-02-02-45-1f3a62d7.webp',
+  '/images/laom/coliving/capture-d-cran-2025-02-07-12-12-20-182e5e91.webp',
+  '/images/laom/coliving/capture-d-cran-2025-02-07-12-17-41-1ae02366.webp',
+  '/images/laom/coliving/capture-d-cran-2025-02-08-02-12-17-9228e513.webp',
+  '/images/laom/coliving/e24281c9-461c-425b-9b56-16c4ca1ff95e-c7fdc793.webp',
+  '/images/laom/coliving/hameau-5-8b46de75.webp',
+  '/images/laom/coliving/tempimageuvgnhu-3cb8fad7.webp',
+]
 ---
 
 <Layout
@@ -22,6 +42,31 @@ const pageSchema = createWebPageSchema({
       <p class="text-xl md:text-2xl font-light text-black/60 leading-relaxed">
         7 chambres · 1 salon / cuisine · 1 cuisine d’été · 1 salle polyvalente · 21 hectares · une rivière
       </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <div class="grid gap-6 md:grid-cols-3">
+        <img
+          src="/images/laom/coliving/tempimageuvgnhu-3cb8fad7.webp"
+          alt="Maison du coliving"
+          class="h-64 w-full rounded-sm object-cover border border-black/10"
+          loading="lazy"
+        />
+        <img
+          src="/images/laom/coliving/e24281c9-461c-425b-9b56-16c4ca1ff95e-c7fdc793.webp"
+          alt="Espaces intérieurs du coliving"
+          class="h-64 w-full rounded-sm object-cover border border-black/10"
+          loading="lazy"
+        />
+        <img
+          src="/images/laom/coliving/hameau-5-8b46de75.webp"
+          alt="Vue du hameau et de la vallée"
+          class="h-64 w-full rounded-sm object-cover border border-black/10"
+          loading="lazy"
+        />
+      </div>
     </div>
   </section>
 
@@ -59,6 +104,22 @@ const pageSchema = createWebPageSchema({
         <div class="border border-black/10 p-5">Les prairies</div>
         <div class="border border-black/10 p-5">La vallée</div>
         <div class="border border-black/10 p-5">Des spectacles et moments partagés</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-10">Galerie</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {galleryImages.map((src, index) => (
+          <img
+            src={src}
+            alt={`Galerie Coliving ${index + 1}`}
+            class="h-56 w-full rounded-sm object-cover border border-black/10 bg-white"
+            loading="lazy"
+          />
+        ))}
       </div>
     </div>
   </section>

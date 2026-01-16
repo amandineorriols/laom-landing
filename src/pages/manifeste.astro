@@ -8,6 +8,10 @@ const pageSchema = createWebPageSchema({
   description:
     'Vivre et créer autrement : un manifeste pour un habitat et un travail régénératifs, ancrés dans la liberté, la collaboration et le vivant.',
 })
+
+const galleryImages = [
+  '/images/laom/manifeste/dsc02660-44659f40.webp',
+]
 ---
 
 <Layout
@@ -25,6 +29,19 @@ const pageSchema = createWebPageSchema({
         Nous vivons une époque marquée par des crises de connexion. LAOM se veut une réponse à cette transformation
         nécessaire, en créant un écosystème vivant, flexible et autonome.
       </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24">
+      <div class="aspect-[16/9] overflow-hidden rounded-sm border border-black/10 bg-neutral-100">
+        <img
+          src="/images/laom/manifeste/dsc02660-44659f40.webp"
+          alt="Paysage de LAOM"
+          class="h-full w-full object-cover"
+          loading="lazy"
+        />
+      </div>
     </div>
   </section>
 
@@ -133,6 +150,22 @@ const pageSchema = createWebPageSchema({
             Nous croyons en un modèle économique basé sur l’échange, la résilience et la création de valeur partagée.
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-10">Galerie</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {galleryImages.map((src, index) => (
+          <img
+            src={src}
+            alt={`Galerie Manifeste ${index + 1}`}
+            class="h-56 w-full rounded-sm object-cover border border-black/10 bg-white"
+            loading="lazy"
+          />
+        ))}
       </div>
     </div>
   </section>

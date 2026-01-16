@@ -8,6 +8,16 @@ const pageSchema = createWebPageSchema({
   description:
     'LAOM, un tiers-lieu rural pour co-créer un futur souhaitable : habitat collectif, ferme régénératrice, éco-construction et expériences immersives.',
 })
+
+const galleryImages = [
+  '/images/laom/presentation/capture-d-cran-2024-05-12-17-17-04-copie-ce8e4dc5.webp',
+  '/images/laom/presentation/capture-d-cran-2024-05-12-17-19-14-copie-ae098f4a.webp',
+  '/images/laom/presentation/charly-paille-2a84da2d.webp',
+  '/images/laom/presentation/img_2767---grande-c7779ff6.webp',
+  '/images/laom/presentation/logo-laom-89f38f0d.webp',
+  '/images/laom/presentation/photo-2021-08-08-18-04-31-2-85890d29.webp',
+  '/images/laom/presentation/vibration-laom-0248750b.webp',
+]
 ---
 
 <Layout
@@ -25,6 +35,31 @@ const pageSchema = createWebPageSchema({
         Nous avançons chaque jour pour déployer un avenir où les ressources sont honorées, où nos maisons sont saines
         pour l’humain et la Terre, où nous vivons ensemble harmonieusement et où nous travaillons avec cœur.
       </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <div class="grid gap-6 md:grid-cols-3">
+        <img
+          src="/images/laom/presentation/img_2767---grande-c7779ff6.webp"
+          alt="Lieu de vie à LAOM"
+          class="h-64 w-full rounded-sm object-cover border border-black/10"
+          loading="lazy"
+        />
+        <img
+          src="/images/laom/presentation/charly-paille-2a84da2d.webp"
+          alt="Chantier en paille porteuse"
+          class="h-64 w-full rounded-sm object-cover border border-black/10"
+          loading="lazy"
+        />
+        <img
+          src="/images/laom/presentation/photo-2021-08-08-18-04-31-2-85890d29.webp"
+          alt="Vie collective en extérieur"
+          class="h-64 w-full rounded-sm object-cover border border-black/10"
+          loading="lazy"
+        />
+      </div>
     </div>
   </section>
 
@@ -164,6 +199,22 @@ const pageSchema = createWebPageSchema({
             plus grand.
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-10">Galerie</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {galleryImages.map((src, index) => (
+          <img
+            src={src}
+            alt={`Galerie Présentation ${index + 1}`}
+            class="h-56 w-full rounded-sm object-cover border border-black/10 bg-white"
+            loading="lazy"
+          />
+        ))}
       </div>
     </div>
   </section>

@@ -3,18 +3,40 @@ import { getTranslations } from '~/i18n/utils'
 
 const lang = Astro.currentLocale || 'fr'
 const t = getTranslations(lang as 'fr' | 'en')
+
+const heroVideoSrc = '/videos/tulum_property_hero.mp4'
+const heroImageFallback = '/images/hero-bg.jpg'
 ---
 
 <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-  <!-- Background Image with natural fallback -->
+  <!-- Background Video/Image with natural fallback -->
   <div class="absolute inset-0 z-0">
     <!-- Natural gradient background as fallback (forest/rural colors) -->
     <div class="absolute inset-0 bg-gradient-to-br from-[#2d5016] via-[#3a6030] to-[#1a3320]"></div>
-    <!-- Image overlay -->
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/hero-bg.jpg'); background-position: center; background-size: cover;">
-      <!-- Gradient overlay for text readability (inspired by Our Habitas) -->
-      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
-    </div>
+    
+    <!-- Video Background (inspired by Our Habitas) -->
+    <video
+      id="hero-video"
+      class="absolute inset-0 w-full h-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster={heroImageFallback}
+    >
+      <source src={heroVideoSrc} type="video/mp4" />
+    </video>
+    
+    <!-- Image fallback (shown if video doesn't load) -->
+    <div 
+      id="hero-image-fallback"
+      class="absolute inset-0 bg-cover bg-center hidden" 
+      style="background-image: url('{heroImageFallback}'); background-position: center; background-size: cover;"
+    ></div>
+    
+    <!-- Gradient overlay for text readability (inspired by Our Habitas) -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
     <!-- Additional natural overlay -->
     <div class="absolute inset-0 bg-[#2d5016]/10"></div>
   </div>
@@ -65,3 +87,35 @@ const t = getTranslations(lang as 'fr' | 'en')
     <div class="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
   </div>
 </section>
+
+<script>
+  // Handle video loading errors - fallback to image
+  const heroVideo = document.getElementById('hero-video')
+  const heroImageFallback = document.getElementById('hero-image-fallback')
+  
+  if (heroVideo) {
+    heroVideo.addEventListener('error', () => {
+      // Video failed to load, show image fallback
+      if (heroImageFallback) {
+        heroVideo.style.display = 'none'
+        heroImageFallback.classList.remove('hidden')
+      }
+    })
+    
+    heroVideo.addEventListener('loadeddata', () => {
+      // Video loaded successfully
+      if (heroImageFallback) {
+        heroImageFallback.classList.add('hidden')
+      }
+    })
+    
+    // Try to play the video (required for autoplay in some browsers)
+    heroVideo.play().catch(() => {
+      // Autoplay failed, show image fallback
+      if (heroImageFallback) {
+        heroVideo.style.display = 'none'
+        heroImageFallback.classList.remove('hidden')
+      }
+    })
+  }
+</script>

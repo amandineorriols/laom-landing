@@ -8,6 +8,29 @@ const pageSchema = createWebPageSchema({
   description:
     'Campagne de prêts entre particuliers pour finaliser la deuxième étape du tiers-lieu LAOM et ouvrir l’accueil dès 2025.',
 })
+
+const galleryImages = [
+  '/images/laom/financement-participatif/0f7ae2_e45a4e189b1b487a80e026f7328068ed-mv2-40e6c9c1.webp',
+  '/images/laom/financement-participatif/279583110_758166185557020_8198996223225117740_n-2-24f1a66b.webp',
+  '/images/laom/financement-participatif/apr-s-gs-75f77fc6.webp',
+  '/images/laom/financement-participatif/avant-gs-161dd7e5.webp',
+  '/images/laom/financement-participatif/capture-d-cran-2024-05-12-17-17-04-copie-9e9ad7a5.webp',
+  '/images/laom/financement-participatif/capture-d-cran-2024-07-12-17-00-19-a18f92cf.webp',
+  '/images/laom/financement-participatif/capture-d-cran-2024-07-12-18-12-06-bc557e20.webp',
+  '/images/laom/financement-participatif/capture-d-cran-2024-07-12-18-14-06-b219489e.webp',
+  '/images/laom/financement-participatif/capture-d-cran-2024-07-13-23-21-24-5b587058.webp',
+  '/images/laom/financement-participatif/capture-d-cran-2024-07-13-23-28-22-3b450202.webp',
+  '/images/laom/financement-participatif/capture-d-cran-2024-07-13-23-28-56-01b20fae.webp',
+  '/images/laom/financement-participatif/capture-d-cran-2024-07-13-23-33-56-a0c065d2.webp',
+  '/images/laom/financement-participatif/capture-d-cran-2024-07-14-00-00-41-f8ce6ed1.webp',
+  '/images/laom/financement-participatif/capture-d-cran-2024-07-14-00-01-38-86af78b7.webp',
+  '/images/laom/financement-participatif/coop-rative-oasis-0074c086.webp',
+  '/images/laom/financement-participatif/patricia-74e89fdb.webp',
+  '/images/laom/financement-participatif/photo-groupe-laom-1502d4dc.webp',
+  '/images/laom/financement-participatif/serge-9f3d2149.webp',
+  '/images/laom/financement-participatif/tempimagecbwwmo-b2907369.webp',
+  '/images/laom/financement-participatif/tempimagewfnjjn-4383dcc4.webp',
+]
 ---
 
 <Layout
@@ -26,6 +49,29 @@ const pageSchema = createWebPageSchema({
       <p class="text-xl md:text-2xl font-light text-black/60 leading-relaxed">
         Objectif : collecter 350&nbsp;000&nbsp;€ pour boucler la deuxième étape de notre tiers-lieu rural LAOM.
       </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="border border-black/10 rounded-sm overflow-hidden">
+          <img
+            src="/images/laom/financement-participatif/avant-gs-161dd7e5.webp"
+            alt="Avant Grand Shambala"
+            class="h-64 w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div class="border border-black/10 rounded-sm overflow-hidden">
+          <img
+            src="/images/laom/financement-participatif/apr-s-gs-75f77fc6.webp"
+            alt="Après Grand Shambala"
+            class="h-64 w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
     </div>
   </section>
 
@@ -57,6 +103,20 @@ const pageSchema = createWebPageSchema({
             développement touristique de l’éco-hameau s’avère indispensable pour le territoire. » — Communauté de
             communes du Saint-Affricain Roquefort - 7 Vallons.
           </p>
+        </div>
+        <div class="mt-8 grid gap-6 md:grid-cols-2">
+          <img
+            src="/images/laom/financement-participatif/coop-rative-oasis-0074c086.webp"
+            alt="Coopérative Oasis"
+            class="h-40 w-full rounded-sm object-contain border border-black/10 bg-white p-4"
+            loading="lazy"
+          />
+          <img
+            src="/images/laom/financement-participatif/photo-groupe-laom-1502d4dc.webp"
+            alt="Collectif LAOM"
+            class="h-40 w-full rounded-sm object-cover border border-black/10"
+            loading="lazy"
+          />
         </div>
       </div>
 
@@ -143,6 +203,22 @@ const pageSchema = createWebPageSchema({
         <p class="mt-6 text-lg font-light text-black/70 leading-relaxed">
           Merci d’avance pour votre soutien et votre confiance. Avec toute notre gratitude.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-10">Galerie</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {galleryImages.map((src, index) => (
+          <img
+            src={src}
+            alt={`Galerie Financement participatif ${index + 1}`}
+            class="h-56 w-full rounded-sm object-cover border border-black/10 bg-white"
+            loading="lazy"
+          />
+        ))}
       </div>
     </div>
   </section>
