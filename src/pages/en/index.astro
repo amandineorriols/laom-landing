@@ -29,7 +29,7 @@ const trustLogos = [
 ]
 
 const testimonialVideoSrc =
-  'https://video.squarespace-cdn.com/content/v1/65302edf4351611528812cd0/245f0496-db76-4cc4-b14a-32b3e364d843/1080:1920'
+  'https://video.squarespace-cdn.com/content/v1/65302edf4351611528812cd0/245f0496-db76-4cc4-b14a-32b3e364d843/playlist.m3u8'
 ---
 
 <Layout 
@@ -62,7 +62,7 @@ const testimonialVideoSrc =
   
   <!-- About Section - Editorial Style -->
   <section id="experience" class="py-32 lg:py-40 bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-8 sm:px-12 lg:px-20">
+    <div class="max-w-7xl mx-auto px-10 sm:px-16 lg:px-24">
       <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
         <!-- Text Content -->
         <div class="lg:w-1/2 opacity-0" animate-fade-in-up>
@@ -100,7 +100,7 @@ const testimonialVideoSrc =
 
   <!-- Features Section - Asymmetric Grid -->
   <section class="py-32 lg:py-40 bg-[#faf9f6]"> <!-- Off-white/Cream background -->
-    <div class="max-w-7xl mx-auto px-8 sm:px-12 lg:px-20">
+    <div class="max-w-7xl mx-auto px-10 sm:px-16 lg:px-24">
       <div class="text-center max-w-3xl mx-auto mb-24 lg:mb-32 opacity-0" animate-fade-in-up>
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-light text-black mb-8 tracking-tight">The LAOM Experience</h2>
         <div class="w-16 h-[1px] bg-black/10 mx-auto mb-8"></div>
@@ -142,7 +142,7 @@ const testimonialVideoSrc =
   <!-- Location/Nature Immersion - Full Width Parallax-like -->
   <section class="relative py-40 flex items-center justify-center bg-[#2d5016] overflow-hidden">
     <div class="absolute inset-0 opacity-20 bg-[url('/images/forest-bg.jpg')] bg-cover bg-fixed bg-center"></div> <!-- Placeholder for forest image -->
-    <div class="relative z-10 max-w-4xl mx-auto px-8 sm:px-12 lg:px-20 text-center text-white opacity-0" animate-fade-in-up>
+    <div class="relative z-10 max-w-4xl mx-auto px-10 sm:px-16 lg:px-24 text-center text-white opacity-0" animate-fade-in-up>
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-light mb-8 tracking-tight">Wild Immersion</h2>
       <p class="text-xl md:text-2xl font-light opacity-90 leading-relaxed max-w-2xl mx-auto">
         {t.about.location}
@@ -151,7 +151,7 @@ const testimonialVideoSrc =
   </section>
 
   <!-- Events Section - Calendar Style -->
-  <section id="events" class="py-32 px-8 sm:px-12 lg:px-20 bg-white">
+  <section id="events" class="py-32 px-10 sm:px-16 lg:px-24 bg-white">
     <div class="max-w-5xl mx-auto">
       <div class="flex flex-col md:flex-row justify-between items-end mb-16 opacity-0" animate-fade-in-up>
         <div>
@@ -198,13 +198,15 @@ const testimonialVideoSrc =
       <div class="bg-white border border-black/10 rounded-sm overflow-hidden shadow-sm">
         <div class="aspect-[9/16] bg-black">
           <video
+            id="testimonial-video"
             class="w-full h-full object-cover"
             controls
             playsinline
             preload="metadata"
             poster="/images/hero-bg.jpg"
+            data-src={testimonialVideoSrc}
           >
-            <source src={testimonialVideoSrc} type="video/mp4" />
+            <source src={testimonialVideoSrc} type="application/vnd.apple.mpegurl" />
           </video>
         </div>
         <div class="p-6 text-sm text-black/60">{t.testimonials.caption}</div>
@@ -212,8 +214,24 @@ const testimonialVideoSrc =
     </div>
   </section>
 
+  <script
+    is:inline
+    src="https://cdn.jsdelivr.net/npm/hls.js@1.5.8/dist/hls.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <script is:inline>
+    const video = document.getElementById('testimonial-video')
+    if (video && window.Hls && window.Hls.isSupported()) {
+      const hls = new window.Hls()
+      hls.loadSource(video.dataset.src)
+      hls.attachMedia(video)
+    } else if (video && video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = video.dataset.src
+    }
+  </script>
+
   <!-- Contact Section - Minimalist -->
-  <section id="contact" class="py-32 lg:py-40 px-8 sm:px-12 lg:px-20 bg-[#1a1a1a] text-white">
+  <section id="contact" class="py-32 lg:py-40 px-10 sm:px-16 lg:px-24 bg-[#1a1a1a] text-white">
     <div class="max-w-4xl mx-auto text-center opacity-0" animate-fade-in-up>
       <span class="block text-xs font-light tracking-[0.2em] uppercase text-white/40 mb-8">
         Join Us
