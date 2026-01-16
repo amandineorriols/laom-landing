@@ -1,0 +1,112 @@
+---
+import { getTranslations, getLocalizedPath, getAlternateLocale } from '~/i18n/utils'
+
+const lang = Astro.currentLocale || 'fr'
+const t = getTranslations(lang as 'fr' | 'en')
+const altLang = getAlternateLocale(lang as 'fr' | 'en')
+const currentPath = Astro.url.pathname
+const altPath = getLocalizedPath(currentPath, altLang)
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-black/5">
+  <nav class="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href={getLocalizedPath('/', lang as 'fr' | 'en')} class="text-2xl font-light tracking-wider text-black hover:opacity-70 transition-opacity">
+        LAOM
+      </a>
+
+      <div class="flex items-center gap-8">
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-12">
+          <a href="#home" class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.home}</a>
+          <a href="#experience" class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.experience}</a>
+          <a href="#events" class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.events}</a>
+          <a href="#contact" class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.contact}</a>
+        </nav>
+
+        <!-- Language Switcher -->
+        <a 
+          href={altPath} 
+          class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors uppercase"
+          hreflang={altLang}
+        >
+          {altLang}
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        id="mobile-menu-button"
+        class="md:hidden text-black focus:outline-none"
+        aria-label="Toggle menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="hidden md:hidden mt-6 pb-4 border-t border-black/10">
+      <div class="flex flex-col space-y-4 pt-4">
+        <a href="#home" class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.home}</a>
+        <a href="#experience" class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.experience}</a>
+        <a href="#events" class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.events}</a>
+        <a href="#contact" class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.contact}</a>
+        <a 
+          href={altPath} 
+          class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors uppercase pt-2 border-t border-black/10"
+          hreflang={altLang}
+        >
+          {altLang}
+        </a>
+      </div>
+    </nav>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button')
+  const mobileMenu = document.getElementById('mobile-menu')
+  
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden')
+    })
+  }
+
+  // Close mobile menu when clicking on a link
+  const mobileLinks = mobileMenu?.querySelectorAll('a')
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden')
+    })
+  })
+</script>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+</style>

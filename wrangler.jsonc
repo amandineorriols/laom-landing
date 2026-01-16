@@ -1,0 +1,21 @@
+{
+  "name": "laom-landing",
+  "main": "dist/_worker.js/index.js",
+  "compatibility_date": "2025-06-17",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+  // Production deploy uses custom domain; no workers.dev fallback
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "laom.com",
+      "custom_domain": true
+    }
+  ]
+}

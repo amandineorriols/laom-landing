@@ -1,0 +1,110 @@
+---
+import { ensureTrailingSlash, type JsonLdSchema } from '~/utils/schema'
+
+interface Props {
+  title?: string
+  description?: string
+  url?: string
+  image?: string
+  canonical?: string
+  author?: string
+  keywords?: string
+  ldJSON?: JsonLdSchema
+  ogType?: 'website' | 'article'
+  publishedTime?: string
+  modifiedTime?: string
+  section?: string
+  tags?: string[]
+  noIndex?: boolean
+}
+
+const {
+  title = 'Laom – A Sanctuary for Your Soul',
+  description = 'Experience nature, wellness, and mindful living in harmony with the earth. A transformative journey where every moment is designed to inspire and renew.',
+  url = Astro.url,
+  image = `${Astro.site}images/og-image.jpg`,
+  canonical = Astro.url,
+  author = 'Laom',
+  keywords = 'wellness, nature, sustainability, mindful living, sanctuary, transformation, holistic wellness',
+  ldJSON = { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Laom', url: Astro.site?.toString() || 'https://laom.com' },
+  ogType = 'website',
+  publishedTime,
+  modifiedTime,
+  section,
+  tags = [],
+  noIndex = false,
+} = Astro.props
+
+// Truncate description for meta tags
+const descSize = 170
+let displayDescription = description
+if (description.length > descSize) {
+  displayDescription = `${description.substring(0, descSize - 3)}...`
+}
+
+const titleFix = title || (image.split('/').pop() || '.').split('.')[0]
+
+// Ensure canonical URL has trailing slash
+const canonicalUrl = ensureTrailingSlash(canonical)
+const pageUrl = ensureTrailingSlash(url)
+---
+
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="theme-color" content="#1a1a1a" />
+<meta name="generator" content={Astro.generator} />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-title" content="Laom" />
+<meta name="application-name" content="Laom" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="keywords" content={keywords} />
+
+<link rel="canonical" href={canonicalUrl} />
+<link rel="apple-touch-icon" href="/favicon.png" />
+<link rel="icon" href="/favicon.png" sizes="any" />
+
+<!-- Primary Meta Tags -->
+<title set:html={title} />
+<meta name="title" content={title} />
+<meta name="author" content={author} />
+<meta name="description" content={displayDescription} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:url" content={pageUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:type" content={ogType} />
+<meta property="og:locale" content="en_US" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="627" />
+<meta property="og:image:alt" content={titleFix} />
+<meta property="og:image:secure_url" content={image} />
+<meta property="og:image:url" content={image} />
+<meta property="og:image" content={image} />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="article:author" content={author} />
+<meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow"} />
+
+{ogType === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+
+{ogType === 'article' && modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+
+{ogType === 'article' && section && <meta property="article:section" content={section} />}
+
+{ogType === 'article' && tags.length > 0 && tags.map((tag: string) => <meta property="article:tag" content={tag} />)}
+
+<meta property="og:site_name" content="Laom" />
+<meta property="og:description" content={displayDescription} />
+
+<!-- Twitter -->
+<meta name="twitter:url" content={pageUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:image" content={image} />
+<meta name="twitter:image:alt" content={titleFix} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content={displayDescription} />
+
+<!-- Structured Data -->
+<script is:inline type="application/ld+json" set:html={JSON.stringify(ldJSON)} />

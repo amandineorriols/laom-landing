@@ -1,0 +1,82 @@
+---
+import type { JsonLdSchema } from '~/utils/schema'
+
+export interface SEOProps {
+  title?: string
+  description?: string
+  image?: string
+  canonical?: string
+  author?: string
+  keywords?: string
+  ldJSON?: JsonLdSchema
+  ogType?: 'website' | 'article'
+  publishedTime?: string
+  modifiedTime?: string
+  section?: string
+  tags?: string[]
+  noIndex?: boolean
+}
+
+export interface LayoutProps {
+  title?: string
+  ogImage?: string
+  description?: string
+  seo?: SEOProps
+}
+
+const {
+  title,
+  ogImage,
+  description = 'Experience nature, wellness, and mindful living in harmony with the earth. A transformative journey where every moment is designed to inspire and renew.',
+  seo = {},
+}: LayoutProps = Astro.props
+
+import '../styles/global.css'
+import SEO from '~/components/SEO.astro'
+import Header from '~/components/Header.astro'
+import Footer from '~/components/Footer.astro'
+
+const isLocalhost = Astro.url.origin.includes('localhost:')
+
+// Merge SEO props with defaults
+const seoProps = {
+  title: seo.title || title || 'Laom – A Sanctuary for Your Soul',
+  description: seo.description || description,
+  image: seo.image || ogImage,
+  ...seo,
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <SEO {...seoProps} />
+  </head>
+  <body class="antialiased">
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded">
+      Skip to main content
+    </a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      // Smooth scroll reveal animation
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove('opacity-0')
+              entry.target.classList.add('animate-fade-in-up')
+              observer.unobserve(entry.target)
+            }
+          })
+        },
+        { threshold: window.innerWidth > 768 ? 0.3 : 0.1 }
+      )
+      document.querySelectorAll('[animate-fade-in-up]').forEach((el) => observer.observe(el))
+    </script>
+  </body>
+</html>

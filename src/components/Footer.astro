@@ -1,0 +1,46 @@
+---
+import { getTranslations } from '~/i18n/utils'
+
+const lang = Astro.currentLocale || 'fr'
+const t = getTranslations(lang as 'fr' | 'en')
+---
+
+<footer class="bg-black text-white py-16">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+      <!-- Brand -->
+      <div>
+        <h3 class="text-2xl font-light tracking-wider mb-6">LAOM</h3>
+        <p class="text-white/70 text-sm font-light leading-relaxed max-w-xs">
+          {t.footer.description}
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <h4 class="text-sm font-light tracking-widest uppercase mb-6">{t.footer.explore}</h4>
+        <nav class="flex flex-col space-y-4">
+          <a href="#home" class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.home}</a>
+          <a href="#experience" class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.experience}</a>
+          <a href="#events" class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.events}</a>
+        </nav>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="text-sm font-light tracking-widest uppercase mb-6">{t.footer.connect}</h4>
+        <nav class="flex flex-col space-y-4">
+          <a href="#contact" class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.contact}</a>
+          <a href="mailto:orion.aubert@gmail.com" class="text-white/70 hover:text-white text-sm font-light transition-colors">orion.aubert@gmail.com</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="border-t border-white/10 pt-8">
+      <p class="text-white/50 text-xs font-light text-center">
+        {t.footer.copyright.replace('{year}', new Date().getFullYear().toString())}
+      </p>
+    </div>
+  </div>
+</footer>

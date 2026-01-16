@@ -1,0 +1,108 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import Hero from '~/components/Hero.astro'
+import { getTranslations, createWebSiteSchema } from '~/utils/schema'
+import { getTranslations as getI18nTranslations } from '~/i18n/utils'
+
+const lang = Astro.currentLocale || 'fr'
+const t = getI18nTranslations(lang as 'fr' | 'en')
+const siteSchema = createWebSiteSchema({
+  url: Astro.site?.toString() || 'https://laom.com',
+  description: t.site.description,
+})
+---
+
+<Layout 
+  title={`${t.site.name} – ${t.site.tagline}`}
+  description={t.site.description}
+  seo={{
+    ldJSON: siteSchema,
+  }}
+>
+  <Hero />
+  
+  <!-- About Section -->
+  <section id="experience" class="py-24 px-6 lg:px-8 bg-white">
+    <div class="max-w-4xl mx-auto opacity-0" animate-fade-in-up>
+      <h2 class="text-4xl md:text-5xl font-light tracking-tight text-black mb-6 text-center">
+        {t.about.title}
+      </h2>
+      <p class="text-xl font-light text-black/80 mb-4 text-center">
+        {t.about.subtitle}
+      </p>
+      <p class="text-lg font-light text-black/70 mb-12 leading-relaxed">
+        {t.about.description}
+      </p>
+      
+      <div class="space-y-6 mb-12">
+        <div class="flex items-start gap-4">
+          <span class="text-2xl">🌲</span>
+          <p class="text-lg font-light text-black/70">{t.about.features.space}</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-2xl">🛏️</span>
+          <p class="text-lg font-light text-black/70">{t.about.features.rooms}</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-2xl">🍲</span>
+          <p class="text-lg font-light text-black/70">{t.about.features.kitchen}</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-2xl">🧠</span>
+          <p class="text-lg font-light text-black/70">{t.about.features.workspace}</p>
+        </div>
+      </div>
+
+      <div class="bg-black/5 p-8 rounded-lg mb-12">
+        <p class="text-lg font-light text-black/70 leading-relaxed">
+          {t.about.community}
+        </p>
+      </div>
+
+      <p class="text-lg font-light text-black/70 leading-relaxed">
+        {t.about.location}
+      </p>
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section id="events" class="py-24 px-6 lg:px-8 bg-black/5">
+    <div class="max-w-4xl mx-auto opacity-0" animate-fade-in-up>
+      <h2 class="text-4xl md:text-5xl font-light tracking-tight text-black mb-12 text-center">
+        {t.events.title}
+      </h2>
+      <p class="text-lg font-light text-black/70 text-center">
+        {t.events.comingSoon}
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 px-6 lg:px-8 bg-white">
+    <div class="max-w-4xl mx-auto opacity-0" animate-fade-in-up>
+      <h2 class="text-4xl md:text-5xl font-light tracking-tight text-black mb-12 text-center">
+        {t.contact.title}
+      </h2>
+      <div class="bg-black/5 p-8 rounded-lg max-w-md mx-auto">
+        <p class="text-sm font-light tracking-widest uppercase text-black/60 mb-2">
+          {t.contact.development}
+        </p>
+        <p class="text-xl font-light text-black mb-4">
+          {t.contact.name}
+        </p>
+        <a 
+          href={`mailto:${t.contact.email}`}
+          class="text-lg font-light text-black/70 hover:text-black transition-colors block mb-2"
+        >
+          {t.contact.email}
+        </a>
+        <a 
+          href={`tel:${t.contact.phone.replace(/\s/g, '')}`}
+          class="text-lg font-light text-black/70 hover:text-black transition-colors block"
+        >
+          {t.contact.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

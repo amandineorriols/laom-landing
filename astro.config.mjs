@@ -1,0 +1,78 @@
+import sitemap from '@astrojs/sitemap'
+import tailwindcss from '@tailwindcss/vite'
+import cloudflare from '@astrojs/cloudflare'
+import { defineConfig } from 'astro/config'
+import { glob } from 'glob'
+import { statSync } from 'node:fs'
+
+const site = process.env.SITE_URL ?? 'https://laom.com'
+
+// Build a map of page paths to their lastmod dates for sitemap
+function getPageLastModDates() {
+  const lastModMap = new Map()
+
+  // Get static page dates from file modification time
+  const pageFiles = glob.sync('src/pages/**/*.astro')
+  for (const file of pageFiles) {
+    const stat = statSync(file)
+    // Convert file path to URL path
+    let urlPath = file
+      .replace('src/pages', '')
+      .replace('/index.astro', '/')
+      .replace('.astro', '/')
+    if (!urlPath.endsWith('/')) urlPath += '/'
+    if (!lastModMap.has(urlPath)) {
+      lastModMap.set(urlPath, stat.mtime)
+    }
+  }
+
+  return lastModMap
+}
+
+const pageLastModDates = getPageLastModDates()
+
+export default defineConfig({
+  output: 'server',
+  i18n: {
+    defaultLocale: 'fr',
+    locales: ['fr', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+  server: {
+    open: true,
+    port: 3000,
+    host: '0.0.0.0',
+  },
+  adapter: cloudflare(),
+  vite: {
+    plugins: [
+      tailwindcss(),
+    ],
+  },
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: 'fr',
+        locales: {
+          fr: 'fr-FR',
+          en: 'en-US',
+        },
+      },
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+      serialize(item) {
+        // Check if this URL matches a page with a known lastmod date
+        const urlPath = new URL(item.url).pathname
+        const lastmod = pageLastModDates.get(urlPath)
+        if (lastmod) {
+          item.lastmod = lastmod.toISOString()
+        }
+        return item
+      },
+    }),
+  ],
+  site,
+})

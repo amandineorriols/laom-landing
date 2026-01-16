@@ -1,0 +1,50 @@
+---
+import { getTranslations } from '~/i18n/utils'
+
+const lang = Astro.currentLocale || 'fr'
+const t = getTranslations(lang as 'fr' | 'en')
+---
+
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background Image - Replace with your actual image -->
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/50 z-10"></div>
+    <div class="w-full h-full bg-[#2d5016] opacity-20"></div>
+    <!-- Placeholder for hero image - replace with actual image -->
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/hero-bg.jpg'); background-position: center; background-size: cover;"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-20 text-center px-6 lg:px-8 max-w-4xl mx-auto opacity-0" animate-fade-in-up>
+    <h1 class="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-white mb-6">
+      {t.hero.title}
+    </h1>
+    <p class="text-xl md:text-2xl lg:text-3xl font-light text-white/90 mb-4 tracking-wide">
+      {t.hero.subtitle}
+    </p>
+    <p class="text-lg md:text-xl text-white/80 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+      {t.hero.description}
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a 
+        href="#experience" 
+        class="px-8 py-4 bg-white text-black font-light tracking-wider hover:bg-white/90 transition-all duration-300 uppercase text-sm"
+      >
+        {t.hero.cta.explore}
+      </a>
+      <a 
+        href="#contact" 
+        class="px-8 py-4 border-2 border-white text-white font-light tracking-wider hover:bg-white/10 transition-all duration-300 uppercase text-sm"
+      >
+        {t.hero.cta.contact}
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+    <svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </div>
+</section>

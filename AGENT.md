@@ -1,0 +1,391 @@
+# LAOM Landing Page - Agent Documentation
+
+## Project Overview
+
+LAOM is a beautiful, multilingual landing page for a rural coliving space located in the south of Aveyron, France. The project is inspired by luxury wellness brands like Our Habitas (Tulum) and The House of AïA, featuring a minimal, elegant aesthetic with a focus on nature, wellness, and mindful living.
+
+### What is LAOM?
+
+LAOM is a rural coliving space that offers:
+- Mountain houses with "offices" and gardens
+- A place to stay and work on projects
+- Community of curious people
+- Homemade food and supportive ambiance
+- 21 hectares of forest, river, and meadow
+- Cozy rooms, shared kitchen with open-source recipes
+- Creative workspaces (wooden desks, sunny sofas, tipis, flower-filled nooks)
+
+The website serves as the digital presence for this unique ecolieu (eco-place) where nature, creation, and collective life intertwine.
+
+## Technology Stack
+
+- **Framework**: [Astro](https://astro.build/) v5.16+
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4.1+
+- **Package Manager**: [Bun](https://bun.sh/) (required)
+- **Deployment**: [Cloudflare Workers](https://workers.cloudflare.com/)
+- **SEO**: @capgo/seo-checker (same system as Nomad Magazine)
+- **Language**: French (default) and English support via Astro i18n
+
+## Installation
+
+### Prerequisites
+
+1. **Bun** must be installed on your system
+   - Installation: https://bun.sh/
+   - Verify installation: `bun --version`
+
+### Install Dependencies
+
+```bash
+bun install
+```
+
+This will install all required dependencies including:
+- Astro and its plugins
+- Tailwind CSS
+- Cloudflare Workers adapter
+- SEO checker tools
+- Development dependencies
+
+## Running the Project
+
+### Development Server
+
+**Option 1: Command Line**
+```bash
+bun run dev
+```
+
+**Option 2: VS Code/Cursor Tasks**
+1. Open Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)
+2. Type "Tasks: Run Task"
+3. Select "bun: dev"
+
+**Option 3: NPM Scripts Panel**
+- Open the "NPM Scripts" panel in the sidebar
+- Click on "dev"
+
+The development server will start at `http://localhost:4321`
+
+### Build for Production
+
+```bash
+bun run build
+```
+
+### Preview Production Build
+
+```bash
+bun run preview
+```
+
+### SEO Checking
+
+```bash
+# Check SEO compliance
+bun run seo:check
+
+# Generate detailed report
+bun run seo:check:report
+```
+
+## Project Rules and Guidelines
+
+### 1. Package Manager
+- **ALWAYS use Bun** - Never use npm, yarn, or pnpm
+- All scripts in package.json are configured for Bun
+- CI/CD pipelines use Bun
+
+### 2. Language Preferences
+- **French is the default language** (`fr`)
+- English is available at `/en`
+- Always ensure translations exist for both languages
+- Default locale is configured as `fr` in `astro.config.mjs`
+- SEO checker configured for both `fr` and `en`
+
+### 3. Code Style
+- Use Tailwind CSS for all styling
+- Follow the existing component structure in `src/components/`
+- Maintain the luxury wellness aesthetic
+- Use French comments when appropriate (French is default)
+
+### 4. Design Principles
+- **Minimal and elegant** - Inspired by Our Habitas and The House of AïA
+- **Nature-focused** - Emphasize the connection to nature
+- **Luxury wellness aesthetic** - Clean, sophisticated, calming
+- **Responsive design** - Must work on all devices
+- **Performance-first** - Optimize for speed and SEO
+
+### 5. SEO Best Practices
+- Always include proper meta tags
+- Use structured data (JSON-LD schemas)
+- Ensure all images have alt text
+- Follow the SEO checker rules (same as Nomad Magazine)
+- Generate sitemaps automatically
+- Include proper hreflang tags for multilingual content
+
+### 6. Component Structure
+- Components in `src/components/`
+- Layouts in `src/layouts/`
+- Pages in `src/pages/` (follow Astro i18n routing)
+- Translations in `src/i18n/translations.ts`
+- Utilities in `src/utils/`
+
+### 7. Deployment
+- Deploy to Cloudflare Workers
+- Use GitHub Actions for automatic deployment
+- Never commit sensitive data (use GitHub Secrets)
+- Always run SEO check before deployment
+
+## Project Structure
+
+```
+laom-landing/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml          # GitHub Actions CI/CD
+├── .vscode/                    # VS Code/Cursor configuration
+│   ├── launch.json            # Debug configuration
+│   ├── settings.json          # Editor settings
+│   └── tasks.json             # Task runner configuration
+├── public/
+│   ├── images/                # Static images
+│   └── robots.txt             # SEO robots file
+├── src/
+│   ├── components/            # Astro components
+│   │   ├── Header.astro      # Navigation header
+│   │   ├── Hero.astro        # Hero section
+│   │   └── Footer.astro      # Footer
+│   ├── i18n/                 # Internationalization
+│   │   ├── translations.ts   # Translation strings
+│   │   └── utils.ts          # i18n utilities
+│   ├── layouts/              # Page layouts
+│   │   └── Layout.astro      # Base layout
+│   ├── pages/                # Page routes
+│   │   ├── index.astro       # French homepage (/)
+│   │   └── en/
+│   │       └── index.astro   # English homepage (/en)
+│   ├── styles/               # Global styles
+│   │   └── global.css        # Tailwind and custom styles
+│   └── utils/                # Utilities
+│       └── schema.ts         # JSON-LD schema helpers
+├── .gitignore                # Git ignore rules
+├── .prettierrc               # Prettier configuration
+├── AGENT.md                  # This file
+├── Cloud.md                  # Quick reference
+├── astro.config.mjs          # Astro configuration
+├── package.json              # Dependencies and scripts
+├── seo-checker.config.json   # SEO checker configuration
+├── tsconfig.json             # TypeScript configuration
+└── wrangler.jsonc            # Cloudflare Workers config
+```
+
+## Internationalization (i18n)
+
+### Supported Languages
+- **French (fr)**: Default language, available at `/`
+- **English (en)**: Available at `/en`
+
+### Adding Translations
+
+Edit `src/i18n/translations.ts` to add or modify translations. The structure is:
+
+```typescript
+export const translations = {
+  fr: {
+    // French translations
+  },
+  en: {
+    // English translations
+  }
+}
+```
+
+### Using Translations in Components
+
+```astro
+---
+import { getTranslations } from '~/i18n/utils'
+
+const lang = Astro.currentLocale || 'fr'
+const t = getTranslations(lang)
+---
+
+<h1>{t.hero.title}</h1>
+```
+
+### Language Switcher
+
+The header includes a language switcher that automatically handles routing between languages.
+
+## SEO Configuration
+
+### SEO Checker
+This project uses the same SEO checker system as the [Nomad Magazine](https://github.com/Nomad-Magazine/website) project:
+- Configuration in `seo-checker.config.json`
+- Supports both French and English
+- Integrated into CI/CD pipeline
+- Same rules and best practices
+
+### Key SEO Features
+- Automatic sitemap generation
+- Structured data (JSON-LD)
+- Open Graph tags
+- Twitter Card support
+- Proper hreflang tags
+- Meta descriptions and titles
+- Canonical URLs
+
+## Deployment
+
+### Cloudflare Workers Setup
+
+1. **Configure `wrangler.jsonc`**:
+   - Set your Cloudflare account ID
+   - Configure routes if using custom domain
+   - Set `workers_dev: false` for production
+
+2. **GitHub Secrets Required**:
+   - `CLOUDFLARE_API_TOKEN`: Your Cloudflare API token
+   - `CLOUDFLARE_ACCOUNT_ID`: Your Cloudflare account ID
+
+3. **Automatic Deployment**:
+   - Push to `main` branch
+   - GitHub Actions automatically builds and deploys
+   - SEO check runs before deployment
+
+### Manual Deployment
+
+```bash
+bunx wrangler deploy
+```
+
+Make sure you have the required environment variables set.
+
+## Reference: Nomad Magazine Project
+
+This project is based on the structure and best practices from the [Nomad Magazine website repository](https://github.com/Nomad-Magazine/website):
+
+### Similarities
+- **SEO System**: Same SEO checker configuration and rules
+- **Astro Setup**: Similar Astro configuration with Cloudflare adapter
+- **Deployment**: Same GitHub Actions workflow pattern
+- **Sitemap**: Similar sitemap generation with lastmod dates
+- **Code Quality**: Similar linting and formatting setup
+
+### Differences
+- **Package Manager**: This project uses Bun (Nomad uses Bun too)
+- **Content**: This is a landing page (Nomad is a magazine/blog)
+- **i18n**: This project has French as default (Nomad uses English)
+- **Design**: Tailored for LAOM's wellness/rural coliving brand
+
+## Development Workflow
+
+1. **Start Development**:
+   ```bash
+   bun run dev
+   ```
+
+2. **Make Changes**:
+   - Edit components, pages, or translations
+   - Changes hot-reload automatically
+
+3. **Check SEO**:
+   ```bash
+   bun run seo:check
+   ```
+
+4. **Build Locally**:
+   ```bash
+   bun run build
+   ```
+
+5. **Preview Build**:
+   ```bash
+   bun run preview
+   ```
+
+6. **Commit and Push**:
+   - Changes to `main` trigger automatic deployment
+   - SEO check runs in CI/CD
+
+## Common Tasks
+
+### Adding a New Page
+
+1. Create file in `src/pages/` (or `src/pages/en/` for English-only)
+2. Use the Layout component
+3. Add translations if needed
+4. Add to navigation if necessary
+
+### Modifying Translations
+
+1. Edit `src/i18n/translations.ts`
+2. Add new translation keys following the existing structure
+3. Use translations in components via `getTranslations()`
+
+### Adding Images
+
+1. Place images in `public/images/`
+2. Reference as `/images/filename.jpg` in components
+3. Always include alt text for SEO
+
+### Customizing Styles
+
+1. Edit `src/styles/global.css` for global styles
+2. Use Tailwind classes directly in components
+3. Follow the existing design system
+
+## Troubleshooting
+
+### Port Already in Use
+If port 4321 is taken:
+- The dev server will automatically try the next available port
+- Check the terminal output for the actual port
+
+### Bun Not Found
+Make sure Bun is installed:
+```bash
+curl -fsSL https://bun.sh/install | bash
+```
+
+### SEO Check Failing
+- Run `bun run seo:check:report` for details
+- Fix issues according to the report
+- Check that all images have alt text
+- Verify meta tags are present
+
+### Build Errors
+- Run `bun run astro check` to see TypeScript errors
+- Ensure all dependencies are installed: `bun install`
+- Check that all translations are complete
+
+## Additional Resources
+
+- [Astro Documentation](https://docs.astro.build/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
+- [Bun Documentation](https://bun.sh/docs)
+
+## Notes for AI Agents
+
+When working on this project:
+1. **Always use Bun** - Never suggest npm/yarn commands
+2. **French is default** - When adding content, prioritize French
+3. **Maintain aesthetic** - Keep the minimal, luxury wellness feel
+4. **SEO matters** - Always consider SEO implications
+5. **Check translations** - Ensure both FR and EN are updated
+6. **Follow structure** - Use existing component patterns
+7. **Reference Nomad** - Look at that project for patterns when needed
+
+## Contact & Support
+
+For questions about LAOM:
+- Email: orion.aubert@gmail.com
+- Phone: 06.73.68.35.73
+- Development Manager: Aubert Charly
+
+---
+
+**Last Updated**: 2025
+**Project Status**: Active Development
