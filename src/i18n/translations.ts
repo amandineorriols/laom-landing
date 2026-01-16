@@ -360,7 +360,7 @@ export const translations = {
           title: 'Manifeste',
           description:
             'Face aux ruptures de connexion, nous défendons un habitat et un travail régénératifs : liberté, collaboration, écologie et économie vivante.',
-          href: '/-propos-5/',
+          href: '/manifeste/',
         },
         {
           title: 'LAOMFEST',
@@ -763,7 +763,7 @@ export const translations = {
           title: 'Manifesto',
           description:
             'A response to disconnection: regenerative living and work grounded in freedom, collaboration, ecology, and a living economy.',
-          href: '/-propos-5/',
+          href: '/manifeste/',
         },
         {
           title: 'LAOMFEST',
