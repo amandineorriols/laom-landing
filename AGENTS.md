@@ -4,6 +4,10 @@
 
 LAOM is a beautiful, multilingual landing page for a rural coliving space located in the south of Aveyron, France. The project is inspired by luxury wellness brands like Our Habitas (Tulum) and The House of AïA, featuring a minimal, elegant aesthetic with a focus on nature, wellness, and mindful living.
 
+### Content Source
+For context, inspiration, and content assets, refer to the local folder:
+`/Users/amandineorriols/Documents/PARA/3 - CASQUETTES/LAOM`
+
 ### What is LAOM?
 
 LAOM is a rural coliving space that offers:

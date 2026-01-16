@@ -8,43 +8,45 @@ const currentPath = Astro.url.pathname
 const altPath = getLocalizedPath(currentPath, altLang)
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-black/5">
-  <nav class="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-black/5 transition-all duration-300">
+  <nav class="max-w-7xl mx-auto px-6 lg:px-12 py-6">
     <div class="flex items-center justify-between">
       <!-- Logo -->
-      <a href={getLocalizedPath('/', lang as 'fr' | 'en')} class="text-2xl font-light tracking-wider text-black hover:opacity-70 transition-opacity">
+      <a href={getLocalizedPath('/', lang as 'fr' | 'en')} class="text-3xl font-extralight tracking-[0.2em] text-black hover:opacity-70 transition-opacity z-50 relative">
         LAOM
       </a>
 
-      <div class="flex items-center gap-8">
+      <div class="flex items-center gap-12">
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center space-x-12">
-          <a href="#home" class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.home}</a>
-          <a href="#experience" class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.experience}</a>
-          <a href="#events" class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.events}</a>
-          <a href="#contact" class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.contact}</a>
+        <nav class="hidden md:flex items-center gap-12">
+          <a href="#home" class="text-xs font-light tracking-[0.15em] uppercase text-black/60 hover:text-black transition-colors">{t.nav.home}</a>
+          <a href="#experience" class="text-xs font-light tracking-[0.15em] uppercase text-black/60 hover:text-black transition-colors">{t.nav.experience}</a>
+          <a href="#events" class="text-xs font-light tracking-[0.15em] uppercase text-black/60 hover:text-black transition-colors">{t.nav.events}</a>
+          <a href="#contact" class="text-xs font-light tracking-[0.15em] uppercase text-black/60 hover:text-black transition-colors">{t.nav.contact}</a>
         </nav>
 
-        <!-- Language Switcher -->
-        <a 
-          href={altPath} 
-          class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors uppercase"
-          hreflang={altLang}
-        >
-          {altLang}
-        </a>
+        <!-- Language Switcher & Mobile Toggle -->
+        <div class="flex items-center gap-8 pl-8 border-l border-black/10">
+          <a 
+            href={altPath} 
+            class="text-xs font-light tracking-[0.15em] uppercase text-black/40 hover:text-black transition-colors"
+            hreflang={altLang}
+          >
+            {altLang}
+          </a>
+          
+          <!-- Mobile Menu Button -->
+          <button 
+            id="mobile-menu-button"
+            class="md:hidden text-black focus:outline-none p-2 -mr-2"
+            aria-label="Toggle menu"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
       </div>
-
-      <!-- Mobile Menu Button -->
-      <button 
-        id="mobile-menu-button"
-        class="md:hidden text-black focus:outline-none"
-        aria-label="Toggle menu"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
     </div>
 
     <!-- Mobile Navigation -->
