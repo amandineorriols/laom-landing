@@ -1,13 +1,13 @@
 ---
 import Layout from '~/layouts/Layout.astro'
 import { createWebPageSchema } from '~/utils/schema'
-import { getTranslations as getI18nTranslations } from '~/i18n/utils'
+import { getTranslations as getI18nTranslations, getLocalizedPath } from '~/i18n/utils'
 
 const lang = 'en' as const
 const t = getI18nTranslations(lang)
 const pageSchema = createWebPageSchema({
   name: t.pages.contactPage.heroTitle,
-  url: Astro.url,
+  url: Astro.url.toString(),
   description: t.pages.contactPage.heroSubtitle,
 })
 ---
@@ -33,6 +33,28 @@ const pageSchema = createWebPageSchema({
     </div>
   </section>
 
+  <!-- Intro -->
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-6">{t.pages.contactPage.introTitle}</h2>
+      <p class="text-lg font-light text-black/70 leading-relaxed">{t.pages.contactPage.introDescription}</p>
+    </div>
+  </section>
+
+  <!-- Topics -->
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-10">{t.pages.contactPage.topicsTitle}</h2>
+      <div class="grid gap-6 md:grid-cols-2">
+        {t.pages.contactPage.topics.map((topic) => (
+          <div class="border border-black/10 bg-[#eef4ea] p-6 lg:p-8">
+            <p class="text-lg font-light text-black/70 leading-relaxed">{topic}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="py-24 bg-[#1a1a1a] text-white">
     <div class="max-w-4xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
       <p class="text-xs tracking-widest uppercase text-white/40 mb-4">{t.contact.development}</p>
@@ -45,6 +67,24 @@ const pageSchema = createWebPageSchema({
           {t.contact.phone}
         </a>
       </div>
+      <div class="mt-10 text-sm font-light text-white/60">
+        <p class="uppercase tracking-[0.2em] text-xs text-white/40 mb-2">{t.pages.contactPage.responseTitle}</p>
+        <p>{t.pages.contactPage.responseDescription}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-[#2d5016] text-white">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
+      <h2 class="text-3xl md:text-4xl font-light mb-4">{t.pages.contactPage.ctaTitle}</h2>
+      <p class="text-lg font-light text-white/80 mb-8">{t.pages.contactPage.ctaDescription}</p>
+      <a
+        href={getLocalizedPath('/resources/', lang)}
+        class="inline-flex items-center justify-center rounded-sm bg-white text-black px-8 py-3 text-xs tracking-[0.25em] uppercase hover:bg-white/90 transition-colors"
+      >
+        {t.pages.contactPage.ctaButton}
+      </a>
     </div>
   </section>
 </Layout>

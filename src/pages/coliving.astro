@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import { createWebPageSchema } from '~/utils/schema'
+
+const pageSchema = createWebPageSchema({
+  name: 'Coliving',
+  url: Astro.url.toString(),
+  description:
+    'Ouverture fin 2026 : 7 chambres, salon/cuisine partagés, cuisine d’été, salle polyvalente, coworking, rivière et prairies.',
+})
+---
+
+<Layout
+  title="Coliving – LAOM"
+  description="Ouverture fin 2026 : 7 chambres, salon/cuisine partagés, cuisine d’été, salle polyvalente, coworking, rivière et prairies."
+  seo={{ ldJSON: pageSchema }}
+>
+  <section class="py-32 lg:py-40 bg-white">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
+      <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-6">Ouverture fin 2026</span>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-black mb-6 tracking-tight">Coliving</h1>
+      <p class="text-xl md:text-2xl font-light text-black/60 leading-relaxed">
+        7 chambres · 1 salon / cuisine · 1 cuisine d’été · 1 salle polyvalente · 21 hectares · une rivière
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {[
+          'Les chambres',
+          'Les sanitaires',
+          'Le coin salon et cuisine commune',
+          'La salle',
+          'Le coworking',
+        ].map((title) => (
+          <article class="border border-black/10 bg-white p-6 lg:p-8 shadow-sm">
+            <h2 class="text-xl font-light text-black mb-4">{title}</h2>
+            <p class="text-sm font-light text-black/60 leading-relaxed">
+              Parce que nous vous proposons bien plus qu’une simple chambre, découvrez tous les services et équipements
+              de nos espaces en coliving.
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-8">Le domaine de la Margue</h2>
+      <p class="text-lg font-light text-black/70 leading-relaxed mb-10">
+        Un coliving en pleine nature, au cœur d’un domaine vivant où l’on alterne travail, repos et rencontres.
+      </p>
+      <div class="grid gap-4 md:grid-cols-2 text-lg font-light text-black/70">
+        <div class="border border-black/10 p-5">En pleine nature</div>
+        <div class="border border-black/10 p-5">La rivière</div>
+        <div class="border border-black/10 p-5">Les prairies</div>
+        <div class="border border-black/10 p-5">La vallée</div>
+        <div class="border border-black/10 p-5">Des spectacles et moments partagés</div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,170 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import { createWebPageSchema } from '~/utils/schema'
+
+const pageSchema = createWebPageSchema({
+  name: 'Présentation',
+  url: Astro.url.toString(),
+  description:
+    'LAOM, un tiers-lieu rural pour co-créer un futur souhaitable : habitat collectif, ferme régénératrice, éco-construction et expériences immersives.',
+})
+---
+
+<Layout
+  title="Présentation – LAOM"
+  description="LAOM, un tiers-lieu rural pour co-créer un futur souhaitable : habitat collectif, ferme régénératrice, éco-construction et expériences immersives."
+  seo={{ ldJSON: pageSchema }}
+>
+  <section class="py-32 lg:py-40 bg-white">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
+      <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-6">LAOM</span>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-black mb-6 tracking-tight">
+        Un tiers-lieu rural pour co-créer un futur souhaitable
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-black/60 leading-relaxed">
+        Nous avançons chaque jour pour déployer un avenir où les ressources sont honorées, où nos maisons sont saines
+        pour l’humain et la Terre, où nous vivons ensemble harmonieusement et où nous travaillons avec cœur.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#faf9f6]">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24">
+      <p class="text-lg font-light text-black/70 leading-relaxed mb-6">
+        LAOM est un tiers-lieu rural qui comprend :
+      </p>
+      <ul class="grid gap-4 md:grid-cols-2 text-lg font-light text-black/70">
+        <li>un lieu d’habitat collectif,</li>
+        <li>une ferme pédagogique en agriculture régénératrice,</li>
+        <li>des bâtiments éco-construits,</li>
+        <li>un espace d’accueil,</li>
+        <li>et des expériences immersives pour entrepreneurs, artistes et créateurs.</li>
+      </ul>
+      <p class="mt-6 text-lg font-light text-black/70 leading-relaxed">Tout ça sur le même lieu&nbsp;!</p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24 space-y-16">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-light text-black mb-6">Un lieu d’habitat collectif et intergénérationnel</h2>
+        <div class="space-y-5 text-lg font-light text-black/70 leading-relaxed">
+          <p>
+            LAOM est d’abord un lieu d’habitat collectif, un lieu où nous expérimentons le bien vivre ensemble, dans le
+            respect et l’autonomie de chacun. Les logements sont partagés entre résidents permanents et visiteurs
+            temporaires.
+          </p>
+          <p>
+            Des espaces communs sont conçus (dont certains en construction) pour faciliter les moments d’échanges.
+          </p>
+          <p>
+            Notre collectif est intergénérationnel, de 2 à 69 ans. Nous plaçons une attention particulière à
+            l’éducation des enfants, convaincus que tout se joue dans la manière dont ils grandissent. En leur offrant
+            un cadre de vie où règnent le respect, le lien avec la nature, la coopération et la bienveillance, nous
+            préparons les générations futures à construire un monde meilleur.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-3xl md:text-4xl font-light text-black mb-6">Une ferme pédagogique en agriculture régénératrice</h2>
+        <div class="space-y-5 text-lg font-light text-black/70 leading-relaxed">
+          <p>
+            Nous pratiquons l’agriculture régénératrice, une approche proactive qui revitalise les écosystèmes en
+            enrichissant la biodiversité, le sol et en préservant les ressources en eau.
+          </p>
+          <p>
+            Avec seulement 60 récoltes restantes avant une dégradation irréversible des sols, notre engagement va bien
+            au-delà de la culture des terres. Il est une invitation à apprendre et à grandir avec la nature pour
+            garantir la pérennité de nos sols et, avec elle, de l’humanité.
+          </p>
+          <p>
+            À travers des ateliers pratiques et des initiatives de sensibilisation ouvertes à tous, aux enfants comme
+            aux plus grands, nous avons à cœur de partager tout ce que nous apprenons et expérimentons dans cette ferme
+            maraîchère pédagogique.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-3xl md:text-4xl font-light text-black mb-6">Des bâtiments éco-construits</h2>
+        <div class="space-y-5 text-lg font-light text-black/70 leading-relaxed">
+          <p>
+            À la croisée entre modernité et nature, les nouveaux bâtis sont conçus selon les principes de
+            l’éco-construction, utilisant des matériaux locaux, renouvelables ou recyclés. Bâtiment en paille porteuse,
+            sol en terre crue, enduits à la terre : nous sommes des expérimentateurs en quête de durabilité, de confort
+            et de santé tout en diminuant l’empreinte écologique.
+          </p>
+          <p>
+            Ces constructions ne sont pas seulement des lieux d’habitat ou de séjour ; elles servent aussi de modèles
+            éducatifs en matière de construction durable.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-3xl md:text-4xl font-light text-black mb-6">Un espace d’accueil pour stages et retraites</h2>
+        <div class="space-y-5 text-lg font-light text-black/70 leading-relaxed">
+          <p>
+            Dans cette oasis de biodiversité, au cœur du parc naturel des Grands Causses, notre espace d’accueil offre
+            une expérience immersive aux visiteurs désireux de découvrir la beauté du lieu et d’interagir avec les
+            autres dimensions du projet (agriculture régénératrice, vivre ensemble, éco-construction).
+          </p>
+          <p>
+            Déconnecter de la vie trop occupée, se synchroniser avec les fréquences de la nature, connecter avec sa
+            magie intérieure pour la partager au monde. Se nourrir pour nourrir le monde.
+          </p>
+          <p>
+            Nous imaginons LAOM comme un lieu pour découvrir et apprendre des meilleurs praticiens en danse, yoga,
+            MovNat et dans tous les autres arts de la présence. Sur un format de 2 à 7 jours, les stages et retraites
+            sont ouverts à tous les êtres humains sur le chemin d’une vie plus en présence et en conscience.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-3xl md:text-4xl font-light text-black mb-6">
+          Expériences immersives, micro-festivals, résidences et co-livings
+        </h2>
+        <div class="space-y-5 text-lg font-light text-black/70 leading-relaxed">
+          <p>
+            Les expériences immersives que nous imaginons proposer sont transformatrices pour les créateurs,
+            entrepreneurs, leaders et artistes. En retour, ces personnes inspirées et transformées essaimeront leur
+            énergie positive et leur sagesse dans leurs propres communautés, contribuant ainsi à un impact global de
+            bien-être et d’harmonie. C’est l’effet papillon.
+          </p>
+          <p>
+            Les micro-festivals sont des moments de célébration, d’apprentissage et d’inspiration. Le premier
+            micro-festival à voir le jour sera le Festival de la Terre à l’automne 2024.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-3xl md:text-4xl font-light text-black mb-6">Pourquoi “LAOM”</h2>
+        <div class="space-y-5 text-lg font-light text-black/70 leading-relaxed">
+          <p>
+            Le nom “LAOM” combine deux sons importants : “LAM” et “OM”. Ensemble, ils symbolisent l’équilibre entre la
+            terre et l’univers, représentant un espace où ces dimensions se rencontrent pour favoriser la croissance
+            personnelle et l’évolution collective.
+          </p>
+          <p>
+            Le son LAM est associé au chakra racine, lié à nos besoins fondamentaux de sécurité et de stabilité. Il
+            souligne l’importance d’avoir des bases solides et de créer un environnement qui nous nourrit.
+          </p>
+          <p>
+            Le son OM est un son sacré dans de nombreuses traditions et est considéré comme le son primordial de
+            l’univers, englobant la totalité de l’existence. Il symbolise l’unité et la connexion avec tout ce qui nous
+            entoure.
+          </p>
+          <p>
+            Ainsi, “LAOM” représente un espace où l’ancrage et la stabilité de la terre (LAM) rencontrent l’unité de
+            l’univers (OM). C’est un lieu qui favorise à la fois le bien-être matériel et la croissance personnelle, un
+            espace où l’on peut se sentir en sécurité, connecté à soi, aux autres, à la nature et à quelque chose de
+            plus grand.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

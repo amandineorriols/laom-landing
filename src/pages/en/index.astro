@@ -2,7 +2,7 @@
 import Layout from '~/layouts/Layout.astro'
 import Hero from '~/components/Hero.astro'
 import { createWebSiteSchema } from '~/utils/schema'
-import { getTranslations as getI18nTranslations } from '~/i18n/utils'
+import { getTranslations as getI18nTranslations, getLocalizedPath } from '~/i18n/utils'
 
 const lang = 'en' as const
 const t = getI18nTranslations(lang)
@@ -54,6 +54,20 @@ const testimonialVideoSrc = '/videos/laom-testimonial.mp4'
             class="h-10 md:h-12 w-auto object-contain grayscale hover:grayscale-0 transition duration-500"
             loading="lazy"
           />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-20 bg-[#eef4ea]">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-10 text-center">{t.home.statsTitle}</h2>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {t.home.stats.map((stat) => (
+          <div class="bg-white/80 border border-black/10 p-6 text-center">
+            <p class="text-lg font-light text-black/70 leading-relaxed">{stat}</p>
+          </div>
         ))}
       </div>
     </div>
@@ -138,6 +152,21 @@ const testimonialVideoSrc = '/videos/laom-testimonial.mp4'
     </div>
   </section>
 
+  <!-- Channels Section -->
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-10 text-center">{t.home.channelsTitle}</h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        {t.home.channels.map((item) => (
+          <div class="border border-black/10 bg-[#f3efe7] p-6 lg:p-8">
+            <h3 class="text-lg font-light text-black mb-3">{item.title}</h3>
+            <p class="text-sm font-light text-black/60 leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Location/Nature Immersion - Full Width Parallax-like -->
   <section class="relative py-40 flex items-center justify-center bg-[#2d5016] overflow-hidden">
     <div class="absolute inset-0 opacity-20 bg-[url('/images/forest-bg.jpg')] bg-cover bg-fixed bg-center"></div> <!-- Placeholder for forest image -->
@@ -209,6 +238,20 @@ const testimonialVideoSrc = '/videos/laom-testimonial.mp4'
         </div>
         <div class="p-6 text-sm text-black/60">{t.testimonials.caption}</div>
       </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-[#2d5016] text-white">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
+      <h2 class="text-3xl md:text-4xl font-light mb-4">{t.home.ctaTitle}</h2>
+      <p class="text-lg font-light text-white/80 mb-8">{t.home.ctaDescription}</p>
+      <a
+        href={getLocalizedPath('/resources/', lang)}
+        class="inline-flex items-center justify-center rounded-sm bg-white text-black px-8 py-3 text-xs tracking-[0.25em] uppercase hover:bg-white/90 transition-colors"
+      >
+        {t.home.ctaButton}
+      </a>
     </div>
   </section>
 

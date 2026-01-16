@@ -1,0 +1,93 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import { createWebPageSchema } from '~/utils/schema'
+
+const pageSchema = createWebPageSchema({
+  name: 'Planification et développement',
+  url: Astro.url.toString(),
+  description:
+    'Planification et développement du tiers-lieu LAOM : rénovation du hameau, gîtes, maisons écologiques, ferme du Verseau, restauration et éco-lodges.',
+})
+---
+
+<Layout
+  title="Planification et développement – LAOM"
+  description="Planification et développement du tiers-lieu LAOM : rénovation du hameau, gîtes, maisons écologiques, ferme du Verseau, restauration et éco-lodges."
+  seo={{ ldJSON: pageSchema }}
+>
+  <section class="py-32 lg:py-40 bg-white">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
+      <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-6">Tiers-lieu LAOM</span>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-black mb-6 tracking-tight">
+        Planification et développement
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-black/60 leading-relaxed">
+        Plan masse du projet global sur le domaine de la Margue et présentation des infrastructures.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24 space-y-12">
+      <div class="border border-black/10 bg-white p-8 lg:p-10 shadow-sm">
+        <h2 class="text-2xl md:text-3xl font-light text-black mb-4">Zone Hameau historique (2021 – 2027)</h2>
+        <ul class="space-y-3 text-lg font-light text-black/70 leading-relaxed">
+          <li>
+            Rénovation du hameau (2021 – 2022) : préservation du bâti historique, stabilisation du rez-de-chaussée,
+            réfection de la toiture du pigeonnier, isolation thermique et phonique.
+          </li>
+          <li>
+            Création de deux nouveaux gîtes : rénovation d’une grange pour créer deux gîtes (35&nbsp;m² et 25&nbsp;m²),
+            conçus pour conserver le style architectural traditionnel du hameau.
+          </li>
+          <li>
+            Maisons d’habitations (2025 – 2027) : construction de deux maisons écologiques intégrées au style du
+            hameau (pierre rouge du Rougier de Camarès), avec matériaux et techniques respectueuses de l’environnement.
+          </li>
+        </ul>
+      </div>
+
+      <div class="border border-black/10 bg-white p-8 lg:p-10 shadow-sm">
+        <h2 class="text-2xl md:text-3xl font-light text-black mb-4">Zone Agri-touristique (2023 – 2027)</h2>
+        <div class="space-y-4 text-lg font-light text-black/70 leading-relaxed">
+          <p>
+            Ferme du Verseau : lancée en 2021, cette ferme se consacre à la diffusion des pratiques d’agriculture
+            régénératrice et à la production de légumes biologiques et de chanvre bien-être. Elle sert également de
+            centre éducatif pour la communauté et les visiteurs.
+          </p>
+          <p>
+            Salle polyvalente et espace restauration : l’espace permet d’accueillir une quinzaine de personnes mais
+            fait l’objet d’une rénovation complète afin d’accueillir un espace de restauration professionnel pour des
+            groupes jusqu’à 30 personnes.
+          </p>
+        </div>
+      </div>
+
+      <div class="border border-black/10 bg-white p-8 lg:p-10 shadow-sm">
+        <h2 class="text-2xl md:text-3xl font-light text-black mb-4">Hébergements touristiques</h2>
+        <p class="text-lg font-light text-black/70 leading-relaxed">
+          Développement d’hébergements touristiques légers, incluant des unités de type tiny house pour un accueil
+          saisonnier en harmonie avec le paysage.
+        </p>
+      </div>
+
+      <div class="border border-black/10 bg-white p-8 lg:p-10 shadow-sm">
+        <h2 class="text-2xl md:text-3xl font-light text-black mb-4">Zone Éco-lodge (début été 2025 – fin estimée 2026)</h2>
+        <p class="text-lg font-light text-black/70 leading-relaxed">
+          Construction de 5 éco-lodges sur pilotis, conçus pour s’intégrer à l’environnement naturel tout en offrant un
+          hébergement de haute qualité. Ces structures visent à promouvoir le tourisme durable et à minimiser
+          l’empreinte écologique.
+        </p>
+      </div>
+
+      <div class="text-center">
+        <a
+          href="/financement-participatif/"
+          class="inline-flex items-center justify-center rounded-sm border border-black/20 px-8 py-3 text-xs tracking-[0.25em] uppercase text-black/70 hover:border-black/40 hover:text-black transition-colors"
+        >
+          Voir notre financement participatif
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

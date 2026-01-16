@@ -7,7 +7,7 @@ const lang = 'en' as const
 const t = getI18nTranslations(lang)
 const pageSchema = createWebPageSchema({
   name: t.pages.project.heroTitle,
-  url: Astro.url,
+  url: Astro.url.toString(),
   description: t.pages.project.heroSubtitle,
 })
 ---

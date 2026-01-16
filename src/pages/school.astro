@@ -7,7 +7,7 @@ const lang = Astro.currentLocale || 'fr'
 const t = getI18nTranslations(lang as 'fr' | 'en')
 const pageSchema = createWebPageSchema({
   name: t.pages.school.heroTitle,
-  url: Astro.url,
+  url: Astro.url.toString(),
   description: t.pages.school.heroSubtitle,
 })
 ---

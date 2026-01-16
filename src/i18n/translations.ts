@@ -354,41 +354,49 @@ export const translations = {
           title: 'Qui sommes-nous',
           description:
             'Un collectif d’habitant·es et de praticien·nes qui vivent sur place et mettent leurs compétences en commun : santé holistique, accompagnements, création et ancrage local.',
+          href: '/qui-sommes-nous/',
         },
         {
           title: 'Manifeste',
           description:
             'Face aux ruptures de connexion, nous défendons un habitat et un travail régénératifs : liberté, collaboration, écologie et économie vivante.',
+          href: '/-propos-5/',
         },
         {
           title: 'LAOMFEST',
           description:
             'Trois jours de rencontres, ateliers, concerts et micro-conférences pour créer son mode de vie et vivre une communauté éphémère.',
+          href: '/laomfest/',
         },
         {
           title: 'Coliving',
           description:
             'Ouverture fin 2026 : 7 chambres, salon/cuisine partagés, cuisine d’été, salle polyvalente, coworking, rivière, prairies et sentiers.',
+          href: '/coliving/',
         },
         {
           title: 'Présentation',
           description:
             'Un tiers-lieu rural pour co-créer un futur souhaitable : habitat collectif intergénérationnel, ferme régénératrice et éco-construction.',
+          href: '/presentation/',
         },
         {
           title: 'Planification',
           description:
             'Plan d’aménagement du domaine : rénovation du hameau, gîtes, maisons écologiques, ferme du Verseau, salle polyvalente et éco-lodges.',
+          href: '/planification/',
         },
         {
           title: 'Financement participatif',
           description:
             'Campagne de prêts pour finaliser la phase 2 : finitions des Shambalas, aménagements extérieurs et ouverture à l’accueil dès 2025.',
+          href: '/financement-participatif/',
         },
         {
           title: 'Grand Shambala',
           description:
             'Bâtiment paille porteuse en construction : fondations, terrassement, structure et façades, au cœur du chantier collectif.',
+          href: '/grand-shambala/',
         },
       ],
       copyright: '© {year} Laom. Tous droits réservés.',
@@ -749,41 +757,49 @@ export const translations = {
           title: 'Who we are',
           description:
             'A collective of residents and practitioners living on site, sharing skills in holistic health, guidance, creation, and local impact.',
+          href: '/qui-sommes-nous/',
         },
         {
           title: 'Manifesto',
           description:
             'A response to disconnection: regenerative living and work grounded in freedom, collaboration, ecology, and a living economy.',
+          href: '/-propos-5/',
         },
         {
           title: 'LAOMFEST',
           description:
             'Three days of gatherings, workshops, concerts, and talks to explore chosen lifestyles and a temporary community.',
+          href: '/laomfest/',
         },
         {
           title: 'Coliving',
           description:
             'Opening late 2026: 7 rooms, shared lounge/kitchen, summer kitchen, multipurpose hall, coworking, river, meadows, and trails.',
+          href: '/coliving/',
         },
         {
           title: 'Presentation',
           description:
             'A rural third place to co-create a desirable future: intergenerational living, regenerative farm, and eco-building.',
+          href: '/presentation/',
         },
         {
           title: 'Planning',
           description:
             'Estate development plan: hamlet renovation, guesthouses, eco-homes, Ferme du Verseau, multipurpose hall, and eco-lodges.',
+          href: '/planification/',
         },
         {
           title: 'Crowdfunding',
           description:
             'Peer-to-peer loan campaign to finish phase 2: Shambala finishes, outdoor works, and opening to the public by 2025.',
+          href: '/financement-participatif/',
         },
         {
           title: 'Grand Shambala',
           description:
             'Load-bearing straw building in progress: foundations, earthworks, structure, and facades at the heart of the collective build.',
+          href: '/grand-shambala/',
         },
       ],
       copyright: '© {year} Laom. All rights reserved.',

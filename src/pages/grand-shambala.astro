@@ -1,0 +1,47 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import { createWebPageSchema } from '~/utils/schema'
+
+const pageSchema = createWebPageSchema({
+  name: 'Grand Shambala',
+  url: Astro.url.toString(),
+  description:
+    'Journal de chantier du bâtiment paille porteuse : fondations, terrassement, structure paille et façade sud.',
+})
+---
+
+<Layout
+  title="Grand Shambala – LAOM"
+  description="Journal de chantier du bâtiment paille porteuse : fondations, terrassement, structure paille et façade sud."
+  seo={{ ldJSON: pageSchema }}
+>
+  <section class="py-32 lg:py-40 bg-white">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
+      <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-6">Bâtiment paille porteuse</span>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-black mb-6 tracking-tight">
+        Grand Shambala
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-black/60 leading-relaxed">
+        Quatre étapes clés d’un chantier collectif. Tout commence par une idée.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-4xl mx-auto px-10 sm:px-16 lg:px-24">
+      <div class="space-y-6">
+        {[
+          'Les fondations',
+          'Le terrassement',
+          'Paille porteuse',
+          'Façade sud',
+        ].map((title) => (
+          <article class="border border-black/10 bg-white p-6 lg:p-8 shadow-sm">
+            <h2 class="text-2xl font-light text-black mb-3">{title}</h2>
+            <p class="text-sm font-light text-black/60 leading-relaxed">Tout commence par une idée.</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

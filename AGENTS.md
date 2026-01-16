@@ -377,7 +377,7 @@ laom-landing/
 ├── .gitignore                # Git ignore rules
 ├── .prettierrc               # Prettier configuration
 ├── AGENTS.md                 # This file
-├── Cloud.md                  # Quick reference
+├── CLAUDE.md                  # Quick reference
 ├── astro.config.mjs          # Astro configuration
 ├── package.json              # Dependencies and scripts
 ├── seo-checker.config.json   # SEO checker configuration
