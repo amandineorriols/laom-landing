@@ -10,6 +10,7 @@ export const translations = {
       project: 'Le Projet',
       school: 'LAOM School',
       events: 'Événements',
+      blog: 'Blog',
       resources: 'Ressources',
       contact: 'Contact',
     },
@@ -80,6 +81,15 @@ export const translations = {
       email: 'orion.aubert@gmail.com',
       phone: '06.73.68.35.73',
       photoAlt: 'Portrait de Charly Aubert',
+    },
+    blog: {
+      title: 'Blog',
+      description: 'Découvrez nos articles sur la vie à LAOM, nos projets et notre communauté.',
+      empty: 'Aucun article pour le moment.',
+      backToBlog: 'Retour au blog',
+      readMore: 'Lire la suite',
+      by: 'Par',
+      updated: 'Mis à jour le',
     },
     pages: {
       project: {
@@ -413,6 +423,7 @@ export const translations = {
       project: 'The Project',
       school: 'LAOM School',
       events: 'Events',
+      blog: 'Blog',
       resources: 'Resources',
       contact: 'Contact',
     },
@@ -483,6 +494,15 @@ export const translations = {
       email: 'orion.aubert@gmail.com',
       phone: '06.73.68.35.73',
       photoAlt: 'Portrait of Charly Aubert',
+    },
+    blog: {
+      title: 'Blog',
+      description: 'Discover our articles about life at LAOM, our projects and our community.',
+      empty: 'No articles yet.',
+      backToBlog: 'Back to blog',
+      readMore: 'Read more',
+      by: 'By',
+      updated: 'Updated on',
     },
     pages: {
       project: {

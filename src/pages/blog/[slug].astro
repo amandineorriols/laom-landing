@@ -1,0 +1,133 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+import { createWebPageSchema } from '~/utils/schema'
+import { getTranslations } from '~/i18n/utils'
+
+const lang = Astro.currentLocale || 'fr'
+const t = getTranslations(lang as 'fr' | 'en')
+
+// Get all blog posts
+const allPosts = await getCollection('blog')
+const postEntry = allPosts.find((p) => p.slug === Astro.params.slug && p.data.locale === lang)
+
+if (!postEntry) {
+  return Astro.redirect('/blog/')
+}
+
+// Render the content
+const { Content } = await postEntry.render()
+const post = postEntry
+
+// Format dates
+const formattedPubDate = new Date(post.data.pubDate).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+})
+
+const formattedUpdatedDate = post.data.updatedDate
+  ? new Date(post.data.updatedDate).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  : null
+
+// Create article schema for JSON-LD
+const pageSchema = createWebPageSchema({
+  name: post.data.title,
+  url: Astro.url.toString(),
+  description: post.data.description,
+  image: post.data.heroImage ? new URL(post.data.heroImage, Astro.site || Astro.url).toString() : undefined,
+})
+---
+
+<Layout
+  title={`${post.data.title} – LAOM`}
+  description={post.data.description}
+  seo={{
+    ldJSON: pageSchema,
+    ogType: 'article',
+    publishedTime: post.data.pubDate.toISOString(),
+    modifiedTime: post.data.updatedDate?.toISOString(),
+    tags: post.data.tags,
+    image: post.data.heroImage ? new URL(post.data.heroImage, Astro.site || Astro.url).toString() : undefined,
+  }}
+>
+  <article class="bg-white">
+    <!-- Hero Section -->
+    {post.data.heroImage && (
+      <section class="relative h-[60vh] min-h-[400px] overflow-hidden">
+        <img
+          src={post.data.heroImage}
+          alt={post.data.title}
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+      </section>
+    )}
+
+    <!-- Article Header -->
+    <section class="py-16 lg:py-24 bg-white">
+      <div class="max-w-4xl mx-auto px-10 sm:px-16 lg:px-24">
+        <div class="mb-8">
+          <a
+            href="/blog/"
+            class="text-xs tracking-widest uppercase text-black/40 hover:text-black transition-colors inline-flex items-center gap-2 mb-6"
+          >
+            ← {t.blog.backToBlog}
+          </a>
+          <p class="text-xs font-light tracking-widest uppercase text-black/50 mb-4">
+            {formattedPubDate}
+            {formattedUpdatedDate && ` • ${t.blog.updated} ${formattedUpdatedDate}`}
+          </p>
+          {post.data.tags && post.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mb-6">
+              {post.data.tags.map((tag) => (
+                <span class="text-xs px-3 py-1 bg-black/5 text-black/60 rounded-sm font-light">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-light text-black mb-6 tracking-tight">
+          {post.data.title}
+        </h1>
+        <p class="text-xl md:text-2xl font-light text-black/60 leading-relaxed">
+          {post.data.description}
+        </p>
+        {post.data.author && (
+          <p class="mt-6 text-sm font-light text-black/50">
+            {t.blog.by} {post.data.author}
+          </p>
+        )}
+      </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="py-8 bg-white">
+      <div class="max-w-4xl mx-auto px-10 sm:px-16 lg:px-24">
+        <div class="prose prose-lg max-w-none prose-headings:font-light prose-headings:text-black prose-p:text-black/70 prose-p:font-light prose-p:leading-relaxed prose-a:text-black prose-a:border-b prose-a:border-black/20 prose-a:no-underline hover:prose-a:border-black prose-strong:text-black prose-strong:font-normal prose-ul:text-black/70 prose-ol:text-black/70 prose-li:font-light">
+          <Content />
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="py-16 bg-[#faf9f6]">
+      <div class="max-w-4xl mx-auto px-10 sm:px-16 lg:px-24">
+        <div class="border-t border-black/10 pt-8">
+          <a
+            href="/blog/"
+            class="inline-block text-xs tracking-widest uppercase text-black/40 hover:text-black transition-colors border-b border-transparent hover:border-black/20"
+          >
+            ← {t.blog.backToBlog}
+          </a>
+        </div>
+      </div>
+    </section>
+  </article>
+</Layout>
