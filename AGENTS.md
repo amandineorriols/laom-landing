@@ -223,14 +223,14 @@ The LAOM landing page is designed with a **luxury wellness aesthetic** inspired 
 ### Image Guidelines
 
 **Hero Image Requirements**:
-- Format: JPG or WebP
+- Format: WebP only (except SVGs/favicons)
 - Resolution: Minimum 1920x1080px (Full HD)
 - Aspect ratio: 16:9 or wider (landscape)
 - Content: Natural scenery, LAOM property, community activities
-- Location: `/public/images/hero-bg.jpg`
+- Location: `/public/images/hero-bg.webp`
 
 **Section Images**:
-- Format: WebP preferred for performance
+- Format: WebP only (except SVGs/favicons)
 - Resolution: 1200px width for full-width, 800px for cards
 - Aspect ratio: Match design needs (16:9, 4:3, square)
 - Alt text: Always include descriptive alt text for SEO
@@ -277,13 +277,57 @@ The LAOM landing page is designed with a **luxury wellness aesthetic** inspired 
 - **Responsive design** - Must work on all devices
 - **Performance-first** - Optimize for speed and SEO
 
-### 5. SEO Best Practices
-- Always include proper meta tags
-- Use structured data (JSON-LD schemas)
-- Ensure all images have alt text
-- Follow the SEO checker rules (same as Nomad Magazine)
-- Generate sitemaps automatically
-- Include proper hreflang tags for multilingual content
+### 5. SEO Rules (Nomad Magazine)
+
+#### URL and Link Conventions
+- **Always** end all internal links with a trailing slash (`/`)
+- Apply to navigation, anchors, canonical URLs, sitemap entries, and JSON-LD URLs
+- Use clean, descriptive URLs with hyphens; avoid underscores and special characters
+
+#### Image Format Requirements
+- **All images must be WebP** (`.webp`) except SVGs and favicons
+- Convert non-WebP images when possible; otherwise report the need
+- Always include descriptive `alt` text (keywords when natural)
+- Decorative images must use `alt=""` and `aria-hidden="true"`
+
+#### SEO Metadata Best Practices
+- **Title tags**: 50-60 characters, keyword near the beginning, unique per page
+- **Meta descriptions**: 150-160 characters, compelling, keyword-rich, unique
+- **Keywords**: include relevant terms naturally (no stuffing)
+- **Open Graph**: full set (`og:title`, `og:description`, `og:image`, `og:url`, `og:type`, `og:locale`, `og:site_name`)
+- **Twitter cards**: use `name` attribute (not `property`) and include `twitter:image:alt`
+
+#### Structured Data (JSON-LD)
+- Use JSON-LD on every page with required fields: `@context`, `@type`, `name`, `description`, `url`
+- All URLs in JSON-LD must end with trailing slashes
+- Add `publisher` / `provider` when applicable
+
+#### Content Structure and Headings
+- One H1 per page; never skip heading levels
+- Use semantic HTML (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`)
+- Use descriptive headings with natural keywords
+
+#### Accessibility (WCAG)
+- Add `aria-hidden="true"` to decorative SVGs
+- Add `aria-label` to icon-only buttons and forms without visible labels
+- External links must use `rel="noopener noreferrer"` and note "opens in new tab" in `aria-label`
+- Include a "Skip to main content" link; wrap main content in `<main id="main-content">`
+- Use `focus-visible:ring` for focus styles (avoid `outline-none`)
+
+#### Performance and Mobile
+- Mobile-first responsive design
+- Optimize Core Web Vitals (LCP, FID, CLS)
+- Lazy-load below-the-fold images
+
+#### Technical SEO
+- Always include canonical URLs with trailing slashes
+- Use `index, follow` unless a page should be excluded
+- Keep sitemap updated and clean
+
+#### Mandatory CLI Validation
+- **After any page/content or metadata change**:
+  1. `bun run build`
+  2. `bun run seo:check`
 
 ### 6. Component Structure
 - Components in `src/components/`
@@ -392,10 +436,10 @@ This project uses the same SEO checker system as the [Nomad Magazine](https://gi
 - Automatic sitemap generation
 - Structured data (JSON-LD)
 - Open Graph tags
-- Twitter Card support
+- Twitter Card support (use `name` attribute)
 - Proper hreflang tags
 - Meta descriptions and titles
-- Canonical URLs
+- Canonical URLs with trailing slashes
 
 ## Deployment
 
@@ -488,7 +532,7 @@ This project is based on the structure and best practices from the [Nomad Magazi
 ### Adding Images
 
 1. Place images in `public/images/`
-2. Reference as `/images/filename.jpg` in components
+2. Reference as `/images/filename.webp` in components
 3. Always include alt text for SEO
 
 ### Customizing Styles
@@ -513,8 +557,8 @@ curl -fsSL https://bun.sh/install | bash
 ### SEO Check Failing
 - Run `bun run seo:check:report` for details
 - Fix issues according to the report
-- Check that all images have alt text
-- Verify meta tags are present
+- Check that all images are WebP and have alt text
+- Verify meta tags are present and URL slashes are correct
 
 ### Build Errors
 - Run `bun run astro check` to see TypeScript errors

@@ -10,12 +10,6 @@
   --color-text-light: rgba(26, 26, 26, 0.7);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
