@@ -1,0 +1,48 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import { createWebPageSchema } from '~/utils/schema'
+import { getTranslations as getI18nTranslations } from '~/i18n/utils'
+
+const lang = Astro.currentLocale || 'fr'
+const t = getI18nTranslations(lang as 'fr' | 'en')
+const pageSchema = createWebPageSchema({
+  name: t.pages.resources.heroTitle,
+  url: Astro.url,
+  description: t.pages.resources.heroSubtitle,
+})
+---
+
+<Layout
+  title={`${t.pages.resources.heroTitle} – LAOM`}
+  description={t.pages.resources.heroSubtitle}
+  seo={{
+    ldJSON: pageSchema,
+  }}
+>
+  <section class="py-32 lg:py-40 bg-white">
+    <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-20 text-center">
+      <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-6">
+        Ressources
+      </span>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-black mb-6 tracking-tight">
+        {t.pages.resources.heroTitle}
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-black/60 max-w-3xl mx-auto leading-relaxed">
+        {t.pages.resources.heroSubtitle}
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {t.pages.resources.items.map((item) => (
+          <div class="border border-black/10 bg-white p-8 lg:p-10 shadow-sm">
+            <h3 class="text-xl font-light text-black mb-4">{item.title}</h3>
+            <p class="text-black/60 font-light leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

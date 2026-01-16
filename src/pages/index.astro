@@ -10,6 +10,26 @@ const siteSchema = createWebSiteSchema({
   url: Astro.site?.toString() || 'https://laom.com',
   description: t.site.description,
 })
+
+const eventImages = [
+  '/images/event-danse-silence.png',
+  '/images/event-rencontre-perspective.jpg',
+  '/images/event-desirs-aventure.jpg',
+  '/images/event-fyneo.jpg',
+]
+const events = t.events.items.map((item, index) => ({
+  ...item,
+  image: eventImages[index] || '/images/event-fyneo.jpg',
+}))
+
+const trustLogos = [
+  { src: '/images/logo-csc.webp', alt: t.trust.logos[0] },
+  { src: '/images/logo-vanlifest.jpg', alt: t.trust.logos[1] },
+  { src: '/images/logo-image01.png', alt: t.trust.logos[2] },
+]
+
+const testimonialVideoSrc =
+  'https://video.squarespace-cdn.com/content/v1/65302edf4351611528812cd0/245f0496-db76-4cc4-b14a-32b3e364d843/1080:1920'
 ---
 
 <Layout 
@@ -21,9 +41,28 @@ const siteSchema = createWebSiteSchema({
 >
   <Hero />
   
+  <!-- Trust Section -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-20">
+      <p class="text-center text-xs tracking-[0.25em] uppercase text-black/40 mb-10">
+        {t.trust.title}
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-10 md:gap-16 opacity-80">
+        {trustLogos.map((logo) => (
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            class="h-10 md:h-12 w-auto object-contain grayscale hover:grayscale-0 transition duration-500"
+            loading="lazy"
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
   <!-- About Section - Editorial Style -->
   <section id="experience" class="py-32 lg:py-40 bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-8 sm:px-12 lg:px-20">
       <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
         <!-- Text Content -->
         <div class="lg:w-1/2 opacity-0" animate-fade-in-up>
@@ -37,22 +76,22 @@ const siteSchema = createWebSiteSchema({
             {t.about.subtitle}
           </p>
           <div class="w-12 h-[1px] bg-black/20 mb-8"></div>
-          <p class="text-lg font-light text-black/80 leading-relaxed text-justify">
-            {t.about.description}
-          </p>
+          <div class="space-y-6 text-lg font-light text-black/80 leading-relaxed text-left">
+            <p>{t.about.description}</p>
+            <p>{t.about.community}</p>
+            <p>{t.about.location}</p>
+          </div>
         </div>
         
         <!-- Image/Visual -->
         <div class="lg:w-1/2 relative opacity-0 delay-200" animate-fade-in-up>
           <div class="aspect-[4/5] bg-neutral-100 rounded-sm overflow-hidden relative">
-             <!-- Placeholder for About Image -->
-             <div class="absolute inset-0 bg-neutral-200 animate-pulse"></div>
-             <!-- Replace with: <img src="/images/about.jpg" alt="Laom ambiance" class="w-full h-full object-cover" /> -->
-             <div class="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-sm p-6 rounded-sm">
-                <p class="text-sm font-light text-black/80 leading-relaxed italic">
-                  "{t.about.community}"
-                </p>
-             </div>
+            <img src="/images/about.jpg" alt={t.about.imageAlt} class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-sm p-6 rounded-sm">
+              <p class="text-sm font-light text-black/80 leading-relaxed italic">
+                "{t.about.highlight}"
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -61,7 +100,7 @@ const siteSchema = createWebSiteSchema({
 
   <!-- Features Section - Asymmetric Grid -->
   <section class="py-32 lg:py-40 bg-[#faf9f6]"> <!-- Off-white/Cream background -->
-    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto px-8 sm:px-12 lg:px-20">
       <div class="text-center max-w-3xl mx-auto mb-24 lg:mb-32 opacity-0" animate-fade-in-up>
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-light text-black mb-8 tracking-tight">L'Expérience LAOM</h2>
         <div class="w-16 h-[1px] bg-black/10 mx-auto mb-8"></div>
@@ -103,7 +142,7 @@ const siteSchema = createWebSiteSchema({
   <!-- Location/Nature Immersion - Full Width Parallax-like -->
   <section class="relative py-40 flex items-center justify-center bg-[#2d5016] overflow-hidden">
     <div class="absolute inset-0 opacity-20 bg-[url('/images/forest-bg.jpg')] bg-cover bg-fixed bg-center"></div> <!-- Placeholder for forest image -->
-    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center text-white opacity-0" animate-fade-in-up>
+    <div class="relative z-10 max-w-4xl mx-auto px-8 sm:px-12 lg:px-20 text-center text-white opacity-0" animate-fade-in-up>
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-light mb-8 tracking-tight">Immersion Sauvage</h2>
       <p class="text-xl md:text-2xl font-light opacity-90 leading-relaxed max-w-2xl mx-auto">
         {t.about.location}
@@ -112,7 +151,7 @@ const siteSchema = createWebSiteSchema({
   </section>
 
   <!-- Events Section - Calendar Style -->
-  <section id="events" class="py-32 px-6 lg:px-8 bg-white">
+  <section id="events" class="py-32 px-8 sm:px-12 lg:px-20 bg-white">
     <div class="max-w-5xl mx-auto">
       <div class="flex flex-col md:flex-row justify-between items-end mb-16 opacity-0" animate-fade-in-up>
         <div>
@@ -125,48 +164,56 @@ const siteSchema = createWebSiteSchema({
       </div>
 
       <!-- Events List -->
-      <div class="border-t border-black/10 opacity-0" animate-fade-in-up>
-        <!-- Placeholder Event 1 -->
-        <div class="group py-8 border-b border-black/10 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-neutral-50 transition-colors px-4 cursor-pointer">
-          <div class="flex flex-col md:flex-row gap-8 md:items-center">
-            <div class="text-xs font-light tracking-widest uppercase text-black/50 w-32">25 Fév - 28 Fév</div>
-            <div>
-              <h3 class="text-2xl font-light mb-2 group-hover:translate-x-2 transition-transform duration-300">Danse & Silence #2</h3>
-              <p class="text-sm font-light text-black/60">Retraite immersive</p>
+      <div class="space-y-6 border-t border-black/10 pt-8 opacity-0" animate-fade-in-up>
+        {events.map((event) => (
+          <div class="group border border-black/10 rounded-sm overflow-hidden hover:shadow-lg transition-shadow bg-white">
+            <div class="flex flex-col md:flex-row">
+              <div class="md:w-56 lg:w-72 bg-neutral-100">
+                <img src={event.image} alt={event.title} class="h-full w-full object-cover" loading="lazy" />
+              </div>
+              <div class="flex-1 p-6 md:p-8 flex flex-col justify-between">
+                <div>
+                  <p class="text-xs font-light tracking-widest uppercase text-black/50 mb-3">{event.date}</p>
+                  <h3 class="text-2xl font-light mb-3 group-hover:translate-x-1 transition-transform duration-300">
+                    {event.title}
+                  </h3>
+                  <p class="text-sm font-light text-black/60">{event.description}</p>
+                </div>
+                <div class="mt-6 text-xs tracking-widest uppercase text-black/40 group-hover:text-black transition-colors">
+                  {t.events.cta}
+                </div>
+              </div>
             </div>
           </div>
-          <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs tracking-widest uppercase">Découvrir</div>
-        </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-        <!-- Placeholder Event 2 -->
-        <div class="group py-8 border-b border-black/10 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-neutral-50 transition-colors px-4 cursor-pointer">
-          <div class="flex flex-col md:flex-row gap-8 md:items-center">
-            <div class="text-xs font-light tracking-widest uppercase text-black/50 w-32">05 Mars - 08 Mars</div>
-            <div>
-              <h3 class="text-2xl font-light mb-2 group-hover:translate-x-2 transition-transform duration-300">Rencontre Perspective #4</h3>
-              <p class="text-sm font-light text-black/60">Workshop Créatif</p>
-            </div>
-          </div>
-          <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs tracking-widest uppercase">Découvrir</div>
+  <!-- Testimonials + Video -->
+  <section class="py-32 lg:py-40 bg-[#faf9f6]">
+    <div class="max-w-5xl mx-auto px-8 sm:px-12 lg:px-20 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-light text-black mb-6">{t.testimonials.title}</h2>
+      <p class="text-black/60 font-light text-lg mb-12">{t.testimonials.subtitle}</p>
+      <div class="bg-white border border-black/10 rounded-sm overflow-hidden shadow-sm">
+        <div class="aspect-[9/16] bg-black">
+          <video
+            class="w-full h-full object-cover"
+            controls
+            playsinline
+            preload="metadata"
+            poster="/images/hero-bg.jpg"
+          >
+            <source src={testimonialVideoSrc} type="video/mp4" />
+          </video>
         </div>
-
-        <!-- Placeholder Event 3 -->
-        <div class="group py-8 border-b border-black/10 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-neutral-50 transition-colors px-4 cursor-pointer">
-          <div class="flex flex-col md:flex-row gap-8 md:items-center">
-            <div class="text-xs font-light tracking-widest uppercase text-black/50 w-32">30 Avr - 03 Mai</div>
-            <div>
-              <h3 class="text-2xl font-light mb-2 group-hover:translate-x-2 transition-transform duration-300">Désirs d'Aventure</h3>
-              <p class="text-sm font-light text-black/60">Exploration & Nature</p>
-            </div>
-          </div>
-          <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs tracking-widest uppercase">Découvrir</div>
-        </div>
+        <div class="p-6 text-sm text-black/60">{t.testimonials.caption}</div>
       </div>
     </div>
   </section>
 
   <!-- Contact Section - Minimalist -->
-  <section id="contact" class="py-32 lg:py-40 px-6 lg:px-8 bg-[#1a1a1a] text-white">
+  <section id="contact" class="py-32 lg:py-40 px-8 sm:px-12 lg:px-20 bg-[#1a1a1a] text-white">
     <div class="max-w-4xl mx-auto text-center opacity-0" animate-fade-in-up>
       <span class="block text-xs font-light tracking-[0.2em] uppercase text-white/40 mb-8">
         Rejoignez-nous
@@ -175,15 +222,20 @@ const siteSchema = createWebSiteSchema({
         Commencez votre voyage
       </h2>
       
-      <div class="grid md:grid-cols-2 gap-12 max-w-2xl mx-auto mb-16">
-        <div class="text-center md:text-right border-r border-white/10 pr-0 md:pr-12">
-          <p class="text-xs tracking-widest uppercase text-white/40 mb-4">{t.contact.development}</p>
-          <p class="text-xl font-light">{t.contact.name}</p>
-        </div>
-        <div class="text-center md:text-left pl-0 md:pl-0">
-          <a href={`mailto:${t.contact.email}`} class="block text-xl font-light hover:text-[#d4af37] transition-colors mb-2">{t.contact.email}</a>
-          <a href={`tel:${t.contact.phone.replace(/\s/g, '')}`} class="block text-xl font-light hover:text-[#d4af37] transition-colors">{t.contact.phone}</a>
-        </div>
+      <div class="flex flex-col items-center mb-12">
+        <img
+          src="/images/charly-aubert.jpg"
+          alt={t.contact.photoAlt}
+          class="h-24 w-24 rounded-full object-cover border border-white/20"
+          loading="lazy"
+        />
+        <p class="mt-6 text-xs tracking-widest uppercase text-white/40">{t.contact.development}</p>
+        <p class="text-xl font-light">{t.contact.name}</p>
+      </div>
+
+      <div class="flex flex-col items-center gap-2 mb-16">
+        <a href={`mailto:${t.contact.email}`} class="text-xl font-light hover:text-[#d4af37] transition-colors">{t.contact.email}</a>
+        <a href={`tel:${t.contact.phone.replace(/\s/g, '')}`} class="text-xl font-light hover:text-[#d4af37] transition-colors">{t.contact.phone}</a>
       </div>
 
       <a href={`mailto:${t.contact.email}`} class="inline-block px-12 py-5 border border-white/30 hover:border-white hover:bg-white hover:text-black transition-all duration-500 uppercase tracking-[0.15em] text-sm">

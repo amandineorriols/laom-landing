@@ -1,5 +1,5 @@
 ---
-import { getTranslations } from '~/i18n/utils'
+import { getTranslations, getLocalizedPath } from '~/i18n/utils'
 
 const lang = Astro.currentLocale || 'fr'
 const t = getTranslations(lang as 'fr' | 'en')
@@ -20,9 +20,11 @@ const t = getTranslations(lang as 'fr' | 'en')
       <div>
         <h4 class="text-sm font-light tracking-widest uppercase mb-6">{t.footer.explore}</h4>
         <nav class="flex flex-col space-y-4">
-          <a href="#home" class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.home}</a>
-          <a href="#experience" class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.experience}</a>
-          <a href="#events" class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.events}</a>
+          <a href={getLocalizedPath('/', lang as 'fr' | 'en')} class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.home}</a>
+          <a href={getLocalizedPath('/project', lang as 'fr' | 'en')} class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.project}</a>
+          <a href={getLocalizedPath('/school', lang as 'fr' | 'en')} class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.school}</a>
+          <a href={getLocalizedPath('/events', lang as 'fr' | 'en')} class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.events}</a>
+          <a href={getLocalizedPath('/resources', lang as 'fr' | 'en')} class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.resources}</a>
         </nav>
       </div>
 
@@ -30,7 +32,7 @@ const t = getTranslations(lang as 'fr' | 'en')
       <div>
         <h4 class="text-sm font-light tracking-widest uppercase mb-6">{t.footer.connect}</h4>
         <nav class="flex flex-col space-y-4">
-          <a href="#contact" class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.contact}</a>
+          <a href={getLocalizedPath('/contact', lang as 'fr' | 'en')} class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.contact}</a>
           <a href="mailto:orion.aubert@gmail.com" class="text-white/70 hover:text-white text-sm font-light transition-colors">orion.aubert@gmail.com</a>
         </nav>
       </div>

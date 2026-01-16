@@ -1,0 +1,58 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import { createWebPageSchema } from '~/utils/schema'
+import { getTranslations as getI18nTranslations } from '~/i18n/utils'
+
+const lang = Astro.currentLocale || 'fr'
+const t = getI18nTranslations(lang as 'fr' | 'en')
+const pageSchema = createWebPageSchema({
+  name: t.pages.eventsPage.heroTitle,
+  url: Astro.url,
+  description: t.pages.eventsPage.heroSubtitle,
+})
+---
+
+<Layout
+  title={`${t.pages.eventsPage.heroTitle} – LAOM`}
+  description={t.pages.eventsPage.heroSubtitle}
+  seo={{
+    ldJSON: pageSchema,
+  }}
+>
+  <section class="py-32 lg:py-40 bg-white">
+    <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-20 text-center">
+      <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-6">
+        Agenda
+      </span>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-black mb-6 tracking-tight">
+        {t.pages.eventsPage.heroTitle}
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-black/60 max-w-3xl mx-auto leading-relaxed">
+        {t.pages.eventsPage.heroSubtitle}
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-20">
+      <div class="border-t border-black/10">
+        {t.events.items.map((event) => (
+          <div class="group py-8 border-b border-black/10 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-white transition-colors px-4">
+            <div class="flex flex-col md:flex-row gap-8 md:items-center">
+              <div class="text-xs font-light tracking-widest uppercase text-black/50 w-40">{event.date}</div>
+              <div>
+                <h3 class="text-2xl font-light mb-2 group-hover:translate-x-2 transition-transform duration-300">
+                  {event.title}
+                </h3>
+                <p class="text-sm font-light text-black/60">{event.description}</p>
+              </div>
+            </div>
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs tracking-widest uppercase">
+              Découvrir
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

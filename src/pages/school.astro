@@ -1,0 +1,77 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import { createWebPageSchema } from '~/utils/schema'
+import { getTranslations as getI18nTranslations } from '~/i18n/utils'
+
+const lang = Astro.currentLocale || 'fr'
+const t = getI18nTranslations(lang as 'fr' | 'en')
+const pageSchema = createWebPageSchema({
+  name: t.pages.school.heroTitle,
+  url: Astro.url,
+  description: t.pages.school.heroSubtitle,
+})
+---
+
+<Layout
+  title={`${t.pages.school.heroTitle} – LAOM`}
+  description={t.pages.school.heroSubtitle}
+  seo={{
+    ldJSON: pageSchema,
+  }}
+>
+  <!-- Hero -->
+  <section class="py-32 lg:py-40 bg-white">
+    <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-20 text-center">
+      <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-6">
+        Formation
+      </span>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-black mb-6 tracking-tight">
+        {t.pages.school.heroTitle}
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-black/60 max-w-3xl mx-auto leading-relaxed">
+        {t.pages.school.heroSubtitle}
+      </p>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-20">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-10">{t.pages.school.problemTitle}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {t.pages.school.problems.map((item) => (
+          <div class="border border-black/10 p-6 bg-white shadow-sm">
+            <p class="text-lg font-light text-black/70">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Program -->
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-20">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-10">{t.pages.school.programTitle}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {t.pages.school.program.map((item, index) => (
+          <div class="flex items-start gap-4">
+            <span class="text-black/40 text-sm tracking-[0.2em]">{String(index + 1).padStart(2, '0')}</span>
+            <p class="text-lg font-light text-black/70">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Audience -->
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-20">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-10">{t.pages.school.audienceTitle}</h2>
+      <ul class="space-y-4">
+        {t.pages.school.audience.map((item) => (
+          <li class="text-lg font-light text-black/70">• {item}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Layout>

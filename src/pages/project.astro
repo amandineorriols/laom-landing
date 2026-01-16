@@ -1,0 +1,84 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import { createWebPageSchema } from '~/utils/schema'
+import { getTranslations as getI18nTranslations } from '~/i18n/utils'
+
+const lang = Astro.currentLocale || 'fr'
+const t = getI18nTranslations(lang as 'fr' | 'en')
+const pageSchema = createWebPageSchema({
+  name: t.pages.project.heroTitle,
+  url: Astro.url,
+  description: t.pages.project.heroSubtitle,
+})
+---
+
+<Layout
+  title={`${t.pages.project.heroTitle} – LAOM`}
+  description={t.pages.project.heroSubtitle}
+  seo={{
+    ldJSON: pageSchema,
+  }}
+>
+  <!-- Hero -->
+  <section class="py-32 lg:py-40 bg-white">
+    <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-20 text-center">
+      <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-6">
+        LAOM
+      </span>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-black mb-6 tracking-tight">
+        {t.pages.project.heroTitle}
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-black/60 max-w-3xl mx-auto leading-relaxed">
+        {t.pages.project.heroSubtitle}
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="py-20 bg-[#faf9f6]">
+    <div class="max-w-5xl mx-auto px-8 sm:px-12 lg:px-20">
+      <p class="text-lg md:text-xl font-light text-black/80 leading-relaxed">
+        {t.pages.project.intro}
+      </p>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-20">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-10">{t.pages.project.statsTitle}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {t.pages.project.stats.map((item) => (
+          <div class="border border-black/10 p-6 lg:p-8 bg-white shadow-sm">
+            <p class="text-lg font-light text-black/80">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Model -->
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-20">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-6">{t.pages.project.modelTitle}</h2>
+      <p class="text-lg font-light text-black/70 leading-relaxed max-w-4xl">
+        {t.pages.project.modelDescription}
+      </p>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-20">
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-10">{t.pages.project.timelineTitle}</h2>
+      <div class="space-y-6 border-l border-black/10 pl-6">
+        {t.pages.project.timeline.map((step) => (
+          <div class="relative">
+            <span class="absolute -left-[9px] top-2 h-3 w-3 rounded-full bg-black/40"></span>
+            <p class="text-lg font-light text-black/70">{step}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
