@@ -1,5 +1,6 @@
 ---
 import { getTranslations, getLocalizedPath } from '~/i18n/utils'
+import { INSTAGRAM_URL, YOUTUBE_URL } from '~/i18n/translations'
 
 const lang = Astro.currentLocale || 'fr'
 const t = getTranslations(lang as 'fr' | 'en')
@@ -34,6 +35,8 @@ const t = getTranslations(lang as 'fr' | 'en')
         <nav class="flex flex-col space-y-4">
           <a href={getLocalizedPath('/contact', lang as 'fr' | 'en')} class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.contact}</a>
           <a href="mailto:orion.aubert@gmail.com" class="text-white/70 hover:text-white text-sm font-light transition-colors">orion.aubert@gmail.com</a>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label={`${t.footer.instagram} (opens in new tab)`} class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.footer.instagram}</a>
+          <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" aria-label={`${t.footer.youtube} (opens in new tab)`} class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.footer.youtube}</a>
         </nav>
       </div>
     </div>

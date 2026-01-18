@@ -1,3 +1,9 @@
+/** Official LAOM Instagram profile – use this URL for all Instagram links. */
+export const INSTAGRAM_URL = 'https://www.instagram.com/laom.coliving/'
+
+/** Official LAOM YouTube channel – use this URL for all YouTube links. */
+export const YOUTUBE_URL = 'https://www.youtube.com/@charlyaubert'
+
 export const translations = {
   fr: {
     site: {
@@ -213,10 +219,12 @@ export const translations = {
           {
             title: 'YouTube',
             description: 'Vlogs de construction et retours d\'expérience.',
+            href: YOUTUBE_URL,
           },
           {
             title: 'Instagram',
             description: 'Web-série LAOM et vie quotidienne du chantier.',
+            href: INSTAGRAM_URL,
           },
           {
             title: 'Guide SCIA',
@@ -280,10 +288,12 @@ export const translations = {
           {
             title: 'YouTube – Vlogs chantier',
             description: 'Suivre l\'avancée de la construction, semaine après semaine.',
+            href: YOUTUBE_URL,
           },
           {
             title: 'Instagram – Web-série LAOM',
             description: '30 épisodes pour raconter l\'histoire du projet.',
+            href: INSTAGRAM_URL,
           },
         ],
         ctaTitle: 'Aller plus loin',
@@ -328,6 +338,12 @@ export const translations = {
       },
     },
     home: {
+      experience: {
+        overline: "L'Expérience",
+        title: "L'Expérience LAOM",
+        subtitle: 'Nature, confort, communauté.',
+        labels: ['Nature', 'Repos', 'Partage', 'Création'],
+      },
       statsTitle: 'LAOM en chiffres',
       stats: [
         '21 hectares de nature préservée',
@@ -344,10 +360,12 @@ export const translations = {
         {
           title: 'YouTube',
           description: 'Vlogs chantier et retours d\'expérience détaillés.',
+          href: YOUTUBE_URL,
         },
         {
           title: 'Instagram',
           description: 'Web-série LAOM pour suivre l\'histoire du projet.',
+          href: INSTAGRAM_URL,
         },
       ],
       ctaTitle: 'Prêt à créer votre éco-coliving ?',
@@ -358,6 +376,8 @@ export const translations = {
       description: 'Un écolieu niché dans une vallée sauvage du sud de l\'Aveyron, où nature, création et vie collective s\'entrelacent.',
       explore: 'Explorer',
       connect: 'Se connecter',
+      instagram: 'Instagram',
+      youtube: 'YouTube',
       highlightsTitle: 'Repères LAOM',
       highlights: [
         {
@@ -626,10 +646,12 @@ export const translations = {
           {
             title: 'YouTube',
             description: 'Construction vlogs and real-world insights.',
+            href: YOUTUBE_URL,
           },
           {
             title: 'Instagram',
             description: 'LAOM web series and daily life on site.',
+            href: INSTAGRAM_URL,
           },
           {
             title: 'SCIA Guide',
@@ -693,10 +715,12 @@ export const translations = {
           {
             title: 'YouTube – Construction vlogs',
             description: 'Follow the build week after week.',
+            href: YOUTUBE_URL,
           },
           {
             title: 'Instagram – LAOM web series',
             description: '30 episodes telling the project story.',
+            href: INSTAGRAM_URL,
           },
         ],
         ctaTitle: 'Go further',
@@ -741,6 +765,12 @@ export const translations = {
       },
     },
     home: {
+      experience: {
+        overline: 'The Experience',
+        title: 'The LAOM Experience',
+        subtitle: 'Nature, comfort, community.',
+        labels: ['Nature', 'Rest', 'Sharing', 'Creation'],
+      },
       statsTitle: 'LAOM in numbers',
       stats: [
         '21 hectares of preserved nature',
@@ -757,10 +787,12 @@ export const translations = {
         {
           title: 'YouTube',
           description: 'Construction vlogs and detailed feedback.',
+          href: YOUTUBE_URL,
         },
         {
           title: 'Instagram',
           description: 'LAOM web series to follow the project story.',
+          href: INSTAGRAM_URL,
         },
       ],
       ctaTitle: 'Ready to build your eco-coliving?',
@@ -771,6 +803,8 @@ export const translations = {
       description: 'An ecolieu nestled in a wild valley in the south of Aveyron, where nature, creation and collective life intertwine.',
       explore: 'Explore',
       connect: 'Connect',
+      instagram: 'Instagram',
+      youtube: 'YouTube',
       highlightsTitle: 'LAOM Highlights',
       highlights: [
         {

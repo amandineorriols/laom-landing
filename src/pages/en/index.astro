@@ -110,43 +110,22 @@ const trustLogos = [
     </div>
   </section>
 
-  <!-- Features Section - Asymmetric Grid -->
-  <section class="py-32 lg:py-40 bg-[#faf9f6]"> <!-- Off-white/Cream background -->
+  <!-- Experience Section - Editorial, typography-led (Our Habitas / AïA) -->
+  <section class="py-32 lg:py-40 bg-[#fafafa]">
     <div class="max-w-7xl mx-auto px-10 sm:px-16 lg:px-24">
-      <div class="text-center max-w-3xl mx-auto mb-24 lg:mb-32 opacity-0" animate-fade-in-up>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-light text-black mb-8 tracking-tight">The LAOM Experience</h2>
-        <div class="w-16 h-[1px] bg-black/10 mx-auto mb-8"></div>
-        <p class="text-black/50 font-light text-lg lg:text-xl leading-relaxed">A perfect balance between nature, comfort, and community.</p>
+      <div class="mb-20 lg:mb-28 opacity-0" animate-fade-in-up>
+        <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-4">{t.home.experience.overline}</span>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-black tracking-tight leading-tight">{t.home.experience.title}</h2>
+        <p class="mt-6 text-lg font-light text-black/50 max-w-xl leading-relaxed">{t.home.experience.subtitle}</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-black/5 border border-black/5 shadow-sm">
-        <!-- Feature 1 -->
-        <div class="bg-white p-12 lg:p-16 flex flex-col items-center text-center group hover:bg-[#faf9f6] transition-colors duration-500">
-          <div class="text-5xl mb-8 text-[#2d5016] opacity-80 group-hover:scale-110 transition-transform duration-500">🌲</div>
-          <h3 class="text-sm font-normal tracking-[0.2em] text-black mb-4 uppercase">Nature</h3>
-          <p class="text-black/60 font-light leading-relaxed text-sm">{t.about.features.space}</p>
-        </div>
-        
-        <!-- Feature 2 -->
-        <div class="bg-white p-12 lg:p-16 flex flex-col items-center text-center group hover:bg-[#faf9f6] transition-colors duration-500">
-          <div class="text-5xl mb-8 text-[#2d5016] opacity-80 group-hover:scale-110 transition-transform duration-500">🛏️</div>
-          <h3 class="text-sm font-normal tracking-[0.2em] text-black mb-4 uppercase">Rest</h3>
-          <p class="text-black/60 font-light leading-relaxed text-sm">{t.about.features.rooms}</p>
-        </div>
-
-        <!-- Feature 3 -->
-        <div class="bg-white p-12 lg:p-16 flex flex-col items-center text-center group hover:bg-[#faf9f6] transition-colors duration-500">
-          <div class="text-5xl mb-8 text-[#2d5016] opacity-80 group-hover:scale-110 transition-transform duration-500">🍲</div>
-          <h3 class="text-sm font-normal tracking-[0.2em] text-black mb-4 uppercase">Sharing</h3>
-          <p class="text-black/60 font-light leading-relaxed text-sm">{t.about.features.kitchen}</p>
-        </div>
-
-        <!-- Feature 4 -->
-        <div class="bg-white p-12 lg:p-16 flex flex-col items-center text-center group hover:bg-[#faf9f6] transition-colors duration-500">
-          <div class="text-5xl mb-8 text-[#2d5016] opacity-80 group-hover:scale-110 transition-transform duration-500">🧠</div>
-          <h3 class="text-sm font-normal tracking-[0.2em] text-black mb-4 uppercase">Creation</h3>
-          <p class="text-black/60 font-light leading-relaxed text-sm">{t.about.features.workspace}</p>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+        {(['space', 'rooms', 'kitchen', 'workspace'] as const).map((key, i) => (
+          <div class="border-l border-black/10 pl-6 lg:pl-8 opacity-0" animate-fade-in-up style={`animation-delay: ${(i + 1) * 80}ms`}>
+            <p class="text-xs font-light tracking-[0.2em] uppercase text-black/50 mb-4">{t.home.experience.labels[i]}</p>
+            <p class="text-black/70 font-light text-[15px] leading-relaxed">{t.about.features[key]}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -156,12 +135,26 @@ const trustLogos = [
     <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
       <h2 class="text-3xl md:text-4xl font-light text-black mb-10 text-center">{t.home.channelsTitle}</h2>
       <div class="grid gap-6 md:grid-cols-3">
-        {t.home.channels.map((item) => (
-          <div class="border border-black/10 bg-[#f3efe7] p-6 lg:p-8">
-            <h3 class="text-lg font-light text-black mb-3">{item.title}</h3>
-            <p class="text-sm font-light text-black/60 leading-relaxed">{item.description}</p>
-          </div>
-        ))}
+        {t.home.channels.map((item) => {
+          const url = 'href' in item ? item.href : undefined
+          return url ? (
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${item.title} (opens in new tab)`}
+              class="block border border-black/10 bg-[#f3efe7] p-6 lg:p-8 hover:border-black/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 focus-visible:ring-offset-2"
+            >
+              <h3 class="text-lg font-light text-black mb-3">{item.title}</h3>
+              <p class="text-sm font-light text-black/60 leading-relaxed">{item.description}</p>
+            </a>
+          ) : (
+            <div class="border border-black/10 bg-[#f3efe7] p-6 lg:p-8">
+              <h3 class="text-lg font-light text-black mb-3">{item.title}</h3>
+              <p class="text-sm font-light text-black/60 leading-relaxed">{item.description}</p>
+            </div>
+          )
+        })}
       </div>
     </div>
   </section>
