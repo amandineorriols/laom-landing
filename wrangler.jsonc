@@ -14,7 +14,7 @@
   "workers_dev": false,
   "routes": [
     {
-      "pattern": "laom.com",
+      "pattern": "laom.fr",
       "custom_domain": true
     }
   ]
