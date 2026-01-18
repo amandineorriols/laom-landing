@@ -110,7 +110,7 @@ const heroImageFallback = '/images/hero-bg.jpg'
     })
     
     // Try to play the video (required for autoplay in some browsers)
-    heroVideo.play().catch(() => {
+    ;(heroVideo as HTMLVideoElement).play().catch(() => {
       // Autoplay failed, show image fallback
       if (heroImageFallback) {
         heroVideo.style.display = 'none'
