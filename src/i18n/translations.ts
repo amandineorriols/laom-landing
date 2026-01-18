@@ -378,6 +378,10 @@ export const translations = {
       connect: 'Se connecter',
       instagram: 'Instagram',
       youtube: 'YouTube',
+      newsletterTitle: 'Newsletter',
+      newsletterDescription: 'Coulisses du projet, décisions clés et ressources. Pas de spam.',
+      newsletterPlaceholder: 'Votre adresse e-mail',
+      newsletterSubmit: 'S\'inscrire',
       highlightsTitle: 'Repères LAOM',
       highlights: [
         {
@@ -805,6 +809,10 @@ export const translations = {
       connect: 'Connect',
       instagram: 'Instagram',
       youtube: 'YouTube',
+      newsletterTitle: 'Newsletter',
+      newsletterDescription: 'Behind the scenes, key decisions and resources. No spam.',
+      newsletterPlaceholder: 'Your email address',
+      newsletterSubmit: 'Subscribe',
       highlightsTitle: 'LAOM Highlights',
       highlights: [
         {

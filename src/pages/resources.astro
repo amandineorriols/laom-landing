@@ -1,5 +1,6 @@
 ---
 import Layout from '~/layouts/Layout.astro'
+import NewsletterForm from '~/components/NewsletterForm.astro'
 import { createWebPageSchema } from '~/utils/schema'
 import { getTranslations as getI18nTranslations, getLocalizedPath } from '~/i18n/utils'
 
@@ -64,6 +65,15 @@ const pageSchema = createWebPageSchema({
             )
           })}
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-24 bg-[#eef4ea]">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <div class="max-w-xl">
+        <NewsletterForm variant="light" />
       </div>
     </div>
   </section>

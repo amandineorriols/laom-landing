@@ -1,0 +1,189 @@
+---
+import { getTranslations } from '~/i18n/utils'
+
+export interface Props {
+  /** 'dark' for footer (default), 'light' for in-page on white/light background */
+  variant?: 'dark' | 'light'
+}
+
+const { variant = 'dark' } = Astro.props
+const lang = Astro.currentLocale || 'fr'
+const t = getTranslations(lang as 'fr' | 'en')
+const isLight = variant === 'light'
+
+// Kit form options – keep structure for form behavior (success message, powered by, etc.)
+const formKitOptions = {
+  settings: {
+    after_subscribe: {
+      action: 'message',
+      success_message: lang === 'fr'
+        ? 'Parfait ! Consultez votre boîte mail pour confirmer votre inscription.'
+        : 'Success! Now check your email to confirm your subscription.',
+      redirect_url: '',
+    },
+    analytics: {
+      google: null,
+      fathom: null,
+      facebook: null,
+      segment: null,
+      pinterest: null,
+      sparkloop: null,
+      googletagmanager: null,
+    },
+    modal: { trigger: 'timer', scroll_percentage: null, timer: 5, devices: 'all', show_once_every: 15 },
+    powered_by: {
+      show: true,
+      url: 'https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic',
+    },
+    recaptcha: { enabled: false },
+    return_visitor: { action: 'show', custom_content: '' },
+    slide_in: { display_in: 'bottom_right', trigger: 'timer', scroll_percentage: null, timer: 5, devices: 'all', show_once_every: 15 },
+    sticky_bar: { display_in: 'top', trigger: 'timer', scroll_percentage: null, timer: 5, devices: 'all', show_once_every: 15 },
+  },
+  version: '5',
+}
+---
+
+<div class={`newsletter-form-widget ${isLight ? 'newsletter-form-widget--light' : ''}`}>
+  <h4 class={`text-sm font-light tracking-widest uppercase mb-4 ${isLight ? 'text-black/90' : 'text-white/90'}`}>
+    {t.footer.newsletterTitle}
+  </h4>
+  <p class={`text-sm font-light mb-4 max-w-md ${isLight ? 'text-black/70' : 'text-white/70'}`}>
+    {t.footer.newsletterDescription}
+  </p>
+  <form
+    action="https://app.kit.com/forms/8987350/subscriptions"
+    class="seva-form formkit-form"
+    method="post"
+    data-sv-form="8987350"
+    data-uid="af2e0fc1e5"
+    data-format="inline"
+    data-version="5"
+    data-options={JSON.stringify(formKitOptions)}
+  >
+    <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert" aria-live="polite"></ul>
+    <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields flex flex-wrap gap-3">
+      <div class="formkit-field flex-1 min-w-[200px]">
+        <input
+          class={`formkit-input w-full rounded px-4 py-3 font-light text-sm focus:outline-none transition-colors ${
+            isLight
+              ? 'bg-white border border-black/20 text-black placeholder-black/50 focus:border-[#2d5016] focus:ring-1 focus:ring-[#2d5016]/30'
+              : 'bg-white/10 border border-white/20 text-white placeholder-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/30'
+          }`}
+          name="email_address"
+          type="email"
+          required
+          aria-label={t.footer.newsletterPlaceholder}
+          placeholder={t.footer.newsletterPlaceholder}
+          autocomplete="email"
+        />
+      </div>
+      <button
+        type="submit"
+        data-element="submit"
+        class={`formkit-submit px-6 py-3 rounded font-light text-sm tracking-wider uppercase focus:outline-none transition-colors relative ${
+          isLight
+            ? 'bg-[#2d5016] border border-[#2d5016] text-white hover:bg-[#2d5016]/90 focus-visible:ring-2 focus-visible:ring-[#2d5016]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white'
+            : 'border border-white/40 text-white hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black'
+        }`}
+      >
+        <div class="formkit-spinner" aria-hidden="true">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <span class="">{t.footer.newsletterSubmit}</span>
+      </button>
+    </div>
+    <div class="formkit-powered-by-convertkit-container mt-3">
+      <a
+        href="https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"
+        data-element="powered-by"
+        class={`formkit-powered-by-convertkit text-xs font-light transition-colors ${isLight ? 'text-black/40 hover:text-black/60' : 'text-white/40 hover:text-white/60'}`}
+        data-variant={isLight ? 'dark' : 'light'}
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+        aria-label="Built with Kit (opens in new tab)"
+      >
+        Built with Kit
+      </a>
+    </div>
+  </form>
+</div>
+
+<style is:global>
+  /* Kit form overrides – dark variant (footer) */
+  .newsletter-form-widget:not(.newsletter-form-widget--light) .formkit-form[data-uid="af2e0fc1e5"] .formkit-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  /* Light variant (in-page) */
+  .newsletter-form-widget--light .formkit-form[data-uid="af2e0fc1e5"] .formkit-input::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .newsletter-form-widget--light .formkit-form[data-uid="af2e0fc1e5"] .formkit-spinner > div {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .newsletter-form-widget--light .formkit-form[data-uid="af2e0fc1e5"] .formkit-alert-error {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #b91c1c;
+  }
+  .newsletter-form-widget--light .formkit-form[data-uid="af2e0fc1e5"] .formkit-alert-success {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #166534;
+  }
+  .newsletter-form-widget .formkit-form[data-uid="af2e0fc1e5"] .formkit-submit[data-active] .formkit-spinner {
+    opacity: 1;
+  }
+  .newsletter-form-widget .formkit-form[data-uid="af2e0fc1e5"] .formkit-submit[data-active] .formkit-spinner ~ span {
+    opacity: 0;
+  }
+  .newsletter-form-widget .formkit-form[data-uid="af2e0fc1e5"] .formkit-spinner {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    inset: 0;
+  }
+  .newsletter-form-widget .formkit-form[data-uid="af2e0fc1e5"] .formkit-submit[data-active] .formkit-spinner {
+    display: flex;
+  }
+  .newsletter-form-widget .formkit-form[data-uid="af2e0fc1e5"] .formkit-spinner > div {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    margin: 0 2px;
+    animation: newsletter-spinner-bounce 1.4s ease-in-out infinite both;
+  }
+  .newsletter-form-widget .formkit-form[data-uid="af2e0fc1e5"] .formkit-spinner > div:nth-child(1) { animation-delay: -0.32s; }
+  .newsletter-form-widget .formkit-form[data-uid="af2e0fc1e5"] .formkit-spinner > div:nth-child(2) { animation-delay: -0.16s; }
+  @keyframes newsletter-spinner-bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+  }
+  .newsletter-form-widget .formkit-form[data-uid="af2e0fc1e5"] .formkit-alert:empty {
+    display: none;
+  }
+  .newsletter-form-widget .formkit-form[data-uid="af2e0fc1e5"] .formkit-alert-error {
+    background: rgba(254, 226, 226, 0.15);
+    border-color: rgba(248, 113, 113, 0.5);
+    color: #fecaca;
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    list-style: none;
+    margin: 0 0 0.75rem 0;
+  }
+  .newsletter-form-widget .formkit-form[data-uid="af2e0fc1e5"] .formkit-alert-success {
+    background: rgba(187, 247, 208, 0.15);
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    color: #bbf7d0;
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    list-style: none;
+    margin: 0 0 0.75rem 0;
+  }
+</style>

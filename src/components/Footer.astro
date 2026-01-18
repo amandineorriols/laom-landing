@@ -1,6 +1,7 @@
 ---
 import { getTranslations, getLocalizedPath } from '~/i18n/utils'
 import { INSTAGRAM_URL, YOUTUBE_URL } from '~/i18n/translations'
+import NewsletterForm from '~/components/NewsletterForm.astro'
 
 const lang = Astro.currentLocale || 'fr'
 const t = getTranslations(lang as 'fr' | 'en')
@@ -39,6 +40,11 @@ const t = getTranslations(lang as 'fr' | 'en')
           <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" aria-label={`${t.footer.youtube} (opens in new tab)`} class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.footer.youtube}</a>
         </nav>
       </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="border-t border-white/10 pt-10 mb-10">
+      <NewsletterForm />
     </div>
 
     <!-- Highlights -->
