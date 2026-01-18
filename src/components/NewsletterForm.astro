@@ -59,7 +59,7 @@ const formKitOptions = {
     data-uid="af2e0fc1e5"
     data-format="inline"
     data-version="5"
-    data-options={JSON.stringify(formKitOptions)}
+    data-options={JSON.stringify(formKitOptions).replace(/"/g, '&quot;')}
   >
     <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert" aria-live="polite"></ul>
     <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields flex flex-wrap gap-3">

@@ -4,7 +4,7 @@ import { getTranslations } from '~/i18n/utils'
 const lang = Astro.currentLocale || 'fr'
 const t = getTranslations(lang as 'fr' | 'en')
 
-const heroVideoSrc = '/videos/tulum_property_hero.mp4'
+const heroVideoSrc = '/videos/aveyron_hero.webm'
 const heroImageFallback = '/images/hero-bg.jpg'
 ---
 
@@ -25,7 +25,7 @@ const heroImageFallback = '/images/hero-bg.jpg'
       preload="auto"
       poster={heroImageFallback}
     >
-      <source src={heroVideoSrc} type="video/mp4" />
+      <source src={heroVideoSrc} type="video/webm" />
     </video>
     
     <!-- Image fallback (shown if video doesn't load) -->
