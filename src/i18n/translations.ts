@@ -22,6 +22,8 @@ export const translations = {
     },
     hero: {
       title: 'LAOM',
+      location: 'Aveyron-France',
+      tagline: 'Coliving • Événements • Habitat • Agriculture régénérative',
       subtitle: 'Un coliving rural dans le sud de l\'Aveyron',
       description: 'Des maisons de montagne avec "bureaux" et jardins où vous pouvez séjourner et travailler sur votre projet. Profitez de la compagnie de personnes curieuses, de plats maison et d\'une ambiance bienveillante.',
       cta: {
@@ -46,6 +48,8 @@ export const translations = {
     },
     events: {
       title: 'Nos prochains événements',
+      allTitle: 'Les prochains événements à LAOM',
+      viewAllLink: 'Voir tout le calendrier',
       comingSoon: 'Bientôt disponible',
       cta: 'Découvrir',
       items: [
@@ -338,6 +342,19 @@ export const translations = {
       },
     },
     home: {
+      intro: {
+        title: 'LAOM',
+        tagline: 'Habiter • Créer • Se Ressourcer',
+        location: 'Aveyron, France',
+        paragraphs: [
+          'Niché dans une vallée sauvage du sud de la France, entre forêt, rivière et grands espaces ouverts, LAOM est un lieu habité par la nature, les rencontres et les échanges.',
+          'À la fois habitat, espace d\'accueil et terrain d\'expérimentation, on y vient ralentir, se relier, créer et s\'inspirer.',
+          'Pensé comme un écosystème humain et créatif, LAOM rassemble un collectif d\'habitants permanents et accueille tout au long de l\'année artistes, entrepreneurs, bâtisseurs et explorateurs intérieurs venus de tous horizons.',
+          'Le lieu comprend une grande salle de pratique baignée de lumière, des tipis et tentes berbères pour l\'été, une ferme maraîchère en permaculture, ainsi qu\'un futur coliving dédié aux résidences artistiques, entrepreneuriales et de bien-être. Des habitats écologiques accueillent déjà des résidents à l\'année, et de nouveaux espaces verront bientôt le jour : guinguette, restauration, coworking.',
+          'Ici, la nature est omniprésente, le temps s\'accorde aux lieux et aux saisons, et chaque détail invite à une autre manière d\'habiter le monde.',
+        ],
+        cta: 'Découvrir le projet',
+      },
       experience: {
         overline: "L'Expérience",
         title: "L'Expérience LAOM",
@@ -369,8 +386,37 @@ export const translations = {
         },
       ],
       ctaTitle: 'Prêt à créer votre éco-coliving ?',
-      ctaDescription: 'Recevez nos ressources et l\'actualité de LAOM School.',
+      ctaDescription: 'Recevez nos ressources et l\'actualité de LAOM.',
       ctaButton: 'Rejoindre la newsletter',
+      newsletterBanner: {
+        headline: 'Des nouvelles de LAOM chaque dimanche matin.',
+        description: 'Les coulisses du chantier, nos choix d\'éco-construction, nos actus et événements, et tout ce que l\'on apprend en créant ce lieu hors normes.',
+        placeholder: 'Votre adresse e-mail',
+        cta: 'Je suis l\'aventure LAOM',
+      },
+      immersionSignature: {
+        overline: 'Immersion Signature',
+        title: 'EN MOUVEMENT',
+        subtitle: 'Immersion signature LAOM - Danse & Mouvement',
+        paragraphs: [
+          'EN MOUVEMENT est une immersion de 5 jours dédiée à l\'exploration du corps en mouvement.',
+          'Un cadre intensif et soutenu pour explorer sans performance, sans forme à atteindre, et laisser le mouvement émerger de l\'écoute du corps.',
+          'Ouvert aux danseurs comme aux non-danseurs, ce temps invite à approfondir sa relation au mouvement dans un lieu propice à la présence et à l\'exploration.',
+        ],
+        imageAlt: 'Immersion EN MOUVEMENT, danse et mouvement à LAOM.',
+        cta: 'Voir les prochaines dates',
+      },
+      ourSpaces: {
+        sectionTitle: 'Nos Espaces',
+        items: [
+          { title: 'Les chambres', description: 'Des chambres douillettes pour se ressourcer au calme.' },
+          { title: 'La cuisine partagée', description: 'Recettes maison et open source, au cœur de la vie collective.' },
+          { title: 'Les espaces de travail', description: 'Bureaux en bois, canapés ensoleillés, tipis et recoins fleuris pour créer.' },
+          { title: 'La salle de pratique', description: 'Une grande salle baignée de lumière pour le mouvement et les pratiques.' },
+          { title: 'Les tipis', description: 'Tipis et tentes berbères pour l\'été.' },
+          { title: 'Le jardin', description: 'Ferme en permaculture et nature.' },
+        ],
+      },
     },
     footer: {
       description: 'Un écolieu niché dans une vallée sauvage du sud de l\'Aveyron, où nature, création et vie collective s\'entrelacent.',
@@ -379,7 +425,7 @@ export const translations = {
       instagram: 'Instagram',
       youtube: 'YouTube',
       newsletterTitle: 'Newsletter',
-      newsletterDescription: 'Coulisses du projet, décisions clés et ressources. Pas de spam.',
+      newsletterDescription: 'Coulisses du projet, décisions clés, actus et événements. Pas de spam.',
       newsletterPlaceholder: 'Votre adresse e-mail',
       newsletterSubmit: 'S\'inscrire',
       highlightsTitle: 'Repères LAOM',
@@ -453,6 +499,8 @@ export const translations = {
     },
     hero: {
       title: 'LAOM',
+      location: 'Aveyron-France',
+      tagline: 'Coliving • Events • Housing • Regenerative agriculture',
       subtitle: 'A rural coliving in the south of Aveyron',
       description: 'Mountain houses with "offices" and gardens where you can stay and work on your project. Enjoy the company of curious people, homemade food, and supportive ambiance.',
       cta: {
@@ -477,6 +525,8 @@ export const translations = {
     },
     events: {
       title: 'Our upcoming events',
+      allTitle: 'Upcoming events at LAOM',
+      viewAllLink: 'View all events',
       comingSoon: 'Coming soon',
       cta: 'Discover',
       items: [
@@ -769,6 +819,19 @@ export const translations = {
       },
     },
     home: {
+      intro: {
+        title: 'LAOM',
+        tagline: 'Live • Create • Recharge',
+        location: 'Aveyron, France',
+        paragraphs: [
+          'Nestled in a wild valley in the south of France, between forest, river and wide open spaces, LAOM is a place inhabited by nature, encounters and exchange.',
+          'Both a dwelling, a place of welcome and a space for experimentation, people come here to slow down, connect, create and find inspiration.',
+          'Designed as a human and creative ecosystem, LAOM brings together a collective of permanent residents and welcomes artists, entrepreneurs, builders and inner explorers from all walks of life throughout the year.',
+          'The place includes a large, light-filled practice hall, Berber tipis and tents for the summer, a permaculture market garden, and a future coliving dedicated to artistic, entrepreneurial and wellness residencies. Ecological dwellings already house year-round residents, and new spaces will soon see the light of day: guinguette, catering, coworking.',
+          'Here, nature is ever-present, time aligns with the place and the seasons, and every detail invites another way of inhabiting the world.',
+        ],
+        cta: 'Discover the project',
+      },
       experience: {
         overline: 'The Experience',
         title: 'The LAOM Experience',
@@ -800,8 +863,37 @@ export const translations = {
         },
       ],
       ctaTitle: 'Ready to build your eco-coliving?',
-      ctaDescription: 'Get our resources and LAOM School updates.',
+      ctaDescription: 'Get our resources and LAOM updates.',
       ctaButton: 'Join the newsletter',
+      newsletterBanner: {
+        headline: 'LAOM news every Sunday morning.',
+        description: 'Behind the scenes of the build, our eco-construction choices, news and events, and everything we learn creating this remarkable place.',
+        placeholder: 'Your email address',
+        cta: 'Follow the LAOM adventure',
+      },
+      immersionSignature: {
+        overline: 'Signature Immersion',
+        title: 'EN MOUVEMENT',
+        subtitle: 'LAOM signature immersion - Dance & Movement',
+        paragraphs: [
+          'EN MOUVEMENT is a 5-day immersion dedicated to exploring the body in motion.',
+          'An intensive, supported setting to explore without performance, without a form to achieve, and to let movement emerge from listening to the body.',
+          'Open to dancers and non-dancers alike, this time invites you to deepen your relationship to movement in a place conducive to presence and exploration.',
+        ],
+        imageAlt: 'EN MOUVEMENT immersion, dance and movement at LAOM.',
+        cta: 'View upcoming dates',
+      },
+      ourSpaces: {
+        sectionTitle: 'Our Spaces',
+        items: [
+          { title: 'The rooms', description: 'Cozy rooms to rest and recharge in peace.' },
+          { title: 'The shared kitchen', description: 'Homemade and open-source recipes at the heart of collective life.' },
+          { title: 'The workspaces', description: 'Wooden desks, sunny sofas, tipis and flower-filled nooks to create.' },
+          { title: 'The practice hall', description: 'A large, light-filled space for movement and practices.' },
+          { title: 'The tipis', description: 'Berber tipis and tents for summer.' },
+          { title: 'The garden', description: 'Permaculture farm and nature.' },
+        ],
+      },
     },
     footer: {
       description: 'An ecolieu nestled in a wild valley in the south of Aveyron, where nature, creation and collective life intertwine.',
@@ -810,7 +902,7 @@ export const translations = {
       instagram: 'Instagram',
       youtube: 'YouTube',
       newsletterTitle: 'Newsletter',
-      newsletterDescription: 'Behind the scenes, key decisions and resources. No spam.',
+      newsletterDescription: 'Behind the scenes, key decisions, news and events. No spam.',
       newsletterPlaceholder: 'Your email address',
       newsletterSubmit: 'Subscribe',
       highlightsTitle: 'LAOM Highlights',

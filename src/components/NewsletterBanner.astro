@@ -1,0 +1,91 @@
+---
+import { getTranslations } from '~/i18n/utils'
+
+const lang = Astro.currentLocale || 'fr'
+const t = getTranslations(lang as 'fr' | 'en')
+const b = t.home.newsletterBanner
+
+// Kit form options – same structure as NewsletterForm (form behavior, success, powered by)
+const formKitOptions = {
+  settings: {
+    after_subscribe: {
+      action: 'message',
+      success_message: lang === 'fr'
+        ? 'Parfait ! Consultez votre boîte mail pour confirmer votre inscription.'
+        : 'Success! Now check your email to confirm your subscription.',
+      redirect_url: '',
+    },
+    analytics: { google: null, fathom: null, facebook: null, segment: null, pinterest: null, sparkloop: null, googletagmanager: null },
+    modal: { trigger: 'timer', scroll_percentage: null, timer: 5, devices: 'all', show_once_every: 15 },
+    powered_by: { show: true, url: 'https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic' },
+    recaptcha: { enabled: false },
+    return_visitor: { action: 'show', custom_content: '' },
+    slide_in: { display_in: 'bottom_right', trigger: 'timer', scroll_percentage: null, timer: 5, devices: 'all', show_once_every: 15 },
+    sticky_bar: { display_in: 'top', trigger: 'timer', scroll_percentage: null, timer: 5, devices: 'all', show_once_every: 15 },
+  },
+  version: '5',
+}
+---
+
+<section class="py-16 md:py-20 bg-[#fafafa]">
+  <div class="max-w-2xl mx-auto px-10 sm:px-16 text-center">
+    <p class="text-xl md:text-2xl font-light text-black mb-4">
+      {b.headline}
+    </p>
+    <p class="text-base font-light text-black/70 leading-relaxed mb-10">
+      {b.description}
+    </p>
+    <div class="newsletter-form-widget newsletter-form-widget--light">
+      <form
+        action="https://app.kit.com/forms/8987350/subscriptions"
+        class="seva-form formkit-form"
+        method="post"
+        data-sv-form="8987350"
+        data-uid="af2e0fc1e5"
+        data-format="inline"
+        data-version="5"
+        data-options={JSON.stringify(formKitOptions).replace(/"/g, '&quot;')}
+      >
+        <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert" aria-live="polite"></ul>
+        <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields flex flex-wrap gap-3 justify-center">
+          <div class="formkit-field flex-1 min-w-[200px] max-w-sm">
+            <input
+              class="formkit-input w-full rounded px-4 py-3 font-light text-sm focus:outline-none transition-colors bg-white border border-black/20 text-black placeholder-black/50 focus:border-[#2d5016] focus:ring-1 focus:ring-[#2d5016]/30"
+              name="email_address"
+              type="email"
+              required
+              aria-label={b.placeholder}
+              placeholder={b.placeholder}
+              autocomplete="email"
+            />
+          </div>
+          <button
+            type="submit"
+            data-element="submit"
+            class="formkit-submit px-6 py-3 rounded font-light text-sm tracking-wider uppercase focus:outline-none transition-colors relative bg-[#2d5016] border border-[#2d5016] text-white hover:bg-[#2d5016]/90 focus-visible:ring-2 focus-visible:ring-[#2d5016]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+          >
+            <div class="formkit-spinner" aria-hidden="true">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <span>{b.cta}</span>
+          </button>
+        </div>
+        <div class="formkit-powered-by-convertkit-container mt-3">
+          <a
+            href="https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"
+            data-element="powered-by"
+            class="formkit-powered-by-convertkit text-xs font-light transition-colors text-black/40 hover:text-black/60"
+            data-variant="dark"
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            aria-label="Built with Kit (opens in new tab)"
+          >
+            Built with Kit
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

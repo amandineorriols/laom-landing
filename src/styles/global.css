@@ -63,6 +63,15 @@ button:focus-visible {
   outline-offset: 4px;
 }
 
+/* Hide scrollbar for Nos Espaces horizontal scroll (no bar underneath) */
+.spaces-scroll::-webkit-scrollbar {
+  display: none;
+}
+.spaces-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   *,

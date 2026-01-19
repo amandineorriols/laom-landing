@@ -1,10 +1,11 @@
 ---
 import Layout from '~/layouts/Layout.astro'
 import Hero from '~/components/Hero.astro'
+import NewsletterBanner from '~/components/NewsletterBanner.astro'
 import { createWebSiteSchema } from '~/utils/schema'
 import { getTranslations as getI18nTranslations, getLocalizedPath } from '~/i18n/utils'
 
-const lang = Astro.currentLocale || 'fr'
+const lang = 'fr'
 const t = getI18nTranslations(lang as 'fr' | 'en')
 const siteSchema = createWebSiteSchema({
   url: Astro.site?.toString() || 'https://laom.com',
@@ -22,11 +23,15 @@ const events = t.events.items.map((item, index) => ({
   image: eventImages[index] || '/images/event-fyneo.jpg',
 }))
 
-const trustLogos = [
-  { src: '/images/logo-csc.webp', alt: t.trust.logos[0] },
-  { src: '/images/logo-vanlifest.jpg', alt: t.trust.logos[1] },
-  { src: '/images/logo-image01.png', alt: t.trust.logos[2] },
+const spaceImages = [
+  'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=420&h=560&fit=crop&q=85',
+  'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=420&h=560&fit=crop&q=85',
+  'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=420&h=560&fit=crop&q=85',
+  'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=420&h=560&fit=crop&q=85',
+  'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=420&h=560&fit=crop&q=85', // tipis / tentes
+  'https://images.unsplash.com/photo-1592419044706-39796d40f98c?w=420&h=560&fit=crop&q=85', // jardin / permaculture
 ]
+const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceImages[i] || spaceImages[0] }))
 
 ---
 
@@ -38,99 +43,191 @@ const trustLogos = [
   }}
 >
   <Hero />
-  
-  <!-- Trust Section -->
-  <section class="py-16 lg:py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-20">
-      <p class="text-center text-xs tracking-[0.25em] uppercase text-black/40 mb-10">
-        {t.trust.title}
+
+  <!-- Intro Section – Our Habitas Tulum style, white background -->
+  <section class="py-24 md:py-32 lg:py-40 bg-white">
+    <div class="max-w-4xl mx-auto px-10 sm:px-16 lg:px-24 text-center opacity-0" animate-fade-in-up>
+      <p class="text-[11px] md:text-xs font-light tracking-[0.3em] text-black/50 mb-4 uppercase">
+        {t.home.intro.location}
       </p>
-      <div class="flex flex-wrap items-center justify-center gap-10 md:gap-16 opacity-80">
-        {trustLogos.map((logo) => (
-          <img
-            src={logo.src}
-            alt={logo.alt}
-            class="h-10 md:h-12 w-auto object-contain grayscale hover:grayscale-0 transition duration-500"
-            loading="lazy"
-          />
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-extralight tracking-tight text-black mb-3 leading-tight">
+        {t.home.intro.title}
+      </h2>
+      <p class="text-base md:text-lg font-light tracking-wide text-black/70 mb-12">
+        {t.home.intro.tagline}
+      </p>
+      <div class="space-y-6 text-lg md:text-xl font-light text-black/80 leading-relaxed text-justify">
+        {t.home.intro.paragraphs.map((p) => (
+          <p>{p}</p>
         ))}
       </div>
+      <a
+        href={getLocalizedPath('/project/', lang as 'fr' | 'en')}
+        class="inline-block mt-14 px-12 py-4 border border-black text-black font-light tracking-[0.2em] hover:bg-black hover:text-white transition-all duration-300 uppercase text-xs"
+      >
+        {t.home.intro.cta}
+      </a>
     </div>
   </section>
 
-  <!-- Stats Section -->
-  <section class="py-20 bg-[#eef4ea]">
-    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
-      <h2 class="text-3xl md:text-4xl font-light text-black mb-10 text-center">{t.home.statsTitle}</h2>
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {t.home.stats.map((stat) => (
-          <div class="bg-white/80 border border-black/10 p-6 text-center">
-            <p class="text-lg font-light text-black/70 leading-relaxed">{stat}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-  
-  <!-- About Section - Editorial Style -->
+  <NewsletterBanner />
+
+  <!-- Immersion Signature Section - EN MOUVEMENT -->
   <section id="experience" class="py-32 lg:py-40 bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-10 sm:px-16 lg:px-24">
       <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
         <!-- Text Content -->
         <div class="lg:w-1/2 opacity-0" animate-fade-in-up>
           <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-6">
-            Le Concept
+            {t.home.immersionSignature.overline}
           </span>
           <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-black mb-8 leading-tight">
-            {t.about.title}
+            {t.home.immersionSignature.title}
           </h2>
           <p class="text-xl font-light text-black/60 mb-8 leading-relaxed">
-            {t.about.subtitle}
+            {t.home.immersionSignature.subtitle}
           </p>
           <div class="w-12 h-[1px] bg-black/20 mb-8"></div>
           <div class="space-y-6 text-lg font-light text-black/80 leading-relaxed text-left">
-            <p>{t.about.description}</p>
-            <p>{t.about.community}</p>
-            <p>{t.about.location}</p>
+            {t.home.immersionSignature.paragraphs.map((p) => (
+              <p>{p}</p>
+            ))}
           </div>
+          <a
+            href={getLocalizedPath('/events/', lang as 'fr' | 'en')}
+            class="inline-block mt-10 px-10 py-4 border border-black text-black font-light tracking-[0.2em] hover:bg-black hover:text-white transition-all duration-300 uppercase text-xs"
+          >
+            {t.home.immersionSignature.cta}
+          </a>
         </div>
         
-        <!-- Image/Visual -->
+        <!-- Image -->
         <div class="lg:w-1/2 relative opacity-0 delay-200" animate-fade-in-up>
-          <div class="aspect-[4/5] bg-neutral-100 rounded-sm overflow-hidden relative">
-            <img src="/images/about.jpg" alt={t.about.imageAlt} class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-sm p-6 rounded-sm">
-              <p class="text-sm font-light text-black/80 leading-relaxed italic">
-                "{t.about.highlight}"
-              </p>
-            </div>
+          <div class="aspect-[4/5] bg-neutral-100 rounded-sm overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=900&q=85"
+              alt={t.home.immersionSignature.imageAlt}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Experience Section - Editorial, typography-led (Our Habitas / AïA) -->
-  <section class="py-32 lg:py-40 bg-[#fafafa]">
+  <!-- Nos Espaces – Our Rooms style (horizontal scroll, portrait cards, arrows, no bar) -->
+  <section id="spaces" class="py-24 md:py-32 bg-[#fafafa]">
     <div class="max-w-7xl mx-auto px-10 sm:px-16 lg:px-24">
-      <div class="mb-20 lg:mb-28 opacity-0" animate-fade-in-up>
-        <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-4">{t.home.experience.overline}</span>
-        <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-black tracking-tight leading-tight">{t.home.experience.title}</h2>
-        <p class="mt-6 text-lg font-light text-black/50 max-w-xl leading-relaxed">{t.home.experience.subtitle}</p>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-black/80 tracking-tight text-center mb-12 md:mb-14 opacity-0" animate-fade-in-up>
+        {t.home.ourSpaces.sectionTitle}
+      </h2>
+    </div>
+    <div class="relative">
+      <button
+        type="button"
+        id="spaces-prev"
+        class="spaces-arrow absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full border border-black/20 bg-white/90 flex items-center justify-center text-black/60 hover:bg-white hover:border-black/40 hover:text-black transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
+        aria-label="Espace précédent"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+      <button
+        type="button"
+        id="spaces-next"
+        class="spaces-arrow absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full border border-black/20 bg-white/90 flex items-center justify-center text-black/60 hover:bg-white hover:border-black/40 hover:text-black transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
+        aria-label="Espace suivant"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+      </button>
+      <div id="spaces-scroll" class="spaces-scroll overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory" style="-webkit-overflow-scrolling: touch;">
+        <div class="flex gap-6 pl-10 sm:pl-16 lg:pl-24 pr-10 sm:pr-16 lg:pr-24 py-2 min-w-max">
+          {spaces.map((space, i) => (
+            <article class="spaces-card flex-shrink-0 w-[260px] sm:w-[280px] snap-start opacity-0" animate-fade-in-up style={`animation-delay: ${i * 80}ms`}>
+              <div class="aspect-[3/4] bg-neutral-100 overflow-hidden">
+                <img
+                  src={space.image}
+                  alt={space.title}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="mt-4 text-sm font-semibold tracking-wider uppercase text-black">
+                {space.title}
+              </h3>
+              <p class="mt-2 text-sm font-normal text-black/70 leading-relaxed">
+                {space.description}
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      const container = document.getElementById('spaces-scroll')
+      const prevBtn = document.getElementById('spaces-prev')
+      const nextBtn = document.getElementById('spaces-next')
+      if (!container || !prevBtn || !nextBtn) return
+      const card = container.querySelector('.spaces-card')
+      const gap = 24
+      const scrollAmount = (card ? card.offsetWidth + gap : 304)
+
+      prevBtn.addEventListener('click', () => {
+        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+      })
+      nextBtn.addEventListener('click', () => {
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+      })
+    })()
+  </script>
+
+  <!-- Les prochains événements – Our Rooms style (cards grid) -->
+  <section id="events" class="py-24 md:py-32 px-10 sm:px-16 lg:px-24 bg-[#fafafa]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-14 md:mb-16 opacity-0" animate-fade-in-up>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-black/90 tracking-tight">
+          {t.events.allTitle}
+        </h2>
+        <a
+          href={getLocalizedPath('/events/', lang as 'fr' | 'en')}
+          class="inline-block mt-6 text-sm border-b border-black/40 pb-1 hover:border-black transition-colors"
+        >
+          {t.events.viewAllLink}
+        </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
-        {(['space', 'rooms', 'kitchen', 'workspace'] as const).map((key, i) => (
-          <div class="border-l border-black/10 pl-6 lg:pl-8 opacity-0" animate-fade-in-up style={`animation-delay: ${(i + 1) * 80}ms`}>
-            <p class="text-xs font-light tracking-[0.2em] uppercase text-black/50 mb-4">{t.home.experience.labels[i]}</p>
-            <p class="text-black/70 font-light text-[15px] leading-relaxed">{t.about.features[key]}</p>
-          </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 opacity-0" animate-fade-in-up>
+        {events.map((event) => (
+          <article class="bg-white flex flex-col overflow-hidden">
+            <div class="aspect-[4/3] bg-neutral-100 overflow-hidden">
+              <img
+                src={event.image}
+                alt={event.title}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-5 md:p-6 flex flex-col flex-1">
+              <p class="text-[11px] font-light tracking-[0.2em] uppercase text-black/50 mb-2">
+                {event.date}
+              </p>
+              <h3 class="text-sm md:text-base font-semibold tracking-wider uppercase text-black mb-3">
+                {event.title}
+              </h3>
+              <p class="text-sm font-normal text-black/70 leading-relaxed flex-1">
+                {event.description}
+              </p>
+            </div>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Channels Section -->
+  <!-- Channels Section (Ce que l'on partage) -->
   <section class="py-24 bg-white">
     <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
       <h2 class="text-3xl md:text-4xl font-light text-black mb-10 text-center">{t.home.channelsTitle}</h2>
@@ -159,57 +256,6 @@ const trustLogos = [
     </div>
   </section>
 
-  <!-- Location/Nature Immersion - Full Width Parallax-like -->
-  <section class="relative py-40 flex items-center justify-center bg-[#2d5016] overflow-hidden">
-    <div class="absolute inset-0 opacity-20 bg-[url('/images/forest-bg.jpg')] bg-cover bg-fixed bg-center"></div> <!-- Placeholder for forest image -->
-    <div class="relative z-10 max-w-4xl mx-auto px-10 sm:px-16 lg:px-24 text-center text-white opacity-0" animate-fade-in-up>
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-light mb-8 tracking-tight">Immersion Sauvage</h2>
-      <p class="text-xl md:text-2xl font-light opacity-90 leading-relaxed max-w-2xl mx-auto">
-        {t.about.location}
-      </p>
-    </div>
-  </section>
-
-  <!-- Events Section - Calendar Style -->
-  <section id="events" class="py-32 px-10 sm:px-16 lg:px-24 bg-white">
-    <div class="max-w-5xl mx-auto">
-      <div class="flex flex-col md:flex-row justify-between items-end mb-16 opacity-0" animate-fade-in-up>
-        <div>
-          <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-4">Agenda</span>
-          <h2 class="text-4xl md:text-5xl font-light text-black">{t.events.title}</h2>
-        </div>
-        <div class="mt-6 md:mt-0">
-          <a href="#" class="text-sm border-b border-black pb-1 hover:opacity-50 transition-opacity">Voir tout le calendrier</a>
-        </div>
-      </div>
-
-      <!-- Events List -->
-      <div class="space-y-6 border-t border-black/10 pt-8 opacity-0" animate-fade-in-up>
-        {events.map((event) => (
-          <div class="group border border-black/10 rounded-sm overflow-hidden hover:shadow-lg transition-shadow bg-white">
-            <div class="flex flex-col md:flex-row">
-              <div class="md:w-56 lg:w-72 bg-neutral-100">
-                <img src={event.image} alt={event.title} class="h-full w-full object-cover" loading="lazy" />
-              </div>
-              <div class="flex-1 p-6 md:p-8 flex flex-col justify-between">
-                <div>
-                  <p class="text-xs font-light tracking-widest uppercase text-black/50 mb-3">{event.date}</p>
-                  <h3 class="text-2xl font-light mb-3 group-hover:translate-x-1 transition-transform duration-300">
-                    {event.title}
-                  </h3>
-                  <p class="text-sm font-light text-black/60">{event.description}</p>
-                </div>
-                <div class="mt-6 text-xs tracking-widest uppercase text-black/40 group-hover:text-black transition-colors">
-                  {t.events.cta}
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <!-- CTA -->
   <section class="py-20 bg-[#2d5016] text-white">
     <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
@@ -220,38 +266,6 @@ const trustLogos = [
         class="inline-flex items-center justify-center rounded-sm bg-white text-black px-8 py-3 text-xs tracking-[0.25em] uppercase hover:bg-white/90 transition-colors"
       >
         {t.home.ctaButton}
-      </a>
-    </div>
-  </section>
-
-  <!-- Contact Section - Minimalist -->
-  <section id="contact" class="py-32 lg:py-40 px-10 sm:px-16 lg:px-24 bg-[#1a1a1a] text-white">
-    <div class="max-w-4xl mx-auto text-center opacity-0" animate-fade-in-up>
-      <span class="block text-xs font-light tracking-[0.2em] uppercase text-white/40 mb-8">
-        Rejoignez-nous
-      </span>
-      <h2 class="text-5xl md:text-6xl lg:text-7xl font-light mb-12 tracking-tight">
-        Commencez votre voyage
-      </h2>
-      
-      <div class="flex flex-col items-center mb-12">
-        <img
-          src="/images/charly-aubert.jpg"
-          alt={t.contact.photoAlt}
-          class="h-24 w-24 rounded-full object-cover border border-white/20"
-          loading="lazy"
-        />
-        <p class="mt-6 text-xs tracking-widest uppercase text-white/40">{t.contact.development}</p>
-        <p class="text-xl font-light">{t.contact.name}</p>
-      </div>
-
-      <div class="flex flex-col items-center gap-2 mb-16">
-        <a href={`mailto:${t.contact.email}`} class="text-xl font-light hover:text-[#d4af37] transition-colors">{t.contact.email}</a>
-        <a href={`tel:${t.contact.phone.replace(/\s/g, '')}`} class="text-xl font-light hover:text-[#d4af37] transition-colors">{t.contact.phone}</a>
-      </div>
-
-      <a href={`mailto:${t.contact.email}`} class="inline-block px-12 py-5 border border-white/30 hover:border-white hover:bg-white hover:text-black transition-all duration-500 uppercase tracking-[0.15em] text-sm">
-        Prendre contact
       </a>
     </div>
   </section>
