@@ -368,7 +368,7 @@ export const translations = {
         '11 copropriétaires engagés',
         '1,4M€ investis collectivement',
       ],
-      channelsTitle: 'Ce que l\'on partage',
+      channelsTitle: 'Suivre le projet',
       channels: [
         {
           title: 'Newsletter',
@@ -409,12 +409,13 @@ export const translations = {
       ourSpaces: {
         sectionTitle: 'Nos Espaces',
         items: [
-          { title: 'Les chambres', description: 'Des chambres douillettes pour se ressourcer au calme.' },
-          { title: 'La cuisine partagée', description: 'Recettes maison et open source, au cœur de la vie collective.' },
-          { title: 'Les espaces de travail', description: 'Bureaux en bois, canapés ensoleillés, tipis et recoins fleuris pour créer.' },
+          { title: 'L\'Espace Guinguette Restauration', description: 'Cuisine conviviale, grandes tablées et moments partagés (version d\'été actuellement — ouverture d\'un espace 4 saisons en 2028).' },
+          { title: 'Les chambres', description: 'Des chambres douillettes dans un bâtiment écologique pour se ressourcer au calme.', note: '(Coliving — ouverture 2027)', imageAlt: 'Chambre douillette à LAOM avec literie naturelle et décoration épurée.' },
+          { title: 'Les tipis', description: 'Tipis et tentes berbères pour la saison estivale, avec de vrais lits pour un sommeil de qualité.' },
           { title: 'La salle de pratique', description: 'Une grande salle baignée de lumière pour le mouvement et les pratiques.' },
-          { title: 'Les tipis', description: 'Tipis et tentes berbères pour l\'été.' },
-          { title: 'Le jardin', description: 'Ferme en permaculture et nature.' },
+          { title: 'Le jardin', description: 'Un espace nourricier en permaculture, destiné à nourrir les habitant·es et les personnes accueillies sur le lieu, de la terre à l\'assiette. En construction — pleinement opérationnel en 2027.' },
+          { title: 'L\'espace de vie partagé', description: 'Canapés confortables, cuisine ouverte partagée et lieu de vie commun.', note: '(Coliving — ouverture 2027)' },
+          { title: 'Le coworking', description: 'Un espace pour travailler, créer et faire mûrir des projets, entre nature, calme et dynamique collective.', note: '(Coliving — ouverture 2027)' },
         ],
       },
     },
@@ -845,7 +846,7 @@ export const translations = {
         '11 committed co-owners',
         '€1.4M invested collectively',
       ],
-      channelsTitle: 'What we share',
+      channelsTitle: 'Follow the project',
       channels: [
         {
           title: 'Newsletter',
@@ -886,12 +887,13 @@ export const translations = {
       ourSpaces: {
         sectionTitle: 'Our Spaces',
         items: [
-          { title: 'The rooms', description: 'Cozy rooms to rest and recharge in peace.' },
-          { title: 'The shared kitchen', description: 'Homemade and open-source recipes at the heart of collective life.' },
-          { title: 'The workspaces', description: 'Wooden desks, sunny sofas, tipis and flower-filled nooks to create.' },
-          { title: 'The practice hall', description: 'A large, light-filled space for movement and practices.' },
-          { title: 'The tipis', description: 'Berber tipis and tents for summer.' },
-          { title: 'The garden', description: 'Permaculture farm and nature.' },
+          { title: 'The Guinguette Restaurant Space', description: 'Convivial kitchen, large shared tables and shared moments (currently summer version — 4-season space opening in 2028).' },
+          { title: 'The rooms', description: 'Cozy rooms in an ecological building to rest and recharge in peace.', note: '(Coliving — opening 2027)', imageAlt: 'Cozy bedroom at LAOM with natural bedding and minimal decoration.' },
+          { title: 'The tipis', description: 'Berber tipis and tents for the summer season, with real beds for quality sleep.' },
+          { title: 'The practice hall', description: 'A large, light-filled room for movement and practices.' },
+          { title: 'The garden', description: 'A nourishing permaculture space, meant to feed the inhabitants and people welcomed at the place, from earth to plate. Under construction — fully operational in 2027.' },
+          { title: 'The shared living space', description: 'Comfortable sofas, shared open kitchen and common living area.', note: '(Coliving — opening 2027)' },
+          { title: 'The coworking', description: 'A space to work, create and develop projects, between nature, calm and collective dynamism.', note: '(Coliving — opening 2027)' },
         ],
       },
     },

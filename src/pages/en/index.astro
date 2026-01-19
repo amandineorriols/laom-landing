@@ -24,12 +24,13 @@ const events = t.events.items.map((item, index) => ({
 }))
 
 const spaceImages = [
-  'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=420&h=560&fit=crop&q=85',
-  'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=420&h=560&fit=crop&q=85',
-  'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=420&h=560&fit=crop&q=85',
-  'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=420&h=560&fit=crop&q=85',
-  'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=420&h=560&fit=crop&q=85', // tipis / tents
-  'https://images.unsplash.com/photo-1592419044706-39796d40f98c?w=420&h=560&fit=crop&q=85', // garden / permaculture
+  'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=420&h=560&fit=crop&q=85', // Guinguette Restaurant
+  'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=420&h=560&fit=crop&q=85', // The rooms (fallback; use /images/laom/chambres.webp when available)
+  'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=420&h=560&fit=crop&q=85', // Tipis
+  'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=420&h=560&fit=crop&q=85', // Practice hall
+  '/images/laom/planification/agri-1-0246e509.webp', // Garden
+  'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=420&h=560&fit=crop&q=85', // Shared living space
+  'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=420&h=560&fit=crop&q=85', // Coworking – tables, laptops, people, natural light
 ]
 const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceImages[i] || spaceImages[0] }))
 
@@ -141,23 +142,31 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
       </button>
       <div id="spaces-scroll" class="spaces-scroll overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory" style="-webkit-overflow-scrolling: touch;">
-        <div class="flex gap-6 pl-10 sm:pl-16 lg:pl-24 pr-10 sm:pr-16 lg:pr-24 py-2 min-w-max">
+        <div class="flex gap-6 pl-10 sm:pl-16 lg:pl-24 pr-14 sm:pr-24 lg:pr-36 py-2 min-w-max">
           {spaces.map((space, i) => (
             <article class="spaces-card flex-shrink-0 w-[260px] sm:w-[280px] snap-start opacity-0" animate-fade-in-up style={`animation-delay: ${i * 80}ms`}>
               <div class="aspect-[3/4] bg-neutral-100 overflow-hidden">
                 <img
                   src={space.image}
-                  alt={space.title}
+                  alt={(space as { imageAlt?: string }).imageAlt ?? space.title}
                   class="w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
-              <h3 class="mt-4 text-sm font-semibold tracking-wider uppercase text-black">
-                {space.title}
-              </h3>
-              <p class="mt-2 text-sm font-normal text-black/70 leading-relaxed">
-                {space.description}
-              </p>
+              <div class="mt-4 px-2 sm:px-3">
+                <h3 class="text-sm font-semibold tracking-wider uppercase text-black">
+                  {space.title}
+                </h3>
+                <p class="mt-2 text-sm font-normal text-black/70 leading-relaxed">
+                  {space.description}
+                  {(space as { note?: string }).note && (
+                    <>
+                      <br />
+                      {(space as { note?: string }).note}
+                    </>
+                  )}
+                </p>
+              </div>
             </article>
           ))}
         </div>
@@ -227,7 +236,7 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
     </div>
   </section>
 
-  <!-- Channels Section (Ce que l'on partage) -->
+  <!-- Channels Section (Suivre le projet) -->
   <section class="py-24 bg-white">
     <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
       <h2 class="text-3xl md:text-4xl font-light text-black mb-10 text-center">{t.home.channelsTitle}</h2>
