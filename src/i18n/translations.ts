@@ -104,7 +104,8 @@ export const translations = {
     pages: {
       project: {
         heroTitle: 'Le Projet LAOM',
-        heroSubtitle: 'Une aventure collective pour un éco-coliving régénérateur.',
+        heroSubtitle: 'Lieu de vie, d’accueil et de régénération',
+        heroTagline: 'VIVRE ENSEMBLE – ÉCO-CONSTRUIRE – CULTIVER ET RÉGÉNÉRER LA TERRE',
         intro:
           'LAOM est né d\'une vision simple : créer un lieu vivant où nature, création et vie collective s\'entrelacent. Quatre ans de bataille administrative ont forgé une expertise unique et un modèle réplicable.',
         storyTitle: 'Une histoire vraie, sans vernis',
@@ -158,8 +159,8 @@ export const translations = {
           '2025 – Lancement LAOM School',
         ],
         ctaTitle: 'Envie de créer votre projet ?',
-        ctaDescription: 'Rejoignez LAOM School pour transformer une idée en lieu vivant et viable.',
-        ctaButton: 'Découvrir LAOM School',
+        ctaDescription: 'Construisez votre projet avec l\'accompagnement de Charly, LAOM Mentorat, pour transformer une idée en projet concret et durable.',
+        ctaButton: 'Découvrir LAOM Mentorat',
       },
       school: {
         heroTitle: 'LAOM School',
@@ -582,7 +583,8 @@ export const translations = {
     pages: {
       project: {
         heroTitle: 'The LAOM Project',
-        heroSubtitle: 'A collective journey toward regenerative coliving.',
+        heroSubtitle: 'A place for living, welcoming and regeneration',
+        heroTagline: 'LIVE TOGETHER – ECO-BUILD – CULTIVATE AND REGENERATE THE LAND',
         intro:
           'LAOM was born from a simple vision: create a living place where nature, creation, and collective life intertwine. Four years of administrative battles forged a unique, replicable model.',
         storyTitle: 'A true story, without polish',
@@ -636,8 +638,8 @@ export const translations = {
           '2025 – LAOM School launch',
         ],
         ctaTitle: 'Ready to build your project?',
-        ctaDescription: 'Join LAOM School to turn an idea into a viable place.',
-        ctaButton: 'Discover LAOM School',
+        ctaDescription: 'Build your project with Charly\'s support, LAOM Mentorship, to turn an idea into a concrete and sustainable project.',
+        ctaButton: 'Discover LAOM Mentorship',
       },
       school: {
         heroTitle: 'LAOM School',
