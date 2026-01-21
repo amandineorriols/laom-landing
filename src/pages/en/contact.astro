@@ -41,32 +41,38 @@ const pageSchema = createWebPageSchema({
     </div>
   </section>
 
-  <!-- Topics -->
+  <!-- Resources (before contact) -->
   <section class="py-24 bg-white">
-    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
-      <h2 class="text-3xl md:text-4xl font-light text-black mb-10">{t.pages.contactPage.topicsTitle}</h2>
-      <div class="grid gap-6 md:grid-cols-2">
-        {t.pages.contactPage.topics.map((topic) => (
-          <div class="border border-black/10 bg-[#eef4ea] p-6 lg:p-8">
-            <p class="text-lg font-light text-black/70 leading-relaxed">{topic}</p>
-          </div>
-        ))}
-      </div>
+    <div class="max-w-3xl mx-auto px-10 sm:px-16 lg:px-24">
+      <p class="text-lg font-light text-black/70 mb-10">{t.pages.contactPage.beforeContactIntro}</p>
+      <ul class="space-y-6">
+        {t.pages.contactPage.beforeContactItems.map((item) => {
+          const isExternal = item.href.startsWith('http')
+          const url = isExternal ? item.href : getLocalizedPath(item.href, lang)
+          return (
+            <li>
+              <a
+                href={url}
+                class="text-lg font-light text-black hover:text-black/70 transition-colors underline underline-offset-4"
+                {...(isExternal && { target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${item.title} (opens in new tab)` })}
+              >
+                {item.title}
+              </a>
+              {'description' in item && item.description && (
+                <p class="mt-2 text-base font-light text-black/60 leading-relaxed">{item.description}</p>
+              )}
+            </li>
+          )
+        })}
+      </ul>
     </div>
   </section>
 
   <section class="py-24 bg-[#1a1a1a] text-white">
     <div class="max-w-4xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
-      <p class="text-xs tracking-widest uppercase text-white/40 mb-4">{t.contact.development}</p>
-      <p class="text-2xl md:text-3xl font-light mb-8">{t.contact.name}</p>
-      <div class="space-y-4">
-        <a href={`mailto:${t.contact.email}`} class="block text-xl font-light hover:text-white/70 transition-colors">
-          {t.contact.email}
-        </a>
-        <a href={`tel:${t.contact.phone.replace(/\s/g, '')}`} class="block text-xl font-light hover:text-white/70 transition-colors">
-          {t.contact.phone}
-        </a>
-      </div>
+      <a href="mailto:contact@laom.fr" class="block text-2xl md:text-3xl font-light hover:text-white/70 transition-colors">
+        contact@laom.fr
+      </a>
       <div class="mt-10 text-sm font-light text-white/60">
         <p class="uppercase tracking-[0.2em] text-xs text-white/40 mb-2">{t.pages.contactPage.responseTitle}</p>
         <p>{t.pages.contactPage.responseDescription}</p>
@@ -80,7 +86,7 @@ const pageSchema = createWebPageSchema({
       <h2 class="text-3xl md:text-4xl font-light mb-4">{t.pages.contactPage.ctaTitle}</h2>
       <p class="text-lg font-light text-white/80 mb-8">{t.pages.contactPage.ctaDescription}</p>
       <a
-        href={getLocalizedPath('/resources/', lang)}
+        href={getLocalizedPath('/newsletter', lang)}
         class="inline-flex items-center justify-center rounded-sm bg-white text-black px-8 py-3 text-xs tracking-[0.25em] uppercase hover:bg-white/90 transition-colors"
       >
         {t.pages.contactPage.ctaButton}

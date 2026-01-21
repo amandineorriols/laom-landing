@@ -35,7 +35,7 @@ const t = getTranslations(lang as 'fr' | 'en')
         <h4 class="text-sm font-light tracking-widest uppercase mb-6">{t.footer.connect}</h4>
         <nav class="flex flex-col space-y-4">
           <a href={getLocalizedPath('/contact', lang as 'fr' | 'en')} class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.nav.contact}</a>
-          <a href="mailto:orion.aubert@gmail.com" class="text-white/70 hover:text-white text-sm font-light transition-colors">orion.aubert@gmail.com</a>
+          <a href={getLocalizedPath('/newsletter', lang as 'fr' | 'en')} class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.footer.newsletterTitle}</a>
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label={`${t.footer.instagram} (opens in new tab)`} class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.footer.instagram}</a>
           <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" aria-label={`${t.footer.youtube} (opens in new tab)`} class="text-white/70 hover:text-white text-sm font-light transition-colors">{t.footer.youtube}</a>
         </nav>
@@ -57,7 +57,7 @@ const t = getTranslations(lang as 'fr' | 'en')
             class="group rounded-lg border border-white/10 p-4 transition-colors hover:border-white/30 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             <p class="text-sm font-light tracking-wide text-white">{item.title}</p>
-            <p class="mt-2 text-xs font-light leading-relaxed text-white/70 group-hover:text-white/90">
+            <p class="mt-2 text-xs font-light leading-relaxed text-white/70 group-hover:text-white/90 whitespace-pre-line">
               {item.description}
             </p>
           </a>

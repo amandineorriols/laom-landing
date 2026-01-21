@@ -243,13 +243,12 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
       <div class="grid gap-6 md:grid-cols-3">
         {t.home.channels.map((item) => {
           const url = 'href' in item ? item.href : undefined
+          const isExternal = url && String(url).startsWith('http')
           return url ? (
             <a
               href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${item.title} (opens in new tab)`}
               class="block border border-black/10 bg-[#f3efe7] p-6 lg:p-8 hover:border-black/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 focus-visible:ring-offset-2"
+              {...(isExternal && { target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${item.title} (opens in new tab)` })}
             >
               <h3 class="text-lg font-light text-black mb-3">{item.title}</h3>
               <p class="text-sm font-light text-black/60 leading-relaxed">{item.description}</p>
@@ -271,7 +270,7 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
       <h2 class="text-3xl md:text-4xl font-light mb-4">{t.home.ctaTitle}</h2>
       <p class="text-lg font-light text-white/80 mb-8">{t.home.ctaDescription}</p>
       <a
-        href={getLocalizedPath('/resources/', lang)}
+        href={getLocalizedPath('/newsletter', lang)}
         class="inline-flex items-center justify-center rounded-sm bg-white text-black px-8 py-3 text-xs tracking-[0.25em] uppercase hover:bg-white/90 transition-colors"
       >
         {t.home.ctaButton}

@@ -1,0 +1,41 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import NewsletterForm from '~/components/NewsletterForm.astro'
+import { createWebPageSchema } from '~/utils/schema'
+import { getTranslations as getI18nTranslations } from '~/i18n/utils'
+
+const lang = 'en' as const
+const t = getI18nTranslations(lang)
+
+const pageSchema = createWebPageSchema({
+  name: t.pages.newsletterPage.heroTitle,
+  url: Astro.url.toString(),
+  description: t.pages.newsletterPage.heroSubtitle,
+})
+---
+
+<Layout
+  title={`${t.pages.newsletterPage.heroTitle} – LAOM`}
+  description={t.pages.newsletterPage.heroSubtitle}
+  seo={{ ldJSON: pageSchema }}
+>
+  <section class="py-32 lg:py-40 bg-white">
+    <div class="max-w-3xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
+      <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-6">
+        {t.footer.newsletterTitle}
+      </span>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-black mb-6 tracking-tight">
+        {t.pages.newsletterPage.heroTitle}
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-black/60 leading-relaxed">
+        {t.pages.newsletterPage.heroSubtitle}
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#faf9f6]">
+    <div class="max-w-xl mx-auto px-10 sm:px-16 lg:px-24">
+      <NewsletterForm variant="light" />
+    </div>
+  </section>
+</Layout>

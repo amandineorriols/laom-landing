@@ -16,6 +16,18 @@ const blog = defineCollection({
   }),
 })
 
+const newsletters = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    url: z.string().url(),
+    description: z.string().optional(),
+    locale: z.enum(['fr', 'en']).optional(),
+  }),
+})
+
 export const collections = {
   blog,
+  newsletters,
 }

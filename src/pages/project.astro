@@ -112,6 +112,25 @@ const heroImage = '/images/laom/presentation/img_2767---grande-c7779ff6.webp'
         <li>– Un jardin / ferme nourricière</li>
       </ul>
 
+      <div class="rounded-lg border border-black/10 bg-[#faf9f6] p-6 lg:p-8 mb-10">
+        <h3 class="text-xl md:text-2xl font-light text-black mb-3">{t.pages.project.constructionBlogsTitle}</h3>
+        <p class="text-base font-light text-black/70 mb-4">{t.pages.project.constructionBlogsIntro}</p>
+        <ul class="space-y-2">
+          {t.pages.project.constructionBlogs.map((item) => {
+            const label = lang === 'fr' ? item.labelFr : item.labelEn
+            const slug = lang === 'fr' ? item.slugFr : item.slugEn
+            const href = getLocalizedPath(`/blog/${slug}/`, lang as 'fr' | 'en')
+            return (
+              <li>
+                <a href={href} class="text-lg font-light text-black/80 hover:text-[#2d5016] transition-colors underline underline-offset-4">
+                  {label}
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+
       <h3 class="text-xl md:text-2xl font-light text-black mb-4 mt-10">Une diversité de manières d'habiter</h3>
       <p class="text-lg font-light text-black/75 leading-relaxed">
         Au sein de l'écolieu, les formes d'habitat sont multiples : résidents permanents, habitants semi-permanents et personnes de passage (coliving, stages, festivals, ateliers).

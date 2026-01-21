@@ -86,10 +86,6 @@ export const translations = {
     },
     contact: {
       title: 'Contact',
-      development: 'Responsable développement',
-      name: 'Aubert Charly',
-      email: 'orion.aubert@gmail.com',
-      phone: '06.73.68.35.73',
       photoAlt: 'Portrait de Charly Aubert',
     },
     blog: {
@@ -100,6 +96,10 @@ export const translations = {
       readMore: 'Lire la suite',
       by: 'Par',
       updated: 'Mis à jour le',
+      searchPlaceholder: 'Rechercher…',
+      noResults: 'Aucun article trouvé.',
+      newsletterSectionTitle: 'Newsletters passées',
+      newsletterEmpty: 'Aucune newsletter pour le moment.',
     },
     pages: {
       project: {
@@ -158,8 +158,16 @@ export const translations = {
           '2025 – Construction phase 2 (472m²)',
           '2025 – Lancement LAOM School',
         ],
+        constructionBlogsTitle: 'Suivez la construction',
+        constructionBlogsIntro: 'Nous partageons l’avancée de chaque chantier dans le blog :',
+        constructionBlogs: [
+          { labelFr: 'Petit Shambala', labelEn: 'Petit Shambala', slugFr: 'petit-shambala', slugEn: 'petit-shambala-en' },
+          { labelFr: 'Grand Shambala : les différentes étapes de construction', labelEn: 'Grand Shambala: construction stages', slugFr: 'grand-shambala-paille-porteuse-850m2-3-mois', slugEn: 'grand-shambala-load-bearing-straw-850m2-3-months' },
+          { labelFr: 'La salle de pratique', labelEn: 'The practice hall', slugFr: 'salle-de-pratique', slugEn: 'salle-de-pratique-en' },
+          { labelFr: "L'espace restauration & la serre", labelEn: 'Restaurant space & greenhouse', slugFr: 'espace-restauration-serre', slugEn: 'espace-restauration-serre-en' },
+        ],
         ctaTitle: 'Envie de créer votre projet ?',
-        ctaDescription: 'Construisez votre projet avec l\'accompagnement de Charly, LAOM Mentorat, pour transformer une idée en projet concret et durable.',
+        ctaDescription: 'Construisez votre projet avec l\'accompagnement personnalisé de Charly, LAOM Mentorat, pour transformer une idée en projet concret et durable.',
         ctaButton: 'Découvrir LAOM Mentorat',
       },
       school: {
@@ -212,8 +220,8 @@ export const translations = {
       },
       resources: {
         heroTitle: 'Ressources',
-        heroSubtitle: 'Guides, outils et contenus pour avancer pas à pas.',
-        introTitle: 'Apprendre, structurer, avancer',
+        heroSubtitle: 'Guides, outils et contenus pour accompagner vos réflexions.',
+        introTitle: 'Ressources & transmissions',
         introDescription:
           'Nous partageons ce que nous apprenons en construisant LAOM. Des outils concrets pour ceux qui veulent créer un lieu vivant.',
         items: [
@@ -231,76 +239,30 @@ export const translations = {
             description: 'Web-série LAOM et vie quotidienne du chantier.',
             href: INSTAGRAM_URL,
           },
-          {
-            title: 'Guide SCIA',
-            description: 'Comprendre le modèle juridique qui rend LAOM possible.',
-          },
         ],
         leadMagnetsTitle: 'Lead magnets gratuits',
-        leadMagnets: [
+        leadMagnets: [],
+        pdfsTitle: 'PDFs + détaillés sur le projet',
+        pdfs: [
           {
-            title: 'Les 7 erreurs à éviter',
-            description: 'Le PDF essentiel pour éviter les pièges classiques de l\'habitat participatif.',
-          },
-          {
-            title: 'SCIA expliqué simplement',
+            title: 'SCIA expliqué simplement (bientôt disponible)',
             description: 'Comprendre la structure qui a rendu LAOM possible.',
           },
           {
-            title: 'Calculateur budget éco-coliving',
-            description: 'Tableur prêt à l\'emploi pour modéliser un projet viable.',
-          },
-        ],
-        ebooksTitle: 'Ebooks premium',
-        ebooks: [
-          {
-            title: 'Le Projet LAOM',
+            title: 'Le Projet d\'Ecolieu (bientôt disponible)',
             description: 'Le récit complet de 5 ans d\'aventure collective, avec les leçons clés.',
           },
           {
-            title: 'Le Modèle LAOM',
+            title: 'Le Modèle LAOM (bientôt disponible)',
             description: 'Guide stratégique : SCIA, gouvernance, modèle économique et activités.',
           },
           {
-            title: 'Le Grand Shambala',
+            title: 'Le Grand Shambala (bientôt disponible)',
             description: 'Guide technique sur la construction en paille porteuse (800m²).',
           },
         ],
-        toolsTitle: 'Outils pratiques',
-        tools: [
-          {
-            title: 'Template budget',
-            description: 'Prévisions financières et seuil de rentabilité sur 5 ans.',
-          },
-          {
-            title: 'Checklist lancement',
-            description: 'Les étapes clés pour passer de l\'idée au terrain.',
-          },
-        ],
-        guidesTitle: 'Guides techniques',
-        guides: [
-          {
-            title: 'Guide STECAL',
-            description: 'Comprendre et obtenir un permis de construire spécifique.',
-          },
-          {
-            title: 'Guide financement participatif',
-            description: 'Structurer une campagne réaliste et crédible.',
-          },
-        ],
-        videosTitle: 'Vidéos & web-série',
-        videos: [
-          {
-            title: 'YouTube – Vlogs chantier',
-            description: 'Suivre l\'avancée de la construction, semaine après semaine.',
-            href: YOUTUBE_URL,
-          },
-          {
-            title: 'Instagram – Web-série LAOM',
-            description: '30 épisodes pour raconter l\'histoire du projet.',
-            href: INSTAGRAM_URL,
-          },
-        ],
+        ebooksTitle: 'Ebooks premium',
+        ebooks: [],
         ctaTitle: 'Aller plus loin',
         ctaDescription: 'Pour un accompagnement complet, découvrez LAOM School.',
         ctaButton: 'Découvrir la formation',
@@ -308,9 +270,21 @@ export const translations = {
       eventsPage: {
         heroTitle: 'Événements',
         heroSubtitle: 'Des rencontres pour créer, se ressourcer, partager.',
-        introTitle: 'Des expériences immersives',
-        introDescription:
-          'Retraites, workshops, rencontres collectives : LAOM accueille des événements qui reconnectent à la nature, au corps et au projet.',
+        signatureSectionTitle: 'Événements et Immersions signature',
+        partnersSectionTitle: 'Tous les événements partenaires qui ont lieu à LAOM',
+        enMouvement: {
+          sectionTitle: 'Stages « En Mouvement »',
+          sessions: [
+            { date: '5 au 9 août', title: 'En mouvement – 5 au 9 août', description: 'Immersion de 5 jours dédiée à l’exploration du corps en mouvement. Ouvert aux danseurs comme aux non-danseurs. (Description à compléter.)' },
+            { date: '11 au 15 août', title: 'En mouvement – 11 au 15 août', description: 'Immersion de 5 jours dédiée à l’exploration du corps en mouvement. Ouvert aux danseurs comme aux non-danseurs. (Description à compléter.)' },
+            { date: '16 au 20 août', title: 'En mouvement – 16 au 20 août', description: 'Immersion de 5 jours dédiée à l’exploration du corps en mouvement. Ouvert aux danseurs comme aux non-danseurs. (Description à compléter.)' },
+          ],
+        },
+        laomfest: {
+          title: 'LAOMFEST',
+          description: 'Mini-festival : trois jours de rencontres, ateliers, concerts et micro-conférences pour vivre une communauté éphémère.',
+          dateNote: 'Date en septembre à confirmer',
+        },
         hostTitle: 'Organiser un événement à LAOM',
         hostPoints: [
           '21 hectares de forêt, rivière et prairies',
@@ -318,28 +292,43 @@ export const translations = {
           'Espaces de travail intérieurs et extérieurs',
           'Accompagnement logistique sur place',
         ],
-        ctaTitle: 'Proposer votre événement',
+        ctaTitle: 'Organiser un événement à LAOM',
         ctaDescription: 'Écrivez-nous pour imaginer une résidence, un stage ou une retraite.',
         ctaButton: 'Contacter LAOM',
+        ctaRatesButton: 'Voir les tarifs de location',
       },
       contactPage: {
         heroTitle: 'Contact',
         heroSubtitle: 'Parlons de vos idées et de votre projet.',
-        introTitle: 'Une question, un projet, une visite ?',
+        introTitle: 'Une question, un projet ?',
         introDescription:
-          'Nous répondons aux demandes de coliving, de stages, de partenariats et de presse. Écrivez-nous, on vous répond.',
-        topicsTitle: 'Sujets fréquents',
-        topics: [
-          'LAOM School et formation',
-          'Événements et retraites',
-          'Partenariats et mécénat',
-          'Presse et médias',
+          'Nous répondons aux demandes de stages, de partenariats et de presse. Écrivez-nous, on vous répond.',
+        beforeContactIntro: 'Les réponses à vos questions sont peut-être déjà dans nos ressources :',
+        beforeContactItems: [
+          {
+            title: 'Le blog',
+            description: 'le détail de nos constructions étape par étape, aventures collectives et retours d\'expérience',
+            href: '/blog/',
+          },
+          {
+            title: 'Les ressources',
+            description: 'des PDFs plus détaillés sur des sujets spécifiques et nécessitant des explications plus extensives',
+            href: '/resources/',
+          },
+          {
+            title: 'Les tarifs de location de nos espaces sont ici.',
+            href: 'https://drive.google.com/file/d/1qfl7IQG1LKvjJLyDkv2KXct5iayeV80Q/view?usp=sharing',
+          },
         ],
         responseTitle: 'Délai de réponse',
         responseDescription: 'Nous répondons généralement sous 48 à 72h.',
         ctaTitle: 'Vous préférez commencer autrement ?',
         ctaDescription: 'Rejoignez la newsletter pour suivre l\'aventure et recevoir nos ressources.',
         ctaButton: 'S\'inscrire à la newsletter',
+      },
+      newsletterPage: {
+        heroTitle: 'Newsletter LAOM',
+        heroSubtitle: 'Coulisses du projet, décisions clés, actus et événements. Une lettre du dimanche, pas de spam.',
       },
     },
     home: {
@@ -374,6 +363,7 @@ export const translations = {
         {
           title: 'Newsletter',
           description: 'Coulisses hebdo, décisions clés, apprentissages terrain.',
+          href: '/newsletter',
         },
         {
           title: 'YouTube',
@@ -421,7 +411,7 @@ export const translations = {
       },
     },
     footer: {
-      description: 'Un écolieu niché dans une vallée sauvage du sud de l\'Aveyron, où nature, création et vie collective s\'entrelacent.',
+      description: 'Un lieu de vie et d\'accueil niché dans une vallée sauvage du sud de l\'Aveyron, où nature, création et vie collective coexistent.',
       explore: 'Explorer',
       connect: 'Se connecter',
       instagram: 'Instagram',
@@ -441,7 +431,7 @@ export const translations = {
         {
           title: 'Manifeste',
           description:
-            'Face aux ruptures de connexion, nous défendons un habitat et un travail régénératifs : liberté, collaboration, écologie et économie vivante.',
+            'Nous croyons en des lieux qui prennent soin du vivant.\nHabiter, créer et se relier autrement, au rythme du vivant.\nCultiver la liberté, la coopération et des modes de vie ancrés et durables.',
           href: '/manifeste/',
         },
         {
@@ -541,10 +531,6 @@ export const translations = {
     },
     contact: {
       title: 'Contact',
-      development: 'Development Manager',
-      name: 'Aubert Charly',
-      email: 'orion.aubert@gmail.com',
-      phone: '06.73.68.35.73',
       photoAlt: 'Portrait of Charly Aubert',
     },
     blog: {
@@ -555,6 +541,10 @@ export const translations = {
       readMore: 'Read more',
       by: 'By',
       updated: 'Updated on',
+      searchPlaceholder: 'Search…',
+      noResults: 'No posts found.',
+      newsletterSectionTitle: 'Past Newsletters',
+      newsletterEmpty: 'No newsletters yet.',
     },
     pages: {
       project: {
@@ -613,8 +603,16 @@ export const translations = {
           '2025 – Construction phase 2 (472m²)',
           '2025 – LAOM School launch',
         ],
+        constructionBlogsTitle: 'Follow the construction',
+        constructionBlogsIntro: 'We share each build in the blog:',
+        constructionBlogs: [
+          { labelFr: 'Petit Shambala', labelEn: 'Petit Shambala', slugFr: 'petit-shambala', slugEn: 'petit-shambala-en' },
+          { labelFr: 'Grand Shambala : les différentes étapes de construction', labelEn: 'Grand Shambala: construction stages', slugFr: 'grand-shambala-paille-porteuse-850m2-3-mois', slugEn: 'grand-shambala-load-bearing-straw-850m2-3-months' },
+          { labelFr: 'La salle de pratique', labelEn: 'The practice hall', slugFr: 'salle-de-pratique', slugEn: 'salle-de-pratique-en' },
+          { labelFr: "L'espace restauration & la serre", labelEn: 'Restaurant space & greenhouse', slugFr: 'espace-restauration-serre', slugEn: 'espace-restauration-serre-en' },
+        ],
         ctaTitle: 'Ready to build your project?',
-        ctaDescription: 'Build your project with Charly\'s support, LAOM Mentorship, to turn an idea into a concrete and sustainable project.',
+        ctaDescription: 'Build your project with Charly\'s personalized support, LAOM Mentorship, to turn an idea into a concrete and sustainable project.',
         ctaButton: 'Discover LAOM Mentorship',
       },
       school: {
@@ -686,76 +684,30 @@ export const translations = {
             description: 'LAOM web series and daily life on site.',
             href: INSTAGRAM_URL,
           },
-          {
-            title: 'SCIA Guide',
-            description: 'Understand the legal model that makes LAOM possible.',
-          },
         ],
         leadMagnetsTitle: 'Free lead magnets',
-        leadMagnets: [
+        leadMagnets: [],
+        pdfsTitle: 'PDFs + project details',
+        pdfs: [
           {
-            title: '7 mistakes to avoid',
-            description: 'The essential PDF to avoid classic participatory housing pitfalls.',
-          },
-          {
-            title: 'SCIA explained simply',
+            title: 'SCIA explained simply (coming soon)',
             description: 'Understand the structure that made LAOM possible.',
           },
           {
-            title: 'Eco-coliving budget calculator',
-            description: 'Ready-to-use sheet to model a viable project.',
-          },
-        ],
-        ebooksTitle: 'Premium ebooks',
-        ebooks: [
-          {
-            title: 'The LAOM Project',
+            title: 'The Eco-Place Project (coming soon)',
             description: 'The full story of five years of collective adventure and lessons.',
           },
           {
-            title: 'The LAOM Model',
+            title: 'The LAOM Model (coming soon)',
             description: 'Strategic guide: SCIA, governance, business model and activities.',
           },
           {
-            title: 'The Grand Shambala',
+            title: 'The Grand Shambala (coming soon)',
             description: 'Technical guide on straw load-bearing construction (800m²).',
           },
         ],
-        toolsTitle: 'Practical tools',
-        tools: [
-          {
-            title: 'Budget template',
-            description: 'Financial projections and break-even over 5 years.',
-          },
-          {
-            title: 'Launch checklist',
-            description: 'Key steps from idea to land.',
-          },
-        ],
-        guidesTitle: 'Technical guides',
-        guides: [
-          {
-            title: 'STECAL guide',
-            description: 'Understand and obtain a specific building permit.',
-          },
-          {
-            title: 'Crowdfunding guide',
-            description: 'Structure a realistic and credible campaign.',
-          },
-        ],
-        videosTitle: 'Videos & web series',
-        videos: [
-          {
-            title: 'YouTube – Construction vlogs',
-            description: 'Follow the build week after week.',
-            href: YOUTUBE_URL,
-          },
-          {
-            title: 'Instagram – LAOM web series',
-            description: '30 episodes telling the project story.',
-            href: INSTAGRAM_URL,
-          },
-        ],
+        ebooksTitle: 'Premium ebooks',
+        ebooks: [],
         ctaTitle: 'Go further',
         ctaDescription: 'For full support, discover LAOM School.',
         ctaButton: 'Discover the program',
@@ -763,9 +715,21 @@ export const translations = {
       eventsPage: {
         heroTitle: 'Events',
         heroSubtitle: 'Gatherings to create, recharge, and connect.',
-        introTitle: 'Immersive experiences',
-        introDescription:
-          'Retreats, workshops, collective gatherings: LAOM hosts events that reconnect with nature, the body and the project.',
+        signatureSectionTitle: 'Signature Events & Immersions',
+        partnersSectionTitle: 'All partner events at LAOM',
+        enMouvement: {
+          sectionTitle: '« En Mouvement » Workshops',
+          sessions: [
+            { date: 'August 5–9', title: 'En mouvement – August 5–9', description: 'A 5-day immersion dedicated to exploring the body in motion. Open to dancers and non-dancers alike. (Description to be completed.)' },
+            { date: 'August 11–15', title: 'En mouvement – August 11–15', description: 'A 5-day immersion dedicated to exploring the body in motion. Open to dancers and non-dancers alike. (Description to be completed.)' },
+            { date: 'August 16–20', title: 'En mouvement – August 16–20', description: 'A 5-day immersion dedicated to exploring the body in motion. Open to dancers and non-dancers alike. (Description to be completed.)' },
+          ],
+        },
+        laomfest: {
+          title: 'LAOMFEST',
+          description: 'Mini-festival: three days of gatherings, workshops, concerts and micro-talks to experience an ephemeral community.',
+          dateNote: 'Date in September to be confirmed',
+        },
         hostTitle: 'Host your event at LAOM',
         hostPoints: [
           '21 hectares of forest, river and meadows',
@@ -773,28 +737,43 @@ export const translations = {
           'Indoor and outdoor workspaces',
           'On-site logistics support',
         ],
-        ctaTitle: 'Propose your event',
+        ctaTitle: 'Host your event at LAOM',
         ctaDescription: 'Write to us to imagine a residency, workshop or retreat.',
         ctaButton: 'Contact LAOM',
+        ctaRatesButton: 'View rental rates',
       },
       contactPage: {
         heroTitle: 'Contact',
         heroSubtitle: 'Let\'s talk about your ideas and your project.',
-        introTitle: 'A question, a project, a visit?',
+        introTitle: 'A question, a project?',
         introDescription:
-          'We answer requests about coliving, trainings, partnerships and press. Write to us and we will respond.',
-        topicsTitle: 'Common topics',
-        topics: [
-          'LAOM School and training',
-          'Events and retreats',
-          'Partnerships and sponsorship',
-          'Press and media',
+          'We answer requests about trainings, partnerships and press. Write to us and we will respond.',
+        beforeContactIntro: 'The answers to your questions may already be in our resources:',
+        beforeContactItems: [
+          {
+            title: 'The blog',
+            description: 'step-by-step construction details, collective adventures and lessons learned',
+            href: '/blog/',
+          },
+          {
+            title: 'Resources',
+            description: 'more detailed PDFs on specific topics requiring more extensive explanations',
+            href: '/resources/',
+          },
+          {
+            title: 'Our space rental rates are here.',
+            href: 'https://drive.google.com/file/d/1qfl7IQG1LKvjJLyDkv2KXct5iayeV80Q/view?usp=sharing',
+          },
         ],
         responseTitle: 'Response time',
         responseDescription: 'We usually reply within 48 to 72h.',
         ctaTitle: 'Prefer another start?',
         ctaDescription: 'Join the newsletter to follow the adventure and receive resources.',
         ctaButton: 'Join the newsletter',
+      },
+      newsletterPage: {
+        heroTitle: 'LAOM Newsletter',
+        heroSubtitle: 'Behind the scenes, key decisions, news and events. A Sunday letter, no spam.',
       },
     },
     home: {
@@ -829,6 +808,7 @@ export const translations = {
         {
           title: 'Newsletter',
           description: 'Weekly behind the scenes, decisions and learnings.',
+          href: '/en/newsletter',
         },
         {
           title: 'YouTube',
@@ -876,7 +856,7 @@ export const translations = {
       },
     },
     footer: {
-      description: 'An ecolieu nestled in a wild valley in the south of Aveyron, where nature, creation and collective life intertwine.',
+      description: 'A place of life and welcome nestled in a wild valley in the south of Aveyron, where nature, creation and collective life coexist.',
       explore: 'Explore',
       connect: 'Connect',
       instagram: 'Instagram',
@@ -896,7 +876,7 @@ export const translations = {
         {
           title: 'Manifesto',
           description:
-            'A response to disconnection: regenerative living and work grounded in freedom, collaboration, ecology, and a living economy.',
+            'We believe in places that care for the living.\nTo live, create and connect differently, at the rhythm of life.\nTo nurture freedom, cooperation, and rooted, sustainable ways of living.',
           href: '/manifeste/',
         },
         {
