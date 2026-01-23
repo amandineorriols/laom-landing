@@ -8,30 +8,30 @@ const currentPath = Astro.url.pathname
 const altPath = getLocalizedPath(currentPath, altLang)
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-black/5 transition-all duration-300">
-  <nav class="max-w-7xl mx-auto px-10 sm:px-16 lg:px-24 py-6">
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#F3EEDC]/95 backdrop-blur-md border-b border-black/10 transition-all duration-200">
+  <nav class="max-w-7xl mx-auto px-10 sm:px-16 lg:px-24 py-5">
     <div class="flex items-center justify-between">
       <!-- Logo -->
-      <a href={getLocalizedPath('/', lang as 'fr' | 'en')} class="text-3xl font-extralight tracking-[0.2em] text-black hover:opacity-70 transition-opacity z-50 relative">
+      <a href={getLocalizedPath('/', lang as 'fr' | 'en')} class="text-2xl font-normal tracking-[0.1em] text-black hover:opacity-70 transition-opacity z-50 relative">
         LAOM
       </a>
 
-      <div class="flex items-center gap-12">
+      <div class="flex items-center gap-10">
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center gap-12">
-          <a href={getLocalizedPath('/', lang as 'fr' | 'en')} class="text-xs font-light tracking-[0.15em] uppercase text-black/60 hover:text-black transition-colors">{t.nav.home}</a>
-          <a href={getLocalizedPath('/project', lang as 'fr' | 'en')} class="text-xs font-light tracking-[0.15em] uppercase text-black/60 hover:text-black transition-colors">{t.nav.project}</a>
-          <a href={getLocalizedPath('/events', lang as 'fr' | 'en')} class="text-xs font-light tracking-[0.15em] uppercase text-black/60 hover:text-black transition-colors">{t.nav.events}</a>
-          <a href={getLocalizedPath('/blog', lang as 'fr' | 'en')} class="text-xs font-light tracking-[0.15em] uppercase text-black/60 hover:text-black transition-colors">{t.nav.blog}</a>
-          <a href={getLocalizedPath('/resources', lang as 'fr' | 'en')} class="text-xs font-light tracking-[0.15em] uppercase text-black/60 hover:text-black transition-colors">{t.nav.resources}</a>
-          <a href={getLocalizedPath('/contact', lang as 'fr' | 'en')} class="text-xs font-light tracking-[0.15em] uppercase text-black/60 hover:text-black transition-colors">{t.nav.contact}</a>
+        <nav class="hidden md:flex items-center gap-10">
+          <a href={getLocalizedPath('/', lang as 'fr' | 'en')} class="text-sm font-normal tracking-wide text-black/70 hover:text-black transition-colors">{t.nav.home}</a>
+          <a href={getLocalizedPath('/project', lang as 'fr' | 'en')} class="text-sm font-normal tracking-wide text-black/70 hover:text-black transition-colors">{t.nav.project}</a>
+          <a href={getLocalizedPath('/events', lang as 'fr' | 'en')} class="text-sm font-normal tracking-wide text-black/70 hover:text-black transition-colors">{t.nav.events}</a>
+          <a href={getLocalizedPath('/blog', lang as 'fr' | 'en')} class="text-sm font-normal tracking-wide text-black/70 hover:text-black transition-colors">{t.nav.blog}</a>
+          <a href={getLocalizedPath('/resources', lang as 'fr' | 'en')} class="text-sm font-normal tracking-wide text-black/70 hover:text-black transition-colors">{t.nav.resources}</a>
+          <a href={getLocalizedPath('/contact', lang as 'fr' | 'en')} class="text-sm font-normal tracking-wide text-black/70 hover:text-black transition-colors">{t.nav.contact}</a>
         </nav>
 
         <!-- Language Switcher & Mobile Toggle -->
-        <div class="flex items-center gap-8 pl-8 border-l border-black/10">
+        <div class="flex items-center gap-6 pl-6 border-l border-black/10">
           <a 
             href={altPath} 
-            class="text-xs font-light tracking-[0.15em] uppercase text-black/40 hover:text-black transition-colors"
+            class="text-sm font-normal tracking-wide text-black/60 hover:text-black transition-colors"
             hreflang={altLang}
           >
             {altLang}
@@ -54,15 +54,15 @@ const altPath = getLocalizedPath(currentPath, altLang)
     <!-- Mobile Navigation -->
     <nav id="mobile-menu" class="hidden md:hidden mt-6 pb-4 border-t border-black/10">
       <div class="flex flex-col space-y-4 pt-4">
-        <a href={getLocalizedPath('/', lang as 'fr' | 'en')} class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.home}</a>
-        <a href={getLocalizedPath('/project', lang as 'fr' | 'en')} class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.project}</a>
-        <a href={getLocalizedPath('/events', lang as 'fr' | 'en')} class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.events}</a>
-        <a href={getLocalizedPath('/blog', lang as 'fr' | 'en')} class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.blog}</a>
-        <a href={getLocalizedPath('/resources', lang as 'fr' | 'en')} class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.resources}</a>
-        <a href={getLocalizedPath('/contact', lang as 'fr' | 'en')} class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors">{t.nav.contact}</a>
+        <a href={getLocalizedPath('/', lang as 'fr' | 'en')} class="text-sm font-normal tracking-wide text-black/70 hover:text-black transition-colors">{t.nav.home}</a>
+        <a href={getLocalizedPath('/project', lang as 'fr' | 'en')} class="text-sm font-normal tracking-wide text-black/70 hover:text-black transition-colors">{t.nav.project}</a>
+        <a href={getLocalizedPath('/events', lang as 'fr' | 'en')} class="text-sm font-normal tracking-wide text-black/70 hover:text-black transition-colors">{t.nav.events}</a>
+        <a href={getLocalizedPath('/blog', lang as 'fr' | 'en')} class="text-sm font-normal tracking-wide text-black/70 hover:text-black transition-colors">{t.nav.blog}</a>
+        <a href={getLocalizedPath('/resources', lang as 'fr' | 'en')} class="text-sm font-normal tracking-wide text-black/70 hover:text-black transition-colors">{t.nav.resources}</a>
+        <a href={getLocalizedPath('/contact', lang as 'fr' | 'en')} class="text-sm font-normal tracking-wide text-black/70 hover:text-black transition-colors">{t.nav.contact}</a>
         <a 
           href={altPath} 
-          class="text-sm font-light tracking-wider text-black/70 hover:text-black transition-colors uppercase pt-2 border-t border-black/10"
+          class="text-sm font-normal tracking-wide text-black/70 hover:text-black transition-colors pt-2 border-t border-black/10"
           hreflang={altLang}
         >
           {altLang}

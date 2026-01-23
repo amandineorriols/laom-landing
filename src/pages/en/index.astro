@@ -24,10 +24,10 @@ const events = t.events.items.map((item, index) => ({
 }))
 
 const spaceImages = [
-  'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=420&h=560&fit=crop&q=85', // Guinguette Restaurant
+  'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=420&h=560&fit=crop&q=85', // Guinguette Restaurant - healthy fresh vegetables
   'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=420&h=560&fit=crop&q=85', // The rooms (fallback; use /images/laom/chambres.webp when available)
-  'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=420&h=560&fit=crop&q=85', // Tipis
-  'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=420&h=560&fit=crop&q=85', // Practice hall
+  '/images/laom/tipis.webp', // Tipis - portrait format, cropped on the right, optimized WebP
+  '/images/laom/salle-de-pratique.webp', // Practice hall - portrait format, cropped on the right, optimized WebP
   '/images/laom/planification/agri-1-0246e509.webp', // Garden
   'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=420&h=560&fit=crop&q=85', // Shared living space
   'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=420&h=560&fit=crop&q=85', // Coworking – tables, laptops, people, natural light
@@ -149,7 +149,7 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
                 <img
                   src={space.image}
                   alt={(space as { imageAlt?: string }).imageAlt ?? space.title}
-                  class="w-full h-full object-cover"
+                  class={`w-full h-full object-cover ${i === 2 ? 'object-left' : i === 3 ? 'object-right' : ''}`}
                   loading="lazy"
                 />
               </div>

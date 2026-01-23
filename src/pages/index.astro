@@ -24,10 +24,10 @@ const events = t.events.items.map((item, index) => ({
 }))
 
 const spaceImages = [
-  'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=420&h=560&fit=crop&q=85', // Guinguette Restauration
+  'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=420&h=560&fit=crop&q=85', // Guinguette Restauration - healthy fresh vegetables
   'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=420&h=560&fit=crop&q=85', // Les chambres (fallback ; remplacer par /images/laom/chambres.webp quand dispo)
-  'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=420&h=560&fit=crop&q=85', // Tipis
-  'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=420&h=560&fit=crop&q=85', // Salle de pratique
+  '/images/laom/tipis.webp', // Tipis - portrait format, cropped on the right, optimized WebP
+  '/images/laom/salle-de-pratique.webp', // Salle de pratique - portrait format, cropped on the right, optimized WebP
   '/images/laom/planification/agri-1-0246e509.webp', // Jardin
   'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=420&h=560&fit=crop&q=85', // Espace de vie partagé
   'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=420&h=560&fit=crop&q=85', // Coworking – tables, laptops, people, natural light
@@ -45,26 +45,23 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
 >
   <Hero />
 
-  <!-- Intro Section – Our Habitas Tulum style, white background -->
-  <section class="py-24 md:py-32 lg:py-40 bg-white">
-    <div class="max-w-4xl mx-auto px-10 sm:px-16 lg:px-24 text-center opacity-0" animate-fade-in-up>
-      <p class="text-[11px] md:text-xs font-light tracking-[0.3em] text-black/50 mb-4 uppercase">
-        {t.home.intro.location}
-      </p>
-      <h2 class="text-2xl md:text-3xl lg:text-4xl font-extralight tracking-tight text-black mb-3 leading-tight">
+  <!-- Intro Section – Citadel Garden style -->
+  <section class="py-24 md:py-32 bg-[#F3EEDC]">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24 text-center opacity-0" animate-fade-in-up>
+      <h2 class="text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight text-black mb-8 leading-tight">
         {t.home.intro.title}
       </h2>
-      <p class="text-base md:text-lg font-light tracking-wide text-black/70 mb-12">
+      <p class="text-xl md:text-2xl font-normal text-black/70 mb-12 max-w-3xl mx-auto">
         {t.home.intro.tagline}
       </p>
-      <div class="space-y-6 text-lg md:text-xl font-light text-black/80 leading-relaxed text-justify">
+      <div class="space-y-6 text-lg md:text-xl font-normal text-black/80 leading-relaxed text-left max-w-3xl mx-auto">
         {t.home.intro.paragraphs.map((p) => (
           <p>{p}</p>
         ))}
       </div>
       <a
         href={getLocalizedPath('/project/', lang as 'fr' | 'en')}
-        class="inline-block mt-14 px-12 py-4 border border-black text-black font-light tracking-[0.2em] hover:bg-black hover:text-white transition-all duration-300 uppercase text-xs"
+        class="inline-block mt-12 text-base text-black/60 hover:text-black transition-colors font-normal underline underline-offset-4"
       >
         {t.home.intro.cta}
       </a>
@@ -73,38 +70,13 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
 
   <NewsletterBanner />
 
-  <!-- Immersion Signature Section - EN MOUVEMENT -->
-  <section id="experience" class="py-32 lg:py-40 bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-10 sm:px-16 lg:px-24">
-      <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-        <!-- Text Content -->
-        <div class="lg:w-1/2 opacity-0" animate-fade-in-up>
-          <span class="block text-xs font-light tracking-[0.2em] uppercase text-black/40 mb-6">
-            {t.home.immersionSignature.overline}
-          </span>
-          <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-black mb-8 leading-tight">
-            {t.home.immersionSignature.title}
-          </h2>
-          <p class="text-xl font-light text-black/60 mb-8 leading-relaxed">
-            {t.home.immersionSignature.subtitle}
-          </p>
-          <div class="w-12 h-[1px] bg-black/20 mb-8"></div>
-          <div class="space-y-6 text-lg font-light text-black/80 leading-relaxed text-left">
-            {t.home.immersionSignature.paragraphs.map((p) => (
-              <p>{p}</p>
-            ))}
-          </div>
-          <a
-            href={getLocalizedPath('/events/', lang as 'fr' | 'en')}
-            class="inline-block mt-10 px-10 py-4 border border-black text-black font-light tracking-[0.2em] hover:bg-black hover:text-white transition-all duration-300 uppercase text-xs"
-          >
-            {t.home.immersionSignature.cta}
-          </a>
-        </div>
-        
+  <!-- Immersion Signature Section - EN MOUVEMENT – Citadel Garden style -->
+  <section id="experience" class="py-24 md:py-32 bg-[#F3EEDC] overflow-hidden">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
         <!-- Image -->
-        <div class="lg:w-1/2 relative opacity-0 delay-200" animate-fade-in-up>
-          <div class="aspect-[4/5] bg-neutral-100 rounded-sm overflow-hidden">
+        <div class="w-full lg:w-96 flex-shrink-0 opacity-0 delay-200" animate-fade-in-up>
+          <div class="aspect-[3/4] bg-neutral-100 overflow-hidden">
             <img
               src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=900&q=85"
               alt={t.home.immersionSignature.imageAlt}
@@ -113,14 +85,35 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
             />
           </div>
         </div>
+        
+        <!-- Text Content -->
+        <div class="flex-1 opacity-0" animate-fade-in-up>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-normal text-black mb-6 leading-tight tracking-tight">
+            {t.home.immersionSignature.title}
+          </h2>
+          <p class="text-xl md:text-2xl font-normal text-black/70 mb-8 leading-relaxed">
+            {t.home.immersionSignature.subtitle}
+          </p>
+          <div class="space-y-5 text-lg font-normal text-black/80 leading-relaxed">
+            {t.home.immersionSignature.paragraphs.map((p) => (
+              <p>{p}</p>
+            ))}
+          </div>
+          <a
+            href={getLocalizedPath('/events/', lang as 'fr' | 'en')}
+            class="inline-block mt-10 text-base text-black/60 hover:text-black transition-colors font-normal underline underline-offset-4"
+          >
+            {t.home.immersionSignature.cta}
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Nos Espaces – Our Rooms style (horizontal scroll, portrait cards, arrows, no bar) -->
-  <section id="spaces" class="py-24 md:py-32 bg-[#fafafa]">
-    <div class="max-w-7xl mx-auto px-10 sm:px-16 lg:px-24">
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-black/80 tracking-tight text-center mb-12 md:mb-14 opacity-0" animate-fade-in-up>
+  <!-- Nos Espaces – Citadel Garden style -->
+  <section id="spaces" class="py-24 md:py-32 bg-[#F3EEDC]">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-normal text-black tracking-tight text-center mb-16 opacity-0" animate-fade-in-up>
         {t.home.ourSpaces.sectionTitle}
       </h2>
     </div>
@@ -128,7 +121,7 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
       <button
         type="button"
         id="spaces-prev"
-        class="spaces-arrow absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full border border-black/20 bg-white/90 flex items-center justify-center text-black/60 hover:bg-white hover:border-black/40 hover:text-black transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
+        class="spaces-arrow absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full border border-black/20 bg-[#F3EEDC]/90 flex items-center justify-center text-black/60 hover:bg-[#F3EEDC] hover:border-black/40 hover:text-black transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
         aria-label="Espace précédent"
       >
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
@@ -136,7 +129,7 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
       <button
         type="button"
         id="spaces-next"
-        class="spaces-arrow absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full border border-black/20 bg-white/90 flex items-center justify-center text-black/60 hover:bg-white hover:border-black/40 hover:text-black transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
+        class="spaces-arrow absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full border border-black/20 bg-[#F3EEDC]/90 flex items-center justify-center text-black/60 hover:bg-[#F3EEDC] hover:border-black/40 hover:text-black transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
         aria-label="Espace suivant"
       >
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
@@ -149,15 +142,15 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
                 <img
                   src={space.image}
                   alt={(space as { imageAlt?: string }).imageAlt ?? space.title}
-                  class="w-full h-full object-cover"
+                  class={`w-full h-full object-cover ${i === 2 ? 'object-left' : i === 3 ? 'object-right' : ''}`}
                   loading="lazy"
                 />
               </div>
-              <div class="mt-4 px-2 sm:px-3">
-                <h3 class="text-sm font-semibold tracking-wider uppercase text-black">
+              <div class="mt-5 px-2 sm:px-3">
+                <h3 class="text-base font-normal tracking-wide text-black mb-3 uppercase">
                   {space.title}
                 </h3>
-                <p class="mt-2 text-sm font-normal text-black/70 leading-relaxed">
+                <p class="text-sm font-normal text-black/70 leading-relaxed">
                   {space.description}
                   {(space as { note?: string }).note && (
                     <>
@@ -193,40 +186,42 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
     })()
   </script>
 
-  <!-- Les prochains événements – Our Rooms style (cards grid) -->
-  <section id="events" class="py-24 md:py-32 px-10 sm:px-16 lg:px-24 bg-[#fafafa]">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-14 md:mb-16 opacity-0" animate-fade-in-up>
-        <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-black/90 tracking-tight">
+  <!-- Les prochains événements – Citadel Garden style -->
+  <section id="events" class="py-24 md:py-32 px-10 sm:px-16 lg:px-24 bg-[#F3EEDC]">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-20 opacity-0" animate-fade-in-up>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-normal text-black tracking-tight mb-8">
           {t.events.allTitle}
         </h2>
         <a
           href={getLocalizedPath('/events/', lang as 'fr' | 'en')}
-          class="inline-block mt-6 text-sm border-b border-black/40 pb-1 hover:border-black transition-colors"
+          class="inline-block text-sm text-black/60 hover:text-black transition-colors font-normal underline underline-offset-4"
         >
           {t.events.viewAllLink}
         </a>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 opacity-0" animate-fade-in-up>
+      <div class="space-y-16 opacity-0" animate-fade-in-up>
         {events.map((event) => (
-          <article class="bg-white flex flex-col overflow-hidden">
-            <div class="aspect-[4/3] bg-neutral-100 overflow-hidden">
-              <img
-                src={event.image}
-                alt={event.title}
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
+          <article class="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+            <div class="w-full md:w-80 flex-shrink-0">
+              <div class="aspect-[4/3] bg-neutral-100 overflow-hidden">
+                <img
+                  src={event.image}
+                  alt={event.title}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
             </div>
-            <div class="p-5 md:p-6 flex flex-col flex-1">
-              <p class="text-[11px] font-light tracking-[0.2em] uppercase text-black/50 mb-2">
+            <div class="flex-1">
+              <p class="text-sm font-normal text-black/50 mb-2">
                 {event.date}
               </p>
-              <h3 class="text-sm md:text-base font-semibold tracking-wider uppercase text-black mb-3">
+              <h3 class="text-2xl md:text-3xl font-normal text-black mb-4 tracking-tight">
                 {event.title}
               </h3>
-              <p class="text-sm font-normal text-black/70 leading-relaxed flex-1">
+              <p class="text-base font-normal text-black/70 leading-relaxed">
                 {event.description}
               </p>
             </div>
@@ -236,27 +231,36 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
     </div>
   </section>
 
-  <!-- Channels Section (Suivre le projet) -->
-  <section class="py-24 bg-white">
+  <!-- Channels Section (Suivre le projet) – Citadel Garden style -->
+  <section class="py-24 md:py-32 bg-[#F3EEDC]">
     <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
-      <h2 class="text-3xl md:text-4xl font-light text-black mb-10 text-center">{t.home.channelsTitle}</h2>
-      <div class="grid gap-6 md:grid-cols-3">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-normal text-black mb-16 text-center tracking-tight">{t.home.channelsTitle}</h2>
+      <div class="space-y-12">
         {t.home.channels.map((item) => {
           const url = 'href' in item ? item.href : undefined
           const isExternal = url && String(url).startsWith('http')
           return url ? (
             <a
               href={url}
-              class="block border border-black/10 bg-[#f3efe7] p-6 lg:p-8 hover:border-black/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 focus-visible:ring-offset-2"
+              class="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 focus-visible:ring-offset-2"
               {...(isExternal && { target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${item.title} (opens in new tab)` })}
             >
-              <h3 class="text-lg font-light text-black mb-3">{item.title}</h3>
-              <p class="text-sm font-light text-black/60 leading-relaxed">{item.description}</p>
+              <div class="flex items-start gap-6 pb-6 border-b border-black/10 group-hover:border-black/30 transition-colors">
+                <div class="flex-1">
+                  <h3 class="text-xl md:text-2xl font-normal text-black mb-2 group-hover:text-black/80 transition-colors">{item.title}</h3>
+                  <p class="text-base font-normal text-black/70 leading-relaxed">{item.description}</p>
+                </div>
+                <svg class="w-5 h-5 text-black/40 group-hover:text-black/60 transition-colors flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
             </a>
           ) : (
-            <div class="border border-black/10 bg-[#f3efe7] p-6 lg:p-8">
-              <h3 class="text-lg font-light text-black mb-3">{item.title}</h3>
-              <p class="text-sm font-light text-black/60 leading-relaxed">{item.description}</p>
+            <div class="flex items-start gap-6 pb-6 border-b border-black/10">
+              <div class="flex-1">
+                <h3 class="text-xl md:text-2xl font-normal text-black mb-2">{item.title}</h3>
+                <p class="text-base font-normal text-black/70 leading-relaxed">{item.description}</p>
+              </div>
             </div>
           )
         })}
@@ -264,14 +268,14 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="py-20 bg-[#2d5016] text-white">
+  <!-- CTA – Citadel Garden style -->
+  <section class="py-24 md:py-32 bg-[#285230] text-white">
     <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24 text-center">
-      <h2 class="text-3xl md:text-4xl font-light mb-4">{t.home.ctaTitle}</h2>
-      <p class="text-lg font-light text-white/80 mb-8">{t.home.ctaDescription}</p>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-normal mb-6 tracking-tight">{t.home.ctaTitle}</h2>
+      <p class="text-xl md:text-2xl font-normal text-white/90 mb-10">{t.home.ctaDescription}</p>
       <a
         href={getLocalizedPath('/newsletter', lang as 'fr' | 'en')}
-        class="inline-flex items-center justify-center rounded-sm bg-white text-black px-8 py-3 text-xs tracking-[0.25em] uppercase hover:bg-white/90 transition-colors"
+        class="inline-block text-base text-white/80 hover:text-white transition-colors font-normal underline underline-offset-4"
       >
         {t.home.ctaButton}
       </a>
