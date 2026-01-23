@@ -33,7 +33,130 @@ const pageSchema = createWebPageSchema({
     </div>
   </section>
 
-  <section class="py-24 bg-[#faf9f6]">
+  <!-- Newsletter Form (Top) -->
+  <section class="py-16 bg-[#F3EEDC]">
+    <div class="max-w-xl mx-auto px-10 sm:px-16 lg:px-24">
+      <NewsletterForm variant="light" />
+    </div>
+  </section>
+
+  <!-- What is LAOM -->
+  <section class="py-24 bg-[#F3EEDC]">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-normal text-black mb-6">{t.pages.newsletterPage.whatIsTitle}</h2>
+      <p class="text-lg md:text-xl font-normal text-black/80 leading-relaxed">
+        {t.pages.newsletterPage.whatIsDescription}
+      </p>
+    </div>
+  </section>
+
+  <!-- Photos -->
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-normal text-black mb-10">A few photos from the place</h2>
+      <div class="grid gap-6 md:grid-cols-12">
+        <div class="md:col-span-7">
+          <div class="aspect-[16/10] overflow-hidden rounded-sm border border-black/10 bg-neutral-100">
+            <img
+              src="/images/laom/immersion-mouvement-hero.webp"
+              alt="Dance at sunset at LAOM"
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="md:col-span-5">
+          <div class="aspect-[4/5] overflow-hidden rounded-sm border border-black/10 bg-neutral-100">
+            <img
+              src="/images/laom/tipis.webp"
+              alt="The tipis at LAOM"
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="md:col-span-4">
+          <div class="aspect-[4/5] overflow-hidden rounded-sm border border-black/10 bg-neutral-100">
+            <img
+              src="/images/laom/salle-de-pratique.webp"
+              alt="The practice hall at LAOM"
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="md:col-span-4">
+          <div class="aspect-[4/5] overflow-hidden rounded-sm border border-black/10 bg-neutral-100">
+            <img
+              src="/images/laom/planification/agri-1-0246e509.webp"
+              alt="The garden and market garden at LAOM"
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="md:col-span-4">
+          <div class="aspect-[4/5] overflow-hidden rounded-sm border border-black/10 bg-neutral-100">
+            <img
+              src="/images/laom/presentation/img_2767---grande-c7779ff6.webp"
+              alt="A view of the place and shared life at LAOM"
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dimensions -->
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-normal text-black mb-12">{t.pages.newsletterPage.dimensionsTitle}</h2>
+      <div class="grid gap-8 md:grid-cols-2">
+        {t.pages.newsletterPage.dimensions.map((dimension) => (
+          <div class="border-b border-black/10 pb-8 last:border-b-0 md:last:border-b md:border-b-0">
+            <h3 class="text-xl md:text-2xl font-normal text-black mb-3">{dimension.title}</h3>
+            <p class="text-base md:text-lg font-normal text-black/70 leading-relaxed">{dimension.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Content -->
+  <section class="py-24 bg-[#F3EEDC]">
+    <div class="max-w-5xl mx-auto px-10 sm:px-16 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-normal text-black mb-8">{t.pages.newsletterPage.newsletterContentTitle}</h2>
+      <ul class="space-y-4">
+        {t.pages.newsletterPage.newsletterContent.map((item) => (
+          <li class="text-lg font-normal text-black/80 leading-relaxed flex items-start gap-3">
+            <span class="text-black/40 mt-2 flex-shrink-0">•</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+      <h2 class="text-3xl md:text-4xl font-normal text-black mb-12 text-center">{t.pages.newsletterPage.statsTitle}</h2>
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        {t.pages.newsletterPage.stats.map((stat) => (
+          <div class="text-center">
+            <div class="text-4xl md:text-5xl font-normal text-black mb-2">{stat.value}</div>
+            <div class="text-sm font-normal text-black/60 uppercase tracking-wider mb-1">{stat.label}</div>
+            <div class="text-base font-normal text-black/70">{stat.description}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Form -->
+  <section class="py-24 bg-[#F3EEDC]">
     <div class="max-w-xl mx-auto px-10 sm:px-16 lg:px-24">
       <NewsletterForm variant="light" />
     </div>

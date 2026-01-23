@@ -126,7 +126,7 @@ export const translations = {
           '21 hectares en Aveyron',
           '800m² – plus grand bâtiment paille porteur au monde',
           '11 copropriétaires',
-          '1,4M€ investis',
+          '2M€ investis',
           '4 ans de bataille administrative',
         ],
         modelTitle: 'Un modèle unique',
@@ -366,7 +366,7 @@ export const translations = {
         whyTitle: 'Pourquoi nous ?',
         whyPoints: [
           '4 ans de bataille administrative transformés en expertise concrète',
-          '1,4M€ levés collectivement',
+          '2M€ levés collectivement',
           'Plus grand bâtiment paille porteur au monde',
           'Modèle SCIA validé et réplicable',
         ],
@@ -498,6 +498,42 @@ export const translations = {
       newsletterPage: {
         heroTitle: 'Newsletter LAOM',
         heroSubtitle: 'Coulisses du projet, décisions clés, actus et événements. Une lettre du dimanche, pas de spam.',
+        whatIsTitle: 'Qu\'est-ce que LAOM ?',
+        whatIsDescription: 'Un éco-coliving rural dans le sud de l\'Aveyron, où habitat, agriculture régénératrice, éco-construction et accueil se rencontrent pour créer un lieu de vie et de régénération.',
+        dimensionsTitle: 'Les dimensions du projet',
+        dimensions: [
+          {
+            title: 'Habitat collectif',
+            description: 'Des habitats écologiques pour résidents permanents et semi-permanents, avec un coliving de 7 chambres en construction (ouverture 2026).',
+          },
+          {
+            title: 'Agriculture régénératrice',
+            description: 'Une ferme maraîchère pédagogique qui restaure les sols et soutient la biodiversité, nourrissant les habitants et les visiteurs.',
+          },
+          {
+            title: 'Éco-construction',
+            description: 'Bâtiments en paille porteuse, terre crue et matériaux naturels. 800m² de construction écologique déjà réalisés.',
+          },
+          {
+            title: 'Accueil et événements',
+            description: 'Stages, immersions, résidences artistiques et micro-festivals dans un environnement naturel préservé.',
+          },
+        ],
+        newsletterContentTitle: 'Dans cette newsletter',
+        newsletterContent: [
+          'Les avancées du chantier et les décisions de construction',
+          'Les réflexions sur le modèle économique et la gouvernance',
+          'Les apprentissages de l\'agriculture régénératrice',
+          'Les événements à venir et les retours d\'expérience',
+          'Les ressources partagées (guides, outils, réflexions)',
+        ],
+        statsTitle: 'LAOM en quelques chiffres',
+        stats: [
+          { label: 'Hectares', value: '21', description: 'de forêt, rivière et prairies' },
+          { label: 'Mètres carrés', value: '800', description: 'de bâtiment en paille porteuse' },
+          { label: 'Copropriétaires', value: '11', description: 'engagés dans le projet' },
+          { label: 'Investissement', value: '2M€', description: 'collectivement investis' },
+        ],
       },
     },
     home: {
@@ -525,7 +561,7 @@ export const translations = {
         '21 hectares de nature préservée',
         '800m² de bâtiment paille porteur',
         '11 copropriétaires engagés',
-        '1,4M€ investis collectivement',
+        '2M€ investis collectivement',
       ],
       channelsTitle: 'Suivre le projet',
       channels: [
@@ -740,7 +776,7 @@ export const translations = {
           '21 hectares in Aveyron',
           '800m² – largest load-bearing straw building in the world',
           '11 co-owners',
-          '€1.4M invested',
+          '€2M invested',
           '4 years of administrative struggle',
         ],
         modelTitle: 'A unique model',
@@ -980,7 +1016,7 @@ export const translations = {
         whyTitle: 'Why us?',
         whyPoints: [
           '4 years of administrative battles turned into real expertise',
-          '€1.4M raised collectively',
+          '€2M raised collectively',
           'Largest straw load-bearing building in the world',
           'Validated, replicable SCIA model',
         ],
@@ -1112,6 +1148,42 @@ export const translations = {
       newsletterPage: {
         heroTitle: 'LAOM Newsletter',
         heroSubtitle: 'Behind the scenes, key decisions, news and events. A Sunday letter, no spam.',
+        whatIsTitle: 'What is LAOM?',
+        whatIsDescription: 'A rural eco-coliving in the south of Aveyron, where housing, regenerative agriculture, eco-construction and hospitality meet to create a place of life and regeneration.',
+        dimensionsTitle: 'The dimensions of the project',
+        dimensions: [
+          {
+            title: 'Collective housing',
+            description: 'Ecological habitats for permanent and semi-permanent residents, with a 7-room coliving under construction (opening 2026).',
+          },
+          {
+            title: 'Regenerative agriculture',
+            description: 'A pedagogical market garden that restores soils and supports biodiversity, feeding residents and visitors.',
+          },
+          {
+            title: 'Eco-construction',
+            description: 'Buildings in load-bearing straw, raw earth and natural materials. 800m² of ecological construction already completed.',
+          },
+          {
+            title: 'Hospitality and events',
+            description: 'Workshops, immersions, artistic residencies and micro-festivals in a preserved natural environment.',
+          },
+        ],
+        newsletterContentTitle: 'In this newsletter',
+        newsletterContent: [
+          'Construction progress and building decisions',
+          'Reflections on the economic model and governance',
+          'Learnings from regenerative agriculture',
+          'Upcoming events and experience feedback',
+          'Shared resources (guides, tools, reflections)',
+        ],
+        statsTitle: 'LAOM in numbers',
+        stats: [
+          { label: 'Hectares', value: '21', description: 'of forest, river and meadows' },
+          { label: 'Square meters', value: '800', description: 'of load-bearing straw building' },
+          { label: 'Co-owners', value: '11', description: 'committed to the project' },
+          { label: 'Investment', value: '€2M', description: 'collectively invested' },
+        ],
       },
     },
     home: {
@@ -1139,7 +1211,7 @@ export const translations = {
         '21 hectares of preserved nature',
         '800m² straw load-bearing building',
         '11 committed co-owners',
-        '€1.4M invested collectively',
+        '€2M invested collectively',
       ],
       channelsTitle: 'Follow the project',
       channels: [
