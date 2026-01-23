@@ -107,15 +107,45 @@ const pageSchema = createWebPageSchema({
     </div>
   </section>
 
-  <!-- Timeline -->
+  <!-- Timeline of progress -->
   <section class="py-24 bg-white">
     <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
-      <h2 class="text-3xl md:text-4xl font-light text-black mb-10">{t.pages.project.timelineTitle}</h2>
-      <div class="space-y-6 border-l border-black/10 pl-6">
-        {t.pages.project.timeline.map((step) => (
+      <h2 class="text-3xl md:text-4xl font-light text-black mb-12">{t.pages.project.timelineTitle}</h2>
+      <div class="space-y-12">
+        {t.pages.project.timeline.map((yearData) => (
           <div class="relative">
-            <span class="absolute -left-[9px] top-2 h-3 w-3 rounded-full bg-black/40"></span>
-            <p class="text-lg font-light text-black/70">{step}</p>
+            <div class="flex items-start gap-8">
+              <div class="flex-shrink-0 w-24 md:w-32">
+                <h3 class="text-2xl md:text-3xl font-light text-black sticky top-8">{yearData.year}</h3>
+              </div>
+              <div class="flex-1 space-y-8">
+                {yearData.months.map((monthData) => (
+                  <div class="pb-6 border-b border-black/10 last:border-b-0">
+                    <h4 class="text-lg md:text-xl font-light text-black/80 mb-4">{monthData.month}</h4>
+                    <ul class="space-y-2">
+                      {monthData.events.map((event) => (
+                        <li class="text-base md:text-lg font-light text-black/70 leading-relaxed flex items-start gap-3">
+                          <span class="text-black/40 mt-2 flex-shrink-0">•</span>
+                          <span>{event}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+                {yearData.yearEvents.length > 0 && (
+                  <div class="pt-4">
+                    <ul class="space-y-2">
+                      {yearData.yearEvents.map((event) => (
+                        <li class="text-base md:text-lg font-light text-black/70 leading-relaxed flex items-start gap-3">
+                          <span class="text-black/40 mt-2 flex-shrink-0">•</span>
+                          <span>{event}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         ))}
       </div>

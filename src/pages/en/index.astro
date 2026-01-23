@@ -29,7 +29,7 @@ const spaceImages = [
   '/images/laom/tipis.webp', // Tipis - portrait format, cropped on the right, optimized WebP
   '/images/laom/salle-de-pratique.webp', // Practice hall - portrait format, cropped on the right, optimized WebP
   '/images/laom/planification/agri-1-0246e509.webp', // Garden
-  'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=420&h=560&fit=crop&q=85', // Shared living space
+  'https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=420&h=560&fit=crop&q=85', // Shared living space - people socializing in a cafe
   'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=420&h=560&fit=crop&q=85', // Coworking – tables, laptops, people, natural light
 ]
 const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceImages[i] || spaceImages[0] }))
@@ -106,10 +106,12 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
         <div class="lg:w-1/2 relative opacity-0 delay-200" animate-fade-in-up>
           <div class="aspect-[4/5] bg-neutral-100 rounded-sm overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=900&q=85"
+              src="/images/laom/immersion-mouvement.webp"
               alt={t.home.immersionSignature.imageAlt}
               class="w-full h-full object-cover"
               loading="lazy"
+              width="900"
+              height="1200"
             />
           </div>
         </div>

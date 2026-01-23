@@ -150,13 +150,182 @@ export const translations = {
             description: 'Une équipe engagée (Khaldoun, Théo, Lorenzo…) pour faire émerger le lieu.',
           },
         ],
-        timelineTitle: 'Chronologie',
+        timelineTitle: 'Timeline des avancées',
         timeline: [
-          '2020 – Achat collectif du terrain',
-          '2021–2024 – Parcours administratif et juridique',
-          '2024 – Structure SCIA validée',
-          '2025 – Construction phase 2 (472m²)',
-          '2025 – Lancement LAOM School',
+          {
+            year: '2021',
+            months: [
+              {
+                month: 'Février',
+                events: [
+                  '11 février : Acquisition du domaine de la Margue',
+                  'Début des démarches administratives pour les autorisations',
+                  'Charly crée son statut d\'exploitant agricole à la MSA',
+                ],
+              },
+              {
+                month: 'Mai',
+                events: [
+                  'Lancement des travaux agricoles sur la parcelle de LAOM',
+                  'Clôture du terrain',
+                  'Débroussaillage',
+                  'Installation des systèmes d\'irrigation',
+                  'Installation de la serre',
+                  'Installation d\'une pompe de pompage pour la rivière',
+                  'Première culture d\'inflorescences de CBD',
+                ],
+              },
+            ],
+            yearEvents: [
+              'Envoi du dossier STECAL à l\'urbanisme (début d\'un processus de 4 ans)',
+              'Décembre : Début de l\'aménagement du Petit Shambala',
+            ],
+          },
+          {
+            year: '2022',
+            months: [
+              {
+                month: 'Mars',
+                events: [
+                  'Début des terrassements du Grand Shambala et du Petit Shambala',
+                  'Début des fondations du Petit Shambala',
+                ],
+              },
+            ],
+            yearEvents: [
+              'Deuxième saison de culture d\'inflorescences de CBD',
+              'Poursuite de la construction du Petit Shambala (structure poteau-poutre, isolation fibres de bois, chape terre crue, vide sanitaire - 3 versions de plans)',
+              'Itérations continues sur le dossier STECAL (échanges avec urbanisme, chambre d\'agriculture, services de l\'État)',
+            ],
+          },
+          {
+            year: '2023',
+            months: [
+              {
+                month: 'Début d\'année',
+                events: [
+                  'Obtention du permis de construire agricole pour le Grand Shambala et le Petit Shambala (logement exploitant agricole + espaces agritouristiques)',
+                ],
+              },
+              {
+                month: 'Printemps',
+                events: [
+                  'Lancement du maraîchage en agriculture régénératrice (objectif : fournir la cuisine d\'été)',
+                ],
+              },
+              {
+                month: 'Été',
+                events: [
+                  'Installation de la cuisine d\'été (future réfectoire/restaurant prévu pour ~2027)',
+                  'Eliott rejoint le projet LAOM',
+                  'Chantier participatif de la salle polyvalente (30 personnes sur 3 mois, par badges de 10 jours)',
+                  'Préparation du soubassement du Grand Shambala par Sébastien, Julien et le père d\'Amandine',
+                ],
+              },
+              {
+                month: 'Octobre - Décembre',
+                events: [
+                  'Du 1er octobre au 15 décembre : construction intensive du Grand Shambala',
+                  'Montage des murs porteurs en paille (faces nord et ouest)',
+                  'Montage de la face sud en bois',
+                  'Pose de la toiture',
+                  'Travail réalisé par Charly, Khaldoun, Paul O. avec l\'aide de Rémy',
+                  '[Vidéo disponible sur YouTube]',
+                ],
+              },
+            ],
+            yearEvents: [
+              'Troisième et dernière saison de culture d\'inflorescences de CBD (arrêt de cette activité)',
+              'Poursuite de la construction du Petit Shambala',
+            ],
+          },
+          {
+            year: '2024',
+            months: [
+              {
+                month: 'Phase de réflexion stratégique',
+                events: [
+                  'Pause dans les travaux du Grand Shambala pour repenser le projet',
+                  'Réflexion sur le business model et la vision à long terme',
+                  'Recherche de nouveaux associés',
+                ],
+              },
+              {
+                month: 'Travaux Grand Shambala (2 mois seulement)',
+                events: [
+                  'Barbotine intérieure',
+                  'Pose du plancher bois ainsi que des poutres du plancher de l\'étage',
+                ],
+              },
+            ],
+            yearEvents: [
+              'Poursuite du maraîchage en agriculture régénératrice',
+              'Émergence claire du business model de coliving',
+              'Clarification de la vision transmise au collectif et aux associés',
+              'Décembre : Achèvement du Petit Shambala',
+              'Emménagement de Charly, Amandine et L., leur fils, dans le Petit Shambala',
+            ],
+          },
+          {
+            year: '2025',
+            months: [
+              {
+                month: 'Travaux intensifs sur le Grand Shambala',
+                events: [
+                  'Enduits extérieurs (réalisés par Théo notamment)',
+                  'Isolation de la charpente',
+                  'Pose du frein vapeur intérieur',
+                  'Deuxième couche d\'enduits intérieurs',
+                  'Bardage des pignons',
+                  'Réception et pose des menuiseries',
+                  'Finition du plancher intérieur',
+                  'Début des cloisons séparatrices à l\'étage (conception de cloisons phoniques)',
+                  'Avancement sur les plans intérieurs',
+                  'Tirage d\'un câble électrique grosse section pour l\'alimentation du bâtiment',
+                ],
+              },
+              {
+                month: 'Été 2025',
+                events: [
+                  'VICTOIRE ADMINISTRATIVE : Validation du STECAL (après 4 ans d\'itérations avec urbanisme, chambre d\'agriculture et corps étatiques)',
+                  'Le PLUi rentre en vigueur → possibilité de développer légalement le projet agritouristique',
+                ],
+              },
+              {
+                month: 'Événements',
+                events: [
+                  'Premier festival en partenariat avec le VanLiFest',
+                  'Trois semaines de résidence de danse animées par Eliott',
+                ],
+              },
+            ],
+            yearEvents: [
+              'Poursuite du maraîchage en agriculture régénératrice',
+            ],
+          },
+          {
+            year: '2026 - Projections',
+            months: [
+              {
+                month: 'Objectif travaux',
+                events: [
+                  'Achèvement complet du Grand Shambala :',
+                  'Tous les lots personnels des associés',
+                  'Les 7 chambres de coliving (13-14m² avec salle de bain et toilettes privatives)',
+                  'Le foyer commun (salon-cuisine de 90m²)',
+                ],
+              },
+              {
+                month: 'Lancement des activités',
+                events: [
+                  'Première édition du Festival LAOM',
+                  'Immersions LAOM : 3 semaines de danse pour atteindre son potentiel et évacuer les traumas à travers le mouvement',
+                  'Stages partenaires sur le lieu',
+                ],
+              },
+            ],
+            yearEvents: [],
+          },
         ],
         constructionBlogsTitle: 'Suivez la construction',
         constructionBlogsIntro: 'Nous partageons l’avancée de chaque chantier dans le blog :',
@@ -595,13 +764,182 @@ export const translations = {
             description: 'A committed team bringing the place to life (Khaldoun, Théo, Lorenzo…).',
           },
         ],
-        timelineTitle: 'Timeline',
+        timelineTitle: 'Timeline of progress',
         timeline: [
-          '2020 – Collective land purchase',
-          '2021–2024 – Administrative and legal journey',
-          '2024 – SCIA structure validated',
-          '2025 – Construction phase 2 (472m²)',
-          '2025 – LAOM School launch',
+          {
+            year: '2021',
+            months: [
+              {
+                month: 'February',
+                events: [
+                  'February 11: Acquisition of the Margue estate',
+                  'Start of administrative procedures for authorizations',
+                  'Charly creates his status as an agricultural operator with MSA',
+                ],
+              },
+              {
+                month: 'May',
+                events: [
+                  'Launch of agricultural work on the LAOM plot',
+                  'Fencing of the land',
+                  'Clearing',
+                  'Installation of irrigation systems',
+                  'Greenhouse installation',
+                  'Installation of a river pumping system',
+                  'First CBD inflorescence crop',
+                ],
+              },
+            ],
+            yearEvents: [
+              'STECAL file sent to urban planning (beginning of a 4-year process)',
+              'December: Beginning of Petit Shambala development',
+            ],
+          },
+          {
+            year: '2022',
+            months: [
+              {
+                month: 'March',
+                events: [
+                  'Start of earthworks for Grand Shambala and Petit Shambala',
+                  'Start of Petit Shambala foundations',
+                ],
+              },
+            ],
+            yearEvents: [
+              'Second season of CBD inflorescence cultivation',
+              'Continued construction of Petit Shambala (post-beam structure, wood fiber insulation, raw earth screed, crawl space - 3 plan versions)',
+              'Ongoing iterations on STECAL file (exchanges with urban planning, chamber of agriculture, state services)',
+            ],
+          },
+          {
+            year: '2023',
+            months: [
+              {
+                month: 'Early year',
+                events: [
+                  'Obtaining agricultural building permit for Grand Shambala and Petit Shambala (agricultural operator housing + agritourism spaces)',
+                ],
+              },
+              {
+                month: 'Spring',
+                events: [
+                  'Launch of market gardening in regenerative agriculture (goal: supply summer kitchen)',
+                ],
+              },
+              {
+                month: 'Summer',
+                events: [
+                  'Installation of summer kitchen (future refectory/restaurant planned for ~2027)',
+                  'Eliott joins the LAOM project',
+                  'Participatory construction site for the multipurpose room (30 people over 3 months, in 10-day badges)',
+                  'Preparation of Grand Shambala foundation by Sébastien, Julien and Amandine\'s father',
+                ],
+              },
+              {
+                month: 'October - December',
+                events: [
+                  'October 1 to December 15: intensive construction of Grand Shambala',
+                  'Assembly of load-bearing straw walls (north and west faces)',
+                  'Assembly of south face in wood',
+                  'Roof installation',
+                  'Work carried out by Charly, Khaldoun, Paul O. with Rémy\'s help',
+                  '[Video available on YouTube]',
+                ],
+              },
+            ],
+            yearEvents: [
+              'Third and final season of CBD inflorescence cultivation (end of this activity)',
+              'Continued construction of Petit Shambala',
+            ],
+          },
+          {
+            year: '2024',
+            months: [
+              {
+                month: 'Strategic reflection phase',
+                events: [
+                  'Pause in Grand Shambala work to rethink the project',
+                  'Reflection on business model and long-term vision',
+                  'Search for new partners',
+                ],
+              },
+              {
+                month: 'Grand Shambala work (2 months only)',
+                events: [
+                  'Interior slurry',
+                  'Installation of wood floor and floor beams',
+                ],
+              },
+            ],
+            yearEvents: [
+              'Continued market gardening in regenerative agriculture',
+              'Clear emergence of coliving business model',
+              'Clarification of vision transmitted to collective and partners',
+              'December: Completion of Petit Shambala',
+              'Move-in of Charly, Amandine and L., their son, into Petit Shambala',
+            ],
+          },
+          {
+            year: '2025',
+            months: [
+              {
+                month: 'Intensive work on Grand Shambala',
+                events: [
+                  'Exterior finishes (notably by Théo)',
+                  'Roof frame insulation',
+                  'Installation of interior vapor barrier',
+                  'Second layer of interior finishes',
+                  'Gable cladding',
+                  'Reception and installation of joinery',
+                  'Interior floor finishing',
+                  'Start of partition walls on upper floor (acoustic partition design)',
+                  'Progress on interior plans',
+                  'Installation of large-section electrical cable for building power supply',
+                ],
+              },
+              {
+                month: 'Summer 2025',
+                events: [
+                  'ADMINISTRATIVE VICTORY: STECAL validation (after 4 years of iterations with urban planning, chamber of agriculture and state bodies)',
+                  'PLUi comes into force → possibility to legally develop the agritourism project',
+                ],
+              },
+              {
+                month: 'Events',
+                events: [
+                  'First festival in partnership with VanLiFest',
+                  'Three weeks of dance residency led by Eliott',
+                ],
+              },
+            ],
+            yearEvents: [
+              'Continued market gardening in regenerative agriculture',
+            ],
+          },
+          {
+            year: '2026 - Projections',
+            months: [
+              {
+                month: 'Work objectives',
+                events: [
+                  'Complete completion of Grand Shambala:',
+                  'All partners\' personal lots',
+                  '7 coliving rooms (13-14m² with private bathroom and toilet)',
+                  'Common room (90m² living-kitchen)',
+                ],
+              },
+              {
+                month: 'Activity launch',
+                events: [
+                  'First edition of LAOM Festival',
+                  'LAOM Immersions: 3 weeks of dance to reach one\'s potential and release trauma through movement',
+                  'Partner workshops at the venue',
+                ],
+              },
+            ],
+            yearEvents: [],
+          },
         ],
         constructionBlogsTitle: 'Follow the construction',
         constructionBlogsIntro: 'We share each build in the blog:',
