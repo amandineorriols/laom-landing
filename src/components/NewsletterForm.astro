@@ -45,10 +45,10 @@ const formKitOptions = {
 ---
 
 <div class={`newsletter-form-widget ${isLight ? 'newsletter-form-widget--light' : ''}`}>
-  <h4 class={`text-sm font-light tracking-widest uppercase mb-4 ${isLight ? 'text-black/90' : 'text-white/90'}`}>
+  <h4 class={`text-sm font-bold tracking-widest uppercase mb-4 ${isLight ? 'text-white' : 'text-white/90'}`}>
     {t.footer.newsletterTitle}
   </h4>
-  <p class={`text-sm font-light mb-4 max-w-md ${isLight ? 'text-black/70' : 'text-white/70'}`}>
+  <p class={`text-sm font-normal mb-4 max-w-md ${isLight ? 'text-white/90' : 'text-white/70'}`}>
     {t.footer.newsletterDescription}
   </p>
   <form
@@ -67,9 +67,9 @@ const formKitOptions = {
       <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields flex flex-wrap gap-3">
         <div class="formkit-field flex-1 min-w-[200px]">
           <input
-          class={`formkit-input w-full rounded px-4 py-3 font-light text-sm focus:outline-none transition-colors ${
+          class={`formkit-input w-full rounded-lg px-5 py-4 font-normal text-sm focus:outline-none transition-colors ${
             isLight
-              ? 'bg-white border border-black/20 text-black placeholder-black/50 focus:border-[#2d5016] focus:ring-1 focus:ring-[#2d5016]/30'
+              ? 'bg-white border border-white/20 text-[#285230] placeholder-[#285230]/60 focus:border-white focus:ring-2 focus:ring-white/40'
               : 'bg-white/10 border border-white/20 text-white placeholder-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/30'
           }`}
           name="email_address"
@@ -83,9 +83,9 @@ const formKitOptions = {
       <button
         type="submit"
         data-element="submit"
-        class={`formkit-submit px-6 py-3 rounded font-light text-sm tracking-wider uppercase focus:outline-none transition-colors relative ${
+        class={`formkit-submit px-8 py-4 rounded-lg font-bold text-sm tracking-wider uppercase focus:outline-none transition-colors relative whitespace-nowrap ${
           isLight
-            ? 'bg-[#2d5016] border border-[#2d5016] text-white hover:bg-[#2d5016]/90 focus-visible:ring-2 focus-visible:ring-[#2d5016]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white'
+            ? 'bg-[#d4af37] border border-[#d4af37] text-[#285230] hover:bg-[#e5c04a] hover:border-[#e5c04a] focus-visible:ring-2 focus-visible:ring-[#d4af37]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#285230]'
             : 'border border-white/40 text-white hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black'
         }`}
       >
@@ -101,7 +101,7 @@ const formKitOptions = {
         <a
           href="https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic"
           data-element="powered-by"
-        class={`formkit-powered-by-convertkit text-xs font-light transition-colors ${isLight ? 'text-black/40 hover:text-black/60' : 'text-white/40 hover:text-white/60'}`}
+        class={`formkit-powered-by-convertkit text-xs font-normal transition-colors ${isLight ? 'text-white/50 hover:text-white/70' : 'text-white/40 hover:text-white/60'}`}
         data-variant={isLight ? 'dark' : 'light'}
         target="_blank"
         rel="noopener noreferrer nofollow"
@@ -119,12 +119,12 @@ const formKitOptions = {
   .newsletter-form-widget:not(.newsletter-form-widget--light) .formkit-form[data-uid="af2e0fc1e5"] .formkit-input::placeholder {
     color: rgba(255, 255, 255, 0.5);
   }
-  /* Light variant (in-page) */
+  /* Light variant (in-page) - when inside green container */
   .newsletter-form-widget--light .formkit-form[data-uid="af2e0fc1e5"] .formkit-input::placeholder {
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(40, 82, 48, 0.6);
   }
   .newsletter-form-widget--light .formkit-form[data-uid="af2e0fc1e5"] .formkit-spinner > div {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(40, 82, 48, 0.7);
   }
   .newsletter-form-widget--light .formkit-form[data-uid="af2e0fc1e5"] .formkit-alert-error {
     background: #fef2f2;

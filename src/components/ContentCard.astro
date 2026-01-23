@@ -1,0 +1,16 @@
+---
+interface Props {
+  children: any
+  class?: string
+}
+
+const { children, class: className = '' } = Astro.props
+---
+
+<section class="py-24 md:py-32 bg-[#F3EEDC]">
+  <div class="max-w-6xl mx-auto px-10 sm:px-16 lg:px-24">
+    <div class={`bg-[#285230] rounded-lg md:rounded-xl p-8 md:p-12 lg:p-16 ${className}`}>
+      {children}
+    </div>
+  </div>
+</section>
