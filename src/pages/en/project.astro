@@ -196,8 +196,11 @@ const pageSchema = createWebPageSchema({
       <h2 class="text-3xl md:text-4xl font-light mb-4">{t.pages.project.ctaTitle}</h2>
       <p class="text-lg font-light text-white/80 mb-8">{t.pages.project.ctaDescription}</p>
       <a
-        href={getLocalizedPath('/mentorat/', lang as 'fr' | 'en')}
+        href="https://cal.atomik.world/charly/30min"
+        target="_blank"
+        rel="noopener noreferrer"
         class="inline-flex items-center justify-center rounded-sm bg-white text-black px-8 py-3 text-xs tracking-[0.25em] uppercase hover:bg-white/90 transition-colors"
+        aria-label="Discover LAOM Mentorat (opens in new tab)"
       >
         {t.pages.project.ctaButton}
       </a>
