@@ -27,15 +27,16 @@ const formKitOptions = {
 }
 ---
 
-<section class="py-16 md:py-20 bg-[#F3EEDC]">
-  <div class="max-w-2xl mx-auto px-10 sm:px-16 text-center">
-    <p class="text-xl md:text-2xl font-light text-black mb-4">
-      {b.headline}
-    </p>
-    <p class="text-base font-light text-black/70 leading-relaxed mb-10">
-      {b.description}
-    </p>
-    <div class="newsletter-form-widget newsletter-form-widget--light">
+<section class="py-24 md:py-32 bg-[#F3EEDC]">
+  <div class="max-w-4xl mx-auto px-10 sm:px-16 lg:px-24">
+    <div class="bg-[#285230] rounded-3xl md:rounded-[2.5rem] p-8 md:p-12 lg:p-16 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-normal text-white mb-4 tracking-tight">
+        {b.headline}
+      </h2>
+      <p class="text-base md:text-lg font-normal text-white/90 leading-relaxed mb-8 max-w-2xl mx-auto">
+        {b.description}
+      </p>
+      <div class="newsletter-form-widget newsletter-form-widget--light">
       <form
         action="https://app.kit.com/forms/8987350/subscriptions"
         class="seva-form formkit-form"
@@ -49,10 +50,10 @@ const formKitOptions = {
       >
         <div data-style="clean">
           <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert" aria-live="polite"></ul>
-          <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields flex flex-wrap gap-3 justify-center">
-            <div class="formkit-field flex-1 min-w-[200px] max-w-sm">
+          <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields flex flex-col sm:flex-row gap-3 justify-center max-w-xl mx-auto">
+            <div class="formkit-field flex-1 min-w-[200px]">
               <input
-              class="formkit-input w-full rounded px-4 py-3 font-light text-sm focus:outline-none transition-colors bg-white border border-black/20 text-black placeholder-black/50 focus:border-[#2d5016] focus:ring-1 focus:ring-[#2d5016]/30"
+              class="formkit-input w-full rounded-xl px-5 py-4 font-normal text-sm focus:outline-none transition-colors bg-white border border-white/20 text-[#285230] placeholder-[#285230]/60 focus:border-white focus:ring-2 focus:ring-white/40"
               name="email_address"
               type="email"
               required
@@ -64,7 +65,7 @@ const formKitOptions = {
           <button
             type="submit"
             data-element="submit"
-            class="formkit-submit px-6 py-3 rounded font-light text-sm tracking-wider uppercase focus:outline-none transition-colors relative bg-[#2d5016] border border-[#2d5016] text-white hover:bg-[#2d5016]/90 focus-visible:ring-2 focus-visible:ring-[#2d5016]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+            class="formkit-submit px-8 py-4 rounded-xl font-bold text-sm tracking-wider uppercase focus:outline-none transition-colors relative bg-[#d4af37] border border-[#d4af37] text-[#285230] hover:bg-[#e5c04a] hover:border-[#e5c04a] focus-visible:ring-2 focus-visible:ring-[#d4af37]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#285230] whitespace-nowrap"
           >
             <div class="formkit-spinner" aria-hidden="true">
               <div></div>
@@ -74,11 +75,11 @@ const formKitOptions = {
             <span>{b.cta}</span>
           </button>
         </div>
-          <div class="formkit-powered-by-convertkit-container mt-3">
+          <div class="formkit-powered-by-convertkit-container mt-4">
             <a
               href="https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic"
               data-element="powered-by"
-            class="formkit-powered-by-convertkit text-xs font-light transition-colors text-black/40 hover:text-black/60"
+            class="formkit-powered-by-convertkit text-xs font-normal transition-colors text-white/50 hover:text-white/70"
             data-variant="dark"
             target="_blank"
             rel="noopener noreferrer nofollow"
@@ -89,6 +90,7 @@ const formKitOptions = {
           </div>
         </div>
       </form>
+    </div>
     </div>
   </div>
 </section>

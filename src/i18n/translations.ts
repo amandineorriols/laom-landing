@@ -532,7 +532,6 @@ export const translations = {
           { label: 'Hectares', value: '21', description: 'de forêt, rivière et prairies' },
           { label: 'Mètres carrés', value: '800', description: 'de bâtiment en paille porteuse' },
           { label: 'Copropriétaires', value: '11', description: 'engagés dans le projet' },
-          { label: 'Investissement', value: '2M€', description: 'collectivement investis' },
         ],
       },
     },
@@ -588,7 +587,7 @@ export const translations = {
         headline: 'Des nouvelles de LAOM chaque dimanche matin.',
         description: 'Les coulisses du chantier, nos choix d\'éco-construction, nos actus et événements, et tout ce que l\'on apprend en créant ce lieu hors normes.',
         placeholder: 'Votre adresse e-mail',
-        cta: 'Je suis l\'aventure LAOM',
+        cta: 'JE SUIS L\'AVANCÉE',
       },
       immersionSignature: {
         overline: 'Immersion Signature',
@@ -1182,7 +1181,6 @@ export const translations = {
           { label: 'Hectares', value: '21', description: 'of forest, river and meadows' },
           { label: 'Square meters', value: '800', description: 'of load-bearing straw building' },
           { label: 'Co-owners', value: '11', description: 'committed to the project' },
-          { label: 'Investment', value: '€2M', description: 'collectively invested' },
         ],
       },
     },
@@ -1238,7 +1236,7 @@ export const translations = {
         headline: 'LAOM news every Sunday morning.',
         description: 'Behind the scenes of the build, our eco-construction choices, news and events, and everything we learn creating this remarkable place.',
         placeholder: 'Your email address',
-        cta: 'Follow the LAOM adventure',
+        cta: 'FOLLOW THE PROGRESS',
       },
       immersionSignature: {
         overline: 'Signature Immersion',

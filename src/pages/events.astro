@@ -71,8 +71,8 @@ const events = t.events.items.map((item, index) => ({
         <div class="grid gap-6">
           {t.pages.eventsPage.enMouvement.sessions.map((session) => (
             <div class="group border border-black/10 bg-white overflow-hidden flex flex-col md:flex-row">
-              <div class="md:w-64 lg:w-72 bg-neutral-100">
-                <img src="/images/laom/immersion-mouvement-card.webp" alt={session.title} class="w-full h-48 md:h-full object-cover" loading="lazy" width="800" height="1067" />
+              <div class="md:w-64 lg:w-72 bg-neutral-100 rounded-sm overflow-hidden">
+                <img src="/images/laom/immersion-mouvement-card.webp" alt={session.title} class="w-full h-48 md:h-full object-cover rounded-sm" loading="lazy" width="800" height="1067" />
               </div>
               <div class="flex-1 p-6 md:p-8 flex flex-col justify-between">
                 <div>
@@ -111,8 +111,8 @@ const events = t.events.items.map((item, index) => ({
       <div class="grid gap-6">
         {events.map((event) => (
           <div class="group border border-black/10 bg-white overflow-hidden flex flex-col md:flex-row">
-            <div class="md:w-64 lg:w-72 bg-neutral-100">
-              <img src={event.image} alt={event.title} class="w-full h-full object-cover" loading="lazy" />
+            <div class="md:w-64 lg:w-72 bg-neutral-100 rounded-sm overflow-hidden">
+              <img src={event.image} alt={event.title} class="w-full h-full object-cover rounded-sm" loading="lazy" />
             </div>
             <div class="flex-1 p-6 md:p-8 flex flex-col justify-between">
               <div>

@@ -76,11 +76,11 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
       <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
         <!-- Image -->
         <div class="w-full lg:w-96 flex-shrink-0 opacity-0 delay-200" animate-fade-in-up>
-          <div class="aspect-[3/4] bg-neutral-100 overflow-hidden">
+          <div class="aspect-[3/4] bg-neutral-100 overflow-hidden rounded-sm">
             <img
               src="/images/laom/immersion-mouvement.webp"
               alt={t.home.immersionSignature.imageAlt}
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover rounded-sm"
               loading="lazy"
               width="900"
               height="1200"
@@ -140,11 +140,11 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
         <div class="flex gap-6 pl-10 sm:pl-16 lg:pl-24 pr-14 sm:pr-24 lg:pr-36 py-2 min-w-max">
           {spaces.map((space, i) => (
             <article class="spaces-card flex-shrink-0 w-[260px] sm:w-[280px] snap-start opacity-0" animate-fade-in-up style={`animation-delay: ${i * 80}ms`}>
-              <div class="aspect-[3/4] bg-neutral-100 overflow-hidden">
+              <div class="aspect-[3/4] bg-neutral-100 overflow-hidden rounded-sm">
                 <img
                   src={space.image}
                   alt={(space as { imageAlt?: string }).imageAlt ?? space.title}
-                  class={`w-full h-full object-cover ${i === 2 ? 'object-left' : i === 3 ? 'object-right' : ''}`}
+                  class={`w-full h-full object-cover rounded-sm ${i === 2 ? 'object-left' : i === 3 ? 'object-right' : ''}`}
                   loading="lazy"
                 />
               </div>
@@ -207,11 +207,11 @@ const spaces = t.home.ourSpaces.items.map((item, i) => ({ ...item, image: spaceI
         {events.map((event) => (
           <article class="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
             <div class="w-full md:w-80 flex-shrink-0">
-              <div class="aspect-[4/3] bg-neutral-100 overflow-hidden">
+              <div class="aspect-[4/3] bg-neutral-100 overflow-hidden rounded-sm">
                 <img
                   src={event.image}
                   alt={event.title}
-                  class="w-full h-full object-cover"
+                  class="w-full h-full object-cover rounded-sm"
                   loading="lazy"
                 />
               </div>
