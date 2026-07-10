@@ -1,0 +1,28 @@
+{
+	// Worker autonome : sync leads Meta Instant Forms -> D1 laom-tracking (prod).
+	// Deploy : bunx wrangler deploy --config workers/meta-leads/wrangler.jsonc
+	// Secrets (a poser avant le 1er deploy) :
+	//   bunx wrangler secret put META_LEADS_TOKEN --config workers/meta-leads/wrangler.jsonc
+	//   bunx wrangler secret put RESEND_API_KEY   --config workers/meta-leads/wrangler.jsonc
+	//   bunx wrangler secret put KIT_API_SECRET   --config workers/meta-leads/wrangler.jsonc
+	//   bunx wrangler secret put RUN_SECRET       --config workers/meta-leads/wrangler.jsonc
+	"name": "laom-meta-leads",
+	"main": "index.ts",
+	"compatibility_date": "2025-06-17",
+	"observability": { "enabled": true },
+	"triggers": {
+		"crons": ["*/10 * * * *"]
+	},
+	"vars": {
+		// Leads Meta antérieurs à cette date (heure de Paris, = 1er déploiement) :
+		// insérés en base + Kit, mais sans notif équipe ni mail candidat.
+		"BACKFILL_BEFORE": "2026-07-09 18:00:00"
+	},
+	"d1_databases": [
+		{
+			"binding": "TRACKING_DB",
+			"database_name": "laom-tracking",
+			"database_id": "543b50f3-f08f-45f2-a48c-99deaa390884"
+		}
+	]
+}
