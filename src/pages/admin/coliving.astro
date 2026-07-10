@@ -200,12 +200,19 @@ export const prerender = false
             var opts = STATUS.map(function (s) { return '<option value="' + s[0] + '"' + (l.status === s[0] ? ' selected' : '') + '>' + s[1] + '</option>'; }).join('');
             var answers = null;
             try { answers = l.answers ? JSON.parse(l.answers) : null; } catch (e) {}
-            var detail = answers ? ANSWER_LABELS.map(function (a) {
+            var answersHtml = answers ? ANSWER_LABELS.map(function (a) {
               var v = answers[a[0]];
               if (v == null || v === '' || (Array.isArray(v) && !v.length)) return '';
               return '<div class="flex gap-2"><span class="text-[#2C2824]/45 w-24 shrink-0">' + a[1] + '</span><span class="text-[#2C2824]">' + esc(Array.isArray(v) ? v.join(' · ') : v) + '</span></div>';
             }).filter(Boolean).join('') : '';
-            var toggle = detail ? '<button data-detail="lead-detail-' + l.id + '" class="lead-toggle text-[#2C2824]/50 hover:text-[#2C2824] text-xs border border-[#2C2824]/15 rounded-sm px-2 py-1">▸ détail</button>' : '';
+            var notesHtml = l.notes
+              ? '<div class="pt-3 mt-3 border-t border-[#2C2824]/8"><p class="font-medium text-[#2C2824] mb-1.5">Notes de suivi</p><pre class="whitespace-pre-wrap font-sans text-[#2C2824]/80">' + esc(l.notes) + '</pre></div>'
+              : '';
+            var noteForm = '<div class="pt-3 mt-2 flex gap-2">' +
+              '<input type="text" maxlength="2000" placeholder="Ajouter une note (compte-rendu de call, contexte…)" data-note-id="' + l.id + '" class="lead-note-input flex-1 border border-[#2C2824]/15 rounded-sm px-2.5 py-1.5 text-xs bg-white outline-none focus:border-[#C4A855]" />' +
+              '<button data-id="' + l.id + '" class="lead-note-btn text-xs border border-[#2C2824]/15 rounded-sm px-3 py-1.5 bg-white hover:bg-[#2C2824]/5">Ajouter</button></div>';
+            var detail = answersHtml + notesHtml + noteForm;
+            var toggle = '<button data-detail="lead-detail-' + l.id + '" class="lead-toggle text-[#2C2824]/50 hover:text-[#2C2824] text-xs border border-[#2C2824]/15 rounded-sm px-2 py-1">▸ détail</button>';
             var row = '<tr class="hover:bg-[#FAF8F5]/60">' +
               '<td class="px-3 py-2 text-[#2C2824]/60 text-xs whitespace-nowrap">' + fmtDate(l.created_at) + '</td>' +
               '<td class="px-3 py-2 text-[#2C2824]">' + esc(l.type) + '</td>' +
@@ -225,6 +232,22 @@ export const prerender = false
             btn.addEventListener('click', function () {
               var target = $(this.getAttribute('data-detail'));
               if (target) { target.classList.toggle('hidden'); this.textContent = target.classList.contains('hidden') ? '▸ détail' : '▾ détail'; }
+            });
+          });
+          Array.prototype.forEach.call(document.querySelectorAll('.lead-note-btn'), function (btn) {
+            btn.addEventListener('click', function () {
+              var id = this.getAttribute('data-id');
+              var input = document.querySelector('.lead-note-input[data-note-id="' + id + '"]');
+              var note = input ? input.value.trim() : '';
+              if (!note) return;
+              var el = this; el.disabled = true; el.textContent = '…';
+              fetch('/api/admin/lead-status', {
+                method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: Number(id), note: note }),
+              }).then(function (r) {
+                if (r.ok) loadData();
+                else { el.disabled = false; el.textContent = 'Ajouter'; el.style.borderColor = '#dc2626'; }
+              }).catch(function () { el.disabled = false; el.textContent = 'Ajouter'; el.style.borderColor = '#dc2626'; });
             });
           });
           Array.prototype.forEach.call(document.querySelectorAll('.lead-status'), function (sel) {

@@ -2,7 +2,7 @@
 // PAGE DE VENTE — Variant B (gardée et optimisée). Techniques La Pioche en charte
 // LAOM, posture LAOM. Optims : hero vidéo (sans bande de visages), témoignages en
 // carrousel infini, prix retiré (max candidatures), process bienveillant en
-// scroll-stack, journée type animée au scroll. Lead-gen : tout vers "Postuler".
+// scroll-stack, journée type animée au scroll. Lead-gen : tout vers "Candidater".
 // Route isolée /coliving-aout-labo-b (noindex).
 import Layout from '~/layouts/Layout.astro'
 import SiteNav from '~/components/laom/SiteNav.astro'
@@ -61,12 +61,12 @@ const etapes = [
       <source src="/videos/hero-laom-v2.mp4" type="video/mp4" />
     </video>
     <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(28,19,12,0.88) 0%,rgba(122,47,29,0.6) 55%,rgba(154,57,34,0.5) 100%)"></div>
-    <SiteNav transparent={true} links={[]} ctaText="Postuler" ctaHref={POSTULER} />
+    <SiteNav transparent={true} links={[]} ctaText="Candidater" ctaHref={POSTULER} />
     <div class="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 pt-28 pb-20 max-w-4xl mx-auto">
       <span class="inline-block rounded-full bg-[#F2EBDB]/12 border border-[#F2EBDB]/15 px-5 py-2 text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#F2EBDB]/90 mb-8">Coliving entrepreneurs · 3 éditions · Août 2026</span>
       <h1 class="font-extrabold text-[#F2EBDB] text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.03em] text-balance">Cette semaine, ton bureau, <span class="italic font-medium text-[#E7C89A]">c’est 21 hectares de nature.</span></h1>
       <p class="text-lg md:text-xl text-[#F2EBDB]/85 mt-7 max-w-2xl mx-auto leading-relaxed">Six jours dans le sud de l’Aveyron, avec onze entrepreneurs qui te ressemblent. Tu continues de bosser, mais dans un cadre qui te nourrit au lieu de t’épuiser.</p>
-      <a href={POSTULER} class="pill pill-light mt-10" style="padding:1rem 2.6rem">Postuler pour août 2026</a>
+      <a href={POSTULER} class="pill pill-light mt-10" style="padding:1rem 2.6rem">Candidater pour août 2026</a>
       <p class="text-xs tracking-[0.12em] uppercase text-[#F2EBDB]/55 mt-5">Candidature en 2 minutes · sans engagement</p>
       <p class="text-sm font-medium text-[#E7C89A] mt-3">Douze places par édition, et elles partent vite.</p>
     </div>
@@ -91,7 +91,7 @@ const etapes = [
         <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#73673E] mb-5">Le constat</p>
         <h2 class="text-4xl md:text-5xl font-extrabold text-[#412F1F] tracking-[-0.02em] leading-[1.08] text-balance">On connaît <span class="acc">cette situation.</span></h2>
         <p class="text-lg text-[#1D1B18]/70 mt-6 leading-relaxed max-w-md">Parce qu’on l’a vue des dizaines de fois. Chez les entrepreneurs qui viennent à LAOM, trois choses reviennent presque à chaque fois.</p>
-        <a href={POSTULER} class="pill pill-primary mt-9" style="padding:.9rem 2.2rem">Postuler pour août 2026</a>
+        <a href={POSTULER} class="pill pill-primary mt-9" style="padding:.9rem 2.2rem">Candidater pour août 2026</a>
       </div>
       <div class="space-y-5">
         {pains.map((p) => (
@@ -167,7 +167,7 @@ const etapes = [
         { src: L('potager-rangs'), alt: 'Le potager de LAOM' },
         { src: L('diner-golden-hour-laom'), alt: 'Dîner en communauté à LAOM' },
       ]}
-      ctaText="Postuler pour août 2026" ctaHref={POSTULER} />
+      ctaText="Candidater pour août 2026" ctaHref={POSTULER} />
   </div>
 
   <!-- ⑦ TRAVAILLER AUTREMENT -->
@@ -187,7 +187,7 @@ const etapes = [
     <div class="relative max-w-3xl mx-auto px-6 py-28 md:py-40 text-center">
       <h2 class="text-4xl md:text-6xl font-extrabold text-[#F2EBDB] tracking-[-0.02em] leading-[1.05] text-balance">Imagine ton lundi matin, <span class="italic font-medium text-[#E7C89A]">ici.</span></h2>
       <p class="text-lg md:text-xl text-[#F2EBDB]/85 mt-6 max-w-xl mx-auto leading-relaxed">Le café face à la vallée, le calme, et tout à créer. Pendant que les autres reprennent le métro.</p>
-      <a href={POSTULER} class="pill pill-light mt-9" style="padding:.95rem 2.4rem">Postuler pour août 2026</a>
+      <a href={POSTULER} class="pill pill-light mt-9" style="padding:.95rem 2.4rem">Candidater pour août 2026</a>
     </div>
   </section>
 
@@ -270,7 +270,7 @@ const etapes = [
       </div>
 
       <div class="text-center mt-14">
-        <a href={POSTULER} class="pill pill-primary" style="padding:.95rem 2.4rem">Postuler pour août 2026</a>
+        <a href={POSTULER} class="pill pill-primary" style="padding:.95rem 2.4rem">Candidater pour août 2026</a>
         <p class="text-sm text-[#1D1B18]/55 mt-5">Candidature en 2 minutes. Pas de pitch, pas de pression.</p>
       </div>
     </div>
@@ -296,12 +296,12 @@ const etapes = [
       eyebrow="Août 2026"
       title="Trois semaines. Douze places chacune." accent="Quand c’est complet, c’est complet."
       subtitle="Dates : 10-16, 17-23 et 24-30 août 2026. Douze places par édition, et elles partent vite. Le reste, on en parle ensemble."
-      primaryText="Postuler pour août 2026" primaryHref={POSTULER} />
+      primaryText="Candidater pour août 2026" primaryHref={POSTULER} />
   </div>
 
   <SiteFooter />
 
-  <StickyCta text="Postuler" href={POSTULER} />
+  <StickyCta text="Candidater" href={POSTULER} />
 </Layout>
 
 <style>
