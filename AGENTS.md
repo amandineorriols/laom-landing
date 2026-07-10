@@ -683,7 +683,13 @@ For questions about LAOM:
 - Phone: 06.73.68.35.73
 - Development Manager: Aubert Charly
 
+## Leads & tracking (agents)
+
+Pour lire/alimenter les leads du tunnel coliving depuis un agent (statuts, notes
+de call) : voir **`docs/AGENTS-LEADS-API.md`**. Ne jamais toucher la base
+`laom-tracking` directement — les statuts passent par l'API (feedback Meta).
+
 ---
 
-**Last Updated**: 2026-05-19
+**Last Updated**: 2026-07-10
 **Project Status**: Active Development
