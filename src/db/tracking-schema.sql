@@ -65,3 +65,6 @@ CREATE TABLE IF NOT EXISTS rate_limits (
   count INTEGER NOT NULL DEFAULT 0,
   reset_at INTEGER NOT NULL
 );
+
+-- Ajouté le 10/07/2026 : notes de suivi des calls (texte horodaté, append-only).
+-- ALTER TABLE leads ADD COLUMN notes TEXT;
