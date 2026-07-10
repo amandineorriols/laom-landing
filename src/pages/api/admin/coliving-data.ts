@@ -106,7 +106,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
     // Liste des leads (PII servie uniquement derriere l'auth)
     const leads = (await tdb.prepare(
       `SELECT id, created_at, type, status, first_name, last_name, email, phone,
-              utm_source, utm_campaign, utm_content, answers
+              utm_source, utm_campaign, utm_content, answers, notes
        FROM leads ${whereSql} ORDER BY created_at DESC LIMIT 500`,
     ).bind(...args).all()).results
 
