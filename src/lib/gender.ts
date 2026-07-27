@@ -38,6 +38,7 @@ const MALE = new Set([
   'thomas', 'timeo', 'timothe', 'timothee', 'titouan', 'tom', 'tony', 'tristan', 'ugo', 'ulysse',
   'valentin', 'valere', 'vianney', 'victor', 'vincent', 'virgile', 'walid', 'walter', 'wassim', 'wesley',
   'wilfried', 'william', 'willy', 'xavier', 'yacine', 'yanis', 'yann', 'yannick', 'yassine', 'yohan',
+  'mikael', 'mederic', 'arman', 'ianis', 'dominik', 'medhi', 'aymeric', 'gwendal', 'loris', 'swann',
   'yohann', 'youssef', 'yvan', 'yves', 'zacharie', 'zackary', 'zadig', 'zinedine',
 ])
 
@@ -78,6 +79,7 @@ const FEMALE = new Set([
   'suzanne', 'suzie', 'sybille', 'sylviane', 'sylvie', 'tatiana', 'tess', 'tessa', 'thais', 'therese',
   'tiphaine', 'valentine', 'valerie', 'vanessa', 'vera', 'veronique', 'victoire', 'victoria', 'violette', 'virginie',
   'viviane', 'wendy', 'yasmina', 'yasmine', 'yolande', 'ysaline', 'yvette', 'yvonne', 'zelie', 'zoe',
+  'philomene', 'ketleen', 'tiare', 'maeva', 'orane', 'annaelle', 'kathleen', 'cassandre', 'shirley', 'priscille',
 ])
 
 // Prenoms mixtes courants : jamais inferes, toujours a trier manuellement.
