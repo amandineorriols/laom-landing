@@ -194,7 +194,7 @@ export const POST: APIRoute = async ({ request, locals, cookies }) => {
   // 5. Entrée dans Kit (tag candidature-coliving -> automation de nurture). Non bloquant.
   //    Base légale : case RGPD du formulaire ("me recontacter et m'envoyer des informations").
   try {
-    await subscribeWithTag(env?.KIT_API_SECRET, email, firstName, 'candidature-coliving')
+    await subscribeWithTag(env?.KIT_API_SECRET, email, firstName, ['candidature-coliving', 'leads-coliving-aout-26'])
   } catch (e) {
     console.error('[form/candidater] Kit error (non-blocking):', e)
   }
