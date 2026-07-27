@@ -28,8 +28,14 @@ export const prerender = false
   <div id="dashboard" class="hidden min-h-screen bg-[#FAF8F5]">
     <header class="sticky top-0 z-10 bg-[#FAF8F5]/90 backdrop-blur border-b border-[#2C2824]/8">
       <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4 flex-wrap">
-        <h1 class="font-playfair text-xl text-[#2C2824]">Coliving Août 2026 — Tunnel & Leads</h1>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-6 flex-wrap">
+          <h1 class="font-playfair text-xl text-[#2C2824]">Coliving Août 2026</h1>
+          <nav class="flex items-center gap-1">
+            <button data-tab="leads" class="tab-btn text-sm rounded-sm px-3 py-1.5 bg-[#2C2824] text-white">Tunnel &amp; Leads</button>
+            <button data-tab="ads" class="tab-btn text-sm rounded-sm px-3 py-1.5 text-[#2C2824]/60 hover:bg-[#2C2824]/5">Pubs Meta</button>
+          </nav>
+        </div>
+        <div class="flex items-center gap-2" id="leads-controls">
           <select id="type-filter" class="text-sm border border-[#2C2824]/15 rounded-sm px-2 py-1.5 bg-white">
             <option value="">Tous types</option>
             <option value="candidature">Candidatures</option>
@@ -101,6 +107,50 @@ export const prerender = false
 
       <p class="text-center text-xs text-[#2C2824]/30 pt-4" id="meta-line"></p>
     </main>
+
+    <!-- Onglet Pubs Meta (KPI campagne coliving, live Graph API) -->
+    <div id="ads-loading" class="max-w-7xl mx-auto px-6 py-16 text-center text-[#2C2824]/50 hidden">Chargement des KPI Meta…</div>
+    <div id="ads-error" class="max-w-7xl mx-auto px-6 py-16 text-center text-red-600 hidden"></div>
+    <main id="ads-content" class="hidden max-w-7xl mx-auto px-6 py-8 space-y-8">
+      <!-- KPIs pubs -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="ads-kpis"></div>
+
+      <!-- Semaine par semaine -->
+      <section class="bg-white border border-[#2C2824]/5 rounded-sm p-6 overflow-x-auto">
+        <h2 class="font-playfair text-lg text-[#2C2824] mb-4">Semaine par semaine</h2>
+        <table class="w-full text-sm min-w-[640px]">
+          <thead>
+            <tr class="text-left text-[#2C2824]/50 border-b border-[#2C2824]/8">
+              <th class="px-3 py-2">Semaine</th><th class="px-3 py-2 text-right">Dépense</th>
+              <th class="px-3 py-2 text-right">Impr.</th><th class="px-3 py-2 text-right">CPM</th>
+              <th class="px-3 py-2 text-right">Fréq.</th><th class="px-3 py-2 text-right">Hook</th>
+              <th class="px-3 py-2 text-right">Hold</th><th class="px-3 py-2 text-right">uCTR</th>
+              <th class="px-3 py-2 text-right">Leads</th><th class="px-3 py-2 text-right">CPL</th>
+            </tr>
+          </thead>
+          <tbody id="ads-weeks" class="divide-y divide-[#2C2824]/5"></tbody>
+        </table>
+      </section>
+
+      <!-- Par pub -->
+      <section class="bg-white border border-[#2C2824]/5 rounded-sm p-6 overflow-x-auto">
+        <h2 class="font-playfair text-lg text-[#2C2824] mb-1">Par pub — cumul campagne</h2>
+        <p class="text-xs text-[#2C2824]/40 mb-4">Target CPA provisoire : 5 € / lead. ▸ pour l'évolution semaine par semaine.</p>
+        <table class="w-full text-sm min-w-[640px]">
+          <thead>
+            <tr class="text-left text-[#2C2824]/50 border-b border-[#2C2824]/8">
+              <th class="px-3 py-2">Pub</th><th class="px-3 py-2 text-right">Dépense</th>
+              <th class="px-3 py-2 text-right">Hook</th><th class="px-3 py-2 text-right">Hold</th>
+              <th class="px-3 py-2 text-right">uCTR</th><th class="px-3 py-2 text-right">Leads</th>
+              <th class="px-3 py-2 text-right">CPL</th><th class="px-3 py-2">Statut</th><th class="px-3 py-2"></th>
+            </tr>
+          </thead>
+          <tbody id="ads-table" class="divide-y divide-[#2C2824]/5"></tbody>
+        </table>
+      </section>
+
+      <p class="text-center text-xs text-[#2C2824]/30 pt-4" id="ads-meta-line"></p>
+    </main>
   </div>
 
   <script is:inline>
@@ -117,6 +167,7 @@ export const prerender = false
       var $ = function (id) { return document.getElementById(id); };
       var authGate = $('auth-gate'), dashboard = $('dashboard'), loading = $('loading'),
           content = $('dashboard-content'), authError = $('auth-error');
+      var currentTab = 'leads', adsLoaded = false;
 
       function showGate() { authGate.classList.remove('hidden'); dashboard.classList.add('hidden'); }
       function showDashboard() { authGate.classList.add('hidden'); dashboard.classList.remove('hidden'); }
@@ -292,6 +343,120 @@ export const prerender = false
         a.click();
         URL.revokeObjectURL(a.href);
       }
+
+      // ---- Onglet Pubs Meta ----
+      function eur2(n) { return n == null ? '—' : n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; }
+      function pctf(n) { return n == null ? '—' : String(n).replace('.', ',') + ' %'; }
+      function fmtWeek(s) { var d = new Date(s + 'T00:00:00Z'); return d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' }); }
+      function cplColor(cpl) { return cpl == null ? '#2C2824' : cpl <= 5 ? '#4A7C59' : cpl <= 7 ? '#f59e0b' : '#dc2626'; }
+
+      function switchTab(tab) {
+        currentTab = tab;
+        Array.prototype.forEach.call(document.querySelectorAll('.tab-btn'), function (b) {
+          var active = b.getAttribute('data-tab') === tab;
+          b.className = 'tab-btn text-sm rounded-sm px-3 py-1.5 ' + (active ? 'bg-[#2C2824] text-white' : 'text-[#2C2824]/60 hover:bg-[#2C2824]/5');
+        });
+        $('leads-controls').classList.toggle('hidden', tab !== 'leads');
+        var leadsVisible = tab === 'leads';
+        content.classList.toggle('hidden', !leadsVisible);
+        loading.classList.add('hidden');
+        $('ads-content').classList.toggle('hidden', tab !== 'ads' || !adsLoaded);
+        $('ads-loading').classList.add('hidden');
+        $('ads-error').classList.add('hidden');
+        if (tab === 'ads' && !adsLoaded) loadAds();
+      }
+
+      function loadAds() {
+        $('ads-loading').classList.remove('hidden');
+        $('ads-content').classList.add('hidden');
+        $('ads-error').classList.add('hidden');
+        fetch('/api/admin/ads-data/', { credentials: 'same-origin' })
+          .then(function (res) {
+            if (res.status === 401) { showGate(); throw new Error('unauth'); }
+            if (!res.ok) throw new Error('http ' + res.status);
+            return res.json();
+          })
+          .then(function (data) {
+            adsLoaded = true;
+            $('ads-loading').classList.add('hidden');
+            if (currentTab === 'ads') $('ads-content').classList.remove('hidden');
+            renderAds(data);
+          })
+          .catch(function (err) {
+            if (err.message === 'unauth') return;
+            $('ads-loading').classList.add('hidden');
+            var e = $('ads-error');
+            e.textContent = 'Erreur de chargement des KPI Meta (' + err.message + ')';
+            e.classList.remove('hidden');
+          });
+      }
+
+      function renderAds(d) {
+        var t = d.totals || {};
+        var lastWeek = (d.weeks || [])[0] || {};
+        var cards = [
+          ['Dépense totale', eur2(t.spend)], ['Leads', t.leads == null ? '—' : t.leads],
+          ['CPL campagne', eur2(t.cpl)], ['CPL semaine en cours', eur2(lastWeek.cpl)],
+        ];
+        $('ads-kpis').innerHTML = cards.map(function (c) {
+          return '<div class="bg-white border border-[#2C2824]/5 rounded-sm p-4"><div class="text-2xl font-mono text-[#2C2824]">' + esc(c[1]) + '</div><div class="text-xs text-[#2C2824]/50 mt-1">' + c[0] + '</div></div>';
+        }).join('');
+
+        $('ads-weeks').innerHTML = (d.weeks || []).map(function (w) {
+          return '<tr>' +
+            '<td class="px-3 py-2 text-[#2C2824] whitespace-nowrap">' + fmtWeek(w.week_start) + ' → ' + fmtWeek(w.week_end) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + eur2(w.spend) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + (w.impressions || 0).toLocaleString('fr-FR') + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + eur2(w.cpm) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + (w.frequency == null ? '—' : String(w.frequency).replace('.', ',')) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + pctf(w.hook_rate) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + pctf(w.hold_rate) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + pctf(w.uctr) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + (w.leads || 0) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono" style="color:' + cplColor(w.cpl) + '">' + eur2(w.cpl) + '</td>' +
+            '</tr>';
+        }).join('') || '<tr><td class="py-3 text-[#2C2824]/40" colspan="10">Aucune donnée</td></tr>';
+
+        $('ads-table').innerHTML = (d.ads || []).map(function (a, i) {
+          var status = a.active_last_week
+            ? '<span class="text-xs px-2 py-0.5 rounded-sm" style="background:#4A7C5915;color:#4A7C59">active</span>'
+            : '<span class="text-xs px-2 py-0.5 rounded-sm bg-[#2C2824]/5 text-[#2C2824]/40">coupée</span>';
+          var row = '<tr class="hover:bg-[#FAF8F5]/60">' +
+            '<td class="px-3 py-2 text-[#2C2824]">' + esc(a.ad_name) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + eur2(a.spend) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + pctf(a.hook_rate) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + pctf(a.hold_rate) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + pctf(a.uctr) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + (a.leads || 0) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono" style="color:' + cplColor(a.cpl) + '">' + eur2(a.cpl) + '</td>' +
+            '<td class="px-3 py-2">' + status + '</td>' +
+            '<td class="px-3 py-2"><button data-detail="ad-detail-' + i + '" class="ad-toggle text-[#2C2824]/50 hover:text-[#2C2824] text-xs border border-[#2C2824]/15 rounded-sm px-2 py-1">▸ semaines</button></td>' +
+            '</tr>';
+          var weekly = (a.weekly || []).filter(function (w) { return w.spend > 0; }).map(function (w) {
+            return '<div class="flex gap-4 font-mono text-xs"><span class="w-16 text-[#2C2824]/50">' + fmtWeek(w.week_start) + '</span>' +
+              '<span class="w-20 text-right">' + eur2(w.spend) + '</span>' +
+              '<span class="w-14 text-right">' + w.leads + ' lead' + (w.leads > 1 ? 's' : '') + '</span>' +
+              '<span class="w-20 text-right" style="color:' + cplColor(w.cpl) + '">' + eur2(w.cpl) + '</span></div>';
+          }).join('');
+          row += '<tr id="ad-detail-' + i + '" class="hidden bg-[#FAF8F5]/70"><td colspan="9" class="px-6 py-3"><div class="space-y-1">' +
+            '<div class="flex gap-4 text-xs text-[#2C2824]/40"><span class="w-16">Semaine</span><span class="w-20 text-right">Dépense</span><span class="w-14 text-right">Leads</span><span class="w-20 text-right">CPL</span></div>' +
+            (weekly || '<span class="text-xs text-[#2C2824]/40">Aucune dépense</span>') + '</div></td></tr>';
+          return row;
+        }).join('') || '<tr><td class="py-3 text-[#2C2824]/40" colspan="9">Aucune donnée</td></tr>';
+
+        Array.prototype.forEach.call(document.querySelectorAll('.ad-toggle'), function (btn) {
+          btn.addEventListener('click', function () {
+            var target = $(this.getAttribute('data-detail'));
+            if (target) { target.classList.toggle('hidden'); this.textContent = target.classList.contains('hidden') ? '▸ semaines' : '▾ semaines'; }
+          });
+        });
+
+        $('ads-meta-line').textContent = 'Campagne coliving · du ' + t.since + ' au ' + t.until + ' · live Graph API · leads = total Meta (formulaires + pixel)';
+      }
+
+      Array.prototype.forEach.call(document.querySelectorAll('.tab-btn'), function (btn) {
+        btn.addEventListener('click', function () { switchTab(this.getAttribute('data-tab')); });
+      });
 
       $('csv-btn').addEventListener('click', exportCsv);
       $('admin-login').addEventListener('click', doLogin);
