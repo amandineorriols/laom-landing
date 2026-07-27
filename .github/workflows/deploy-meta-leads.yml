@@ -1,0 +1,30 @@
+name: Deploy meta-leads worker
+
+# Deploie le worker laom-meta-leads (cron sync leads Meta Instant Forms -> D1)
+# quand son code change sur main. Les secrets runtime du worker (META_LEADS_TOKEN,
+# RESEND_API_KEY, KIT_API_SECRET, RUN_SECRET) sont deja poses sur le worker et
+# survivent aux redeploys — ce workflow ne les touche pas.
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'workers/meta-leads/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - name: Deploy worker
+        run: bunx wrangler@latest deploy --config workers/meta-leads/wrangler.jsonc
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
