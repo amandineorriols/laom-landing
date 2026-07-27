@@ -32,6 +32,7 @@ export const prerender = false
           <h1 class="font-playfair text-xl text-[#2C2824]">Coliving Août 2026</h1>
           <nav class="flex items-center gap-1">
             <button data-tab="leads" class="tab-btn text-sm rounded-sm px-3 py-1.5 bg-[#2C2824] text-white">Tunnel &amp; Leads</button>
+            <button data-tab="calls" class="tab-btn text-sm rounded-sm px-3 py-1.5 text-[#2C2824]/60 hover:bg-[#2C2824]/5">Calls</button>
             <button data-tab="ads" class="tab-btn text-sm rounded-sm px-3 py-1.5 text-[#2C2824]/60 hover:bg-[#2C2824]/5">Pubs Meta</button>
           </nav>
         </div>
@@ -159,6 +160,20 @@ export const prerender = false
 
       <p class="text-center text-xs text-[#2C2824]/30 pt-4" id="ads-meta-line"></p>
     </main>
+
+    <!-- Onglet Calls (kanban candidatures : closer / Amandine / Yanis) -->
+    <div id="calls-loading" class="max-w-7xl mx-auto px-6 py-16 text-center text-[#2C2824]/50 hidden">Chargement des candidatures…</div>
+    <main id="calls-content" class="hidden mx-auto px-6 py-8" style="max-width:1700px">
+      <div class="flex items-center gap-2 flex-wrap mb-2" id="calls-filters"></div>
+      <p class="text-xs text-[#2C2824]/40 mb-5">Candidatures uniquement. Glisser une carte pour changer son statut · cliquer pour le détail. Routage : Meta Forms → Closer · formulaire site → Amandine (femmes) / Yanis (hommes) · prénom ambigu → À trier.</p>
+      <div class="flex gap-3 overflow-x-auto pb-6 items-start" id="kanban"></div>
+    </main>
+
+    <!-- Fiche lead (panneau lateral) -->
+    <div id="call-modal" class="hidden fixed inset-0 z-50">
+      <div class="absolute inset-0 bg-black/30" id="call-modal-bg"></div>
+      <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl overflow-y-auto" id="call-modal-panel"></div>
+    </div>
   </div>
 
   <script is:inline>
@@ -365,14 +380,215 @@ export const prerender = false
           b.className = 'tab-btn text-sm rounded-sm px-3 py-1.5 ' + (active ? 'bg-[#2C2824] text-white' : 'text-[#2C2824]/60 hover:bg-[#2C2824]/5');
         });
         $('leads-controls').classList.toggle('hidden', tab !== 'leads');
-        var leadsVisible = tab === 'leads';
-        content.classList.toggle('hidden', !leadsVisible);
+        content.classList.toggle('hidden', tab !== 'leads');
         loading.classList.add('hidden');
         $('ads-content').classList.toggle('hidden', tab !== 'ads' || !adsLoaded);
         $('ads-loading').classList.add('hidden');
         $('ads-error').classList.add('hidden');
+        $('calls-content').classList.toggle('hidden', tab !== 'calls' || !callsLoaded);
+        $('calls-loading').classList.add('hidden');
         if (tab === 'ads' && !adsLoaded) loadAds();
+        if (tab === 'calls' && !callsLoaded) loadCalls();
       }
+
+      // ---- Onglet Calls (kanban) ----
+      var callsLoaded = false, callsLeads = [], callsFilter = '';
+      var ASSIGNEES = [
+        ['', 'Tous'], ['closer', 'Closer (Meta)'], ['amandine', 'Amandine'],
+        ['yanis', 'Yanis'], ['a_trier', 'À trier'],
+      ];
+      var ASSIGNEE_STYLE = {
+        closer: ['Closer', '#5B8AA6'], amandine: ['Amandine', '#C4A855'],
+        yanis: ['Yanis', '#4A7C59'], a_trier: ['À trier', '#dc2626'],
+      };
+
+      function loadCalls() {
+        $('calls-loading').classList.remove('hidden');
+        $('calls-content').classList.add('hidden');
+        fetch('/api/admin/coliving-data/?period=all&type=candidature', { credentials: 'same-origin' })
+          .then(function (res) {
+            if (res.status === 401) { showGate(); throw new Error('unauth'); }
+            if (!res.ok) throw new Error('http ' + res.status);
+            return res.json();
+          })
+          .then(function (data) {
+            callsLeads = data.leads || [];
+            callsLoaded = true;
+            $('calls-loading').classList.add('hidden');
+            if (currentTab === 'calls') $('calls-content').classList.remove('hidden');
+            renderCalls();
+          })
+          .catch(function (err) {
+            if (err.message === 'unauth') return;
+            $('calls-loading').textContent = 'Erreur de chargement (' + err.message + ')';
+          });
+      }
+
+      function daysAgo(s) {
+        if (!s) return '';
+        var d = Math.floor((Date.now() - new Date(s.replace(' ', 'T') + 'Z').getTime()) / 86400000);
+        return d <= 0 ? "aujourd'hui" : d === 1 ? 'hier' : 'il y a ' + d + ' j';
+      }
+
+      function callCard(l) {
+        var name = esc(((l.first_name || '') + ' ' + (l.last_name || '')).trim() || l.email || '—');
+        var a = ASSIGNEE_STYLE[l.assignee] || ['?', '#2C2824'];
+        var flow = l.utm_source === 'meta_form'
+          ? '<span class="text-[10px] px-1.5 py-0.5 rounded-sm bg-[#7B6B8A]/10 text-[#7B6B8A]">Meta</span>'
+          : '<span class="text-[10px] px-1.5 py-0.5 rounded-sm bg-[#2C2824]/5 text-[#2C2824]/50">Site</span>';
+        var genderMark = l.gender_final ? (l.gender_final === 'f' ? 'F' : 'H') + (l.gender_inferred ? '·auto' : '') : '?';
+        return '<div class="call-card bg-white border border-[#2C2824]/8 rounded-sm p-3 cursor-pointer hover:border-[#C4A855]/60 shadow-sm" draggable="true" data-id="' + l.id + '">' +
+          '<div class="flex items-start justify-between gap-2 mb-1.5">' +
+          '<span class="text-sm text-[#2C2824] font-medium leading-tight">' + name + '</span>' + flow + '</div>' +
+          '<div class="flex items-center gap-1.5 flex-wrap">' +
+          '<span class="text-[10px] px-1.5 py-0.5 rounded-sm" style="background:' + a[1] + '18;color:' + a[1] + '">' + a[0] + '</span>' +
+          '<span class="text-[10px] text-[#2C2824]/40">' + genderMark + '</span>' +
+          '<span class="text-[10px] text-[#2C2824]/40 ml-auto">' + daysAgo(l.created_at) + '</span>' +
+          '</div></div>';
+      }
+
+      function renderCalls() {
+        var counts = {};
+        ASSIGNEES.forEach(function (a) { counts[a[0]] = 0; });
+        callsLeads.forEach(function (l) { counts[''] += 1; if (counts[l.assignee] != null) counts[l.assignee] += 1; });
+        $('calls-filters').innerHTML = ASSIGNEES.map(function (a) {
+          var active = callsFilter === a[0];
+          return '<button data-assignee="' + a[0] + '" class="calls-filter text-sm rounded-sm px-3 py-1.5 border ' +
+            (active ? 'bg-[#2C2824] text-white border-[#2C2824]' : 'bg-white text-[#2C2824]/70 border-[#2C2824]/15 hover:bg-[#2C2824]/5') + '">' +
+            a[1] + ' <span class="font-mono text-xs opacity-60">' + counts[a[0]] + '</span></button>';
+        }).join('');
+        Array.prototype.forEach.call(document.querySelectorAll('.calls-filter'), function (btn) {
+          btn.addEventListener('click', function () { callsFilter = this.getAttribute('data-assignee'); renderCalls(); });
+        });
+
+        var visible = callsFilter ? callsLeads.filter(function (l) { return l.assignee === callsFilter; }) : callsLeads;
+        $('kanban').innerHTML = STATUS.map(function (s) {
+          var cards = visible.filter(function (l) { return l.status === s[0]; });
+          return '<div class="kanban-col shrink-0 w-64 bg-[#2C2824]/[0.03] border border-[#2C2824]/5 rounded-sm" data-status="' + s[0] + '">' +
+            '<div class="px-3 py-2.5 flex items-center justify-between border-b border-[#2C2824]/5">' +
+            '<span class="text-sm text-[#2C2824] font-medium">' + s[1] + '</span>' +
+            '<span class="text-xs font-mono text-[#2C2824]/40">' + cards.length + '</span></div>' +
+            '<div class="p-2 space-y-2 min-h-[120px] kanban-body">' + cards.map(callCard).join('') + '</div></div>';
+        }).join('');
+
+        // Drag & drop natif : deposer une carte sur une colonne change le statut.
+        Array.prototype.forEach.call(document.querySelectorAll('.call-card'), function (card) {
+          card.addEventListener('dragstart', function (e) {
+            e.dataTransfer.setData('text/plain', this.getAttribute('data-id'));
+            e.dataTransfer.effectAllowed = 'move';
+          });
+          card.addEventListener('click', function () {
+            var l = callsLeads.find(function (x) { return String(x.id) === card.getAttribute('data-id'); });
+            if (l) openCallModal(l);
+          });
+        });
+        Array.prototype.forEach.call(document.querySelectorAll('.kanban-col'), function (col) {
+          col.addEventListener('dragover', function (e) { e.preventDefault(); col.classList.add('ring-2', 'ring-[#C4A855]'); });
+          col.addEventListener('dragleave', function () { col.classList.remove('ring-2', 'ring-[#C4A855]'); });
+          col.addEventListener('drop', function (e) {
+            e.preventDefault();
+            col.classList.remove('ring-2', 'ring-[#C4A855]');
+            var id = e.dataTransfer.getData('text/plain');
+            var status = col.getAttribute('data-status');
+            var l = callsLeads.find(function (x) { return String(x.id) === id; });
+            if (!l || l.status === status) return;
+            var oldStatus = l.status;
+            l.status = status; renderCalls();
+            fetch('/api/admin/lead-status', {
+              method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: Number(id), status: status }),
+            }).then(function (r) { if (!r.ok) { l.status = oldStatus; renderCalls(); } })
+              .catch(function () { l.status = oldStatus; renderCalls(); });
+          });
+        });
+      }
+
+      function openCallModal(l) {
+        var name = esc(((l.first_name || '') + ' ' + (l.last_name || '')).trim() || '—');
+        var a = ASSIGNEE_STYLE[l.assignee] || ['?', '#2C2824'];
+        var answers = null;
+        try { answers = l.answers ? JSON.parse(l.answers) : null; } catch (e) {}
+        var answersHtml = answers ? ANSWER_LABELS.map(function (x) {
+          var v = answers[x[0]];
+          if (v == null || v === '' || (Array.isArray(v) && !v.length)) return '';
+          return '<div class="flex gap-2 text-xs"><span class="text-[#2C2824]/45 w-24 shrink-0">' + x[1] + '</span><span class="text-[#2C2824]">' + esc(Array.isArray(v) ? v.join(' · ') : v) + '</span></div>';
+        }).filter(Boolean).join('') : '';
+        var statusOpts = STATUS.map(function (s) { return '<option value="' + s[0] + '"' + (l.status === s[0] ? ' selected' : '') + '>' + s[1] + '</option>'; }).join('');
+        var gBtn = function (val, label) {
+          var active = (val === '' && !l.gender_final) || l.gender_final === val;
+          var manual = l.gender_final && !l.gender_inferred;
+          return '<button data-gender="' + val + '" class="modal-gender text-xs border rounded-sm px-3 py-1.5 ' +
+            (active ? 'bg-[#2C2824] text-white border-[#2C2824]' : 'bg-white text-[#2C2824]/70 border-[#2C2824]/15 hover:bg-[#2C2824]/5') + '">' + label + (active && l.gender_inferred ? ' (auto)' : active && manual ? ' (manuel)' : '') + '</button>';
+        };
+        $('call-modal-panel').innerHTML =
+          '<div class="p-6 space-y-5">' +
+          '<div class="flex items-start justify-between gap-3">' +
+          '<div><h3 class="font-playfair text-xl text-[#2C2824]">' + name + '</h3>' +
+          '<div class="flex items-center gap-2 mt-1.5">' +
+          '<span class="text-[10px] px-1.5 py-0.5 rounded-sm" style="background:' + a[1] + '18;color:' + a[1] + '">' + a[0] + '</span>' +
+          (l.utm_source === 'meta_form' ? '<span class="text-[10px] px-1.5 py-0.5 rounded-sm bg-[#7B6B8A]/10 text-[#7B6B8A]">Meta Forms</span>' : '<span class="text-[10px] px-1.5 py-0.5 rounded-sm bg-[#2C2824]/5 text-[#2C2824]/50">Formulaire site</span>') +
+          '<span class="text-[10px] text-[#2C2824]/40">' + daysAgo(l.created_at) + '</span></div></div>' +
+          '<button id="call-modal-close" class="text-[#2C2824]/40 hover:text-[#2C2824] text-xl leading-none px-1">×</button></div>' +
+          '<div class="space-y-1.5 text-sm">' +
+          '<div><a class="text-[#2C2824] hover:text-[#C4A855]" href="mailto:' + esc(l.email) + '">' + esc(l.email) + '</a></div>' +
+          (l.phone ? '<div><a class="text-[#2C2824] hover:text-[#C4A855]" href="tel:' + esc(l.phone) + '">' + esc(l.phone) + '</a></div>' : '') +
+          (l.utm_content ? '<div class="text-xs text-[#2C2824]/50">Créa : ' + esc(l.utm_content) + '</div>' : '') + '</div>' +
+          '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Statut</p>' +
+          '<select id="modal-status" class="w-full border border-[#2C2824]/15 rounded-sm px-2 py-2 text-sm bg-white">' + statusOpts + '</select></div>' +
+          '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Genre (routage Amandine / Yanis)</p>' +
+          '<div class="flex gap-2">' + gBtn('f', 'Femme') + gBtn('h', 'Homme') + '</div></div>' +
+          (answersHtml ? '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Candidature</p><div class="space-y-1.5">' + answersHtml + '</div></div>' : '') +
+          (l.notes ? '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Notes de suivi</p><pre class="whitespace-pre-wrap font-sans text-xs text-[#2C2824]/80 bg-[#FAF8F5] rounded-sm p-3">' + esc(l.notes) + '</pre></div>' : '') +
+          '<div class="flex gap-2"><input type="text" maxlength="2000" id="modal-note" placeholder="Ajouter une note (compte-rendu de call…)" class="flex-1 border border-[#2C2824]/15 rounded-sm px-2.5 py-2 text-xs bg-white outline-none focus:border-[#C4A855]" />' +
+          '<button id="modal-note-btn" class="text-xs border border-[#2C2824]/15 rounded-sm px-3 py-2 bg-white hover:bg-[#2C2824]/5">Ajouter</button></div>' +
+          '</div>';
+        $('call-modal').classList.remove('hidden');
+
+        $('call-modal-close').addEventListener('click', closeCallModal);
+        $('modal-status').addEventListener('change', function () {
+          var status = this.value, sel = this;
+          sel.disabled = true;
+          fetch('/api/admin/lead-status', {
+            method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: l.id, status: status }),
+          }).then(function (r) {
+            sel.disabled = false;
+            if (r.ok) { l.status = status; renderCalls(); } else { sel.style.borderColor = '#dc2626'; }
+          }).catch(function () { sel.disabled = false; sel.style.borderColor = '#dc2626'; });
+        });
+        Array.prototype.forEach.call(document.querySelectorAll('.modal-gender'), function (btn) {
+          btn.addEventListener('click', function () {
+            var g = this.getAttribute('data-gender');
+            fetch('/api/admin/lead-status', {
+              method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: l.id, gender: g }),
+            }).then(function (r) {
+              if (r.ok) {
+                l.gender = g; l.gender_final = g; l.gender_inferred = false;
+                if (l.utm_source !== 'meta_form') l.assignee = g === 'f' ? 'amandine' : 'yanis';
+                renderCalls(); openCallModal(l);
+              }
+            });
+          });
+        });
+        $('modal-note-btn').addEventListener('click', function () {
+          var note = $('modal-note').value.trim();
+          if (!note) return;
+          var el = this; el.disabled = true; el.textContent = '…';
+          fetch('/api/admin/lead-status', {
+            method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: l.id, note: note }),
+          }).then(function (r) {
+            if (r.ok) {
+              var stamp = new Date().toISOString().slice(0, 16).replace('T', ' ');
+              l.notes = (l.notes ? l.notes + '\n' : '') + '[' + stamp + '] ' + note;
+              openCallModal(l);
+            } else { el.disabled = false; el.textContent = 'Ajouter'; }
+          }).catch(function () { el.disabled = false; el.textContent = 'Ajouter'; });
+        });
+      }
+
+      function closeCallModal() { $('call-modal').classList.add('hidden'); }
 
       function loadAds() {
         $('ads-loading').classList.remove('hidden');
@@ -484,6 +700,7 @@ export const prerender = false
       Array.prototype.forEach.call(document.querySelectorAll('.tab-btn'), function (btn) {
         btn.addEventListener('click', function () { switchTab(this.getAttribute('data-tab')); });
       });
+      $('call-modal-bg').addEventListener('click', closeCallModal);
 
       $('csv-btn').addEventListener('click', exportCsv);
       $('admin-login').addEventListener('click', doLogin);
