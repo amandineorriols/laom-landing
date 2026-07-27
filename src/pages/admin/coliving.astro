@@ -115,6 +115,13 @@ export const prerender = false
       <!-- KPIs pubs -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="ads-kpis"></div>
 
+      <!-- Conseils (regles du skill KPI, calcules en live) -->
+      <section class="bg-white border border-[#2C2824]/5 rounded-sm p-6">
+        <h2 class="font-playfair text-lg text-[#2C2824] mb-1">Conseils</h2>
+        <p id="ads-summary" class="text-sm text-[#2C2824]/60 mb-4"></p>
+        <ul id="ads-advice" class="space-y-2.5"></ul>
+      </section>
+
       <!-- Semaine par semaine -->
       <section class="bg-white border border-[#2C2824]/5 rounded-sm p-6 overflow-x-auto">
         <h2 class="font-playfair text-lg text-[#2C2824] mb-4">Semaine par semaine</h2>
@@ -142,7 +149,8 @@ export const prerender = false
               <th class="px-3 py-2">Pub</th><th class="px-3 py-2 text-right">Dépense</th>
               <th class="px-3 py-2 text-right">Hook</th><th class="px-3 py-2 text-right">Hold</th>
               <th class="px-3 py-2 text-right">uCTR</th><th class="px-3 py-2 text-right">Leads</th>
-              <th class="px-3 py-2 text-right">CPL</th><th class="px-3 py-2">Statut</th><th class="px-3 py-2"></th>
+              <th class="px-3 py-2 text-right">CPL</th><th class="px-3 py-2">Statut</th>
+              <th class="px-3 py-2">Verdict</th><th class="px-3 py-2"></th>
             </tr>
           </thead>
           <tbody id="ads-table" class="divide-y divide-[#2C2824]/5"></tbody>
@@ -391,6 +399,15 @@ export const prerender = false
           });
       }
 
+      var GRADE_STYLE = {
+        winner: ['Winner', '#4A7C59'], prometteur: ['Prometteur', '#5B8AA6'],
+        limite: ['Limite', '#f59e0b'], loser: ['Loser', '#dc2626'], trop_tot: ['Trop tôt', '#9ca3af'],
+      };
+      var ADVICE_STYLE = {
+        kill: ['KILL', '#dc2626'], scale: ['SCALE', '#4A7C59'], watch: ['WATCH', '#f59e0b'],
+        iterate: ['ITÉRER', '#5B8AA6'], produce: ['PRODUIRE', '#7B6B8A'],
+      };
+
       function renderAds(d) {
         var t = d.totals || {};
         var lastWeek = (d.weeks || [])[0] || {};
@@ -401,6 +418,12 @@ export const prerender = false
         $('ads-kpis').innerHTML = cards.map(function (c) {
           return '<div class="bg-white border border-[#2C2824]/5 rounded-sm p-4"><div class="text-2xl font-mono text-[#2C2824]">' + esc(c[1]) + '</div><div class="text-xs text-[#2C2824]/50 mt-1">' + c[0] + '</div></div>';
         }).join('');
+
+        $('ads-summary').textContent = d.summary || '';
+        $('ads-advice').innerHTML = (d.advice || []).map(function (a) {
+          var s = ADVICE_STYLE[a.type] || [a.type.toUpperCase(), '#2C2824'];
+          return '<li class="flex items-start gap-3 text-sm"><span class="shrink-0 text-[10px] font-mono px-1.5 py-0.5 rounded-sm mt-0.5" style="background:' + s[1] + '18;color:' + s[1] + '">' + s[0] + '</span><span class="text-[#2C2824]/80">' + esc(a.text) + '</span></li>';
+        }).join('') || '<li class="text-sm text-[#2C2824]/40">Rien à signaler.</li>';
 
         $('ads-weeks').innerHTML = (d.weeks || []).map(function (w) {
           return '<tr>' +
@@ -421,6 +444,8 @@ export const prerender = false
           var status = a.active_last_week
             ? '<span class="text-xs px-2 py-0.5 rounded-sm" style="background:#4A7C5915;color:#4A7C59">active</span>'
             : '<span class="text-xs px-2 py-0.5 rounded-sm bg-[#2C2824]/5 text-[#2C2824]/40">coupée</span>';
+          var g = GRADE_STYLE[a.grade] || ['—', '#2C2824'];
+          var verdict = '<span class="text-xs px-2 py-0.5 rounded-sm whitespace-nowrap" style="background:' + g[1] + '18;color:' + g[1] + '">' + g[0] + (a.fatigue ? ' · fatigue' : '') + '</span>';
           var row = '<tr class="hover:bg-[#FAF8F5]/60">' +
             '<td class="px-3 py-2 text-[#2C2824]">' + esc(a.ad_name) + '</td>' +
             '<td class="px-3 py-2 text-right font-mono">' + eur2(a.spend) + '</td>' +
@@ -430,6 +455,7 @@ export const prerender = false
             '<td class="px-3 py-2 text-right font-mono">' + (a.leads || 0) + '</td>' +
             '<td class="px-3 py-2 text-right font-mono" style="color:' + cplColor(a.cpl) + '">' + eur2(a.cpl) + '</td>' +
             '<td class="px-3 py-2">' + status + '</td>' +
+            '<td class="px-3 py-2">' + verdict + '</td>' +
             '<td class="px-3 py-2"><button data-detail="ad-detail-' + i + '" class="ad-toggle text-[#2C2824]/50 hover:text-[#2C2824] text-xs border border-[#2C2824]/15 rounded-sm px-2 py-1">▸ semaines</button></td>' +
             '</tr>';
           var weekly = (a.weekly || []).filter(function (w) { return w.spend > 0; }).map(function (w) {
@@ -438,11 +464,12 @@ export const prerender = false
               '<span class="w-14 text-right">' + w.leads + ' lead' + (w.leads > 1 ? 's' : '') + '</span>' +
               '<span class="w-20 text-right" style="color:' + cplColor(w.cpl) + '">' + eur2(w.cpl) + '</span></div>';
           }).join('');
-          row += '<tr id="ad-detail-' + i + '" class="hidden bg-[#FAF8F5]/70"><td colspan="9" class="px-6 py-3"><div class="space-y-1">' +
+          row += '<tr id="ad-detail-' + i + '" class="hidden bg-[#FAF8F5]/70"><td colspan="10" class="px-6 py-3"><div class="space-y-1">' +
+            (a.reason ? '<p class="text-xs text-[#2C2824]/70 mb-2 max-w-2xl">' + esc(a.reason) + '</p>' : '') +
             '<div class="flex gap-4 text-xs text-[#2C2824]/40"><span class="w-16">Semaine</span><span class="w-20 text-right">Dépense</span><span class="w-14 text-right">Leads</span><span class="w-20 text-right">CPL</span></div>' +
             (weekly || '<span class="text-xs text-[#2C2824]/40">Aucune dépense</span>') + '</div></td></tr>';
           return row;
-        }).join('') || '<tr><td class="py-3 text-[#2C2824]/40" colspan="9">Aucune donnée</td></tr>';
+        }).join('') || '<tr><td class="py-3 text-[#2C2824]/40" colspan="10">Aucune donnée</td></tr>';
 
         Array.prototype.forEach.call(document.querySelectorAll('.ad-toggle'), function (btn) {
           btn.addEventListener('click', function () {
