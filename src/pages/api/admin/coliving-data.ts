@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro'
+import { inferGender } from '~/lib/gender'
 
 // GET /api/admin/coliving-data?period=7d&type=
 // Agrege les leads (TRACKING_DB) + revenue coliving (mollie_payments dans DB).
@@ -7,6 +8,26 @@ import type { APIRoute } from 'astro'
 export const prerender = false
 
 const STATUSES = ['lead', 'call_booked', 'call_done', 'no_show', 'match', 'paid', 'lost'] as const
+
+// Migration lazy (pas d'acces wrangler d1 hors CI) : colonne gender = override
+// manuel ('h'/'f'), l'inference par prenom se fait au read. Idempotent.
+let genderColumnEnsured = false
+export async function ensureGenderColumn(tdb: any): Promise<void> {
+  if (genderColumnEnsured) return
+  try {
+    await tdb.prepare('ALTER TABLE leads ADD COLUMN gender TEXT').run()
+  } catch { /* duplicate column : deja migre */ }
+  genderColumnEnsured = true
+}
+
+// Routage des calls : leads Meta Forms -> closer ; formulaire site ->
+// Amandine (femmes) / Yanis (hommes) / a trier (genre inconnu).
+function assignee(l: { utm_source?: string | null; gender_final: string | null }): string {
+  if (l.utm_source === 'meta_form') return 'closer'
+  if (l.gender_final === 'f') return 'amandine'
+  if (l.gender_final === 'h') return 'yanis'
+  return 'a_trier'
+}
 
 function periodStart(period: string): string | null {
   const now = Date.now()
@@ -43,6 +64,8 @@ export const GET: APIRoute = async ({ request, locals }) => {
   const whereSql = where.length ? `WHERE ${where.join(' AND ')}` : ''
 
   try {
+    await ensureGenderColumn(tdb)
+
     // KPIs par statut
     const statusRows = (await tdb.prepare(
       `SELECT status, COUNT(*) as n FROM leads ${whereSql} GROUP BY status`,
@@ -103,12 +126,18 @@ export const GET: APIRoute = async ({ request, locals }) => {
       percentage: pct(r.n, totalLeads),
     }))
 
-    // Liste des leads (PII servie uniquement derriere l'auth)
-    const leads = (await tdb.prepare(
+    // Liste des leads (PII servie uniquement derriere l'auth).
+    // gender = override manuel ; gender_final = override ?? inference prenom ;
+    // assignee = routage calls (closer / amandine / yanis / a_trier).
+    const leadRows = (await tdb.prepare(
       `SELECT id, created_at, type, status, first_name, last_name, email, phone,
-              utm_source, utm_campaign, utm_content, answers, notes
-       FROM leads ${whereSql} ORDER BY created_at DESC LIMIT 500`,
-    ).bind(...args).all()).results
+              utm_source, utm_campaign, utm_content, answers, notes, gender
+       FROM leads ${whereSql} ORDER BY created_at DESC LIMIT 1000`,
+    ).bind(...args).all()).results as Array<Record<string, any>>
+    const leads = leadRows.map((l) => {
+      const gender_final = (l.gender === 'h' || l.gender === 'f') ? l.gender : inferGender(l.first_name)
+      return { ...l, gender_final, gender_inferred: !l.gender && gender_final != null, assignee: assignee({ utm_source: l.utm_source, gender_final }) }
+    })
 
     // Revenue coliving (mollie_payments dans la base applicative)
     let revenue = { count: 0, total: 0 }
