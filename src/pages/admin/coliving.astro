@@ -165,7 +165,7 @@ export const prerender = false
     <div id="calls-loading" class="max-w-7xl mx-auto px-6 py-16 text-center text-[#2C2824]/50 hidden">Chargement des candidatures…</div>
     <main id="calls-content" class="hidden mx-auto px-6 py-8" style="max-width:1700px">
       <div class="flex items-center gap-2 flex-wrap mb-2" id="calls-filters"></div>
-      <p class="text-xs text-[#2C2824]/40 mb-5">Candidatures uniquement. Glisser une carte pour changer son statut · cliquer pour le détail. Routage : Meta Forms → Closer · formulaire site → Amandine (femmes) / Yanis (hommes) · prénom ambigu → À trier.</p>
+      <p class="text-xs text-[#2C2824]/40 mb-5">Candidatures uniquement. Glisser une carte pour changer son statut · cliquer pour le détail et l'affectation. Affectation auto (modifiable par lead) : Meta Forms → Yanis (closer) · formulaire site → Amandine (femmes) / Yanis (hommes) · prénom ambigu → À trier.</p>
       <div class="flex gap-3 overflow-x-auto pb-6 items-start" id="kanban"></div>
     </main>
 
@@ -180,7 +180,7 @@ export const prerender = false
     (function () {
       var STATUS = [
         ['lead', 'Lead'], ['call_booked', 'RDV pris'], ['call_done', 'Call fait'],
-        ['no_show', 'No-show'], ['match', 'Match'], ['paid', 'Payé'], ['lost', 'Écarté'],
+        ['no_show', 'No-show'], ['match', "Attente d'encaissement"], ['paid', 'Payé'], ['lost', 'Écarté'],
       ];
       var ANSWER_LABELS = [
         ['activite', 'Activité'], ['anciennete', 'Ancienneté'], ['equipe', 'Équipe'],
@@ -394,12 +394,14 @@ export const prerender = false
       // ---- Onglet Calls (kanban) ----
       var callsLoaded = false, callsLeads = [], callsFilter = '';
       var ASSIGNEES = [
-        ['', 'Tous'], ['closer', 'Closer (Meta)'], ['amandine', 'Amandine'],
-        ['yanis', 'Yanis'], ['a_trier', 'À trier'],
+        ['', 'Tous'], ['charly', 'Charly'], ['yanis', 'Yanis'],
+        ['amandine', 'Amandine'], ['eduardo', 'Eduardo'], ['a_trier', 'À trier'],
       ];
+      var CALLERS = [['charly', 'Charly'], ['yanis', 'Yanis'], ['amandine', 'Amandine'], ['eduardo', 'Eduardo']];
       var ASSIGNEE_STYLE = {
-        closer: ['Closer', '#5B8AA6'], amandine: ['Amandine', '#C4A855'],
-        yanis: ['Yanis', '#4A7C59'], a_trier: ['À trier', '#dc2626'],
+        charly: ['Charly', '#9A3922'], yanis: ['Yanis', '#4A7C59'],
+        amandine: ['Amandine', '#C4A855'], eduardo: ['Eduardo', '#5B8AA6'],
+        a_trier: ['À trier', '#dc2626'],
       };
 
       function loadCalls() {
@@ -535,7 +537,12 @@ export const prerender = false
           (l.utm_content ? '<div class="text-xs text-[#2C2824]/50">Créa : ' + esc(l.utm_content) + '</div>' : '') + '</div>' +
           '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Statut</p>' +
           '<select id="modal-status" class="w-full border border-[#2C2824]/15 rounded-sm px-2 py-2 text-sm bg-white">' + statusOpts + '</select></div>' +
-          '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Genre (routage Amandine / Yanis)</p>' +
+          '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Affecté à</p>' +
+          '<select id="modal-assign" class="w-full border border-[#2C2824]/15 rounded-sm px-2 py-2 text-sm bg-white">' +
+          '<option value=""' + (!l.assignee_manual ? ' selected' : '') + '>Auto (' + ((ASSIGNEE_STYLE[l.assignee_auto] || ['?'])[0]) + ')</option>' +
+          CALLERS.map(function (c) { return '<option value="' + c[0] + '"' + (l.assignee_manual && l.assignee === c[0] ? ' selected' : '') + '>' + c[1] + '</option>'; }).join('') +
+          '</select></div>' +
+          '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Genre (affectation auto Amandine / Yanis)</p>' +
           '<div class="flex gap-2">' + gBtn('f', 'Femme') + gBtn('h', 'Homme') + '</div></div>' +
           (answersHtml ? '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Candidature</p><div class="space-y-1.5">' + answersHtml + '</div></div>' : '') +
           (l.notes ? '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Notes de suivi</p><pre class="whitespace-pre-wrap font-sans text-xs text-[#2C2824]/80 bg-[#FAF8F5] rounded-sm p-3">' + esc(l.notes) + '</pre></div>' : '') +
@@ -556,6 +563,21 @@ export const prerender = false
             if (r.ok) { l.status = status; renderCalls(); } else { sel.style.borderColor = '#dc2626'; }
           }).catch(function () { sel.disabled = false; sel.style.borderColor = '#dc2626'; });
         });
+        $('modal-assign').addEventListener('change', function () {
+          var v = this.value, sel = this;
+          sel.disabled = true;
+          fetch('/api/admin/lead-status', {
+            method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: l.id, assigned_to: v || null }),
+          }).then(function (r) {
+            sel.disabled = false;
+            if (r.ok) {
+              l.assignee_manual = !!v;
+              l.assignee = v || l.assignee_auto;
+              renderCalls(); openCallModal(l);
+            } else { sel.style.borderColor = '#dc2626'; }
+          }).catch(function () { sel.disabled = false; sel.style.borderColor = '#dc2626'; });
+        });
         Array.prototype.forEach.call(document.querySelectorAll('.modal-gender'), function (btn) {
           btn.addEventListener('click', function () {
             var g = this.getAttribute('data-gender');
@@ -565,7 +587,8 @@ export const prerender = false
             }).then(function (r) {
               if (r.ok) {
                 l.gender = g; l.gender_final = g; l.gender_inferred = false;
-                if (l.utm_source !== 'meta_form') l.assignee = g === 'f' ? 'amandine' : 'yanis';
+                if (l.utm_source !== 'meta_form') l.assignee_auto = g === 'f' ? 'amandine' : 'yanis';
+                if (!l.assignee_manual) l.assignee = l.assignee_auto;
                 renderCalls(); openCallModal(l);
               }
             });

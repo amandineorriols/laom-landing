@@ -9,21 +9,28 @@ export const prerender = false
 
 const STATUSES = ['lead', 'call_booked', 'call_done', 'no_show', 'match', 'paid', 'lost'] as const
 
-// Migration lazy (pas d'acces wrangler d1 hors CI) : colonne gender = override
-// manuel ('h'/'f'), l'inference par prenom se fait au read. Idempotent.
-let genderColumnEnsured = false
+// Migration lazy (pas d'acces wrangler d1 hors CI) : gender = override manuel
+// ('h'/'f', inference par prenom au read) ; assigned_to = affectation manuelle
+// du call ('charly'/'yanis'/'amandine'/'eduardo', NULL = regle auto). Idempotent.
+let leadColumnsEnsured = false
 export async function ensureGenderColumn(tdb: any): Promise<void> {
-  if (genderColumnEnsured) return
-  try {
-    await tdb.prepare('ALTER TABLE leads ADD COLUMN gender TEXT').run()
-  } catch { /* duplicate column : deja migre */ }
-  genderColumnEnsured = true
+  if (leadColumnsEnsured) return
+  for (const ddl of [
+    'ALTER TABLE leads ADD COLUMN gender TEXT',
+    'ALTER TABLE leads ADD COLUMN assigned_to TEXT',
+  ]) {
+    try { await tdb.prepare(ddl).run() } catch { /* duplicate column : deja migre */ }
+  }
+  leadColumnsEnsured = true
 }
 
-// Routage des calls : leads Meta Forms -> closer ; formulaire site ->
-// Amandine (femmes) / Yanis (hommes) / a trier (genre inconnu).
-function assignee(l: { utm_source?: string | null; gender_final: string | null }): string {
-  if (l.utm_source === 'meta_form') return 'closer'
+export const CALLERS = ['charly', 'yanis', 'amandine', 'eduardo'] as const
+
+// Affectation auto des calls (fallback quand assigned_to est NULL) :
+// Meta Forms -> Yanis (closer) ; formulaire site -> Amandine (femmes) /
+// Yanis (hommes) ; genre inconnu -> a trier.
+function autoAssignee(l: { utm_source?: string | null; gender_final: string | null }): string {
+  if (l.utm_source === 'meta_form') return 'yanis'
   if (l.gender_final === 'f') return 'amandine'
   if (l.gender_final === 'h') return 'yanis'
   return 'a_trier'
@@ -131,12 +138,17 @@ export const GET: APIRoute = async ({ request, locals }) => {
     // assignee = routage calls (closer / amandine / yanis / a_trier).
     const leadRows = (await tdb.prepare(
       `SELECT id, created_at, type, status, first_name, last_name, email, phone,
-              utm_source, utm_campaign, utm_content, answers, notes, gender
+              utm_source, utm_campaign, utm_content, answers, notes, gender, assigned_to
        FROM leads ${whereSql} ORDER BY created_at DESC LIMIT 1000`,
     ).bind(...args).all()).results as Array<Record<string, any>>
     const leads = leadRows.map((l) => {
       const gender_final = (l.gender === 'h' || l.gender === 'f') ? l.gender : inferGender(l.first_name)
-      return { ...l, gender_final, gender_inferred: !l.gender && gender_final != null, assignee: assignee({ utm_source: l.utm_source, gender_final }) }
+      const auto = autoAssignee({ utm_source: l.utm_source, gender_final })
+      const manual = CALLERS.includes(l.assigned_to) ? l.assigned_to : null
+      return {
+        ...l, gender_final, gender_inferred: !l.gender && gender_final != null,
+        assignee: manual || auto, assignee_auto: auto, assignee_manual: manual != null,
+      }
     })
 
     // Revenue coliving (mollie_payments dans la base applicative)
