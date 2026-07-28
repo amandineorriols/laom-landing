@@ -180,7 +180,7 @@ export const prerender = false
     (function () {
       var STATUS = [
         ['lead', 'Lead'], ['call_booked', 'RDV pris'], ['call_done', 'Call fait'],
-        ['no_show', 'No-show'], ['match', "Attente d'encaissement"], ['paid', 'Payé'], ['lost', 'Écarté'],
+        ['no_show', 'No-show'], ['relance', 'Relance'], ['match', "Attente d'encaissement"], ['paid', 'Payé'], ['lost', 'Écarté'],
       ];
       var ANSWER_LABELS = [
         ['activite', 'Activité'], ['anciennete', 'Ancienneté'], ['equipe', 'Équipe'],
@@ -432,6 +432,17 @@ export const prerender = false
         return d <= 0 ? "aujourd'hui" : d === 1 ? 'hier' : 'il y a ' + d + ' j';
       }
 
+      // 'YYYY-MM-DDTHH:MM' (heure locale) -> '24/07 15:00' ; date seule -> '24/07'.
+      function fmtRelance(s) {
+        if (!s) return '';
+        var d = s.slice(0, 10).split('-');
+        return d[2] + '/' + d[1] + (s.length > 10 ? ' ' + s.slice(11, 16) : '');
+      }
+      function relancePast(s) {
+        if (!s) return false;
+        return new Date(s.length > 10 ? s : s + 'T23:59') < new Date();
+      }
+
       function callCard(l) {
         var name = esc(((l.first_name || '') + ' ' + (l.last_name || '')).trim() || l.email || '—');
         var a = ASSIGNEE_STYLE[l.assignee] || ['?', '#2C2824'];
@@ -439,6 +450,9 @@ export const prerender = false
           ? '<span class="text-[10px] px-1.5 py-0.5 rounded-sm bg-[#7B6B8A]/10 text-[#7B6B8A]">Meta</span>'
           : '<span class="text-[10px] px-1.5 py-0.5 rounded-sm bg-[#2C2824]/5 text-[#2C2824]/50">Site</span>';
         var genderMark = l.gender_final ? (l.gender_final === 'f' ? 'F' : 'H') + (l.gender_inferred ? '·auto' : '') : '?';
+        var relanceBadge = l.relance_at
+          ? '<div class="mt-1.5"><span class="text-[10px] px-1.5 py-0.5 rounded-sm font-mono" style="' + (relancePast(l.relance_at) ? 'background:#dc262618;color:#dc2626' : 'background:#2C282408;color:#2C2824') + '">⏰ ' + fmtRelance(l.relance_at) + '</span></div>'
+          : '';
         return '<div class="call-card bg-white border border-[#2C2824]/8 rounded-sm p-3 cursor-pointer hover:border-[#C4A855]/60 shadow-sm" draggable="true" data-id="' + l.id + '">' +
           '<div class="flex items-start justify-between gap-2 mb-1.5">' +
           '<span class="text-sm text-[#2C2824] font-medium leading-tight">' + name + '</span>' + flow + '</div>' +
@@ -446,7 +460,7 @@ export const prerender = false
           '<span class="text-[10px] px-1.5 py-0.5 rounded-sm" style="background:' + a[1] + '18;color:' + a[1] + '">' + a[0] + '</span>' +
           '<span class="text-[10px] text-[#2C2824]/40">' + genderMark + '</span>' +
           '<span class="text-[10px] text-[#2C2824]/40 ml-auto">' + daysAgo(l.created_at) + '</span>' +
-          '</div></div>';
+          '</div>' + relanceBadge + '</div>';
       }
 
       function renderCalls() {
@@ -465,7 +479,13 @@ export const prerender = false
 
         var visible = callsFilter ? callsLeads.filter(function (l) { return l.assignee === callsFilter; }) : callsLeads;
         $('kanban').innerHTML = STATUS.map(function (s) {
-          var cards = visible.filter(function (l) { return l.status === s[0]; });
+          // Relances les plus proches en premier, puis les sans-relance (plus recents d'abord).
+          var cards = visible.filter(function (l) { return l.status === s[0]; }).sort(function (x, y) {
+            if (x.relance_at && y.relance_at) return x.relance_at < y.relance_at ? -1 : 1;
+            if (x.relance_at) return -1;
+            if (y.relance_at) return 1;
+            return x.created_at > y.created_at ? -1 : 1;
+          });
           return '<div class="kanban-col shrink-0 w-64 bg-[#2C2824]/[0.03] border border-[#2C2824]/5 rounded-sm" data-status="' + s[0] + '">' +
             '<div class="px-3 py-2.5 flex items-center justify-between border-b border-[#2C2824]/5">' +
             '<span class="text-sm text-[#2C2824] font-medium">' + s[1] + '</span>' +
@@ -537,6 +557,12 @@ export const prerender = false
           (l.utm_content ? '<div class="text-xs text-[#2C2824]/50">Créa : ' + esc(l.utm_content) + '</div>' : '') + '</div>' +
           '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Statut</p>' +
           '<select id="modal-status" class="w-full border border-[#2C2824]/15 rounded-sm px-2 py-2 text-sm bg-white">' + statusOpts + '</select></div>' +
+          '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Relance prévue' + (relancePast(l.relance_at) ? ' <span style="color:#dc2626">(dépassée)</span>' : '') + '</p>' +
+          '<div class="flex gap-2">' +
+          '<input type="datetime-local" id="modal-relance" value="' + esc(l.relance_at || '') + '" class="flex-1 border border-[#2C2824]/15 rounded-sm px-2 py-1.5 text-sm bg-white outline-none focus:border-[#C4A855]" />' +
+          '<button id="modal-relance-save" class="text-xs border border-[#2C2824]/15 rounded-sm px-3 py-1.5 bg-white hover:bg-[#2C2824]/5">OK</button>' +
+          (l.relance_at ? '<button id="modal-relance-clear" class="text-xs border border-[#2C2824]/15 rounded-sm px-2.5 py-1.5 bg-white hover:bg-[#2C2824]/5 text-[#2C2824]/50" title="Effacer">×</button>' : '') +
+          '</div></div>' +
           '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Affecté à</p>' +
           '<select id="modal-assign" class="w-full border border-[#2C2824]/15 rounded-sm px-2 py-2 text-sm bg-white">' +
           '<option value=""' + (!l.assignee_manual ? ' selected' : '') + '>Auto (' + ((ASSIGNEE_STYLE[l.assignee_auto] || ['?'])[0]) + ')</option>' +
@@ -563,6 +589,21 @@ export const prerender = false
             if (r.ok) { l.status = status; renderCalls(); } else { sel.style.borderColor = '#dc2626'; }
           }).catch(function () { sel.disabled = false; sel.style.borderColor = '#dc2626'; });
         });
+        function saveRelance(value) {
+          fetch('/api/admin/lead-status', {
+            method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: l.id, relance_at: value }),
+          }).then(function (r) {
+            if (r.ok) { l.relance_at = value; renderCalls(); openCallModal(l); }
+            else { $('modal-relance').style.borderColor = '#dc2626'; }
+          }).catch(function () { $('modal-relance').style.borderColor = '#dc2626'; });
+        }
+        $('modal-relance-save').addEventListener('click', function () {
+          var v = $('modal-relance').value;
+          if (v) saveRelance(v.slice(0, 16));
+        });
+        var relClear = $('modal-relance-clear');
+        if (relClear) relClear.addEventListener('click', function () { saveRelance(null); });
         $('modal-assign').addEventListener('change', function () {
           var v = this.value, sel = this;
           sel.disabled = true;
