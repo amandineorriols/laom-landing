@@ -7,7 +7,7 @@ import { inferGender } from '~/lib/gender'
 
 export const prerender = false
 
-const STATUSES = ['lead', 'call_booked', 'call_done', 'no_show', 'match', 'paid', 'lost'] as const
+const STATUSES = ['lead', 'call_booked', 'call_done', 'no_show', 'relance', 'match', 'paid', 'lost'] as const
 
 // Migration lazy (pas d'acces wrangler d1 hors CI) : gender = override manuel
 // ('h'/'f', inference par prenom au read) ; assigned_to = affectation manuelle
@@ -18,6 +18,7 @@ export async function ensureGenderColumn(tdb: any): Promise<void> {
   for (const ddl of [
     'ALTER TABLE leads ADD COLUMN gender TEXT',
     'ALTER TABLE leads ADD COLUMN assigned_to TEXT',
+    'ALTER TABLE leads ADD COLUMN relance_at TEXT',
   ]) {
     try { await tdb.prepare(ddl).run() } catch { /* duplicate column : deja migre */ }
   }
@@ -138,7 +139,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
     // assignee = routage calls (closer / amandine / yanis / a_trier).
     const leadRows = (await tdb.prepare(
       `SELECT id, created_at, type, status, first_name, last_name, email, phone,
-              utm_source, utm_campaign, utm_content, answers, notes, gender, assigned_to
+              utm_source, utm_campaign, utm_content, answers, notes, gender, assigned_to, relance_at
        FROM leads ${whereSql} ORDER BY created_at DESC LIMIT 1000`,
     ).bind(...args).all()).results as Array<Record<string, any>>
     const leads = leadRows.map((l) => {

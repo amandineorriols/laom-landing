@@ -11,7 +11,7 @@ import { ensureGenderColumn, CALLERS } from './coliving-data'
 
 export const prerender = false
 
-const ALLOWED = ['lead', 'call_booked', 'call_done', 'no_show', 'match', 'paid', 'lost']
+const ALLOWED = ['lead', 'call_booked', 'call_done', 'no_show', 'relance', 'match', 'paid', 'lost']
 
 // Statut -> evenement custom envoye au dataset Meta ('lead' = retour arriere, pas d'event).
 const STAGE_EVENTS: Record<string, string> = {
@@ -30,7 +30,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return new Response(JSON.stringify({ error: 'TRACKING_DB not configured' }), { status: 500 })
   }
 
-  let body: { id?: number | string; status?: string; note?: string; gender?: string | null; assigned_to?: string | null }
+  let body: { id?: number | string; status?: string; note?: string; gender?: string | null; assigned_to?: string | null; relance_at?: string | null }
   try {
     body = await request.json()
   } catch {
@@ -46,8 +46,12 @@ export const POST: APIRoute = async ({ request, locals }) => {
   // Affectation manuelle du call (null = revenir a la regle auto).
   const hasAssign = 'assigned_to' in body
   const assignedTo = hasAssign ? (CALLERS.includes(body.assigned_to as any) ? body.assigned_to : null) : undefined
-  if (!id || (!status && !note && !hasGender && !hasAssign)) {
-    return new Response(JSON.stringify({ error: 'id + statut, note, genre ou affectation requis' }), { status: 400 })
+  // Date/heure de relance ('YYYY-MM-DDTHH:MM' ou 'YYYY-MM-DD', null = effacer).
+  const hasRelance = 'relance_at' in body
+  const relanceAt = hasRelance && typeof body.relance_at === 'string' && /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?$/.test(body.relance_at)
+    ? body.relance_at : null
+  if (!id || (!status && !note && !hasGender && !hasAssign && !hasRelance)) {
+    return new Response(JSON.stringify({ error: 'id + statut, note, genre, affectation ou relance requis' }), { status: 400 })
   }
   if (status && !ALLOWED.includes(status)) {
     return new Response(JSON.stringify({ error: 'statut invalide' }), { status: 400 })
@@ -61,12 +65,13 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   try {
     let res: any
-    if (hasGender || hasAssign) {
+    if (hasGender || hasAssign || hasRelance) {
       await ensureGenderColumn(tdb)
       const sets: string[] = []
       const vals: any[] = []
       if (hasGender) { sets.push('gender = ?'); vals.push(gender) }
       if (hasAssign) { sets.push('assigned_to = ?'); vals.push(assignedTo) }
+      if (hasRelance) { sets.push('relance_at = ?'); vals.push(relanceAt) }
       res = await tdb.prepare(`UPDATE leads SET ${sets.join(', ')}, updated_at = datetime('now') WHERE id = ?`)
         .bind(...vals, id).run()
       if (!res?.meta?.changes) {
