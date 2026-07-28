@@ -1,8 +1,8 @@
 import type { APIRoute } from 'astro'
 import { sendMetaEvents } from '~/lib/meta-capi'
-import { ensureGenderColumn } from './coliving-data'
+import { ensureGenderColumn, CALLERS } from './coliving-data'
 
-// POST /api/admin/lead-status { id, status?, note?, gender? }
+// POST /api/admin/lead-status { id, status?, note?, gender?, assigned_to? }
 // Met a jour le statut d'un lead (lead -> call -> match -> paid / no_show / lost)
 // ET renvoie l'etape a Meta (CAPI) : l'algo apprend la QUALITE des leads (qui va
 // au call, qui matche, qui paie, qui no-show) — pas juste le remplissage du form.
@@ -30,7 +30,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return new Response(JSON.stringify({ error: 'TRACKING_DB not configured' }), { status: 500 })
   }
 
-  let body: { id?: number | string; status?: string; note?: string; gender?: string | null }
+  let body: { id?: number | string; status?: string; note?: string; gender?: string | null; assigned_to?: string | null }
   try {
     body = await request.json()
   } catch {
@@ -43,8 +43,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
   // Override manuel du genre ('h'/'f', null = revenir a l'inference prenom).
   const hasGender = 'gender' in body
   const gender = hasGender ? (body.gender === 'h' || body.gender === 'f' ? body.gender : null) : undefined
-  if (!id || (!status && !note && !hasGender)) {
-    return new Response(JSON.stringify({ error: 'id + statut, note ou genre requis' }), { status: 400 })
+  // Affectation manuelle du call (null = revenir a la regle auto).
+  const hasAssign = 'assigned_to' in body
+  const assignedTo = hasAssign ? (CALLERS.includes(body.assigned_to as any) ? body.assigned_to : null) : undefined
+  if (!id || (!status && !note && !hasGender && !hasAssign)) {
+    return new Response(JSON.stringify({ error: 'id + statut, note, genre ou affectation requis' }), { status: 400 })
   }
   if (status && !ALLOWED.includes(status)) {
     return new Response(JSON.stringify({ error: 'statut invalide' }), { status: 400 })
@@ -52,13 +55,20 @@ export const POST: APIRoute = async ({ request, locals }) => {
   if (hasGender && body.gender != null && body.gender !== 'h' && body.gender !== 'f') {
     return new Response(JSON.stringify({ error: 'genre invalide (h, f ou null)' }), { status: 400 })
   }
+  if (hasAssign && body.assigned_to != null && !CALLERS.includes(body.assigned_to as any)) {
+    return new Response(JSON.stringify({ error: 'affectation invalide' }), { status: 400 })
+  }
 
   try {
     let res: any
-    if (hasGender) {
+    if (hasGender || hasAssign) {
       await ensureGenderColumn(tdb)
-      res = await tdb.prepare("UPDATE leads SET gender = ?, updated_at = datetime('now') WHERE id = ?")
-        .bind(gender, id).run()
+      const sets: string[] = []
+      const vals: any[] = []
+      if (hasGender) { sets.push('gender = ?'); vals.push(gender) }
+      if (hasAssign) { sets.push('assigned_to = ?'); vals.push(assignedTo) }
+      res = await tdb.prepare(`UPDATE leads SET ${sets.join(', ')}, updated_at = datetime('now') WHERE id = ?`)
+        .bind(...vals, id).run()
       if (!res?.meta?.changes) {
         return new Response(JSON.stringify({ error: 'Lead introuvable' }), { status: 404 })
       }
