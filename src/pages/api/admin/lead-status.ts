@@ -1,11 +1,12 @@
 import type { APIRoute } from 'astro'
 import { sendMetaEvents } from '~/lib/meta-capi'
 
-// POST /api/admin/lead-status { id, status }
+// POST /api/admin/lead-status { id, status?, note? }
 // Met a jour le statut d'un lead (lead -> call -> match -> paid / no_show / lost)
 // ET renvoie l'etape a Meta (CAPI) : l'algo apprend la QUALITE des leads (qui va
 // au call, qui matche, qui paie, qui no-show) — pas juste le remplissage du form.
-// Auth assuree par le middleware (cookie de session signe).
+// `note` (optionnelle, cumulable avec le statut) : compte-rendu de call, ajoute
+// horodate au champ notes (append-only). Auth par le middleware (cookie signe).
 
 export const prerender = false
 
@@ -28,7 +29,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return new Response(JSON.stringify({ error: 'TRACKING_DB not configured' }), { status: 500 })
   }
 
-  let body: { id?: number | string; status?: string }
+  let body: { id?: number | string; status?: string; note?: string }
   try {
     body = await request.json()
   } catch {
@@ -36,14 +37,31 @@ export const POST: APIRoute = async ({ request, locals }) => {
   }
 
   const id = Number(body.id)
-  const status = String(body.status || '')
-  if (!id || !ALLOWED.includes(status)) {
-    return new Response(JSON.stringify({ error: 'id ou statut invalide' }), { status: 400 })
+  const status = body.status != null ? String(body.status) : ''
+  const note = typeof body.note === 'string' ? body.note.trim().slice(0, 2000) : ''
+  if (!id || (!status && !note)) {
+    return new Response(JSON.stringify({ error: 'id + statut ou note requis' }), { status: 400 })
+  }
+  if (status && !ALLOWED.includes(status)) {
+    return new Response(JSON.stringify({ error: 'statut invalide' }), { status: 400 })
   }
 
   try {
-    const res = await tdb.prepare("UPDATE leads SET status = ?, updated_at = datetime('now') WHERE id = ?")
-      .bind(status, id).run()
+    let res: any
+    if (status && note) {
+      const stamp = new Date().toISOString().slice(0, 16).replace('T', ' ')
+      res = await tdb.prepare(
+        `UPDATE leads SET status = ?, notes = COALESCE(notes || char(10), '') || ?, updated_at = datetime('now') WHERE id = ?`,
+      ).bind(status, `[${stamp}] ${note}`, id).run()
+    } else if (status) {
+      res = await tdb.prepare("UPDATE leads SET status = ?, updated_at = datetime('now') WHERE id = ?")
+        .bind(status, id).run()
+    } else {
+      const stamp = new Date().toISOString().slice(0, 16).replace('T', ' ')
+      res = await tdb.prepare(
+        `UPDATE leads SET notes = COALESCE(notes || char(10), '') || ?, updated_at = datetime('now') WHERE id = ?`,
+      ).bind(`[${stamp}] ${note}`, id).run()
+    }
     if (!res?.meta?.changes) {
       return new Response(JSON.stringify({ error: 'Lead introuvable' }), { status: 404 })
     }
