@@ -28,7 +28,7 @@ const initiales = (n: string) => n.trim().slice(0, 1).toUpperCase()
 const stats = [
   { v: '21 ha', l: 'de nature préservée' },
   { v: '12', l: 'places par semaine' },
-  { v: '3', l: 'éditions en août' },
+  { v: '24-30', l: 'août 2026' },
   { v: '1h30', l: 'de Montpellier' },
 ]
 const pains = [
@@ -53,7 +53,7 @@ const etapes = [
 ]
 ---
 
-<Layout title="Coliving entrepreneurs · Août 2026 · LAOM" description="Une semaine en pleine nature avec onze entrepreneurs qui te ressemblent. Trois éditions en août 2026, douze places chacune. Candidature en 2 minutes." hideChrome={true} seo={{ noIndex: true }}>
+<Layout title="Coliving entrepreneurs · Août 2026 · LAOM" description="Une semaine en pleine nature avec onze entrepreneurs qui te ressemblent. Une seule édition : du 24 au 30 août 2026, douze places. Candidature en 2 minutes." hideChrome={true} seo={{ noIndex: true }}>
 
   <!-- ① HERO — vidéo plein écran -->
   <section class="relative min-h-screen w-full overflow-hidden flex flex-col text-[#F2EBDB]">
@@ -63,12 +63,12 @@ const etapes = [
     <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(28,19,12,0.88) 0%,rgba(122,47,29,0.6) 55%,rgba(154,57,34,0.5) 100%)"></div>
     <SiteNav transparent={true} links={[]} ctaText="Candidater" ctaHref={POSTULER} />
     <div class="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 pt-28 pb-20 max-w-4xl mx-auto">
-      <span class="inline-block rounded-full bg-[#F2EBDB]/12 border border-[#F2EBDB]/15 px-5 py-2 text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#F2EBDB]/90 mb-8">Coliving entrepreneurs · 3 éditions · Août 2026</span>
+      <span class="inline-block rounded-full bg-[#F2EBDB]/12 border border-[#F2EBDB]/15 px-5 py-2 text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#F2EBDB]/90 mb-8">Coliving entrepreneurs · 24-30 août 2026</span>
       <h1 class="font-extrabold text-[#F2EBDB] text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.03em] text-balance">Cette semaine, ton bureau, <span class="italic font-medium text-[#E7C89A]">c’est 21 hectares de nature.</span></h1>
       <p class="text-lg md:text-xl text-[#F2EBDB]/85 mt-7 max-w-2xl mx-auto leading-relaxed">Six jours dans le sud de l’Aveyron, avec onze entrepreneurs qui te ressemblent. Tu continues de bosser, mais dans un cadre qui te nourrit au lieu de t’épuiser.</p>
       <a href={POSTULER} class="pill pill-light mt-10" style="padding:1rem 2.6rem">Candidater pour août 2026</a>
       <p class="text-xs tracking-[0.12em] uppercase text-[#F2EBDB]/55 mt-5">Candidature en 2 minutes · sans engagement</p>
-      <p class="text-sm font-medium text-[#E7C89A] mt-3">Douze places par édition, et elles partent vite.</p>
+      <p class="text-sm font-medium text-[#E7C89A] mt-3">Douze places, du 24 au 30 août. Et elles partent vite.</p>
     </div>
   </section>
 
@@ -256,7 +256,7 @@ const etapes = [
       <div class="text-center max-w-2xl mx-auto">
         <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#73673E] mb-5">L’offre</p>
         <h2 class="text-4xl md:text-5xl font-extrabold text-[#412F1F] tracking-[-0.02em] leading-[1.08] text-balance">Une semaine. Douze entrepreneurs. <span class="acc">Tout compris.</span></h2>
-        <p class="text-lg text-[#1D1B18]/70 mt-6 leading-relaxed">Hébergement en tipi, repas du potager, pratiques du matin, ateliers, soirées, espace de travail wifi fibre. Le détail complet du programme, les dates et le tarif, on te les raconte de vive voix.</p>
+        <p class="text-lg text-[#1D1B18]/70 mt-6 leading-relaxed">Hébergement en tipi, repas du potager, pratiques du matin, ateliers, soirées, espace de travail wifi fibre. Le détail complet du programme et le tarif, on te les raconte de vive voix.</p>
       </div>
 
       <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#73673E] mt-20 mb-8 text-center">Comment ça se passe</p>
@@ -294,8 +294,8 @@ const etapes = [
   <div animate-fade-in-up class="opacity-0">
     <CtaImage bg="bg-[#FBF6EA]" img={L('diner-golden-hour-laom')}
       eyebrow="Août 2026"
-      title="Trois semaines. Douze places chacune." accent="Quand c’est complet, c’est complet."
-      subtitle="Dates : 10-16, 17-23 et 24-30 août 2026. Douze places par édition, et elles partent vite. Le reste, on en parle ensemble."
+      title="Une semaine. Douze places." accent="Quand c’est complet, c’est complet."
+      subtitle="Du 24 au 30 août 2026. Douze places, et elles partent vite. Le reste, on en parle ensemble."
       primaryText="Candidater pour août 2026" primaryHref={POSTULER} />
   </div>
 
