@@ -68,3 +68,8 @@ CREATE TABLE IF NOT EXISTS rate_limits (
 
 -- Ajouté le 10/07/2026 : notes de suivi des calls (texte horodaté, append-only).
 -- ALTER TABLE leads ADD COLUMN notes TEXT;
+
+-- Ajouté le 27/07/2026 : override manuel du genre ('h'/'f', NULL = inference par
+-- prenom au read) pour le routage des calls (Amandine/Yanis). Migration lazy
+-- executee par le worker (ensureGenderColumn dans coliving-data.ts).
+-- ALTER TABLE leads ADD COLUMN gender TEXT;

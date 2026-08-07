@@ -71,21 +71,25 @@ function parseFields(fd: FieldData[]) {
 async function subscribeKit(env: Env, email: string, firstName: string) {
   if (!env.KIT_API_SECRET) return
   const KIT = 'https://api.convertkit.com/v3'
-  const tagName = 'candidature-coliving'
+  // candidature-coliving = automation de nurture ; leads-coliving-aout-26 =
+  // segment campagne aout 2026 (aussi pose par le formulaire /candidater du site).
+  const tagNames = ['candidature-coliving', 'leads-coliving-aout-26']
   try {
     const list = (await (await fetch(`${KIT}/tags?api_secret=${encodeURIComponent(env.KIT_API_SECRET)}`)).json()) as any
-    let tag = (list.tags || []).find((t: any) => t.name === tagName)
-    if (!tag) {
-      tag = await (await fetch(`${KIT}/tags`, {
+    for (const tagName of tagNames) {
+      let tag = (list.tags || []).find((t: any) => t.name === tagName)
+      if (!tag) {
+        tag = await (await fetch(`${KIT}/tags`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ api_secret: env.KIT_API_SECRET, tag: { name: tagName } }),
+        })).json()
+      }
+      if (!tag?.id) continue
+      await fetch(`${KIT}/tags/${tag.id}/subscribe`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ api_secret: env.KIT_API_SECRET, tag: { name: tagName } }),
-      })).json()
+        body: JSON.stringify({ api_secret: env.KIT_API_SECRET, email, first_name: firstName || undefined }),
+      })
     }
-    if (!tag?.id) return
-    await fetch(`${KIT}/tags/${tag.id}/subscribe`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ api_secret: env.KIT_API_SECRET, email, first_name: firstName || undefined }),
-    })
   } catch (e) {
     console.error('[kit]', e)
   }

@@ -1,7 +1,8 @@
 import type { APIRoute } from 'astro'
 import { sendMetaEvents } from '~/lib/meta-capi'
+import { ensureGenderColumn, CALLERS } from './coliving-data'
 
-// POST /api/admin/lead-status { id, status?, note? }
+// POST /api/admin/lead-status { id, status?, note?, gender?, assigned_to? }
 // Met a jour le statut d'un lead (lead -> call -> match -> paid / no_show / lost)
 // ET renvoie l'etape a Meta (CAPI) : l'algo apprend la QUALITE des leads (qui va
 // au call, qui matche, qui paie, qui no-show) — pas juste le remplissage du form.
@@ -10,7 +11,7 @@ import { sendMetaEvents } from '~/lib/meta-capi'
 
 export const prerender = false
 
-const ALLOWED = ['lead', 'call_booked', 'call_done', 'no_show', 'match', 'paid', 'lost']
+const ALLOWED = ['lead', 'call_booked', 'call_done', 'no_show', 'relance', 'match', 'paid', 'lost']
 
 // Statut -> evenement custom envoye au dataset Meta ('lead' = retour arriere, pas d'event).
 const STAGE_EVENTS: Record<string, string> = {
@@ -29,7 +30,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return new Response(JSON.stringify({ error: 'TRACKING_DB not configured' }), { status: 500 })
   }
 
-  let body: { id?: number | string; status?: string; note?: string }
+  let body: { id?: number | string; status?: string; note?: string; gender?: string | null; assigned_to?: string | null; relance_at?: string | null }
   try {
     body = await request.json()
   } catch {
@@ -39,15 +40,49 @@ export const POST: APIRoute = async ({ request, locals }) => {
   const id = Number(body.id)
   const status = body.status != null ? String(body.status) : ''
   const note = typeof body.note === 'string' ? body.note.trim().slice(0, 2000) : ''
-  if (!id || (!status && !note)) {
-    return new Response(JSON.stringify({ error: 'id + statut ou note requis' }), { status: 400 })
+  // Override manuel du genre ('h'/'f', null = revenir a l'inference prenom).
+  const hasGender = 'gender' in body
+  const gender = hasGender ? (body.gender === 'h' || body.gender === 'f' ? body.gender : null) : undefined
+  // Affectation manuelle du call (null = revenir a la regle auto).
+  const hasAssign = 'assigned_to' in body
+  const assignedTo = hasAssign ? (CALLERS.includes(body.assigned_to as any) ? body.assigned_to : null) : undefined
+  // Date/heure de relance ('YYYY-MM-DDTHH:MM' ou 'YYYY-MM-DD', null = effacer).
+  const hasRelance = 'relance_at' in body
+  const relanceAt = hasRelance && typeof body.relance_at === 'string' && /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?$/.test(body.relance_at)
+    ? body.relance_at : null
+  if (!id || (!status && !note && !hasGender && !hasAssign && !hasRelance)) {
+    return new Response(JSON.stringify({ error: 'id + statut, note, genre, affectation ou relance requis' }), { status: 400 })
   }
   if (status && !ALLOWED.includes(status)) {
     return new Response(JSON.stringify({ error: 'statut invalide' }), { status: 400 })
   }
+  if (hasGender && body.gender != null && body.gender !== 'h' && body.gender !== 'f') {
+    return new Response(JSON.stringify({ error: 'genre invalide (h, f ou null)' }), { status: 400 })
+  }
+  if (hasAssign && body.assigned_to != null && !CALLERS.includes(body.assigned_to as any)) {
+    return new Response(JSON.stringify({ error: 'affectation invalide' }), { status: 400 })
+  }
 
   try {
     let res: any
+    if (hasGender || hasAssign || hasRelance) {
+      await ensureGenderColumn(tdb)
+      const sets: string[] = []
+      const vals: any[] = []
+      if (hasGender) { sets.push('gender = ?'); vals.push(gender) }
+      if (hasAssign) { sets.push('assigned_to = ?'); vals.push(assignedTo) }
+      if (hasRelance) { sets.push('relance_at = ?'); vals.push(relanceAt) }
+      res = await tdb.prepare(`UPDATE leads SET ${sets.join(', ')}, updated_at = datetime('now') WHERE id = ?`)
+        .bind(...vals, id).run()
+      if (!res?.meta?.changes) {
+        return new Response(JSON.stringify({ error: 'Lead introuvable' }), { status: 404 })
+      }
+      if (!status && !note) {
+        return new Response(JSON.stringify({ ok: true }), {
+          status: 200, headers: { 'Content-Type': 'application/json' },
+        })
+      }
+    }
     if (status && note) {
       const stamp = new Date().toISOString().slice(0, 16).replace('T', ' ')
       res = await tdb.prepare(

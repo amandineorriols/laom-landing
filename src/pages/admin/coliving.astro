@@ -28,8 +28,15 @@ export const prerender = false
   <div id="dashboard" class="hidden min-h-screen bg-[#FAF8F5]">
     <header class="sticky top-0 z-10 bg-[#FAF8F5]/90 backdrop-blur border-b border-[#2C2824]/8">
       <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4 flex-wrap">
-        <h1 class="font-playfair text-xl text-[#2C2824]">Coliving Août 2026 — Tunnel & Leads</h1>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-6 flex-wrap">
+          <h1 class="font-playfair text-xl text-[#2C2824]">Coliving Août 2026</h1>
+          <nav class="flex items-center gap-1">
+            <button data-tab="leads" class="tab-btn text-sm rounded-sm px-3 py-1.5 bg-[#2C2824] text-white">Tunnel &amp; Leads</button>
+            <button data-tab="calls" class="tab-btn text-sm rounded-sm px-3 py-1.5 text-[#2C2824]/60 hover:bg-[#2C2824]/5">Calls</button>
+            <button data-tab="ads" class="tab-btn text-sm rounded-sm px-3 py-1.5 text-[#2C2824]/60 hover:bg-[#2C2824]/5">Pubs Meta</button>
+          </nav>
+        </div>
+        <div class="flex items-center gap-2" id="leads-controls">
           <select id="type-filter" class="text-sm border border-[#2C2824]/15 rounded-sm px-2 py-1.5 bg-white">
             <option value="">Tous types</option>
             <option value="candidature">Candidatures</option>
@@ -101,13 +108,79 @@ export const prerender = false
 
       <p class="text-center text-xs text-[#2C2824]/30 pt-4" id="meta-line"></p>
     </main>
+
+    <!-- Onglet Pubs Meta (KPI campagne coliving, live Graph API) -->
+    <div id="ads-loading" class="max-w-7xl mx-auto px-6 py-16 text-center text-[#2C2824]/50 hidden">Chargement des KPI Meta…</div>
+    <div id="ads-error" class="max-w-7xl mx-auto px-6 py-16 text-center text-red-600 hidden"></div>
+    <main id="ads-content" class="hidden max-w-7xl mx-auto px-6 py-8 space-y-8">
+      <!-- KPIs pubs -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="ads-kpis"></div>
+
+      <!-- Conseils (regles du skill KPI, calcules en live) -->
+      <section class="bg-white border border-[#2C2824]/5 rounded-sm p-6">
+        <h2 class="font-playfair text-lg text-[#2C2824] mb-1">Conseils</h2>
+        <p id="ads-summary" class="text-sm text-[#2C2824]/60 mb-4"></p>
+        <ul id="ads-advice" class="space-y-2.5"></ul>
+      </section>
+
+      <!-- Semaine par semaine -->
+      <section class="bg-white border border-[#2C2824]/5 rounded-sm p-6 overflow-x-auto">
+        <h2 class="font-playfair text-lg text-[#2C2824] mb-4">Semaine par semaine</h2>
+        <table class="w-full text-sm min-w-[640px]">
+          <thead>
+            <tr class="text-left text-[#2C2824]/50 border-b border-[#2C2824]/8">
+              <th class="px-3 py-2">Semaine</th><th class="px-3 py-2 text-right">Dépense</th>
+              <th class="px-3 py-2 text-right">Impr.</th><th class="px-3 py-2 text-right">CPM</th>
+              <th class="px-3 py-2 text-right">Fréq.</th><th class="px-3 py-2 text-right">Hook</th>
+              <th class="px-3 py-2 text-right">Hold</th><th class="px-3 py-2 text-right">uCTR</th>
+              <th class="px-3 py-2 text-right">Leads</th><th class="px-3 py-2 text-right">CPL</th>
+            </tr>
+          </thead>
+          <tbody id="ads-weeks" class="divide-y divide-[#2C2824]/5"></tbody>
+        </table>
+      </section>
+
+      <!-- Par pub -->
+      <section class="bg-white border border-[#2C2824]/5 rounded-sm p-6 overflow-x-auto">
+        <h2 class="font-playfair text-lg text-[#2C2824] mb-1">Par pub — cumul campagne</h2>
+        <p class="text-xs text-[#2C2824]/40 mb-4">Target CPA provisoire : 5 € / lead. ▸ pour l'évolution semaine par semaine.</p>
+        <table class="w-full text-sm min-w-[640px]">
+          <thead>
+            <tr class="text-left text-[#2C2824]/50 border-b border-[#2C2824]/8">
+              <th class="px-3 py-2">Pub</th><th class="px-3 py-2 text-right">Dépense</th>
+              <th class="px-3 py-2 text-right">Hook</th><th class="px-3 py-2 text-right">Hold</th>
+              <th class="px-3 py-2 text-right">uCTR</th><th class="px-3 py-2 text-right">Leads</th>
+              <th class="px-3 py-2 text-right">CPL</th><th class="px-3 py-2">Statut</th>
+              <th class="px-3 py-2">Verdict</th><th class="px-3 py-2"></th>
+            </tr>
+          </thead>
+          <tbody id="ads-table" class="divide-y divide-[#2C2824]/5"></tbody>
+        </table>
+      </section>
+
+      <p class="text-center text-xs text-[#2C2824]/30 pt-4" id="ads-meta-line"></p>
+    </main>
+
+    <!-- Onglet Calls (kanban candidatures : closer / Amandine / Yanis) -->
+    <div id="calls-loading" class="max-w-7xl mx-auto px-6 py-16 text-center text-[#2C2824]/50 hidden">Chargement des candidatures…</div>
+    <main id="calls-content" class="hidden mx-auto px-6 py-8" style="max-width:1700px">
+      <div class="flex items-center gap-2 flex-wrap mb-2" id="calls-filters"></div>
+      <p class="text-xs text-[#2C2824]/40 mb-5">Candidatures uniquement. Glisser une carte pour changer son statut · cliquer pour le détail et l'affectation. Affectation auto (modifiable par lead) : Meta Forms → Yanis (closer) · formulaire site → Amandine (femmes) / Yanis (hommes) · prénom ambigu → À trier.</p>
+      <div class="flex gap-3 overflow-x-auto pb-6 items-start" id="kanban"></div>
+    </main>
+
+    <!-- Fiche lead (panneau lateral) -->
+    <div id="call-modal" class="hidden fixed inset-0 z-50">
+      <div class="absolute inset-0 bg-black/30" id="call-modal-bg"></div>
+      <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl overflow-y-auto" id="call-modal-panel"></div>
+    </div>
   </div>
 
   <script is:inline>
     (function () {
       var STATUS = [
         ['lead', 'Lead'], ['call_booked', 'RDV pris'], ['call_done', 'Call fait'],
-        ['no_show', 'No-show'], ['match', 'Match'], ['paid', 'Payé'], ['lost', 'Écarté'],
+        ['no_show', 'No-show'], ['relance', 'Relance'], ['match', "Attente d'encaissement"], ['paid', 'Payé'], ['lost', 'Écarté'],
       ];
       var ANSWER_LABELS = [
         ['activite', 'Activité'], ['anciennete', 'Ancienneté'], ['equipe', 'Équipe'],
@@ -117,6 +190,7 @@ export const prerender = false
       var $ = function (id) { return document.getElementById(id); };
       var authGate = $('auth-gate'), dashboard = $('dashboard'), loading = $('loading'),
           content = $('dashboard-content'), authError = $('auth-error');
+      var currentTab = 'leads', adsLoaded = false;
 
       function showGate() { authGate.classList.remove('hidden'); dashboard.classList.add('hidden'); }
       function showDashboard() { authGate.classList.add('hidden'); dashboard.classList.remove('hidden'); }
@@ -292,6 +366,405 @@ export const prerender = false
         a.click();
         URL.revokeObjectURL(a.href);
       }
+
+      // ---- Onglet Pubs Meta ----
+      function eur2(n) { return n == null ? '—' : n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; }
+      function pctf(n) { return n == null ? '—' : String(n).replace('.', ',') + ' %'; }
+      function fmtWeek(s) { var d = new Date(s + 'T00:00:00Z'); return d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' }); }
+      function cplColor(cpl) { return cpl == null ? '#2C2824' : cpl <= 5 ? '#4A7C59' : cpl <= 7 ? '#f59e0b' : '#dc2626'; }
+
+      function switchTab(tab) {
+        currentTab = tab;
+        Array.prototype.forEach.call(document.querySelectorAll('.tab-btn'), function (b) {
+          var active = b.getAttribute('data-tab') === tab;
+          b.className = 'tab-btn text-sm rounded-sm px-3 py-1.5 ' + (active ? 'bg-[#2C2824] text-white' : 'text-[#2C2824]/60 hover:bg-[#2C2824]/5');
+        });
+        $('leads-controls').classList.toggle('hidden', tab !== 'leads');
+        content.classList.toggle('hidden', tab !== 'leads');
+        loading.classList.add('hidden');
+        $('ads-content').classList.toggle('hidden', tab !== 'ads' || !adsLoaded);
+        $('ads-loading').classList.add('hidden');
+        $('ads-error').classList.add('hidden');
+        $('calls-content').classList.toggle('hidden', tab !== 'calls' || !callsLoaded);
+        $('calls-loading').classList.add('hidden');
+        if (tab === 'ads' && !adsLoaded) loadAds();
+        if (tab === 'calls' && !callsLoaded) loadCalls();
+      }
+
+      // ---- Onglet Calls (kanban) ----
+      var callsLoaded = false, callsLeads = [], callsFilter = '';
+      var ASSIGNEES = [
+        ['', 'Tous'], ['charly', 'Charly'], ['yanis', 'Yanis'],
+        ['amandine', 'Amandine'], ['eduardo', 'Eduardo'], ['a_trier', 'À trier'],
+      ];
+      var CALLERS = [['charly', 'Charly'], ['yanis', 'Yanis'], ['amandine', 'Amandine'], ['eduardo', 'Eduardo']];
+      var ASSIGNEE_STYLE = {
+        charly: ['Charly', '#9A3922'], yanis: ['Yanis', '#4A7C59'],
+        amandine: ['Amandine', '#C4A855'], eduardo: ['Eduardo', '#5B8AA6'],
+        a_trier: ['À trier', '#dc2626'],
+      };
+
+      function loadCalls() {
+        $('calls-loading').classList.remove('hidden');
+        $('calls-content').classList.add('hidden');
+        fetch('/api/admin/coliving-data/?period=all&type=candidature', { credentials: 'same-origin' })
+          .then(function (res) {
+            if (res.status === 401) { showGate(); throw new Error('unauth'); }
+            if (!res.ok) throw new Error('http ' + res.status);
+            return res.json();
+          })
+          .then(function (data) {
+            callsLeads = data.leads || [];
+            callsLoaded = true;
+            $('calls-loading').classList.add('hidden');
+            if (currentTab === 'calls') $('calls-content').classList.remove('hidden');
+            renderCalls();
+          })
+          .catch(function (err) {
+            if (err.message === 'unauth') return;
+            $('calls-loading').textContent = 'Erreur de chargement (' + err.message + ')';
+          });
+      }
+
+      function daysAgo(s) {
+        if (!s) return '';
+        var d = Math.floor((Date.now() - new Date(s.replace(' ', 'T') + 'Z').getTime()) / 86400000);
+        return d <= 0 ? "aujourd'hui" : d === 1 ? 'hier' : 'il y a ' + d + ' j';
+      }
+
+      // 'YYYY-MM-DDTHH:MM' (heure locale) -> '24/07 15:00' ; date seule -> '24/07'.
+      function fmtRelance(s) {
+        if (!s) return '';
+        var d = s.slice(0, 10).split('-');
+        return d[2] + '/' + d[1] + (s.length > 10 ? ' ' + s.slice(11, 16) : '');
+      }
+      function relancePast(s) {
+        if (!s) return false;
+        return new Date(s.length > 10 ? s : s + 'T23:59') < new Date();
+      }
+
+      function callCard(l) {
+        var name = esc(((l.first_name || '') + ' ' + (l.last_name || '')).trim() || l.email || '—');
+        var a = ASSIGNEE_STYLE[l.assignee] || ['?', '#2C2824'];
+        var flow = l.utm_source === 'meta_form'
+          ? '<span class="text-[10px] px-1.5 py-0.5 rounded-sm bg-[#7B6B8A]/10 text-[#7B6B8A]">Meta</span>'
+          : '<span class="text-[10px] px-1.5 py-0.5 rounded-sm bg-[#2C2824]/5 text-[#2C2824]/50">Site</span>';
+        var genderMark = l.gender_final ? (l.gender_final === 'f' ? 'F' : 'H') + (l.gender_inferred ? '·auto' : '') : '?';
+        var relanceBadge = l.relance_at
+          ? '<div class="mt-1.5"><span class="text-[10px] px-1.5 py-0.5 rounded-sm font-mono" style="' + (relancePast(l.relance_at) ? 'background:#dc262618;color:#dc2626' : 'background:#2C282408;color:#2C2824') + '">⏰ ' + fmtRelance(l.relance_at) + '</span></div>'
+          : '';
+        return '<div class="call-card bg-white border border-[#2C2824]/8 rounded-sm p-3 cursor-pointer hover:border-[#C4A855]/60 shadow-sm" draggable="true" data-id="' + l.id + '">' +
+          '<div class="flex items-start justify-between gap-2 mb-1.5">' +
+          '<span class="text-sm text-[#2C2824] font-medium leading-tight">' + name + '</span>' + flow + '</div>' +
+          '<div class="flex items-center gap-1.5 flex-wrap">' +
+          '<span class="text-[10px] px-1.5 py-0.5 rounded-sm" style="background:' + a[1] + '18;color:' + a[1] + '">' + a[0] + '</span>' +
+          '<span class="text-[10px] text-[#2C2824]/40">' + genderMark + '</span>' +
+          '<span class="text-[10px] text-[#2C2824]/40 ml-auto">' + daysAgo(l.created_at) + '</span>' +
+          '</div>' + relanceBadge + '</div>';
+      }
+
+      function renderCalls() {
+        var counts = {};
+        ASSIGNEES.forEach(function (a) { counts[a[0]] = 0; });
+        callsLeads.forEach(function (l) { counts[''] += 1; if (counts[l.assignee] != null) counts[l.assignee] += 1; });
+        $('calls-filters').innerHTML = ASSIGNEES.map(function (a) {
+          var active = callsFilter === a[0];
+          return '<button data-assignee="' + a[0] + '" class="calls-filter text-sm rounded-sm px-3 py-1.5 border ' +
+            (active ? 'bg-[#2C2824] text-white border-[#2C2824]' : 'bg-white text-[#2C2824]/70 border-[#2C2824]/15 hover:bg-[#2C2824]/5') + '">' +
+            a[1] + ' <span class="font-mono text-xs opacity-60">' + counts[a[0]] + '</span></button>';
+        }).join('');
+        Array.prototype.forEach.call(document.querySelectorAll('.calls-filter'), function (btn) {
+          btn.addEventListener('click', function () { callsFilter = this.getAttribute('data-assignee'); renderCalls(); });
+        });
+
+        var visible = callsFilter ? callsLeads.filter(function (l) { return l.assignee === callsFilter; }) : callsLeads;
+        $('kanban').innerHTML = STATUS.map(function (s) {
+          // Relances les plus proches en premier, puis les sans-relance (plus recents d'abord).
+          var cards = visible.filter(function (l) { return l.status === s[0]; }).sort(function (x, y) {
+            if (x.relance_at && y.relance_at) return x.relance_at < y.relance_at ? -1 : 1;
+            if (x.relance_at) return -1;
+            if (y.relance_at) return 1;
+            return x.created_at > y.created_at ? -1 : 1;
+          });
+          return '<div class="kanban-col shrink-0 w-64 bg-[#2C2824]/[0.03] border border-[#2C2824]/5 rounded-sm" data-status="' + s[0] + '">' +
+            '<div class="px-3 py-2.5 flex items-center justify-between border-b border-[#2C2824]/5">' +
+            '<span class="text-sm text-[#2C2824] font-medium">' + s[1] + '</span>' +
+            '<span class="text-xs font-mono text-[#2C2824]/40">' + cards.length + '</span></div>' +
+            '<div class="p-2 space-y-2 min-h-[120px] kanban-body">' + cards.map(callCard).join('') + '</div></div>';
+        }).join('');
+
+        // Drag & drop natif : deposer une carte sur une colonne change le statut.
+        Array.prototype.forEach.call(document.querySelectorAll('.call-card'), function (card) {
+          card.addEventListener('dragstart', function (e) {
+            e.dataTransfer.setData('text/plain', this.getAttribute('data-id'));
+            e.dataTransfer.effectAllowed = 'move';
+          });
+          card.addEventListener('click', function () {
+            var l = callsLeads.find(function (x) { return String(x.id) === card.getAttribute('data-id'); });
+            if (l) openCallModal(l);
+          });
+        });
+        Array.prototype.forEach.call(document.querySelectorAll('.kanban-col'), function (col) {
+          col.addEventListener('dragover', function (e) { e.preventDefault(); col.classList.add('ring-2', 'ring-[#C4A855]'); });
+          col.addEventListener('dragleave', function () { col.classList.remove('ring-2', 'ring-[#C4A855]'); });
+          col.addEventListener('drop', function (e) {
+            e.preventDefault();
+            col.classList.remove('ring-2', 'ring-[#C4A855]');
+            var id = e.dataTransfer.getData('text/plain');
+            var status = col.getAttribute('data-status');
+            var l = callsLeads.find(function (x) { return String(x.id) === id; });
+            if (!l || l.status === status) return;
+            var oldStatus = l.status;
+            l.status = status; renderCalls();
+            fetch('/api/admin/lead-status', {
+              method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: Number(id), status: status }),
+            }).then(function (r) { if (!r.ok) { l.status = oldStatus; renderCalls(); } })
+              .catch(function () { l.status = oldStatus; renderCalls(); });
+          });
+        });
+      }
+
+      function openCallModal(l) {
+        var name = esc(((l.first_name || '') + ' ' + (l.last_name || '')).trim() || '—');
+        var a = ASSIGNEE_STYLE[l.assignee] || ['?', '#2C2824'];
+        var answers = null;
+        try { answers = l.answers ? JSON.parse(l.answers) : null; } catch (e) {}
+        var answersHtml = answers ? ANSWER_LABELS.map(function (x) {
+          var v = answers[x[0]];
+          if (v == null || v === '' || (Array.isArray(v) && !v.length)) return '';
+          return '<div class="flex gap-2 text-xs"><span class="text-[#2C2824]/45 w-24 shrink-0">' + x[1] + '</span><span class="text-[#2C2824]">' + esc(Array.isArray(v) ? v.join(' · ') : v) + '</span></div>';
+        }).filter(Boolean).join('') : '';
+        var statusOpts = STATUS.map(function (s) { return '<option value="' + s[0] + '"' + (l.status === s[0] ? ' selected' : '') + '>' + s[1] + '</option>'; }).join('');
+        var gBtn = function (val, label) {
+          var active = (val === '' && !l.gender_final) || l.gender_final === val;
+          var manual = l.gender_final && !l.gender_inferred;
+          return '<button data-gender="' + val + '" class="modal-gender text-xs border rounded-sm px-3 py-1.5 ' +
+            (active ? 'bg-[#2C2824] text-white border-[#2C2824]' : 'bg-white text-[#2C2824]/70 border-[#2C2824]/15 hover:bg-[#2C2824]/5') + '">' + label + (active && l.gender_inferred ? ' (auto)' : active && manual ? ' (manuel)' : '') + '</button>';
+        };
+        $('call-modal-panel').innerHTML =
+          '<div class="p-6 space-y-5">' +
+          '<div class="flex items-start justify-between gap-3">' +
+          '<div><h3 class="font-playfair text-xl text-[#2C2824]">' + name + '</h3>' +
+          '<div class="flex items-center gap-2 mt-1.5">' +
+          '<span class="text-[10px] px-1.5 py-0.5 rounded-sm" style="background:' + a[1] + '18;color:' + a[1] + '">' + a[0] + '</span>' +
+          (l.utm_source === 'meta_form' ? '<span class="text-[10px] px-1.5 py-0.5 rounded-sm bg-[#7B6B8A]/10 text-[#7B6B8A]">Meta Forms</span>' : '<span class="text-[10px] px-1.5 py-0.5 rounded-sm bg-[#2C2824]/5 text-[#2C2824]/50">Formulaire site</span>') +
+          '<span class="text-[10px] text-[#2C2824]/40">' + daysAgo(l.created_at) + '</span></div></div>' +
+          '<button id="call-modal-close" class="text-[#2C2824]/40 hover:text-[#2C2824] text-xl leading-none px-1">×</button></div>' +
+          '<div class="space-y-1.5 text-sm">' +
+          '<div><a class="text-[#2C2824] hover:text-[#C4A855]" href="mailto:' + esc(l.email) + '">' + esc(l.email) + '</a></div>' +
+          (l.phone ? '<div><a class="text-[#2C2824] hover:text-[#C4A855]" href="tel:' + esc(l.phone) + '">' + esc(l.phone) + '</a></div>' : '') +
+          (l.utm_content ? '<div class="text-xs text-[#2C2824]/50">Créa : ' + esc(l.utm_content) + '</div>' : '') + '</div>' +
+          '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Statut</p>' +
+          '<select id="modal-status" class="w-full border border-[#2C2824]/15 rounded-sm px-2 py-2 text-sm bg-white">' + statusOpts + '</select></div>' +
+          '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Relance prévue' + (relancePast(l.relance_at) ? ' <span style="color:#dc2626">(dépassée)</span>' : '') + '</p>' +
+          '<div class="flex gap-2">' +
+          '<input type="datetime-local" id="modal-relance" value="' + esc(l.relance_at || '') + '" class="flex-1 border border-[#2C2824]/15 rounded-sm px-2 py-1.5 text-sm bg-white outline-none focus:border-[#C4A855]" />' +
+          '<button id="modal-relance-save" class="text-xs border border-[#2C2824]/15 rounded-sm px-3 py-1.5 bg-white hover:bg-[#2C2824]/5">OK</button>' +
+          (l.relance_at ? '<button id="modal-relance-clear" class="text-xs border border-[#2C2824]/15 rounded-sm px-2.5 py-1.5 bg-white hover:bg-[#2C2824]/5 text-[#2C2824]/50" title="Effacer">×</button>' : '') +
+          '</div></div>' +
+          '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Affecté à</p>' +
+          '<select id="modal-assign" class="w-full border border-[#2C2824]/15 rounded-sm px-2 py-2 text-sm bg-white">' +
+          '<option value=""' + (!l.assignee_manual ? ' selected' : '') + '>Auto (' + ((ASSIGNEE_STYLE[l.assignee_auto] || ['?'])[0]) + ')</option>' +
+          CALLERS.map(function (c) { return '<option value="' + c[0] + '"' + (l.assignee_manual && l.assignee === c[0] ? ' selected' : '') + '>' + c[1] + '</option>'; }).join('') +
+          '</select></div>' +
+          '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Genre (affectation auto Amandine / Yanis)</p>' +
+          '<div class="flex gap-2">' + gBtn('f', 'Femme') + gBtn('h', 'Homme') + '</div></div>' +
+          (answersHtml ? '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Candidature</p><div class="space-y-1.5">' + answersHtml + '</div></div>' : '') +
+          (l.notes ? '<div><p class="text-xs text-[#2C2824]/50 mb-1.5">Notes de suivi</p><pre class="whitespace-pre-wrap font-sans text-xs text-[#2C2824]/80 bg-[#FAF8F5] rounded-sm p-3">' + esc(l.notes) + '</pre></div>' : '') +
+          '<div class="flex gap-2"><input type="text" maxlength="2000" id="modal-note" placeholder="Ajouter une note (compte-rendu de call…)" class="flex-1 border border-[#2C2824]/15 rounded-sm px-2.5 py-2 text-xs bg-white outline-none focus:border-[#C4A855]" />' +
+          '<button id="modal-note-btn" class="text-xs border border-[#2C2824]/15 rounded-sm px-3 py-2 bg-white hover:bg-[#2C2824]/5">Ajouter</button></div>' +
+          '</div>';
+        $('call-modal').classList.remove('hidden');
+
+        $('call-modal-close').addEventListener('click', closeCallModal);
+        $('modal-status').addEventListener('change', function () {
+          var status = this.value, sel = this;
+          sel.disabled = true;
+          fetch('/api/admin/lead-status', {
+            method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: l.id, status: status }),
+          }).then(function (r) {
+            sel.disabled = false;
+            if (r.ok) { l.status = status; renderCalls(); } else { sel.style.borderColor = '#dc2626'; }
+          }).catch(function () { sel.disabled = false; sel.style.borderColor = '#dc2626'; });
+        });
+        function saveRelance(value) {
+          fetch('/api/admin/lead-status', {
+            method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: l.id, relance_at: value }),
+          }).then(function (r) {
+            if (r.ok) { l.relance_at = value; renderCalls(); openCallModal(l); }
+            else { $('modal-relance').style.borderColor = '#dc2626'; }
+          }).catch(function () { $('modal-relance').style.borderColor = '#dc2626'; });
+        }
+        $('modal-relance-save').addEventListener('click', function () {
+          var v = $('modal-relance').value;
+          if (v) saveRelance(v.slice(0, 16));
+        });
+        var relClear = $('modal-relance-clear');
+        if (relClear) relClear.addEventListener('click', function () { saveRelance(null); });
+        $('modal-assign').addEventListener('change', function () {
+          var v = this.value, sel = this;
+          sel.disabled = true;
+          fetch('/api/admin/lead-status', {
+            method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: l.id, assigned_to: v || null }),
+          }).then(function (r) {
+            sel.disabled = false;
+            if (r.ok) {
+              l.assignee_manual = !!v;
+              l.assignee = v || l.assignee_auto;
+              renderCalls(); openCallModal(l);
+            } else { sel.style.borderColor = '#dc2626'; }
+          }).catch(function () { sel.disabled = false; sel.style.borderColor = '#dc2626'; });
+        });
+        Array.prototype.forEach.call(document.querySelectorAll('.modal-gender'), function (btn) {
+          btn.addEventListener('click', function () {
+            var g = this.getAttribute('data-gender');
+            fetch('/api/admin/lead-status', {
+              method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: l.id, gender: g }),
+            }).then(function (r) {
+              if (r.ok) {
+                l.gender = g; l.gender_final = g; l.gender_inferred = false;
+                if (l.utm_source !== 'meta_form') l.assignee_auto = g === 'f' ? 'amandine' : 'yanis';
+                if (!l.assignee_manual) l.assignee = l.assignee_auto;
+                renderCalls(); openCallModal(l);
+              }
+            });
+          });
+        });
+        $('modal-note-btn').addEventListener('click', function () {
+          var note = $('modal-note').value.trim();
+          if (!note) return;
+          var el = this; el.disabled = true; el.textContent = '…';
+          fetch('/api/admin/lead-status', {
+            method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: l.id, note: note }),
+          }).then(function (r) {
+            if (r.ok) {
+              var stamp = new Date().toISOString().slice(0, 16).replace('T', ' ');
+              l.notes = (l.notes ? l.notes + '\n' : '') + '[' + stamp + '] ' + note;
+              openCallModal(l);
+            } else { el.disabled = false; el.textContent = 'Ajouter'; }
+          }).catch(function () { el.disabled = false; el.textContent = 'Ajouter'; });
+        });
+      }
+
+      function closeCallModal() { $('call-modal').classList.add('hidden'); }
+
+      function loadAds() {
+        $('ads-loading').classList.remove('hidden');
+        $('ads-content').classList.add('hidden');
+        $('ads-error').classList.add('hidden');
+        fetch('/api/admin/ads-data/', { credentials: 'same-origin' })
+          .then(function (res) {
+            if (res.status === 401) { showGate(); throw new Error('unauth'); }
+            if (!res.ok) throw new Error('http ' + res.status);
+            return res.json();
+          })
+          .then(function (data) {
+            adsLoaded = true;
+            $('ads-loading').classList.add('hidden');
+            if (currentTab === 'ads') $('ads-content').classList.remove('hidden');
+            renderAds(data);
+          })
+          .catch(function (err) {
+            if (err.message === 'unauth') return;
+            $('ads-loading').classList.add('hidden');
+            var e = $('ads-error');
+            e.textContent = 'Erreur de chargement des KPI Meta (' + err.message + ')';
+            e.classList.remove('hidden');
+          });
+      }
+
+      var GRADE_STYLE = {
+        winner: ['Winner', '#4A7C59'], prometteur: ['Prometteur', '#5B8AA6'],
+        limite: ['Limite', '#f59e0b'], loser: ['Loser', '#dc2626'], trop_tot: ['Trop tôt', '#9ca3af'],
+      };
+      var ADVICE_STYLE = {
+        kill: ['KILL', '#dc2626'], scale: ['SCALE', '#4A7C59'], watch: ['WATCH', '#f59e0b'],
+        iterate: ['ITÉRER', '#5B8AA6'], produce: ['PRODUIRE', '#7B6B8A'],
+      };
+
+      function renderAds(d) {
+        var t = d.totals || {};
+        var lastWeek = (d.weeks || [])[0] || {};
+        var cards = [
+          ['Dépense totale', eur2(t.spend)], ['Leads', t.leads == null ? '—' : t.leads],
+          ['CPL campagne', eur2(t.cpl)], ['CPL semaine en cours', eur2(lastWeek.cpl)],
+        ];
+        $('ads-kpis').innerHTML = cards.map(function (c) {
+          return '<div class="bg-white border border-[#2C2824]/5 rounded-sm p-4"><div class="text-2xl font-mono text-[#2C2824]">' + esc(c[1]) + '</div><div class="text-xs text-[#2C2824]/50 mt-1">' + c[0] + '</div></div>';
+        }).join('');
+
+        $('ads-summary').textContent = d.summary || '';
+        $('ads-advice').innerHTML = (d.advice || []).map(function (a) {
+          var s = ADVICE_STYLE[a.type] || [a.type.toUpperCase(), '#2C2824'];
+          return '<li class="flex items-start gap-3 text-sm"><span class="shrink-0 text-[10px] font-mono px-1.5 py-0.5 rounded-sm mt-0.5" style="background:' + s[1] + '18;color:' + s[1] + '">' + s[0] + '</span><span class="text-[#2C2824]/80">' + esc(a.text) + '</span></li>';
+        }).join('') || '<li class="text-sm text-[#2C2824]/40">Rien à signaler.</li>';
+
+        $('ads-weeks').innerHTML = (d.weeks || []).map(function (w) {
+          return '<tr>' +
+            '<td class="px-3 py-2 text-[#2C2824] whitespace-nowrap">' + fmtWeek(w.week_start) + ' → ' + fmtWeek(w.week_end) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + eur2(w.spend) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + (w.impressions || 0).toLocaleString('fr-FR') + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + eur2(w.cpm) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + (w.frequency == null ? '—' : String(w.frequency).replace('.', ',')) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + pctf(w.hook_rate) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + pctf(w.hold_rate) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + pctf(w.uctr) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + (w.leads || 0) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono" style="color:' + cplColor(w.cpl) + '">' + eur2(w.cpl) + '</td>' +
+            '</tr>';
+        }).join('') || '<tr><td class="py-3 text-[#2C2824]/40" colspan="10">Aucune donnée</td></tr>';
+
+        $('ads-table').innerHTML = (d.ads || []).map(function (a, i) {
+          var status = a.active_last_week
+            ? '<span class="text-xs px-2 py-0.5 rounded-sm" style="background:#4A7C5915;color:#4A7C59">active</span>'
+            : '<span class="text-xs px-2 py-0.5 rounded-sm bg-[#2C2824]/5 text-[#2C2824]/40">coupée</span>';
+          var g = GRADE_STYLE[a.grade] || ['—', '#2C2824'];
+          var verdict = '<span class="text-xs px-2 py-0.5 rounded-sm whitespace-nowrap" style="background:' + g[1] + '18;color:' + g[1] + '">' + g[0] + (a.fatigue ? ' · fatigue' : '') + '</span>';
+          var row = '<tr class="hover:bg-[#FAF8F5]/60">' +
+            '<td class="px-3 py-2 text-[#2C2824]">' + esc(a.ad_name) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + eur2(a.spend) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + pctf(a.hook_rate) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + pctf(a.hold_rate) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + pctf(a.uctr) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono">' + (a.leads || 0) + '</td>' +
+            '<td class="px-3 py-2 text-right font-mono" style="color:' + cplColor(a.cpl) + '">' + eur2(a.cpl) + '</td>' +
+            '<td class="px-3 py-2">' + status + '</td>' +
+            '<td class="px-3 py-2">' + verdict + '</td>' +
+            '<td class="px-3 py-2"><button data-detail="ad-detail-' + i + '" class="ad-toggle text-[#2C2824]/50 hover:text-[#2C2824] text-xs border border-[#2C2824]/15 rounded-sm px-2 py-1">▸ semaines</button></td>' +
+            '</tr>';
+          var weekly = (a.weekly || []).filter(function (w) { return w.spend > 0; }).map(function (w) {
+            return '<div class="flex gap-4 font-mono text-xs"><span class="w-16 text-[#2C2824]/50">' + fmtWeek(w.week_start) + '</span>' +
+              '<span class="w-20 text-right">' + eur2(w.spend) + '</span>' +
+              '<span class="w-14 text-right">' + w.leads + ' lead' + (w.leads > 1 ? 's' : '') + '</span>' +
+              '<span class="w-20 text-right" style="color:' + cplColor(w.cpl) + '">' + eur2(w.cpl) + '</span></div>';
+          }).join('');
+          row += '<tr id="ad-detail-' + i + '" class="hidden bg-[#FAF8F5]/70"><td colspan="10" class="px-6 py-3"><div class="space-y-1">' +
+            (a.reason ? '<p class="text-xs text-[#2C2824]/70 mb-2 max-w-2xl">' + esc(a.reason) + '</p>' : '') +
+            '<div class="flex gap-4 text-xs text-[#2C2824]/40"><span class="w-16">Semaine</span><span class="w-20 text-right">Dépense</span><span class="w-14 text-right">Leads</span><span class="w-20 text-right">CPL</span></div>' +
+            (weekly || '<span class="text-xs text-[#2C2824]/40">Aucune dépense</span>') + '</div></td></tr>';
+          return row;
+        }).join('') || '<tr><td class="py-3 text-[#2C2824]/40" colspan="10">Aucune donnée</td></tr>';
+
+        Array.prototype.forEach.call(document.querySelectorAll('.ad-toggle'), function (btn) {
+          btn.addEventListener('click', function () {
+            var target = $(this.getAttribute('data-detail'));
+            if (target) { target.classList.toggle('hidden'); this.textContent = target.classList.contains('hidden') ? '▸ semaines' : '▾ semaines'; }
+          });
+        });
+
+        $('ads-meta-line').textContent = 'Campagne coliving · du ' + t.since + ' au ' + t.until + ' · live Graph API · leads = total Meta (formulaires + pixel)';
+      }
+
+      Array.prototype.forEach.call(document.querySelectorAll('.tab-btn'), function (btn) {
+        btn.addEventListener('click', function () { switchTab(this.getAttribute('data-tab')); });
+      });
+      $('call-modal-bg').addEventListener('click', closeCallModal);
 
       $('csv-btn').addEventListener('click', exportCsv);
       $('admin-login').addEventListener('click', doLogin);
