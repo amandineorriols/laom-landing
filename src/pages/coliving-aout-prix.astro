@@ -1,9 +1,9 @@
 ---
-// PAGE DE VENTE — Variant B (gardée et optimisée). Techniques La Pioche en charte
-// LAOM, posture LAOM. Optims : hero vidéo (sans bande de visages), témoignages en
-// carrousel infini, prix retiré (max candidatures), process bienveillant en
-// scroll-stack, journée type animée au scroll. Lead-gen : tout vers "Candidater".
-// Route isolée /coliving-aout-labo-b (noindex).
+// PAGE DE VENTE — Variant AVEC PRIX (A/B vs coliving-aout sans prix).
+// Identique au design Variant B, mais : prix 1 500 € affiché (hero + offre + FAQ),
+// une seule édition promue (24-30 août), wording "gratuit" corrigé, prix affiché.
+// corrigé (retrait "sans engagement"). But : qualifier en amont, tuer l'illusion
+// gratuit remontée par Yanis. Route isolée /coliving-aout-prix (noindex).
 import Layout from '~/layouts/Layout.astro'
 import SiteNav from '~/components/laom/SiteNav.astro'
 import MosaicGallery from '~/components/laom/sections/MosaicGallery.astro'
@@ -47,13 +47,13 @@ const journee = [
   { time: '21h00', label: 'Feu, soirée, voie lactée' },
 ]
 const etapes = [
-  { n: '01', t: 'Tu remplis le formulaire. Deux minutes, sans engagement.' },
+  { n: '01', t: 'Tu remplis le formulaire. Deux minutes, c’est tout.' },
   { n: '02', t: 'On s’appelle 15 minutes, juste pour faire connaissance et voir si c’est le bon moment pour toi.' },
   { n: '03', t: 'Si l’envie est là, ta place t’attend.' },
 ]
 ---
 
-<Layout title="Coliving entrepreneurs · Août 2026 · LAOM" description="Une semaine en pleine nature avec onze entrepreneurs qui te ressemblent. Une seule édition : du 24 au 30 août 2026, douze places. Candidature en 2 minutes." hideChrome={true} seo={{ noIndex: true }}>
+<Layout title="Coliving entrepreneurs · Août 2026 · LAOM" description="Une semaine en pleine nature avec onze entrepreneurs qui te ressemblent. Une seule édition : du 24 au 30 août 2026, douze places, 1 500 € tout compris. Candidature en 2 minutes." hideChrome={true} seo={{ noIndex: true }}>
 
   <!-- ① HERO — vidéo plein écran -->
   <section class="relative min-h-screen w-full overflow-hidden flex flex-col text-[#F2EBDB]">
@@ -67,8 +67,8 @@ const etapes = [
       <h1 class="font-extrabold text-[#F2EBDB] text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.03em] text-balance">Cette semaine, ton bureau, <span class="italic font-medium text-[#E7C89A]">c’est 21 hectares de nature.</span></h1>
       <p class="text-lg md:text-xl text-[#F2EBDB]/85 mt-7 max-w-2xl mx-auto leading-relaxed">Six jours dans le sud de l’Aveyron, avec onze entrepreneurs qui te ressemblent. Tu continues de bosser, mais dans un cadre qui te nourrit au lieu de t’épuiser.</p>
       <a href={POSTULER} class="pill pill-light mt-10" style="padding:1rem 2.6rem">Candidater pour août 2026</a>
-      <p class="text-xs tracking-[0.12em] uppercase text-[#F2EBDB]/55 mt-5">Candidature en 2 minutes · sans engagement</p>
-      <p class="text-sm font-medium text-[#E7C89A] mt-3">Douze places, du 24 au 30 août. Et elles partent vite.</p>
+      <p class="text-xs tracking-[0.12em] uppercase text-[#F2EBDB]/55 mt-5">Candidature en 2 minutes · 1 500 € tout compris</p>
+      <p class="text-sm font-medium text-[#E7C89A] mt-3">Du 24 au 30 août. Douze places.</p>
     </div>
   </section>
 
@@ -250,13 +250,21 @@ const etapes = [
       text="Ils ont quitté la ville, acheté vingt-et-un hectares dans le sud de l’Aveyron, et bâti de leurs mains le lieu qu’ils auraient voulu trouver. LAOM, c’est leur projet de vie. Le coliving, c’est leur façon de t’inviter à le vivre." />
   </div>
 
-  <!-- ⑪ L'OFFRE + LE PROCESS (scroll-stack), sans prix -->
+  <!-- ⑪ L'OFFRE + LE PRIX + LE PROCESS (scroll-stack) -->
   <section class="bg-[#FBF6EA] py-24 md:py-32">
     <div class="max-w-4xl mx-auto px-6 md:px-10 lg:px-14">
       <div class="text-center max-w-2xl mx-auto">
         <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#73673E] mb-5">L’offre</p>
         <h2 class="text-4xl md:text-5xl font-extrabold text-[#412F1F] tracking-[-0.02em] leading-[1.08] text-balance">Une semaine. Douze entrepreneurs. <span class="acc">Tout compris.</span></h2>
-        <p class="text-lg text-[#1D1B18]/70 mt-6 leading-relaxed">Hébergement en tipi, repas du potager, pratiques du matin, ateliers, soirées, espace de travail wifi fibre. Le détail complet du programme et le tarif, on te les raconte de vive voix.</p>
+        <p class="text-lg text-[#1D1B18]/70 mt-6 leading-relaxed">Hébergement en tipi, repas du potager, pratiques du matin, ateliers, soirées, espace de travail wifi fibre. Rien à prévoir, tout est organisé.</p>
+      </div>
+
+      <!-- ENCART PRIX -->
+      <div class="mt-12 mx-auto max-w-md rounded-3xl bg-[#9A3922] text-[#F2EBDB] p-8 md:p-10 text-center shadow-[0_22px_44px_-26px_rgba(65,47,31,0.5)]">
+        <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#E7C89A] mb-3">Prix de lancement</p>
+        <p class="text-5xl md:text-6xl font-extrabold leading-none">1 500 €</p>
+        <p class="text-[#F2EBDB]/85 mt-3 text-lg">la semaine, tout compris</p>
+        <p class="text-sm text-[#F2EBDB]/75 mt-5 leading-relaxed">Hébergement, tous les repas du potager, pratiques du matin, ateliers, soirées et espace de travail wifi fibre. Aucun frais caché.</p>
       </div>
 
       <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#73673E] mt-20 mb-8 text-center">Comment ça se passe</p>
@@ -286,7 +294,7 @@ const etapes = [
         { q: 'L’Aveyron, c’est loin ?', a: 'On est en sud Aveyron, à 1h30 de Montpellier (gare TGV) et 2h de Toulouse. On s’occupe de ton arrivée. Et c’est précisément cette distance qui fait la valeur du lieu.' },
         { q: 'C’est pas un truc trop perché ?', a: 'Non. Un lieu exigeant, des entrepreneurs sérieux, et rien d’obligatoire : tu prends ce qui te parle, tu laisses le reste.' },
         { q: 'Il y aura qui d’autre ?', a: 'Douze personnes par semaine, choisies via le formulaire, avec des profils proches du tien. On te parle de la cohorte au téléphone.' },
-        { q: 'Et le tarif ?', a: 'On t’en parle pendant l’échange de 15 minutes, en même temps que le programme et les dates. C’est un prix de lancement, tout compris.' },
+        { q: 'Et le tarif ?', a: '1 500 € la semaine, tout compris : hébergement, tous les repas du potager, pratiques, ateliers, soirées et espace de travail wifi fibre. Prix de lancement, aucun frais caché. On te donne le détail du programme au téléphone.' },
       ]} />
   </div>
 
@@ -295,7 +303,7 @@ const etapes = [
     <CtaImage bg="bg-[#FBF6EA]" img={L('diner-golden-hour-laom')}
       eyebrow="Août 2026"
       title="Une semaine. Douze places." accent="Quand c’est complet, c’est complet."
-      subtitle="Du 24 au 30 août 2026. Douze places, et elles partent vite. Le reste, on en parle ensemble."
+      subtitle="Du 24 au 30 août 2026. 1 500 € tout compris, douze places — et elles partent vite."
       primaryText="Candidater pour août 2026" primaryHref={POSTULER} />
   </div>
 
