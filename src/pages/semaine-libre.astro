@@ -1,0 +1,297 @@
+---
+// PAGE DE VENTE — La Semaine Libre (septembre 2026).
+// Version ESSENTIELLE : peu de sections, phrases fortes en grand, la page
+// incarne la simplicité de l'offre. 600 €/semaine, tipi partagé, zéro programme.
+// Formulaire inline -> rappel dans la foulée. Leads marqués SEMAINE LIBRE.
+// Route /semaine-libre (noindex tant que test).
+import Layout from '~/layouts/Layout.astro'
+import SiteNav from '~/components/laom/SiteNav.astro'
+import MosaicGallery from '~/components/laom/sections/MosaicGallery.astro'
+import Faq from '~/components/laom/sections/Faq.astro'
+import CtaImage from '~/components/laom/sections/CtaImage.astro'
+import StickyCta from '~/components/laom/StickyCta.astro'
+import SiteFooter from '~/components/laom/SiteFooter.astro'
+
+const L = (n: string) => `/images/laom/${n}.webp`
+const RESERVER = '#reserver'
+
+const stats = [
+  { v: '21 ha', l: 'de nature, rien autour' },
+  { v: '12', l: 'entrepreneurs max par semaine' },
+  { v: '14-20', l: 'septembre 2026' },
+  { v: '1h30', l: 'de Montpellier' },
+]
+
+const inclus = [
+  'Une place en tipi partagé (deux par tipi), literie et draps fournis',
+  'Le lieu entier : rivière, 21 hectares',
+  'Espaces de travail au calme, wifi fibre et Starlink',
+  'Cuisine équipée en libre accès',
+  'Navette possible depuis Montpellier',
+  'Les tablées, les feux, les entrepreneurs de ta semaine',
+]
+
+const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py-3.5 text-[#1D1B18] placeholder:text-[#1D1B18]/35 focus:outline-none focus:border-[#9A3922] transition-colors'
+---
+
+<Layout title="La Semaine Libre · Septembre 2026 · LAOM" description="Une semaine à LAOM : ton tipi, le lieu entier, ton rythme. Du 14 au 20 septembre 2026. Réservation en une minute." hideChrome={true} seo={{ noIndex: true }}>
+
+  <!-- ① HERO -->
+  <section class="relative min-h-screen w-full overflow-hidden flex flex-col text-[#F2EBDB]">
+    <video autoplay muted loop playsinline poster="/images/hero-laom-poster-v2.webp" class="absolute inset-0 w-full h-full object-cover">
+      <source src="/videos/hero-laom-v2.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(28,19,12,0.88) 0%,rgba(122,47,29,0.6) 55%,rgba(154,57,34,0.5) 100%)"></div>
+    <SiteNav transparent={true} links={[]} ctaText="Réserver" ctaHref={RESERVER} />
+    <div class="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 pt-28 pb-20 max-w-4xl mx-auto">
+      <span class="inline-block rounded-full bg-[#F2EBDB]/12 border border-[#F2EBDB]/15 px-5 py-2 text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#F2EBDB]/90 mb-8">Nouveau format · La Semaine Libre · 14-20 septembre</span>
+      <h1 class="font-extrabold text-[#F2EBDB] text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.03em] text-balance">Et si tu venais simplement <span class="italic font-medium text-[#E7C89A]">découvrir LAOM ?</span></h1>
+      <p class="text-lg md:text-2xl text-[#F2EBDB]/90 mt-7 max-w-2xl mx-auto leading-relaxed">La Semaine Libre : sept jours dans le lieu, à ton rythme, sans programme imposé. Le nouveau format pour vivre LAOM entre entrepreneurs, avant nos éditions accompagnées.</p>
+      <a href={RESERVER} class="pill pill-light mt-10" style="padding:1rem 2.6rem">Réserver ma semaine</a>
+      <p class="text-sm font-medium text-[#E7C89A] mt-6">Douze places · Du 14 au 20 septembre</p>
+    </div>
+  </section>
+
+  <!-- ② BANDE DE STATS -->
+  <section class="bg-[#FBF6EA] py-16 md:py-20 border-b border-[#412F1F]/8">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
+      {stats.map((s) => (
+        <div class="text-center">
+          <p class="font-extrabold text-[#9A3922] text-4xl md:text-5xl leading-none mb-2">{s.v}</p>
+          <p class="text-sm text-[#1D1B18]/60">{s.l}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ③ LA CITATION — le cœur de la page -->
+  <section id="pourquoi" class="bg-[#9A3922] text-[#F2EBDB] py-28 md:py-40">
+    <div class="max-w-4xl mx-auto px-6 md:px-10 text-center">
+      <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#E7C89A] mb-10">Ce qu'on a entendu tout l'été</p>
+      <p class="font-extrabold text-3xl md:text-5xl leading-[1.15] tracking-[-0.02em] text-balance">« C'est dommage… moi, j'aimerais simplement découvrir le lieu, comme ça, <span class="italic font-medium text-[#E7C89A]">une semaine.</span> »</p>
+      <p class="text-lg md:text-xl text-[#F2EBDB]/80 mt-10 max-w-2xl mx-auto leading-relaxed">Cette phrase, on l'a entendue des dizaines de fois cet été, d'entrepreneurs et d'indépendants, au téléphone, en message, sur place. Alors on a créé le format qui la prend au mot : une semaine pour vivre LAOM en vrai, sans programme, avant nos éditions accompagnées. On vous a écoutés : voilà la Semaine Libre.</p>
+    </div>
+  </section>
+
+  <!-- ⑤ LE LIEU -->
+  <div>
+    <MosaicGallery bg="bg-[#FBF6EA]"
+      eyebrow="Le lieu"
+      title="Vingt-et-un hectares," accent="et plus rien autour."
+      intro="Des tipis dans l'herbe, une rivière où se baigner, un Shala pour travailler au calme, wifi fibre. Et la nuit, la voie lactée à l'œil nu."
+      images={[
+        { src: '/images/vue-aeriene-laom2-hero.webp', alt: 'Vue aérienne du domaine LAOM' },
+        { src: L('lieu-shala-tipis'), alt: 'Le shala et les tipis de LAOM' },
+        { src: L('riviere-baignade'), alt: 'Baignade dans la rivière du domaine' },
+        { src: L('coworking-shala'), alt: 'Espace de travail au Shala' },
+        { src: L('diner-golden-hour-laom'), alt: 'Tablée au coucher du soleil à LAOM' },
+      ]}
+      ctaText="Réserver ma semaine" ctaHref={RESERVER} />
+  </div>
+
+  <!-- ⑥ RESPIRATION — grande phrase -->
+  <section class="relative overflow-hidden text-[#F2EBDB]">
+    <video autoplay muted loop playsinline poster="/images/hero-laom-poster-v2.webp" class="absolute inset-0 w-full h-full object-cover">
+      <source src="/videos/sec-domaine-2.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(29,27,24,0.68),rgba(29,27,24,0.82))"></div>
+    <div class="relative max-w-3xl mx-auto px-6 py-28 md:py-40 text-center">
+      <h2 class="text-4xl md:text-6xl font-extrabold text-[#F2EBDB] tracking-[-0.02em] leading-[1.05] text-balance">Pas de programme imposé. <span class="italic font-medium text-[#E7C89A]">Ta semaine, à ta façon.</span></h2>
+      <p class="text-lg md:text-xl text-[#F2EBDB]/85 mt-6 max-w-xl mx-auto leading-relaxed">Deep work le matin, rivière l'après-midi, tablée le soir. Ou l'inverse. Ou rien.</p>
+    </div>
+  </section>
+
+  <!-- ④ L'OFFRE — tout sur un écran -->
+  <section id="offre" class="bg-[#F2EBDB] py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-14">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#73673E] mb-5">Pour être tout à fait clairs</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-[#412F1F] tracking-[-0.02em] leading-[1.08] text-balance">Ni une promo, ni une réduction. <span class="acc">Un autre format.</span></h2>
+        <p class="text-lg text-[#1D1B18]/70 mt-6 leading-relaxed">Cet été, on proposait l'édition accompagnée, tout compris. Vous avez été nombreux à nous demander autre chose : la Semaine Libre est née de ces retours. Les deux formats existent, chacun à son prix, chacun pour une envie différente.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-5 md:gap-6 max-w-4xl mx-auto mb-16">
+        <div class="rounded-3xl bg-[#FBF6EA] border border-[#412F1F]/10 p-7 md:p-8">
+          <p class="text-xs uppercase tracking-[0.16em] font-semibold text-[#73673E] mb-2">Le format de cet été</p>
+          <p class="text-xl font-extrabold text-[#412F1F] mb-4">L'édition accompagnée</p>
+          <ul class="space-y-2.5 text-[#1D1B18]/70 text-[0.95rem]">
+            <li>Repas préparés, ateliers, pratiques du matin</li>
+            <li>Un programme complet, tout est organisé pour toi</li>
+            <li>Revient bientôt, en éditions à dates fixes, à son propre tarif</li>
+          </ul>
+        </div>
+        <div class="rounded-3xl bg-[#9A3922] text-[#F2EBDB] p-7 md:p-8">
+          <p class="text-xs uppercase tracking-[0.16em] font-semibold text-[#E7C89A] mb-2">Le nouveau format · c'est ici</p>
+          <p class="text-xl font-extrabold mb-4">La Semaine Libre</p>
+          <ul class="space-y-2.5 text-[#F2EBDB]/85 text-[0.95rem]">
+            <li>Le lieu en autonomie, sans programme imposé</li>
+            <li>Tu t'organises, tu vis ta semaine à ton rythme</li>
+            <li>Du 14 au 20 septembre · douze places</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12 items-stretch">
+        <div class="rounded-3xl bg-[#412F1F] text-[#F2EBDB] p-9 md:p-12 flex flex-col justify-center text-center shadow-[0_22px_44px_-26px_rgba(65,47,31,0.5)]">
+          <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#CB7A5C] mb-4">La Semaine Libre</p>
+          <p class="text-6xl md:text-7xl font-extrabold leading-none">600 € <span class="text-3xl md:text-4xl align-top font-bold text-[#F2EBDB]/70">HT</span></p>
+          <p class="text-[#F2EBDB]/85 mt-3 text-lg">la semaine, par personne</p>
+          <p class="text-sm text-[#F2EBDB]/70 mt-6">7 jours, 6 nuits · du lundi 15h au dimanche 14h</p>
+          <a href={RESERVER} class="pill pill-light mt-8 mx-auto" style="padding:.9rem 2.2rem">Réserver</a>
+        </div>
+        <div class="rounded-3xl bg-[#FBF6EA] border border-[#412F1F]/8 p-9 md:p-12">
+          <p class="text-xl font-extrabold text-[#412F1F] mb-6">Inclus, point.</p>
+          <ul class="space-y-3 text-[#1D1B18]/75 text-[1.05rem]">
+            {inclus.map((i) => (
+              <li class="flex gap-3 leading-relaxed"><span class="text-[#9A3922] font-bold shrink-0">·</span>{i}</li>
+            ))}
+          </ul>
+          <p class="mt-8 pt-6 border-t border-[#412F1F]/10 text-[#1D1B18]/60 leading-relaxed"><span class="font-bold text-[#412F1F]">Le reste, c'est toi.</span> Tes repas (cuisine en libre accès, courses à 10 minutes en voiture), tes journées, ton rythme. L'équipe est sur place pour t'accueillir et répondre à tes questions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ RÉSERVATION -->
+  <section id="reserver" class="bg-[#F2EBDB] py-24 md:py-32 scroll-mt-20">
+    <div class="max-w-2xl mx-auto px-6 md:px-10">
+      <div class="rounded-[2rem] bg-[#FBF6EA] border border-[#412F1F]/10 shadow-[0_30px_60px_-35px_rgba(65,47,31,0.4)] px-7 py-10 md:px-12 md:py-14">
+      <div id="sl-app">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-[#412F1F] tracking-[-0.02em] leading-[1.08] text-balance">Ta semaine commence <span class="acc">ici.</span></h2>
+          <p class="text-lg text-[#1D1B18]/70 mt-6 leading-relaxed"><span class="font-semibold text-[#412F1F]">Une minute pour remplir, et on t'appelle dans la foulée.</span><br/>Pas de paiement en ligne, pas de dossier.</p>
+        </div>
+        <form id="sl-form" class="space-y-5">
+          <div>
+            <label for="nom" class="block text-sm font-semibold text-[#412F1F] mb-2">Ton prénom et ton nom</label>
+            <input id="nom" name="nom" type="text" required autocomplete="name" placeholder="Camille Dupont" class={inputCls} />
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="email" class="block text-sm font-semibold text-[#412F1F] mb-2">Ton email</label>
+              <input id="email" name="email" type="email" required autocomplete="email" placeholder="camille@exemple.fr" class={inputCls} />
+            </div>
+            <div>
+              <label for="tel" class="block text-sm font-semibold text-[#412F1F] mb-2">Ton téléphone</label>
+              <input id="tel" name="tel" type="tel" required autocomplete="tel" placeholder="06 12 34 56 78" class={inputCls} />
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="semaine" class="block text-sm font-semibold text-[#412F1F] mb-2">Ta semaine</label>
+              <div class={inputCls + ' bg-[#F2EBDB]/60 font-semibold text-[#412F1F]'}>Du 14 au 20 septembre</div>
+              <input type="hidden" name="semaine" value="14-20 septembre" />
+            </div>
+            <div>
+              <label for="venue" class="block text-sm font-semibold text-[#412F1F] mb-2">Tu viens…</label>
+              <select id="venue" name="venue" required class={inputCls}>
+                <option value="seul">Je viens seul·e</option>
+                <option value="a-deux">On vient à deux</option>
+              </select>
+            </div>
+          </div>
+          <p class="text-sm text-[#1D1B18]/55 leading-relaxed">Les tipis sont partagés à deux, quelle que soit ta réponse : à deux, vous partagez le vôtre ; seul·e, tu partages avec une autre personne du groupe.</p>
+          <label class="flex items-start gap-3 text-sm text-[#1D1B18]/65 leading-relaxed cursor-pointer pt-1">
+            <input type="checkbox" name="rgpd" required class="mt-0.5 w-4 h-4 accent-[#9A3922]" />
+            <span>J'accepte que LAOM me recontacte au sujet de ma réservation. Pas de spam, promis.</span>
+          </label>
+          <div class="pt-3 text-center">
+            <button type="submit" class="pill pill-primary w-full sm:w-auto justify-center" style="padding:.95rem 2.6rem">Réserver ma semaine</button>
+          </div>
+        </form>
+      </div>
+      <div id="sl-success" hidden class="text-center py-10">
+        <p class="text-5xl mb-6">🌿</p>
+        <h2 class="text-4xl font-extrabold text-[#412F1F] tracking-[-0.02em]">C'est noté<span id="sl-name"></span> !</h2>
+        <p class="text-lg text-[#1D1B18]/70 mt-5 leading-relaxed max-w-md mx-auto">On t'appelle très vite pour formaliser ta venue. Garde ton téléphone pas loin.</p>
+      </div>
+      <p id="sl-reassurance" class="text-sm text-[#1D1B18]/45 mt-8 text-center">Annulation gratuite jusqu'à 7 jours avant la semaine.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑧ FAQ -->
+  <div>
+    <Faq bg="bg-[#FBF6EA]"
+      eyebrow="Questions fréquentes"
+      title="Ce qu'on te demande" accent="le plus souvent."
+      items={[
+        { q: 'Et les repas, ça marche comment ?', a: 'La grande cuisine équipée est en libre accès. Tu peux prévoir tes courses avant d’arriver, ou faire un tour à Saint-Affrique, à 10 minutes en voiture. Et dans les faits, les tablées communes se forment toutes seules.' },
+        { q: 'Je peux vraiment travailler sur place ?', a: 'Oui, c’est prévu pour. Le Shala est un vrai espace de travail au calme, avec wifi fibre et Starlink en secours. Tu prends tes calls, tu avances tes projets, à tes horaires. Tu ne perds pas une semaine de travail : tu changes de cadre.' },
+        { q: 'Il y aura qui d’autre ?', a: 'Des entrepreneurs, des indépendants, des porteurs de projets. Douze personnes maximum sur la semaine : assez pour les tablées du soir, pas assez pour la foule.' },
+        { q: 'Le tipi, on le partage ?', a: 'Oui, à deux par tipi, literie et draps fournis. Si tu viens à deux, vous partagez le vôtre. Si tu viens seul, tu partages avec une autre personne du groupe (on t’en parle à l’appel).' },
+        { q: 'Comment on vient ?', a: 'On est à 1h30 de Montpellier (gare TGV). Une navette est possible depuis la gare, sur demande. Et le covoiturage s’organise entre participants avant la semaine.' },
+        { q: 'Et si je dois annuler ?', a: 'Remboursement intégral jusqu’à 7 jours avant le début de la semaine. Simple et sans justification.' },
+        { q: 'C’est quoi la différence avec la formule de cet été ?', a: 'Ce sont deux formats différents, pas une promotion ni une réduction. L’édition accompagnée (repas préparés, ateliers, accompagnement, tout compris) revient bientôt à dates fixes, à son propre tarif. La Semaine Libre, c’est le lieu en autonomie, sans programme : un autre produit, un autre prix.' },
+      ]} />
+  </div>
+
+  <!-- ⑨ CTA FINAL — boîte -->
+  <CtaImage bg="bg-[#F2EBDB]" img={L('diner-golden-hour-laom')} imgPos="center 72%"
+    eyebrow="14-20 septembre"
+    title="Douze places." accent="Une semaine à toi."
+    subtitle="La réservation prend une minute, et on t'appelle dans la foulée."
+    primaryText="Réserver ma semaine" primaryHref={RESERVER} />
+
+  <div class="footer-full"><SiteFooter /></div>
+
+  <StickyCta text="Réserver" href={RESERVER} />
+</Layout>
+
+<style>
+  .footer-full :global(footer) { padding-left: 0; padding-right: 0; padding-bottom: 0; }
+  .footer-full :global(footer > div) { max-width: none; border-radius: 0; }
+</style>
+
+<script>
+  const form = document.getElementById('sl-form') as HTMLFormElement | null
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    if (!form.checkValidity()) { form.reportValidity(); return }
+
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Envoi…' }
+
+    const fd = new FormData(form)
+    const eventId = (crypto.randomUUID && crypto.randomUUID())
+      || ('eid_' + Date.now() + '_' + Math.random().toString(36).slice(2))
+    const venue = String(fd.get('venue') || 'seul')
+
+    const payload = {
+      nom: String(fd.get('nom') || ''),
+      email: String(fd.get('email') || ''),
+      tel: String(fd.get('tel') || ''),
+      activite: 'Semaine Libre septembre',
+      attentes: ['semaine-libre'],
+      semaine: String(fd.get('semaine') || ''),
+      message: `SEMAINE LIBRE — vient ${venue === 'a-deux' ? 'à deux (même tipi)' : 'seul·e'}`,
+      rgpd: !!fd.get('rgpd'),
+      event_id: eventId,
+    }
+
+    try {
+      const res = await fetch('/api/form/candidater', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (!res.ok) throw new Error('submit failed')
+      const w = window as any
+      try { if (w.fbq) w.fbq('track', 'Lead', { content_name: 'semaine-libre' }, { eventID: eventId }) } catch {}
+      try { if (w.gtag) w.gtag('event', 'generate_lead', { event_category: 'coliving', event_label: 'semaine-libre' }) } catch {}
+    } catch (err) {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Réserver ma semaine' }
+      const reass = document.getElementById('sl-reassurance') as HTMLElement | null
+      if (reass) { reass.textContent = 'Oups, un souci à l’envoi. Réessaie dans un instant.'; reass.style.color = '#9A3922' }
+      return
+    }
+
+    const prenom = payload.nom.trim().split(' ')[0]
+    const nameEl = document.getElementById('sl-name')
+    if (nameEl) nameEl.textContent = prenom ? ' ' + prenom : ''
+    const app = document.getElementById('sl-app') as HTMLElement | null
+    const ok = document.getElementById('sl-success') as HTMLElement | null
+    if (app) app.hidden = true
+    if (ok) ok.hidden = false
+    document.getElementById('reserver')?.scrollIntoView({ behavior: 'smooth' })
+  })
+</script>
