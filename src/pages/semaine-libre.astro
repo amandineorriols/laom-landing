@@ -159,11 +159,12 @@ const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py
             <div>
               <label for="venue" class="block text-sm font-semibold text-[#412F1F] mb-2">Tu viens…</label>
               <select id="venue" name="venue" required class={inputCls}>
-                <option value="seul">Seul·e (tipi partagé avec une autre personne)</option>
-                <option value="a-deux">À deux (vous partagez votre tipi)</option>
+                <option value="seul">Je viens seul·e</option>
+                <option value="a-deux">On vient à deux</option>
               </select>
             </div>
           </div>
+          <p class="text-sm text-[#1D1B18]/55 leading-relaxed">Les tipis sont partagés à deux, quelle que soit ta réponse : à deux, vous partagez le vôtre ; seul·e, tu partages avec une autre personne du groupe.</p>
           <label class="flex items-start gap-3 text-sm text-[#1D1B18]/65 leading-relaxed cursor-pointer pt-1">
             <input type="checkbox" name="rgpd" required class="mt-0.5 w-4 h-4 accent-[#9A3922]" />
             <span>J'accepte que LAOM me recontacte au sujet de ma réservation. Pas de spam, promis.</span>
