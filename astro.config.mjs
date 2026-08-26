@@ -79,7 +79,7 @@ export default defineConfig({
           '/ferme-jardin-guinguette', '/strategie-2026', '/previsionnel-2026',
           '/valorisation-fdv', '/perspectives-table', '/la-margue-est',
           '/devis-voda', '/tarifs-location-pdf', '/admin',
-          '/candidater', '/quiz', '/liens', '/coliving-aout',
+          '/candidater', '/quiz', '/liens', '/coliving-aout', '/semaine-libre',
           '/ds2', '/styleguide', '/planification', '/presentation',
         ]
         const clean = path.replace(/^\/en/, '') // couvre aussi les variantes /en/*
