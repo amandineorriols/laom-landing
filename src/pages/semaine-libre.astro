@@ -153,10 +153,8 @@ const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
               <label for="semaine" class="block text-sm font-semibold text-[#412F1F] mb-2">Ta semaine</label>
-              <select id="semaine" name="semaine" required class={inputCls}>
-                <option value="14-20 septembre">Du 14 au 20 septembre</option>
-                <option value="21-27 septembre (me prévenir)">Du 21 au 27 septembre (préviens-moi à l'ouverture)</option>
-              </select>
+              <div class={inputCls + ' bg-[#F2EBDB]/60 font-semibold text-[#412F1F]'}>Du 14 au 20 septembre</div>
+              <input type="hidden" name="semaine" value="14-20 septembre" />
             </div>
             <div>
               <label for="venue" class="block text-sm font-semibold text-[#412F1F] mb-2">Tu viens…</label>
@@ -204,7 +202,7 @@ const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py
   <CtaImage bg="bg-[#F2EBDB]" img={L('diner-golden-hour-laom')}
     eyebrow="14-20 septembre"
     title="Douze places." accent="Une semaine à toi."
-    subtitle="Et quand c'est complet, on ouvre la suivante."
+    subtitle="La réservation prend une minute, et on t'appelle dans la foulée."
     primaryText="Réserver ma semaine" primaryHref={RESERVER} />
 
   <div class="footer-full"><SiteFooter /></div>
