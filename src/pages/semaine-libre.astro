@@ -15,7 +15,7 @@ const L = (n: string) => `/images/laom/${n}.webp`
 const RESERVER = '#reserver'
 
 const stats = [
-  { v: '600 €', l: 'la semaine, par personne' },
+  { v: '21 ha', l: 'de nature, rien autour' },
   { v: '12', l: 'places par semaine' },
   { v: '14-20', l: 'septembre 2026' },
   { v: '1h30', l: 'de Montpellier' },
@@ -33,7 +33,7 @@ const inclus = [
 const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py-3.5 text-[#1D1B18] placeholder:text-[#1D1B18]/35 focus:outline-none focus:border-[#9A3922] transition-colors'
 ---
 
-<Layout title="La Semaine Libre · Septembre 2026 · LAOM" description="Une semaine à LAOM : ton tipi, le lieu entier, ton rythme. 600 € la semaine, du 14 au 20 septembre 2026. Réservation en une minute." hideChrome={true} seo={{ noIndex: true }}>
+<Layout title="La Semaine Libre · Septembre 2026 · LAOM" description="Une semaine à LAOM : ton tipi, le lieu entier, ton rythme. Du 14 au 20 septembre 2026. Réservation en une minute." hideChrome={true} seo={{ noIndex: true }}>
 
   <!-- ① HERO -->
   <section class="relative min-h-screen w-full overflow-hidden flex flex-col text-[#F2EBDB]">
@@ -47,7 +47,7 @@ const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py
       <h1 class="font-extrabold text-[#F2EBDB] text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.03em] text-balance">La Semaine Libre <span class="italic font-medium text-[#E7C89A]">à LAOM.</span></h1>
       <p class="text-lg md:text-2xl text-[#F2EBDB]/90 mt-7 max-w-2xl mx-auto leading-relaxed">Ton tipi. Le lieu entier. Ton rythme.</p>
       <a href={RESERVER} class="pill pill-light mt-10" style="padding:1rem 2.6rem">Réserver ma semaine</a>
-      <p class="text-sm font-medium text-[#E7C89A] mt-6">600 € la semaine · Douze places</p>
+      <p class="text-sm font-medium text-[#E7C89A] mt-6">Douze places · Du 14 au 20 septembre</p>
     </div>
   </section>
 
@@ -69,31 +69,6 @@ const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py
       <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#E7C89A] mb-10">Ce qu'on a entendu tout l'été</p>
       <p class="font-extrabold text-3xl md:text-5xl leading-[1.15] tracking-[-0.02em] text-balance">« J'ai pas besoin qu'on s'occupe de moi. Je veux juste venir, poser mon ordi, <span class="italic font-medium text-[#E7C89A]">vivre le lieu.</span> »</p>
       <p class="text-lg md:text-xl text-[#F2EBDB]/80 mt-10 max-w-2xl mx-auto leading-relaxed">Des centaines de demandes, des dizaines d'appels, et très souvent cette phrase. On vous a écoutés : voilà la Semaine Libre.</p>
-    </div>
-  </section>
-
-  <!-- ④ L'OFFRE — tout sur un écran -->
-  <section id="offre" class="bg-[#F2EBDB] py-24 md:py-32">
-    <div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-14">
-      <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12 items-stretch">
-        <div class="rounded-3xl bg-[#412F1F] text-[#F2EBDB] p-9 md:p-12 flex flex-col justify-center text-center shadow-[0_22px_44px_-26px_rgba(65,47,31,0.5)]">
-          <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#CB7A5C] mb-4">La Semaine Libre</p>
-          <p class="text-6xl md:text-7xl font-extrabold leading-none">600 €</p>
-          <p class="text-[#F2EBDB]/85 mt-3 text-lg">la semaine, par personne</p>
-          <p class="text-sm text-[#F2EBDB]/70 mt-6">7 jours, 6 nuits · du lundi 15h au dimanche 14h</p>
-          <a href={RESERVER} class="pill pill-light mt-8 mx-auto" style="padding:.9rem 2.2rem">Réserver</a>
-        </div>
-        <div class="rounded-3xl bg-[#FBF6EA] border border-[#412F1F]/8 p-9 md:p-12">
-          <p class="text-xl font-extrabold text-[#412F1F] mb-6">Inclus, point.</p>
-          <ul class="space-y-3 text-[#1D1B18]/75 text-[1.05rem]">
-            {inclus.map((i) => (
-              <li class="flex gap-3 leading-relaxed"><span class="text-[#9A3922] font-bold shrink-0">·</span>{i}</li>
-            ))}
-          </ul>
-          <p class="mt-8 pt-6 border-t border-[#412F1F]/10 text-[#1D1B18]/60 leading-relaxed"><span class="font-bold text-[#412F1F]">Le reste, c'est toi.</span> Tes repas (cuisine à toi, courses à 10 min), tes journées, ton programme. Il n'y en a pas, c'est le principe.</p>
-        </div>
-      </div>
-      <p class="text-center text-[#1D1B18]/55 mt-10 max-w-2xl mx-auto leading-relaxed">Ce n'est pas une promo : c'est une nouvelle offre. La formule complète, avec repas et ateliers, reviendra en éditions à dates fixes. <span class="font-semibold text-[#412F1F]">Deux formules, deux expériences.</span></p>
     </div>
   </section>
 
@@ -120,8 +95,33 @@ const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py
     </video>
     <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(29,27,24,0.5),rgba(29,27,24,0.72))"></div>
     <div class="relative max-w-3xl mx-auto px-6 py-28 md:py-40 text-center">
-      <h2 class="text-4xl md:text-6xl font-extrabold text-[#F2EBDB] tracking-[-0.02em] leading-[1.05] text-balance">Aucun horaire. <span class="italic font-medium text-[#E7C89A]">Que des possibles.</span></h2>
+      <h2 class="text-4xl md:text-6xl font-extrabold text-[#F2EBDB] tracking-[-0.02em] leading-[1.05] text-balance">Pas de programme imposé. <span class="italic font-medium text-[#E7C89A]">Ta semaine, à ta façon.</span></h2>
       <p class="text-lg md:text-xl text-[#F2EBDB]/85 mt-6 max-w-xl mx-auto leading-relaxed">Deep work le matin, rivière l'après-midi, tablée le soir. Ou l'inverse. Ou rien.</p>
+    </div>
+  </section>
+
+  <!-- ④ L'OFFRE — tout sur un écran -->
+  <section id="offre" class="bg-[#F2EBDB] py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-14">
+      <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12 items-stretch">
+        <div class="rounded-3xl bg-[#412F1F] text-[#F2EBDB] p-9 md:p-12 flex flex-col justify-center text-center shadow-[0_22px_44px_-26px_rgba(65,47,31,0.5)]">
+          <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#CB7A5C] mb-4">La Semaine Libre</p>
+          <p class="text-6xl md:text-7xl font-extrabold leading-none">600 € <span class="text-3xl md:text-4xl align-top font-bold text-[#F2EBDB]/70">HT</span></p>
+          <p class="text-[#F2EBDB]/85 mt-3 text-lg">la semaine, par personne</p>
+          <p class="text-sm text-[#F2EBDB]/70 mt-6">7 jours, 6 nuits · du lundi 15h au dimanche 14h</p>
+          <a href={RESERVER} class="pill pill-light mt-8 mx-auto" style="padding:.9rem 2.2rem">Réserver</a>
+        </div>
+        <div class="rounded-3xl bg-[#FBF6EA] border border-[#412F1F]/8 p-9 md:p-12">
+          <p class="text-xl font-extrabold text-[#412F1F] mb-6">Inclus, point.</p>
+          <ul class="space-y-3 text-[#1D1B18]/75 text-[1.05rem]">
+            {inclus.map((i) => (
+              <li class="flex gap-3 leading-relaxed"><span class="text-[#9A3922] font-bold shrink-0">·</span>{i}</li>
+            ))}
+          </ul>
+          <p class="mt-8 pt-6 border-t border-[#412F1F]/10 text-[#1D1B18]/60 leading-relaxed"><span class="font-bold text-[#412F1F]">Le reste, c'est toi.</span> Tes repas (cuisine à toi, courses à 10 min), tes journées, ton programme. Il n'y en a pas, c'est le principe.</p>
+        </div>
+      </div>
+      <p class="text-center text-[#1D1B18]/55 mt-10 max-w-2xl mx-auto leading-relaxed">Ce n'est pas une promo : c'est une nouvelle offre. La formule complète, avec repas et ateliers, reviendra en éditions à dates fixes. <span class="font-semibold text-[#412F1F]">Deux formules, deux expériences.</span></p>
     </div>
   </section>
 
@@ -193,7 +193,7 @@ const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py
         { q: 'Le tipi, on le partage ?', a: 'Oui, à deux par tipi, literie et draps fournis. Si tu viens à deux, vous partagez le vôtre. Si tu viens seul, tu partages avec une autre personne du groupe (on t’en parle à l’appel).' },
         { q: 'Comment on vient ?', a: 'On est à 1h30 de Montpellier (gare TGV). Une navette est possible depuis la gare, sur demande. Et le covoiturage s’organise entre participants avant la semaine.' },
         { q: 'Et si je dois annuler ?', a: 'Remboursement intégral jusqu’à 7 jours avant le début de la semaine. Simple et sans justification.' },
-        { q: 'C’est quoi la différence avec la formule complète ?', a: 'La formule complète (repas préparés, ateliers, accompagnement) revient bientôt en éditions à dates fixes. La Semaine Libre, c’est l’autre façon de vivre LAOM : le lieu, l’essentiel, ton rythme, à 600 €.' },
+        { q: 'C’est quoi la différence avec la formule complète ?', a: 'La formule complète (repas préparés, ateliers, accompagnement) revient bientôt en éditions à dates fixes. La Semaine Libre, c’est l’autre façon de vivre LAOM : le lieu, l’essentiel, ton rythme, à 600 € HT la semaine.' },
       ]} />
   </div>
 
