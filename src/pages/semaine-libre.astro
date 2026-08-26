@@ -17,7 +17,7 @@ const RESERVER = '#reserver'
 
 const stats = [
   { v: '21 ha', l: 'de nature, rien autour' },
-  { v: '12', l: 'places par semaine' },
+  { v: '12', l: 'entrepreneurs max par semaine' },
   { v: '14-20', l: 'septembre 2026' },
   { v: '1h30', l: 'de Montpellier' },
 ]
@@ -25,10 +25,10 @@ const stats = [
 const inclus = [
   'Une place en tipi partagé (deux par tipi), literie et draps fournis',
   'Le lieu entier : rivière, 21 hectares',
-  'Espaces de travail au calme, wifi fibre',
+  'Espaces de travail au calme, wifi fibre et Starlink',
   'Cuisine équipée en libre accès',
   'Navette possible depuis Montpellier',
-  'Les tablées, les feux, les gens de ta semaine',
+  'Les tablées, les feux, les entrepreneurs de ta semaine',
 ]
 
 const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py-3.5 text-[#1D1B18] placeholder:text-[#1D1B18]/35 focus:outline-none focus:border-[#9A3922] transition-colors'
@@ -46,7 +46,7 @@ const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py
     <div class="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 pt-28 pb-20 max-w-4xl mx-auto">
       <span class="inline-block rounded-full bg-[#F2EBDB]/12 border border-[#F2EBDB]/15 px-5 py-2 text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#F2EBDB]/90 mb-8">Nouveau format · La Semaine Libre · 14-20 septembre</span>
       <h1 class="font-extrabold text-[#F2EBDB] text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.03em] text-balance">Et si tu venais simplement <span class="italic font-medium text-[#E7C89A]">découvrir LAOM ?</span></h1>
-      <p class="text-lg md:text-2xl text-[#F2EBDB]/90 mt-7 max-w-2xl mx-auto leading-relaxed">La Semaine Libre : sept jours dans le lieu, à ton rythme, sans programme imposé. Le nouveau format pour vivre LAOM avant nos éditions accompagnées.</p>
+      <p class="text-lg md:text-2xl text-[#F2EBDB]/90 mt-7 max-w-2xl mx-auto leading-relaxed">La Semaine Libre : sept jours dans le lieu, à ton rythme, sans programme imposé. Le nouveau format pour vivre LAOM entre entrepreneurs, avant nos éditions accompagnées.</p>
       <a href={RESERVER} class="pill pill-light mt-10" style="padding:1rem 2.6rem">Réserver ma semaine</a>
       <p class="text-sm font-medium text-[#E7C89A] mt-6">Douze places · Du 14 au 20 septembre</p>
     </div>
@@ -69,7 +69,7 @@ const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py
     <div class="max-w-4xl mx-auto px-6 md:px-10 text-center">
       <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#E7C89A] mb-10">Ce qu'on a entendu tout l'été</p>
       <p class="font-extrabold text-3xl md:text-5xl leading-[1.15] tracking-[-0.02em] text-balance">« C'est dommage… moi, j'aimerais simplement découvrir le lieu, comme ça, <span class="italic font-medium text-[#E7C89A]">une semaine.</span> »</p>
-      <p class="text-lg md:text-xl text-[#F2EBDB]/80 mt-10 max-w-2xl mx-auto leading-relaxed">Cette phrase, on l'a entendue des dizaines de fois cet été, au téléphone, en message, sur place. Alors on a créé le format qui la prend au mot : une semaine pour vivre LAOM en vrai, sans programme, avant nos éditions accompagnées. On vous a écoutés : voilà la Semaine Libre.</p>
+      <p class="text-lg md:text-xl text-[#F2EBDB]/80 mt-10 max-w-2xl mx-auto leading-relaxed">Cette phrase, on l'a entendue des dizaines de fois cet été, d'entrepreneurs et d'indépendants, au téléphone, en message, sur place. Alors on a créé le format qui la prend au mot : une semaine pour vivre LAOM en vrai, sans programme, avant nos éditions accompagnées. On vous a écoutés : voilà la Semaine Libre.</p>
     </div>
   </section>
 
@@ -191,7 +191,8 @@ const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py
       title="Ce qu'on te demande" accent="le plus souvent."
       items={[
         { q: 'Et les repas, ça marche comment ?', a: 'La grande cuisine équipée est en libre accès. Tu peux prévoir tes courses avant d’arriver, ou faire un tour à Saint-Affrique, à 10 minutes en voiture. Et dans les faits, les tablées communes se forment toutes seules.' },
-        { q: 'Je peux vraiment travailler sur place ?', a: 'Oui, c’est prévu pour. Le Shala est un espace de travail au calme avec wifi fibre. Tu prends tes calls, tu avances tes projets, à tes horaires.' },
+        { q: 'Je peux vraiment travailler sur place ?', a: 'Oui, c’est prévu pour. Le Shala est un vrai espace de travail au calme, avec wifi fibre et Starlink en secours. Tu prends tes calls, tu avances tes projets, à tes horaires. Tu ne perds pas une semaine de travail : tu changes de cadre.' },
+        { q: 'Il y aura qui d’autre ?', a: 'Des entrepreneurs, des indépendants, des porteurs de projets. Douze personnes maximum sur la semaine : assez pour les tablées du soir, pas assez pour la foule.' },
         { q: 'Le tipi, on le partage ?', a: 'Oui, à deux par tipi, literie et draps fournis. Si tu viens à deux, vous partagez le vôtre. Si tu viens seul, tu partages avec une autre personne du groupe (on t’en parle à l’appel).' },
         { q: 'Comment on vient ?', a: 'On est à 1h30 de Montpellier (gare TGV). Une navette est possible depuis la gare, sur demande. Et le covoiturage s’organise entre participants avant la semaine.' },
         { q: 'Et si je dois annuler ?', a: 'Remboursement intégral jusqu’à 7 jours avant le début de la semaine. Simple et sans justification.' },
