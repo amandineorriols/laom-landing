@@ -8,6 +8,7 @@ import Layout from '~/layouts/Layout.astro'
 import SiteNav from '~/components/laom/SiteNav.astro'
 import MosaicGallery from '~/components/laom/sections/MosaicGallery.astro'
 import Faq from '~/components/laom/sections/Faq.astro'
+import CtaImage from '~/components/laom/sections/CtaImage.astro'
 import StickyCta from '~/components/laom/StickyCta.astro'
 import SiteFooter from '~/components/laom/SiteFooter.astro'
 
@@ -128,6 +129,7 @@ const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py
   <!-- ⑦ RÉSERVATION -->
   <section id="reserver" class="bg-[#F2EBDB] py-24 md:py-32 scroll-mt-20">
     <div class="max-w-2xl mx-auto px-6 md:px-10">
+      <div class="rounded-[2rem] bg-[#FBF6EA] border border-[#412F1F]/10 shadow-[0_30px_60px_-35px_rgba(65,47,31,0.4)] px-7 py-10 md:px-12 md:py-14">
       <div id="sl-app">
         <div class="text-center mb-12">
           <h2 class="text-4xl md:text-5xl font-extrabold text-[#412F1F] tracking-[-0.02em] leading-[1.08] text-balance">Ta semaine commence <span class="acc">ici.</span></h2>
@@ -179,6 +181,7 @@ const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py
         <p class="text-lg text-[#1D1B18]/70 mt-5 leading-relaxed max-w-md mx-auto">On t'appelle très vite pour formaliser ta venue. Garde ton téléphone pas loin.</p>
       </div>
       <p id="sl-reassurance" class="text-sm text-[#1D1B18]/45 mt-8 text-center">Annulation gratuite jusqu'à 7 jours avant la semaine.</p>
+      </div>
     </div>
   </section>
 
@@ -197,21 +200,22 @@ const inputCls = 'w-full rounded-2xl border border-[#412F1F]/15 bg-white px-5 py
       ]} />
   </div>
 
-  <!-- ⑨ CTA FINAL -->
-  <section id="cta-final" class="relative overflow-hidden text-[#F2EBDB]">
-    <img src={L('diner-golden-hour-laom')} alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
-    <div class="absolute inset-0" style="background:rgba(29,27,24,0.78)"></div>
-    <div class="relative max-w-3xl mx-auto px-6 py-28 md:py-36 text-center">
-      <h2 class="text-4xl md:text-6xl font-extrabold text-[#F2EBDB] tracking-[-0.02em] leading-[1.05] text-balance">Douze places. <span class="italic font-medium text-[#E7C89A]">Une semaine à toi.</span></h2>
-      <p class="text-lg md:text-xl text-[#F2EBDB]/85 mt-6 max-w-xl mx-auto leading-relaxed">Du 14 au 20 septembre. Et quand c'est complet, on ouvre la suivante.</p>
-      <a href={RESERVER} class="pill pill-light mt-9" style="padding:.95rem 2.4rem">Réserver ma semaine</a>
-    </div>
-  </section>
+  <!-- ⑨ CTA FINAL — boîte -->
+  <CtaImage bg="bg-[#F2EBDB]" img={L('diner-golden-hour-laom')}
+    eyebrow="14-20 septembre"
+    title="Douze places." accent="Une semaine à toi."
+    subtitle="Et quand c'est complet, on ouvre la suivante."
+    primaryText="Réserver ma semaine" primaryHref={RESERVER} />
 
-  <SiteFooter />
+  <div class="footer-full"><SiteFooter /></div>
 
   <StickyCta text="Réserver" href={RESERVER} />
 </Layout>
+
+<style>
+  .footer-full :global(footer) { padding-left: 0; padding-right: 0; padding-bottom: 0; }
+  .footer-full :global(footer > div) { max-width: none; border-radius: 0; }
+</style>
 
 <script>
   const form = document.getElementById('sl-form') as HTMLFormElement | null
