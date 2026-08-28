@@ -1,0 +1,381 @@
+---
+// PAGE DÉMO — « Regarder, cadrer, monter » : stage documentaire à LAOM.
+// Intervenante : Manon. Page construite le 28/08/2026 pour lui montrer le projet.
+// ⚠️ À VALIDER avec elle avant toute mise en prod : sa bio, le programme
+// pédagogique, les tarifs (indicatifs, cf. TARIFS ci-dessous) et les dates.
+// Page en noindex, non liée depuis le reste du site. Route : /stage-documentaire
+import Layout from '~/layouts/Layout.astro'
+import SiteNav from '~/components/laom/SiteNav.astro'
+import SiteFooter from '~/components/laom/SiteFooter.astro'
+import StickyCta from '~/components/laom/StickyCta.astro'
+import NumberedCard from '~/components/laom/NumberedCard.astro'
+import KitForm from '~/components/laom/KitForm.astro'
+import Timeline from '~/components/laom/sections/Timeline.astro'
+import PhotoStrip from '~/components/laom/sections/PhotoStrip.astro'
+import PhotoQuote from '~/components/laom/sections/PhotoQuote.astro'
+import MosaicGallery from '~/components/laom/sections/MosaicGallery.astro'
+import IncludedGrid from '~/components/laom/sections/IncludedGrid.astro'
+import FitCheck from '~/components/laom/sections/FitCheck.astro'
+import Faq from '~/components/laom/sections/Faq.astro'
+import CtaImage from '~/components/laom/sections/CtaImage.astro'
+import MediaText from '~/components/laom/sections/MediaText.astro'
+
+const L = (n: string) => `/images/laom/${n}.webp`
+const M = (n: string) => `/images/stage-documentaire/${n}.webp`
+const CTA = '#prevenir'
+
+// ⚠️ TARIFS INDICATIFS — posés par défaut, à valider avec Manon et Charly.
+const TARIF_STAGE = '1 200 €'
+const TARIF_SUIVI = '1 800 €'
+
+const stats = [
+  { v: '6', l: 'jours, du regard à l’export' },
+  { v: '8', l: 'places, pas une de plus' },
+  { v: '1', l: 'film monté à la fin' },
+  { v: '21 ha', l: 'de décor à filmer' },
+]
+
+const constats = [
+  {
+    t: 'Tes rushes dorment',
+    lead: 'Des heures filmées, jamais ouvertes.',
+    body: 'Le disque dur est plein. Tu sais qu’il y a quelque chose dedans, mais tu ne sais pas par quel bout le prendre — alors tu remets, et le projet vieillit.',
+    img: M('mahury-rosee'),
+  },
+  {
+    t: 'De belles images, pas de film',
+    lead: 'Chaque plan est joli. Mis bout à bout, ça ne raconte rien.',
+    body: 'Ce n’est pas ta technique qui manque, c’est la colonne vertébrale : un sujet, un point de vue, une promesse tenue jusqu’au bout.',
+    img: L('coworking-shala'),
+  },
+  {
+    t: 'Tu apprends seul, en tuto',
+    lead: 'Personne ne regarde ce que tu fabriques.',
+    body: 'Tu empiles des techniques sans jamais montrer ton travail à quelqu’un qui te dit franchement ce qui marche et ce qui ne marche pas.',
+    img: M('mahury-couchant'),
+  },
+]
+
+const gestes = [
+  {
+    n: '01',
+    t: 'Regarder & écrire',
+    x: 'Avant la caméra. De quoi tu parles, d’où tu le regardes, ce que le spectateur doit ressentir à la fin. On travaille l’intention, la structure en mouvements, la note d’intention que tu peux envoyer à un diffuseur.',
+  },
+  {
+    n: '02',
+    t: 'Cadrer',
+    x: 'La focale, la lumière, l’axe, la durée du plan — et le son, qui fait la moitié du film. Ce que tu mets dans le cadre, surtout ce que tu laisses dehors. Deux jours à tourner pour de vrai sur le domaine.',
+  },
+  {
+    n: '03',
+    t: 'Monter',
+    x: 'Dérusher, choisir, jeter. Où couper, quoi garder, comment le rythme fabrique du sens. On monte jusqu’à l’export, sur ton logiciel, avec quelqu’un derrière ton épaule.',
+  },
+]
+
+const deroule = [
+  { time: 'Jour 1', label: 'Arrivée, projection collective. Chacun pose son sujet à voix haute.' },
+  { time: 'Jour 2', label: 'L’écriture : intention, structure, séquencier. Ton film sur une page.' },
+  { time: 'Jour 3', label: 'Le cadre : focale, lumière, son. Exercices courts, retour immédiat.' },
+  { time: 'Jour 4', label: 'Tournage sur le domaine. Tu filmes ta séquence, seul ou en binôme.' },
+  { time: 'Jour 5', label: 'Dérushage et montage. La journée la plus longue, la plus utile.' },
+  { time: 'Jour 6', label: 'Finitions, étalonnage, mixage. Projection publique le soir, au coin du feu.' },
+]
+
+const inclus = [
+  { title: 'Six jours d’atelier', desc: 'Écriture, cadre, montage. Huit personnes, une intervenante.' },
+  { title: 'Hébergement sur place', desc: 'Tipi ou chambre, selon la saison et ton envie.' },
+  { title: 'Les trois repas', desc: 'Cuisine maison, potager à cinquante mètres de la table.' },
+  { title: 'La salle de montage', desc: 'La grande verrière du Shambala, fibre, vue sur la vallée.' },
+  { title: 'Le tournage', desc: 'Vingt-et-un hectares de décor : rivière, forêt, chantier, gens.' },
+  { title: 'La projection', desc: 'Ton film montré au collectif le dernier soir. Ça change tout.' },
+  { title: 'Un retour à un mois', desc: 'Tu renvoies ton montage, Manon te fait un retour écrit.' },
+  { title: 'L’arrivée', desc: 'On s’occupe de toi depuis la gare de Millau ou de Montpellier.' },
+  { title: 'Fibre et courant', desc: 'Pour dérusher, exporter et envoyer sans souffrir.' },
+]
+---
+
+<Layout
+  title="Stage documentaire · Regarder, cadrer, monter · LAOM"
+  description="Six jours en sud Aveyron pour apprendre les trois gestes du documentaire : écrire, cadrer, monter. Tu arrives avec une intention, tu repars avec un film."
+  hideChrome={true}
+  seo={{ noIndex: true }}
+>
+
+  <!-- ① HERO -->
+  <section class="relative min-h-screen w-full overflow-hidden flex flex-col text-[#F2EBDB]">
+    <video autoplay muted loop playsinline poster="/images/hero-laom-poster-v2.webp" class="absolute inset-0 w-full h-full object-cover">
+      <source src="/videos/hero-laom-v2.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0" style="background:linear-gradient(160deg,rgba(29,27,24,0.9) 0%,rgba(29,27,24,0.55) 45%,rgba(154,57,34,0.55) 100%)"></div>
+    <SiteNav transparent={true} links={[]} ctaText="Être prévenu" ctaHref={CTA} />
+    <div class="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-10 lg:px-14 pt-28 pb-24 max-w-7xl mx-auto w-full">
+      <span class="inline-flex items-center gap-3 self-start rounded-full bg-[#F2EBDB]/12 border border-[#F2EBDB]/15 px-5 py-2 text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#F2EBDB]/90 mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#CB7A5C]"></span>Stage documentaire · sud Aveyron
+      </span>
+      <h1 class="font-extrabold text-[#F2EBDB] text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.03em] text-balance max-w-4xl">
+        Tu as les images. <span class="italic font-medium acc-light">Il te manque le film.</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[#F2EBDB]/85 mt-7 max-w-2xl leading-relaxed">
+        Six jours à LAOM pour apprendre les trois gestes du documentaire : regarder et écrire, cadrer, monter. Tu arrives avec une intention. Tu repars avec un film fini, projeté devant du monde.
+      </p>
+      <div class="flex flex-wrap items-center gap-4 mt-10">
+        <a href={CTA} class="pill pill-light" style="padding:1rem 2.6rem">Être prévenu de l’ouverture</a>
+        <a href="#programme" class="pill pill-outline" style="padding:1rem 2.2rem">Voir le programme</a>
+      </div>
+      <p class="text-xs tracking-[0.12em] uppercase text-[#F2EBDB]/55 mt-6">Huit places · première édition en préparation</p>
+    </div>
+  </section>
+
+  <!-- ② STATS -->
+  <section class="bg-[#FBF6EA] py-16 md:py-20 border-b border-[#412F1F]/8">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
+      {stats.map((s) => (
+        <div class="text-center">
+          <p class="font-extrabold text-[#9A3922] text-4xl md:text-5xl leading-none mb-2">{s.v}</p>
+          <p class="text-sm text-[#1D1B18]/60">{s.l}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ③ LE CONSTAT -->
+  <section animate-fade-in-up class="opacity-0 bg-[#F2EBDB] py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-14 grid lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-16 items-start">
+      <div class="lg:pt-4 lg:sticky lg:top-28">
+        <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#73673E] mb-5">Le constat</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-[#412F1F] tracking-[-0.02em] leading-[1.08] text-balance">
+          Ce n’est jamais <span class="acc">le matériel</span> qui bloque.
+        </h2>
+        <p class="text-lg text-[#1D1B18]/70 mt-6 leading-relaxed max-w-md">
+          Les caméras n’ont jamais été aussi bonnes, ni aussi accessibles. Et pourtant, trois choses reviennent chez presque tous ceux qui filment.
+        </p>
+        <a href={CTA} class="pill pill-primary mt-9" style="padding:.9rem 2.2rem">Être prévenu de l’ouverture</a>
+      </div>
+      <div class="space-y-5">
+        {constats.map((p) => (
+          <div class="rounded-3xl bg-[#9A3922] text-[#F2EBDB] p-7 md:p-8 flex flex-col sm:flex-row gap-6 items-start">
+            <img src={p.img} alt="" loading="lazy" class="w-full sm:w-24 h-40 sm:h-24 rounded-2xl object-cover shrink-0" />
+            <div>
+              <h3 class="text-xl md:text-2xl font-extrabold text-[#F2EBDB] leading-tight mb-2">{p.t}</h3>
+              <p class="font-semibold text-[#F2EBDB] mb-1.5">{p.lead}</p>
+              <p class="text-sm text-[#F2EBDB]/80 leading-relaxed">{p.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ LES TROIS GESTES -->
+  <section id="programme" animate-fade-in-up class="opacity-0 relative overflow-hidden bg-[#412F1F] py-24 md:py-32">
+    <img src={L('riviere-laom')} alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-20" />
+    <div class="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-14">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-[0.18em] font-semibold text-[#CB7A5C] mb-4">Le programme</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-[#F2EBDB] tracking-[-0.02em] leading-[1.08] text-balance">
+          Trois gestes, <span class="italic font-medium acc-light">dans cet ordre.</span>
+        </h2>
+        <p class="text-lg text-[#F2EBDB]/75 mt-6 leading-relaxed">
+          On n’apprend pas à faire de belles images : tu sais déjà. On apprend à savoir ce que tu racontes, puis à le tenir jusqu’à la dernière coupe.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5 mt-14">
+        {gestes.map((g) => <NumberedCard num={g.n} title={g.t} text={g.x} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ LE DÉROULÉ -->
+  <div animate-fade-in-up class="opacity-0">
+    <Timeline
+      bg="bg-[#FBF6EA]"
+      eyebrow="Six jours"
+      title="Comment la semaine" accent="se déroule."
+      intro="Le film avance chaque jour. Personne ne repart avec des notes et rien dans la timeline."
+      items={deroule}
+      note="Le rythme s’adapte au groupe : huit personnes, huit projets, pas un programme récité." />
+  </div>
+
+  <!-- ⑥ RESPIRATION -->
+  <div animate-fade-in-up class="opacity-0">
+    <PhotoQuote
+      bg="bg-[#FBF6EA]"
+      img={L('lieu-shala-tipis')}
+      eyebrow="Le parti pris"
+      title="Un film, ce n’est pas une suite de plans." accent="C’est un regard qui tient."
+      text="C’est pour ça qu’on tourne peu et qu’on monte beaucoup. Le sixième soir, on projette. Et là, tu sais si ton regard tient." />
+  </div>
+
+  <!-- ⑦ L'INTERVENANTE -->
+  <div animate-fade-in-up class="opacity-0">
+    <MediaText
+      bg="bg-[#F2EBDB]"
+      img={M('mahury-terrasse')}
+      alt="Image extraite de L’Auberge du Mahury, tourné en Guyane"
+      ratio="aspect-[4/5]"
+      eyebrow="Celle qui t’accompagne"
+      title="Manon filme," accent="et elle te montre comment."
+      text="Son dernier tournage : l’Auberge du Mahury, en Guyane. Le fleuve à l’aube, la cuisine, le carnaval — vingt-quatre minutes de rushes ramenées à un film court. C’est exactement ce trajet-là, du plan brut au film qui tient, qu’elle t’apprend à faire pendant six jours."
+      ctaText="Être prévenu de l’ouverture" ctaHref={CTA} />
+  </div>
+
+  <PhotoStrip
+    bg="bg-[#F2EBDB]"
+    items={[
+      { img: M('mahury-rosee'), alt: 'Rosée sur une feuille, Guyane', caption: 'Le détail' },
+      { img: M('mahury-aube'), alt: 'Un oiseau sur une palme, à l’aube', caption: 'L’aube' },
+      { img: M('mahury-carnaval'), alt: 'Carnaval de nuit, Guyane', caption: 'Le carnaval' },
+      { img: M('mahury-auberge'), alt: 'L’auberge du Mahury vue du fleuve', caption: 'L’auberge' },
+    ]} />
+  <p class="bg-[#F2EBDB] text-center text-sm text-[#1D1B18]/55 pb-16 md:pb-20 px-6">Extraits de <span class="italic">L’Auberge du Mahury</span> — images Manon.</p>
+
+  <!-- ⑧ LE LIEU -->
+  <div animate-fade-in-up class="opacity-0">
+    <MosaicGallery
+      bg="bg-[#FBF6EA]"
+      eyebrow="Le décor"
+      title="Vingt-et-un hectares," accent="et personne pour te presser."
+      intro="Un écolieu en sud Aveyron : rivière, forêt, potager, un bâtiment en paille porteuse de 800 m². De quoi tourner sans jamais sortir du domaine."
+      images={[
+        { src: L('batiment-laom-jour'), alt: 'Le bâtiment de LAOM et les tipis' },
+        { src: L('riviere-baignade'), alt: 'La rivière, en contrebas du domaine' },
+        { src: L('salle-de-pratique'), alt: 'La grande verrière, salle de montage' },
+        { src: L('tipis'), alt: 'Les tipis' },
+        { src: L('laom-potager'), alt: 'Le potager' },
+      ]} />
+  </div>
+
+  <!-- ⑨ CE QUI EST COMPRIS -->
+  <div animate-fade-in-up class="opacity-0">
+    <IncludedGrid
+      bg="bg-[#F2EBDB]"
+      eyebrow="Tout compris"
+      title="Ce que tu paies," accent="ce que tu n’as pas à prévoir."
+      intro="Tu viens avec ta caméra — ou ton téléphone — et ton ordinateur. Le reste est là."
+      items={inclus} />
+  </div>
+
+  <!-- ⑩ LES DEUX FORMATS -->
+  <section animate-fade-in-up class="opacity-0 bg-[#FBF6EA] py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-14">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <p class="text-sm uppercase tracking-[0.18em] font-semibold text-[#73673E] mb-5">Deux façons d’entrer</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-[#412F1F] tracking-[-0.02em] leading-[1.08] text-balance">
+          Apprendre le geste, <span class="acc">ou finir ton film.</span>
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="rounded-3xl bg-[#F2EBDB] border border-[#412F1F]/12 p-8 md:p-10 flex flex-col">
+          <p class="text-xs uppercase tracking-[0.18em] font-semibold text-[#73673E] mb-4">Le stage</p>
+          <h3 class="text-2xl md:text-3xl font-extrabold text-[#412F1F] leading-tight">Six jours à LAOM</h3>
+          <p class="text-[#1D1B18]/70 mt-4 leading-relaxed">
+            Le collectif, les trois gestes, un film court écrit, tourné et monté sur place. Huit personnes maximum, projection le dernier soir.
+          </p>
+          <ul class="mt-6 space-y-2.5 text-[#1D1B18]/75">
+            <li class="flex gap-3"><span class="text-[#9A3922] font-extrabold">·</span>Six jours pleins, du dimanche soir au samedi</li>
+            <li class="flex gap-3"><span class="text-[#9A3922] font-extrabold">·</span>Hébergement, repas et salle de montage compris</li>
+            <li class="flex gap-3"><span class="text-[#9A3922] font-extrabold">·</span>Un retour écrit sur ton montage un mois après</li>
+          </ul>
+          <div class="mt-auto pt-8">
+            <p class="text-sm text-[#1D1B18]/55">Tarif prévu</p>
+            <p class="text-4xl font-extrabold text-[#9A3922] leading-none mt-1">{TARIF_STAGE}</p>
+            <p class="text-sm text-[#1D1B18]/55 mt-1.5">tout compris, hors transport</p>
+            <a href={CTA} class="pill pill-primary mt-6 w-full text-center" style="padding:.95rem 2rem">Être prévenu de l’ouverture</a>
+          </div>
+        </article>
+
+        <article class="rounded-3xl bg-[#412F1F] text-[#F2EBDB] p-8 md:p-10 flex flex-col">
+          <p class="text-xs uppercase tracking-[0.18em] font-semibold text-[#CB7A5C] mb-4">L’accompagnement</p>
+          <h3 class="text-2xl md:text-3xl font-extrabold text-[#F2EBDB] leading-tight">Ton projet, de l’écriture à l’export</h3>
+          <p class="text-[#F2EBDB]/75 mt-4 leading-relaxed">
+            Tu as déjà un sujet, des rushes, un film qui traîne depuis deux ans. Trois mois avec Manon pour le finir pour de bon.
+          </p>
+          <ul class="mt-6 space-y-2.5 text-[#F2EBDB]/80">
+            <li class="flex gap-3"><span class="acc-light not-italic font-extrabold">·</span>Deux séances par mois en visio, sur ta timeline</li>
+            <li class="flex gap-3"><span class="acc-light not-italic font-extrabold">·</span>Une semaine de montage sur place à LAOM</li>
+            <li class="flex gap-3"><span class="acc-light not-italic font-extrabold">·</span>Note d’intention et dossier de diffusion relus</li>
+          </ul>
+          <div class="mt-auto pt-8">
+            <p class="text-sm text-[#F2EBDB]/55">Tarif prévu</p>
+            <p class="text-4xl font-extrabold text-[#F2EBDB] leading-none mt-1">{TARIF_SUIVI}</p>
+            <p class="text-sm text-[#F2EBDB]/55 mt-1.5">les trois mois, semaine sur place comprise</p>
+            <a href={CTA} class="pill pill-light mt-6 w-full text-center" style="padding:.95rem 2rem">En parler avec Manon</a>
+          </div>
+        </article>
+      </div>
+      <p class="text-center text-sm text-[#1D1B18]/55 mt-8">Les deux se cumulent : le stage pour le geste, l’accompagnement pour aller au bout.</p>
+    </div>
+  </section>
+
+  <!-- ⑪ POUR QUI -->
+  <div animate-fade-in-up class="opacity-0">
+    <FitCheck
+      bg="bg-[#F2EBDB]"
+      eyebrow="Pour qui"
+      title="Six jours, huit personnes." accent="Autant être au clair."
+      forItems={[
+        'Tu filmes déjà, même au téléphone, même mal',
+        'Tu as un sujet, ou une envie précise qui te tient',
+        'Tu veux finir quelque chose, pas seulement apprendre',
+        'Tu acceptes de montrer ton travail à sept autres personnes',
+        'Tu viens avec ton ordinateur et de quoi filmer',
+      ]}
+      notItems={[
+        'Tu cherches un diplôme ou une certification',
+        'Tu veux faire de la fiction, du clip ou du corporate',
+        'Tu veux de la théorie sans jamais sortir la caméra',
+        'Tu ne peux pas te couper six jours de ton quotidien',
+      ]} />
+  </div>
+
+  <!-- ⑫ FAQ -->
+  <div animate-fade-in-up class="opacity-0">
+    <Faq
+      bg="bg-[#FBF6EA]"
+      eyebrow="Questions fréquentes"
+      title="Ce qu’on nous demande" accent="avant de s’inscrire."
+      items={[
+        { q: 'Je n’ai jamais monté. C’est trop tôt pour moi ?', a: 'Non. Le stage part de l’intention, pas du logiciel. Les débutants repartent avec un film court et des bases solides ; ceux qui montent déjà repartent avec un regard. Le groupe est petit exprès, chacun est pris là où il en est.' },
+        { q: 'Quel matériel je dois amener ?', a: 'De quoi filmer — un appareil photo, une caméra, un téléphone récent fait très bien l’affaire — un ordinateur capable de monter, un disque dur et un casque. Un micro-cravate ou un enregistreur si tu en as un : le son, c’est la moitié du film.' },
+        { q: 'On monte sur quel logiciel ?', a: 'Le tien. Premiere, Resolve, Final Cut, CapCut : le geste s’apprend, pas les boutons. Si tu n’as rien, on installe DaVinci Resolve (gratuit) le premier jour.' },
+        { q: 'Je repars vraiment avec un film fini ?', a: 'Oui : un film court, entre deux et cinq minutes, tourné sur le domaine et monté jusqu’à l’export. Il est projeté devant tout le monde le dernier soir. C’est le contrat du stage.' },
+        { q: 'Et si mon projet, c’est un long-métrage ?', a: 'Le stage te donne le geste, pas le temps de finir un long. Pour ça, il y a l’accompagnement sur trois mois — souvent, les gens font les deux.' },
+        { q: 'C’est où, exactement ?', a: 'À LAOM, un écolieu de vingt-et-un hectares dans le sud de l’Aveyron. 1h30 de Montpellier, 2h de Toulouse, gare de Millau à vingt minutes. On s’occupe de ton arrivée.' },
+        { q: 'Quand a lieu la première édition ?', a: 'Les dates sont en cours de calage avec Manon. Laisse ton email : tu seras prévenu avant l’ouverture publique, et les huit places partiront dans cet ordre.' },
+      ]} />
+  </div>
+
+  <!-- ⑬ FORMULAIRE -->
+  <section id="prevenir" animate-fade-in-up class="opacity-0 relative overflow-hidden bg-[#9A3922] py-24 md:py-32">
+    <div class="relative max-w-3xl mx-auto px-6 md:px-10 text-center">
+      <p class="text-xs uppercase tracking-[0.18em] font-semibold text-[#F2EBDB]/70 mb-4">Première édition</p>
+      <h2 class="text-4xl md:text-5xl font-extrabold text-[#F2EBDB] tracking-[-0.02em] leading-[1.08] text-balance">
+        Huit places. <span class="italic font-medium text-[#F2EBDB]">Sois prévenu avant les autres.</span>
+      </h2>
+      <p class="text-lg text-[#F2EBDB]/80 mt-6 leading-relaxed max-w-xl mx-auto">
+        Laisse ton prénom et ton email : on t’écrit dès que les dates et les inscriptions sont ouvertes. Pas de spam, tu peux partir en un clic.
+      </p>
+      <div class="mt-10 text-left max-w-xl mx-auto">
+        <KitForm variant="dark" submitLabel="Préviens-moi" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑭ CTA FINAL -->
+  <div animate-fade-in-up class="opacity-0">
+    <CtaImage
+      bg="bg-[#F2EBDB]"
+      img={L('diner-golden-hour-laom')}
+      eyebrow="Le sixième soir"
+      title="Ton film, projeté," accent="devant des gens qui l’ont vu naître."
+      subtitle="C’est le moment pour lequel tout le reste existe. Six jours plus tôt, tu avais une intention et un disque dur."
+      primaryText="Être prévenu de l’ouverture" primaryHref={CTA}
+      secondaryText="Découvrir le lieu" secondaryHref="/le-lieu/" />
+  </div>
+
+  <SiteFooter />
+
+  <StickyCta text="Être prévenu de l’ouverture" href={CTA} />
+</Layout>
