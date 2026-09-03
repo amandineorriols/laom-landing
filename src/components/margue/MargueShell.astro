@@ -1,6 +1,6 @@
 ---
-// MargueShell — coquille commune aux trois fiches internes du montage La Margue
-// (/la-margue-est, /la-margue-ouest, /la-margue-notice).
+// MargueShell — coquille commune aux quatre fiches internes du montage La Margue
+// (/la-margue-est, /la-margue-ouest, /la-margue-par-personne, /la-margue-notice).
 // Rend : l'overlay mot de passe, la barre d'onglets fixe, l'en-tete de page,
 // le contenu (slot) et le pied de page confidentiel.
 //
@@ -9,9 +9,10 @@
 import Layout from '~/layouts/Layout.astro'
 import Eyebrow from '~/components/laom/Eyebrow.astro'
 import SectionHeading from '~/components/laom/SectionHeading.astro'
+import { UPDATED, VERSION } from '~/data/la-margue-2026'
 
 interface Props {
-  page: 'est' | 'ouest' | 'notice'
+  page: 'est' | 'ouest' | 'personnes' | 'notice'
   title: string
   subtitle: string
   updated: string
@@ -22,6 +23,7 @@ const { page, title, subtitle, updated } = Astro.props
 const tabs = [
   { id: 'est', label: 'La Margue Est', href: '/la-margue-est/' },
   { id: 'ouest', label: 'La Margue Ouest', href: '/la-margue-ouest/' },
+  { id: 'personnes', label: 'Par personne', href: '/la-margue-par-personne/' },
   { id: 'notice', label: 'Notice', href: '/la-margue-notice/' },
 ]
 ---
@@ -112,7 +114,9 @@ const tabs = [
         <p class="lead-italic text-lg md:text-xl text-[#1D1B18]/70 mt-5 max-w-3xl text-balance">
           {subtitle}
         </p>
-        <p class="text-sm text-[#73673E] mt-6">Mise à jour : {updated}</p>
+        <p class="text-sm text-[#73673E]/85 mt-6">
+          Version {VERSION} · mise à jour le {UPDATED}
+        </p>
       </div>
     </section>
 
@@ -124,6 +128,14 @@ const tabs = [
         <p class="text-xs md:text-sm text-[#1D1B18]/50 leading-relaxed">
           Document confidentiel, réservé aux associés · Chiffres du classeur Montage financier
           La Margue, {updated} · NILA
+        </p>
+        <p class="text-xs md:text-sm mt-3">
+          <a
+            href="/la-margue-notice/#lexique"
+            class="text-[#73673E] hover:text-[#9A3922] underline underline-offset-4 decoration-[#73673E]/30 hover:decoration-[#9A3922] transition-colors"
+          >
+            Lexique
+          </a>
         </p>
       </div>
     </footer>
