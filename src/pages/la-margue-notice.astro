@@ -86,33 +86,18 @@ const COMPACT = [4, 11]
             )}
 
             {guides && (
-              <div class="mt-6 grid gap-8 md:grid-cols-2">
-                <div>
-                  <h3 class="text-sm font-semibold text-[#412F1F] pb-3 border-b border-[#412F1F]/10">
-                    Fichier 02092026
-                  </h3>
-                  <ul class="mt-4 space-y-4">
-                    {guides['0209'].map((g) => (
-                      <li>
-                        <p class="font-semibold text-[#412F1F] text-sm">{g.point}</p>
-                        <p class="text-sm text-[#1D1B18]/70 leading-relaxed mt-1">{g.detail}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 class="text-sm font-semibold text-[#412F1F] pb-3 border-b border-[#412F1F]/10">
-                    Fichier SCIA Est v3.2
-                  </h3>
-                  <ul class="mt-4 space-y-4">
-                    {guides.v32.map((g) => (
-                      <li>
-                        <p class="font-semibold text-[#412F1F] text-sm">{g.point}</p>
-                        <p class="text-sm text-[#1D1B18]/70 leading-relaxed mt-1">{g.detail}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div class="mt-6">
+                <h3 class="text-sm font-semibold text-[#412F1F] pb-3 border-b border-[#412F1F]/10">
+                  Le classeur, onglet par onglet
+                </h3>
+                <ul class="mt-4 grid gap-4 md:grid-cols-2">
+                  {guides['0209'].map((g) => (
+                    <li>
+                      <p class="font-semibold text-[#412F1F] text-sm">{g.point}</p>
+                      <p class="text-sm text-[#1D1B18]/70 leading-relaxed mt-1">{g.detail}</p>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
           </section>

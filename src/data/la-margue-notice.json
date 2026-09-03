@@ -1,6 +1,6 @@
 {
   "titre": "NOTICE — Montage financier La Margue Est & Ouest (état au 3 septembre 2026)",
-  "intro": "Ce document explique le classeur au collectif : d'où viennent les chiffres, quelles règles et quelles hypothèses ont été prises, quelles décisions ont été actées et quand, et ce qui reste à trancher. Il est rédigé pour être lu sans ouvrir les formules. Préparé par NILA pour Charly, David Viala et Pierre Lévy ; passe de vérification avec Pierre Lévy le 4 septembre.",
+  "intro": "Ce document explique le classeur « Montage financier La Margue » au collectif : d'où viennent les chiffres, quelles règles et quelles hypothèses ont été prises, quelles décisions ont été actées et quand, et ce qui reste à trancher. Il est rédigé pour être lu sans ouvrir les formules. Préparé par NILA pour Charly, David Viala et Pierre Lévy ; passe de vérification avec Pierre Lévy le 4 septembre.",
   "sections": [
     {
       "titre": "1. Ce que ce classeur fait",
@@ -12,12 +12,6 @@
           "date": ""
         },
         {
-          "point": "Deux fichiers, mêmes chiffres",
-          "detail": "« Montage financier La Margue 02092026 » reprend le format d'origine de Charly (onglets DATA, SCIA LA MARGUE, SCIA LAOM, Financement SCI) ; « Montage financier La Margue - SCIA Est v3.2 » est la version de travail détaillée (scénario, proposition finale, frais de notaire, communs par lot, variantes). Les deux donnent les mêmes résultats.",
-          "source": "Drive de Charly",
-          "date": "3/09/2026"
-        },
-        {
           "point": "Comment lire",
           "detail": "Les cellules jaunes sont des paramètres (hypothèses que l'on peut changer). Tout le reste est calculé. Les lignes « Contrôle » doivent être à zéro : si l'une ne l'est pas, une hypothèse est incohérente.",
           "source": "",
@@ -25,7 +19,7 @@
         },
         {
           "point": "La règle d'or",
-          "detail": "Total des capitaux de la SCIA Est = total des créances retenues (ce que les indivisaires ont réellement mis). Le prix de la Lyre est la variable qui boucle le système : il vaut ce qu'il faut pour que tout le monde soit remboursé. Le transfert de Patricia vers l'Ouest est le levier pour que ce prix, tout compris, tombe sur la cible.",
+          "detail": "Total des capitaux de la SCIA Est = total des créances retenues (ce que les indivisaires ont réellement mis). Le prix de la Lyre est la variable qui boucle le système : il vaut ce qu'il faut pour que tout le monde soit remboursé. Les deux lots transitoires de Patricia à l'Est sont le levier pour que ce prix, tout compris, tombe sur la cible de 330 000.",
           "source": "Charly",
           "date": "2/09/2026"
         }
@@ -102,12 +96,12 @@
         {
           "point": "Valeur conventionnelle d'un lot",
           "detail": "Prix au m² × surface du modèle. Gîtes 147 085,09 · Grange 151 987,93 · Lyre 279 461,67 · Ruisseau 169 147,85 · Rivière 165 715,87 · Source 196 113,45 · Pergola 8 673,09 (quote-part seule). Total 1 118 184,95.",
-          "source": "SCIA LA MARGUE / SCENARIO V3.2",
+          "source": "SCIA LA MARGUE",
           "date": ""
         },
         {
           "point": "Capital retenu",
-          "detail": "C'est la valeur conventionnelle, sauf deux exceptions : les gîtes de Serge & Marie-Agnès (leur capacité de 120 000 moins les communs, voir section 6) et la Lyre (le prix nécessaire pour boucler, 303 661,07, soit 24 199,40 au-dessus de sa valeur au m²). Total des capitaux Est : 1 100 174,85.",
+          "detail": "C'est la valeur conventionnelle, sauf deux exceptions : les gîtes de Serge & Marie-Agnès (leur capacité de 120 000 moins les communs, voir section 6) et la Lyre (le prix nécessaire pour boucler, 303 661,07, soit 24 199,40 au-dessus de sa valeur au m²). S'y ajoutent les deux lots transitoires de Patricia (50 175,08). Total des capitaux Est : 1 150 349,93.",
           "source": "",
           "date": ""
         },
@@ -116,6 +110,12 @@
           "detail": "Gîtes 74 766,44 · Grange 12 140 · Lyre 18 465,68 · Rivière 13 228,98 · Source 36 833,72 · Ruisseau 0. Ils entrent dans la base de prix et dans les créances de ceux qui les ont payés.",
           "source": "DATA",
           "date": ""
+        },
+        {
+          "point": "Deux lots transitoires à l'Est (Patricia)",
+          "detail": "Lots 9 et 10 de la SCIA Est, « terrains à construire » au hameau, 25 087,54 chacun, capital de Patricia. Ce sont des lots transitoires au sens de la loi ELAN : un droit de construire délimité en emplacement et en consistance, plus une quote-part de parties communes, inscrits au règlement. Ils n'entrent pas dans la clé historique des quotes-parts (pas de coefficient, personne n'est dilué). Leur montant est ce qui permet à la Lyre de sortir à 330 000 tout compris.",
+          "source": "Charly",
+          "date": "3/09/2026, soir"
         }
       ]
     },
@@ -153,10 +153,10 @@
           "date": "2/09/2026"
         },
         {
-          "point": "Patricia bascule une partie de son apport à l'Ouest",
-          "detail": "50 000 plus un complément calculé pour que la Lyre sorte à 330 000 tout compris : 67 521,25 en tout. Ils financent le lot de Khaldoun, contre un crédit vendeur du même montant de Khaldoun à Patricia. Sa créance Est passe de 232 121,94 à 164 600,69.",
+          "point": "Patricia finance la quote-part du lot de Khaldoun",
+          "detail": "17 346,17 de sa créance Est passent à l'Ouest, contre un crédit vendeur du même montant de Khaldoun à Patricia. Sa créance Est passe de 232 121,94 à 214 775,77. Le transfert de 50 000 puis 67 521,25 envisagé le 2/09 est abandonné : le reste est devenu deux lots transitoires à l'Est (ci-dessous).",
           "source": "Charly",
-          "date": "2/09/2026, recalculé le 3/09"
+          "date": "2/09/2026, réduit le 3/09 au soir"
         },
         {
           "point": "Apport d'Orriols à l'Ouest limité",
@@ -223,6 +223,24 @@
           "detail": "Le coliving, le studio et les deux tinies sortent de la clé (ils comptaient 0,5 chacun). Restent à 0,5 : les gîtes de Serge & Marie-Agnès, la Pergola, David Coste et l'atelier de Laetitia. La clé passe de 13 à 11 parts : 4 872,00 par part entière, 2 436,00 par demi-part.",
           "source": "Charly",
           "date": "3/09/2026, soir"
+        },
+        {
+          "point": "Khaldoun : un prêt de 30 000 en plus du crédit vendeur",
+          "detail": "Patricia prête 30 000 à Khaldoun pour sa construction (55 m² à bâtir). C'est un prêt hors SCIA, distinct du crédit vendeur de 17 346,17 qui porte sa quote-part. Khaldoun doit 47 346,17 à Patricia en tout. Charly prend en charge la dalle, les réseaux (VRD) et les gaines de l'atelier du rez-de-chaussée, sous le logement, et aide Khaldoun à construire.",
+          "source": "Charly",
+          "date": "3/09/2026, soir"
+        },
+        {
+          "point": "Deux lots transitoires à l'Est pour Patricia, à la place du levier",
+          "detail": "Les 50 175,08 qui pesaient sur le lot de Khaldoun sans rien lui financer deviennent deux lots transitoires de Patricia dans la SCIA Est (lots 9 et 10, 25 087,54 chacun). Personne ne porte plus de dette pour rien. Quand un acheteur se présente, il rachète les parts de Patricia, sous condition suspensive d'un permis purgé ; le permis est déposé au nom de la SCIA, qui assure la maîtrise d'œuvre, lance les appels de fonds et livre le lot hors d'air. Pas de déclaration préalable de division : on ne divise rien, on crée deux lots dans l'EDD.",
+          "source": "Charly",
+          "date": "3/09/2026, soir"
+        },
+        {
+          "point": "Deuxième clé pour les lots créés",
+          "detail": "La clé historique des quotes-parts (330 271,16 sur 19,04 coefficients) est close avec les lots existants. Tout lot créé après la constitution entre par une deuxième clé, à un prix fixé par l'assemblée au moment de la création ou de la vente, plus élevé que la quote-part historique. Les apports historiques ne sont jamais révisés.",
+          "source": "Charly",
+          "date": "3/09/2026, soir"
         }
       ]
     },
@@ -261,14 +279,14 @@
         },
         {
           "point": "Quote-part du domaine",
-          "detail": "Déjà comprise dans le capital de chaque lot (17 346,17 par coefficient). Elle n'est pas un commun à payer en plus.",
+          "detail": "Déjà comprise dans le capital de chaque lot (17 346,17 par coefficient). Elle n'est pas un commun à payer en plus. La clé historique (19,04 coefficients) est close : les lots créés ensuite, dont les deux lots transitoires de Patricia, entrent par une deuxième clé.",
           "source": "",
           "date": ""
         },
         {
           "point": "Ce que chaque lot Est paie en plus de son capital",
           "detail": "Gîtes 15 124,42 · Grange 22 288,14 · Lyre 26 338,93 · Ruisseau + Pergola 28 674,77 · Rivière 23 542,03 · Source 24 214,12. Total 140 182,40 (fosse 16 222,47 + main à la main 29 232,00 + notaire 25 427,93 + foyer commun 69 300). Khaldoun, à l'Ouest : 871,11 de notaire + 12 600 de foyer commun, pas de main à la main.",
-          "source": "COMMUNS PAR LOT",
+          "source": "SCIA LA MARGUE (convention SMA et prix de la Lyre)",
           "date": ""
         }
       ]
@@ -279,7 +297,7 @@
         {
           "point": "Des 120 000 au capital",
           "detail": "120 000 − fosse 2 027,81 − main à la main 2 436,00 (0,5 part, résidence secondaire) − frais de notaire 4 360,61 − foyer commun 6 300 = capital 104 875,58. Chaque euro en moins chez eux est un euro de plus sur la Lyre.",
-          "source": "SCIA LA MARGUE Q11:Q16 / COMMUNS PAR LOT",
+          "source": "SCIA LA MARGUE Q11:Q16",
           "date": ""
         },
         {
@@ -296,13 +314,13 @@
         {
           "point": "Tout compris : 330 000",
           "detail": "Valeur du lot, son capital 303 661,07 (va à la SCIA Est) + provision sur actes 4 811,31 (notaire) + fosse Est 2 WC 4 055,62 (fonds de travaux) + main à la main 4 872,00 (fondateurs) + foyer commun 12 600 (fonds de travaux / association).",
-          "source": "SCIA LA MARGUE Q19:Q24 / COMMUNS PAR LOT",
+          "source": "SCIA LA MARGUE Q19:Q24",
           "date": ""
         },
         {
           "point": "Le levier",
-          "detail": "Le transfert de Patricia vers l'Ouest (67 521,25). Si un autre paramètre bouge, la cellule « transfert nécessaire » donne la nouvelle valeur à recopier.",
-          "source": "SCIA LA MARGUE Q26 / SCENARIO V3.2 B11-B12",
+          "detail": "Le capital des deux lots transitoires de Patricia à l'Est (50 175,08). Si un autre paramètre bouge, la cellule « capital des lots transitoires nécessaire » donne la nouvelle valeur à recopier.",
+          "source": "SCIA LA MARGUE Q26, à recopier en N19",
           "date": ""
         }
       ]
@@ -313,43 +331,43 @@
         {
           "point": "Ce que chacun apporte (834 957,94)",
           "detail": "Serge & Marie-Agnès 104 875,58 · Magalie 177 820,94 · Charlotte & David 196 113,45 · Greg 52 486,89 (à la signature) · entrant Lyre 303 661,07 (à son arrivée).",
-          "source": "PROPOSITION FINALE A",
+          "source": "SCIA LA MARGUE, étapes 1 et 2",
           "date": ""
         },
         {
           "point": "Ce que chacun reçoit (834 957,94)",
           "detail": "Isabelle 238 419,84 · Caroline 300 000 · Julian 150 000 · Orriols SARL 129 921,46 · Patricia (excédent au-dessus de La Grange) 12 612,76 · Turquoise SARL 4 003,88.",
-          "source": "PROPOSITION FINALE B",
+          "source": "SCIA LA MARGUE, étapes 1 et 2",
           "date": ""
         },
         {
           "point": "Phase 1, à la signature (531 296,87)",
           "detail": "Greg → Caroline 52 486,89 (cession de créance) · Magalie → Caroline 177 820,94 · Serge & Marie-Agnès → Caroline 15 983,22 et → Julian 88 892,36 · Charlotte & David → Julian 7 398,69, → Turquoise 4 003,88, → Isabelle 184 710,89. Reçu : Isabelle 184 710,89, Caroline 246 291,05, Julian 96 291,05. Chacun des trois garde 53 708,95 en compte courant et reste associé jusqu'à l'entrant.",
-          "source": "PROPOSITION FINALE C",
+          "source": "SCIA LA MARGUE, étapes 1 et 2",
           "date": ""
         },
         {
           "point": "Phase 2, à l'arrivée de l'entrant (303 661,07)",
           "detail": "Entrant Lyre → Isabelle, Caroline, Julian 53 708,95 chacun (rachat de leurs parts et de leur compte courant, quittance finale) · → Orriols SARL 129 921,46 · → Patricia 12 612,76.",
-          "source": "PROPOSITION FINALE D",
+          "source": "SCIA LA MARGUE, étapes 1 et 2",
           "date": ""
         },
         {
-          "point": "Capital final Est (1 100 174,85)",
-          "detail": "Serge & Marie-Agnès 104 875,58 (9,6 %) · Patricia 151 987,93 (13,8 %) · entrant Lyre 303 661,07 (27,6 %) · Magalie 177 820,94 (16,1 %) · Greg 165 715,87 (15,0 %) · Charlotte & David 196 113,45 (17,8 %). Égal aux créances Est retenues, Turquoise comprise.",
-          "source": "PROPOSITION FINALE E",
+          "point": "Capital final Est (1 150 349,93)",
+          "detail": "Serge & Marie-Agnès 104 875,58 (9,1 %) · Patricia 202 163,01 (17,6 % : La Grange 151 987,93 + lots 9 et 10 transitoires 50 175,08) · entrant Lyre 303 661,07 (26,4 %) · Magalie 177 820,94 (15,5 %) · Greg 165 715,87 (14,4 %) · Charlotte & David 196 113,45 (17,0 %). Égal aux créances Est retenues, Turquoise comprise.",
+          "source": "SCIA LA MARGUE, étapes 1 et 2",
           "date": ""
         },
         {
           "point": "Côté Ouest",
-          "detail": "Lot Khaldoun 67 521,25 (quote-part 17 346,17 + bâti 50 175,08), crédit vendeur Khaldoun → Patricia du même montant, échéancier à définir · Patricia apporte à l'Ouest 165 453,41 (97 932,16 du partage partiel + le lot Khaldoun) · Orriols SARL 70 078,54 · Laetitia 17 346,17, David Lin 17 346,17 et David Coste 8 673,09 apportent leur quote-part. Le partage partiel est à refaire avec ces attributions.",
-          "source": "PROPOSITION FINALE F / SCIA LAOM",
+          "detail": "Lot Khaldoun 17 346,17 = sa quote-part du domaine, financée par Patricia en crédit vendeur (échéancier à définir), plus un prêt de 30 000 de Patricia pour la construction (hors SCIA) : 47 346,17 dus à Patricia en tout. Patricia apporte à l'Ouest 115 278,33 (97 932,16 du partage partiel + la quote-part du lot Khaldoun) · Orriols SARL 70 078,54 · Laetitia 17 346,17, David Lin 17 346,17 et David Coste 8 673,09 apportent leur quote-part. Le partage partiel est à refaire avec ces attributions.",
+          "source": "SCIA LA MARGUE, étapes 1 et 2 / SCIA LAOM",
           "date": ""
         },
         {
           "point": "Isabelle + Turquoise : 246 423,75",
           "detail": "Créance d'Isabelle 238 419,84 + Turquoise 4 003,88 + rachat de ses 1 000 parts 1 000 + rachat des 1 000 parts de Turquoise 1 000,01 + deux soultes du partage 1 000,01 chacune. C'est le « 246 K ». Restent à négocier : 1 500 de deck et 2 570 de loyers bloqués contre 3 050 de toit, 920 de tricount et 1 200 de réparation cuisine.",
-          "source": "PROPOSITION FINALE G",
+          "source": "SCIA LA MARGUE, étapes 1 et 2",
           "date": ""
         }
       ]
@@ -360,13 +378,13 @@
         {
           "point": "Variante A, avec prêts en compte courant",
           "detail": "Magalie 60 000, Greg 20 000, Charly & Amandine 70 000 = 150 000, au-dessus des capitaux, remboursés par l'entrant, jamais transformés en parts. Besoin pour solder les trois sortants : 161 126,85 ; il resterait 3 708,95 par sortant (monter le prêt de Charly & Amandine à 81 200 solde tout). À la signature : Isabelle 234 710,89, Caroline 296 291,05, Julian 146 291,05. Seule cette variante respecte la date butoir d'Isabelle (15 novembre 2026). Greg a dit le 17/08 ne pas vouloir prêter.",
-          "source": "VARIANTES A ET B",
+          "source": "SCIA LA MARGUE, étape 2",
           "date": ""
         },
         {
           "point": "Variante B, sans prêt",
           "detail": "Les trois sortants restent associés avec 53 708,95 chacun en compte courant jusqu'à ce que l'entrant les rachète. Aucune reconnaissance de dette.",
-          "source": "VARIANTES A ET B",
+          "source": "SCIA LA MARGUE, étape 2",
           "date": ""
         },
         {
@@ -394,7 +412,7 @@
         },
         {
           "point": "Actes à refaire (montants)",
-          "detail": "Cession Ader → Renevier à 52 486,89 (2) · partage partiel avec les nouvelles attributions Ouest et Turquoise sortie du passif (4) · délibération des cessions et remboursements (7) · cessions et quittances Quero, Ader, Turquoise, Isabelle (8, 9, 11) selon la variante · cessions Aubert (13), celle vers Khaldoun annulée.",
+          "detail": "Cession Ader → Renevier à 52 486,89 (2) · partage partiel avec les nouvelles attributions Ouest (Patricia + 17 346,17) et Turquoise sortie du passif (4) · délibération des cessions et remboursements (7) · cessions et quittances Quero, Ader, Turquoise, Isabelle (8, 9, 11) selon la variante · cessions Aubert (13), celle vers Khaldoun annulée.",
           "source": "",
           "date": ""
         },
@@ -406,7 +424,7 @@
         },
         {
           "point": "À écrire en plus",
-          "detail": "Délibération de pré-affectation pour les deux SCIA · conventions de compte courant (variante A) · promesse de cession au futur entrant Lyre · convention de crédit vendeur Patricia → Khaldoun.",
+          "detail": "Délibération de pré-affectation pour les deux SCIA, qui nomme aussi les lots 9 et 10 transitoires de Patricia à l'Est · dans l'EDD Est et son règlement, les deux lots transitoires (loi ELAN) et la règle de la deuxième clé pour les lots créés · conventions de compte courant (variante A) · promesse de cession au futur entrant Lyre · convention de crédit vendeur Patricia → Khaldoun (17 346,17) et prêt de 30 000.",
           "source": "",
           "date": ""
         }
@@ -434,8 +452,14 @@
           "date": ""
         },
         {
+          "point": "Les deux lots transitoires",
+          "detail": "Emplacements et emprise à dessiner au hameau. Rédaction du lot transitoire dans une SCIA à valider par la notaire. Permis au nom de la SCIA, valant division, à confirmer avec Christelle pour éviter toute déclaration préalable. Accord de Patricia sur le temps de portage et sur les charges des deux lots en attendant. Méthode de prix de la deuxième clé à écrire (indice ou valeur au m² du moment).",
+          "source": "Charly",
+          "date": "3/09/2026, soir"
+        },
+        {
           "point": "Échéancier du crédit vendeur Khaldoun → Patricia",
-          "detail": "67 521,25, durée et taux à définir.",
+          "detail": "17 346,17 en crédit vendeur et 30 000 de prêt : durée et taux à définir.",
           "source": "",
           "date": ""
         },
@@ -498,44 +522,6 @@
             "point": "Financement SCI",
             "detail": "Les deux SCI des communs (Grand Shambala, gîtes) et la quote-part par associé."
           }
-        ],
-        "v32": [
-          {
-            "point": "NOTICE",
-            "detail": "Ce document."
-          },
-          {
-            "point": "PROPOSITION FINALE",
-            "detail": "Le résumé en huit blocs : apports, remboursements, phase 1, phase 2, capital final, Ouest, Isabelle + Turquoise, hors SCIA."
-          },
-          {
-            "point": "COMMUNS PAR LOT",
-            "detail": "Fosse, main à la main, frais de notaire, foyer commun par lot ; convention Serge & Marie-Agnès ; prix de la Lyre tout compris et transfert nécessaire."
-          },
-          {
-            "point": "VARIANTES A ET B",
-            "detail": "Avec ou sans prêts en compte courant, et l'impact acte par acte d'une constitution sans EDD."
-          },
-          {
-            "point": "SCENARIO V3.2",
-            "detail": "Le moteur : paramètres (jaune), lots Ouest et quotes-parts, lots Est, valeurs conventionnelles, créances, ressources et dettes, prix nécessaire de la Lyre, contrôle."
-          },
-          {
-            "point": "FRAIS NOTAIRE",
-            "detail": "Les 20 actes du tableau de la notaire, leurs provisions et leur affectation à chaque payeur."
-          },
-          {
-            "point": "FOYER COMMUN",
-            "detail": "Les parts de chaque lot et le total."
-          },
-          {
-            "point": "SCENARIO V3.1 ACTES, SCENARIO V3, MATRICE EDD CIBLE, CONTROLES EST V2",
-            "detail": "Versions précédentes et contrôles, conservés pour l'historique."
-          },
-          {
-            "point": "DATA, SCIA LA MARGUE, SCIA LAOM, Financement SCI",
-            "detail": "Le modèle d'origine de Charly (format de janvier), aligné sur les mêmes chiffres."
-          }
         ]
       }
     },
@@ -544,13 +530,13 @@
       "items": [
         {
           "point": "Une seule cellule par hypothèse",
-          "detail": "Dans le fichier 02092026 : main à la main = DATA T167 (total) et R143:R166 (coefficients) ; foyer commun = DATA Y167 et W143:W166 ; fosse et frais de notaire de Serge & Marie-Agnès = SCIA LA MARGUE Q12 et Q14 ; provision sur actes de l'entrant = Q20 ; cible de la Lyre = Q25. Dans le v3.2 : les cellules jaunes de SCENARIO V3.2 et de COMMUNS PAR LOT.",
+          "detail": "Dans le fichier 02092026 : main à la main = DATA T167 (total) et R143:R166 (coefficients) ; foyer commun = DATA Y167 et W143:W166 ; fosse et frais de notaire de Serge & Marie-Agnès = SCIA LA MARGUE Q12 et Q14 ; provision sur actes de l'entrant = Q20 ; cible de la Lyre = Q25 ; capital des lots transitoires de Patricia = N19 ; quote-part de Khaldoun = DATA E147.",
           "source": "",
           "date": ""
         },
         {
           "point": "Après un changement",
-          "detail": "Lire la cellule « transfert nécessaire » (SCIA LA MARGUE Q26 ou COMMUNS PAR LOT) et recopier sa valeur dans le transfert de Patricia (SCIA LAOM B22 et DATA D93 dans le 02092026 ; SCENARIO V3.2 B11 et B12 dans le v3.2). Vérifier que les contrôles sont à zéro.",
+          "detail": "Lire la cellule « capital des lots transitoires nécessaire » (SCIA LA MARGUE Q26) et recopier sa valeur dans le capital des deux lots de Patricia (SCIA LA MARGUE N19). Vérifier que les contrôles sont à zéro.",
           "source": "",
           "date": ""
         },
