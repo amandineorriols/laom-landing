@@ -57,6 +57,20 @@ export interface Ligne {
   montant: number
 }
 
+/**
+ * Un lot à construire porté par un foyer de l'Est : un droit de construire
+ * délimité et sa quote-part de parties communes (loi ELAN), hors clé
+ * historique des quotes-parts. Les lots 8 à 12 de Patricia.
+ */
+export interface LotAConstruire {
+  lot: string
+  /** Ce qui sera bâti : logement à l'année, petit logement touristique. */
+  nature: string
+  /** Part de l'apport ventilé sur ce lot : 1 ou 0,5. */
+  part: number
+  capital: number
+}
+
 export interface FoyerEst {
   foyer: string
   lot: string
@@ -73,6 +87,8 @@ export interface FoyerEst {
   capitalLot?: number
   /** Ce qui s'ajoute au lot bâti, en petit sous le capital retenu de la carte. */
   capitalEnPlus?: string
+  /** Les lots à construire portés par le foyer, détaillés dans sa carte. */
+  lotsAConstruire?: LotAConstruire[]
   /** Sous-ligne du tableau récapitulatif, colonne Capital. */
   capitalNote?: string
   /** L'unique phrase de la carte, quand elle est indispensable. */
@@ -191,7 +207,7 @@ export const documentsNote = 'Accès sur demande à Charly.'
 // ============================================================
 
 export const estTotals = {
-  capital: 1150349.93,
+  capital: 1167696.1,
   dettes: 836676.12,
   prixLyre: 330000,
   fraisAnnexes: 133882.4,
@@ -200,6 +216,21 @@ export const estTotals = {
   notaire: 25427.93,
   foyerCommun: 63000,
 }
+
+/**
+ * Les cinq lots à construire de Patricia à l'Est, lots 8 à 12 : ce qu'elle
+ * n'est pas remboursée en argent. L'apport y est ventilé 1 / 1 / 0,5 / 0,5 / 0,5.
+ */
+export const lotsAConstruirePatricia: LotAConstruire[] = [
+  { lot: 'Lot 8', nature: "Logement à l'année", part: 1, capital: 18800.88 },
+  { lot: 'Lot 9', nature: "Logement à l'année", part: 1, capital: 18800.88 },
+  { lot: 'Lot 10', nature: 'Petit logement touristique, 30 m²', part: 0.5, capital: 9400.44 },
+  { lot: 'Lot 11', nature: 'Petit logement touristique, 30 m²', part: 0.5, capital: 9400.44 },
+  { lot: 'Lot 12', nature: 'Petit logement touristique, 30 m²', part: 0.5, capital: 9400.44 },
+]
+
+/** Total du classeur pour les cinq lots ci-dessus, jamais une somme recalculée. */
+export const CAPITAL_LOTS_A_CONSTRUIRE = 65803.07
 
 export const estKeyFigures: KeyFigure[] = [
   { value: eur(estTotals.capital), label: 'Capital total de la SCIA Est' },
@@ -233,16 +264,16 @@ export const estPourquoi: PourquoiPoint[] = [
   {
     titre: 'Personne ne porte de dette pour rien',
     texte:
-      "Les apports des entrants et le prix de la Lyre paient les sortants ; ce qui manque devient un actif, deux terrains à construire, pas une dette sur quelqu'un.",
+      "Les apports des entrants et le prix de la Lyre paient les sortants ; ce qui manque devient un actif, des lots à construire, pas une dette sur quelqu'un.",
     precisions: [
       "Le prix de la Lyre est la variable qui boucle le système : il vaut ce qu'il faut pour que tout le monde soit remboursé.",
-      `Les deux lots transitoires de Patricia à l'Est, ${eur(48456.9)}, sont ce qui permet à la Lyre de sortir à ${eur(330000)} tout compris.`,
+      `Les cinq lots à construire de Patricia à l'Est, ${eur(CAPITAL_LOTS_A_CONSTRUIRE)}, sont ce qui permet à la Lyre de sortir à ${eur(330000)} tout compris.`,
     ],
   },
   {
     titre: 'Rester ouvert aux suivants',
     texte:
-      "La Lyre attend un foyer, deux terrains attendent des bâtisseurs, une deuxième clé fixe le prix d'entrée de ceux qui viendront.",
+      "La Lyre attend un foyer, cinq lots à construire attendent des bâtisseurs, une deuxième clé fixe le prix d'entrée de ceux qui viendront.",
   },
   {
     titre: 'Des frais annexes à équité',
@@ -267,8 +298,8 @@ export const estEtat: { date: string; colonnes: EtatColonne[] } = {
       items: [
         'Clé du main à la main à 11 parts.',
         `Foyer commun à ${eur(11454.55)} par part.`,
-        'Lot de Khaldoun à sa quote-part, crédit vendeur et prêt de Patricia.',
-        "Deux lots transitoires de Patricia à l'Est, accord de Patricia obtenu.",
+        "Khaldoun associé de l'Ouest, apporte sa quote-part ; plus de crédit vendeur.",
+        "Cinq lots à construire de Patricia à l'Est (2 logements à l'année, 3 petits touristiques de 30 m²), accord de Patricia obtenu.",
         `Lyre à ${eur(330000)} tout compris.`,
       ],
     },
@@ -289,9 +320,9 @@ export const estEtat: { date: string; colonnes: EtatColonne[] } = {
       titre: 'À faire',
       items: [
         'Refaire le partage partiel chez la notaire.',
-        "Rédiger l'EDD Est, lots 8 et 9 compris (Charly avec NILA).",
+        "Rédiger l'EDD Est, lots 8 à 12 compris (Charly avec NILA).",
         'Écrire la méthode de prix de la deuxième clé.',
-        "Dessiner l'emplacement des deux terrains.",
+        "Dessiner l'emplacement des cinq lots à construire.",
       ],
     },
   ],
@@ -316,7 +347,7 @@ export const foyersEst: FoyerEst[] = [
     total: 120000,
     totalNote: 'capacité tout compris',
     totalDetail: 'leur capacité, tout compris',
-    partCapital: '9,2 %',
+    partCapital: '9,0 %',
     alias: ['Serge & Marie-Agnès'],
   },
   {
@@ -325,12 +356,13 @@ export const foyersEst: FoyerEst[] = [
     surfaceModele: 62,
     surfaceDpe: 55.15,
     valeurConventionnelle: 151987.93,
-    capital: 200444.83,
+    capital: 217791.0,
     capitalLot: 151987.93,
-    capitalEnPlus: `+ lots 8 et 9 transitoires, 2 × ${eur(24228.45)}`,
-    capitalNote: 'La Grange + lots 8 et 9',
+    capitalEnPlus: `+ cinq lots à construire ${eur(CAPITAL_LOTS_A_CONSTRUIRE)}`,
+    capitalNote: 'La Grange + cinq lots à construire',
+    lotsAConstruire: lotsAConstruirePatricia,
     capitalCommentaire:
-      'Les lots 8 et 9 sont des terrains à construire, hors clé historique des quotes-parts.',
+      "Les lots 8 à 12 sont des lots à construire, hors clé historique des quotes-parts : ce que Patricia n'est pas remboursée en argent.",
     fraisAnnexes: 21142.69,
     fraisAnnexesDetail: [
       { label: 'Fosse (1 WC)', montant: 2027.81 },
@@ -340,7 +372,7 @@ export const foyersEst: FoyerEst[] = [
     ],
     total: 21142.69,
     totalDetail: 'les frais annexes seuls : sa créance couvre son capital',
-    partCapital: '17,4 %',
+    partCapital: '18,7 %',
     alias: ['Patricia Salgon'],
   },
   {
@@ -359,7 +391,7 @@ export const foyersEst: FoyerEst[] = [
       { label: 'Foyer commun (1 part)', montant: 11454.55 },
     ],
     total: 330000,
-    partCapital: '26,5 %',
+    partCapital: '26,1 %',
     alias: ['Entrant Lyre'],
   },
   {
@@ -379,7 +411,7 @@ export const foyersEst: FoyerEst[] = [
       { label: 'Foyer commun (1 part)', montant: 11454.55 },
     ],
     total: 205350.26,
-    partCapital: '15,5 %',
+    partCapital: '15,2 %',
     alias: ['Magali Rouby'],
   },
   {
@@ -399,7 +431,7 @@ export const foyersEst: FoyerEst[] = [
     ],
     total: 74883.47,
     totalDetail: 'complément + frais annexes',
-    partCapital: '14,4 %',
+    partCapital: '14,2 %',
     alias: ['Grégoire Renevier'],
   },
   {
@@ -417,7 +449,7 @@ export const foyersEst: FoyerEst[] = [
       { label: 'Foyer commun (1 part)', montant: 11454.55 },
     ],
     total: 219182.12,
-    partCapital: '17,0 %',
+    partCapital: '16,8 %',
     alias: ['Charlotte & David'],
   },
 ]
@@ -522,14 +554,14 @@ export const estEtapes: EtapeMontage[] = [
   {
     titre: "L'EDD de l'Est",
     texte:
-      'Les lots sont attribués, dont les lots 8 et 9 de Patricia : chacun devient propriétaire de son lot.',
+      'Les lots sont attribués, dont les lots 8 à 12 de Patricia : chacun devient propriétaire de son lot.',
   },
   {
     titre: "L'Ouest",
     texte: "Travaux du Grand Shambala, lot de Khaldoun construit, EDD Ouest à l'achèvement.",
   },
   {
-    titre: 'Les terrains à construire',
+    titre: 'Les lots à construire',
     texte: 'Vendus aux prochains entrants au prix de la deuxième clé, permis au nom de la SCIA.',
   },
 ]
@@ -658,7 +690,7 @@ export const lotsOuest: LotOuest[] = [
   { lot: 'Ferme — serre, abris, terre', coefficient: 0.04, quotePart: 693.85, attributaire: 'Orriols SAS', valeur: 5249.54 },
   { lot: 'Accueil — salle, restaurant', coefficient: 0, quotePart: 0, attributaire: 'Ferme du Verseau', valeur: 180000 },
   { lot: 'Terrain des lodges', coefficient: 5, quotePart: 86730.87, attributaire: 'Patricia Salgon', valeur: 97932.16, valeurNote: 'partage partiel' },
-  { lot: 'Logement Khaldoun (nouveau)', coefficient: 1, quotePart: 17346.17, attributaire: 'Khaldoun, crédit vendeur Patricia', valeur: 17346.17 },
+  { lot: 'Logement Khaldoun (nouveau)', coefficient: 1, quotePart: 17346.17, attributaire: 'Khaldoun', valeur: 17346.17 },
 ]
 
 export const lotsOuestNote = `Le total des lots ci-dessus ne se lit pas comme le total des apports : plusieurs lots sont partagés entre attributaires — le foyer commun entre la Ferme du Verseau et l'association — et Orriols SARL n'apporte à l'Ouest que des quotes-parts. Le total qui fait foi est celui des apports, ${eur(ouestTotals.valeurLots)}.`
@@ -666,7 +698,7 @@ export const lotsOuestNote = `Le total des lots ci-dessus ne se lit pas comme le
 export const deplacementsEst: Notion[] = [
   {
     titre: "Ce que Patricia apporte à l'Ouest",
-    texte: `Patricia apporte à l'Ouest ${eur(115278.33)} : ${eur(97932.16)} du partage partiel plus la quote-part du lot Khaldoun.`,
+    texte: `Patricia apporte à l'Ouest ${eur(97932.16)}, le terrain des lodges.`,
   },
   {
     titre: "L'apport d'Orriols SARL est limité",
@@ -687,9 +719,9 @@ export interface KhaldounLigne {
 }
 
 /**
- * Le lot de Khaldoun : sa quote-part du domaine, financée par un crédit vendeur
- * de Patricia, plus un prêt de Patricia pour la construction, hors SCIA.
- * Khaldoun ne porte plus que sa quote-part depuis le 3 septembre au soir.
+ * Le lot de Khaldoun : sa quote-part du domaine, qu'il apporte lui-même comme
+ * associé de la SCIA Ouest depuis le 3 septembre, tard. Patricia ne finance plus
+ * rien ici : ne reste qu'un prêt pour la construction, hors SCIA, à confirmer.
  */
 export const khaldoun = {
   titre: 'Le lot de Khaldoun',
@@ -697,29 +729,24 @@ export const khaldoun = {
     {
       label: 'Valeur du lot',
       montant: 17346.17,
-      note: 'sa quote-part du domaine',
-    },
-    {
-      label: 'Crédit vendeur de Patricia à Khaldoun',
-      montant: 17346.17,
-      note: 'échéancier à définir',
+      note: "sa quote-part du domaine, apportée par Khaldoun, associé de l'Ouest",
     },
     {
       label: 'Prêt de Patricia pour la construction',
       montant: 30000,
-      note: 'un prêt, hors SCIA',
+      note: 'hors SCIA, à confirmer',
     },
-    { label: 'Dû à Patricia en tout', montant: 47346.17, total: true },
     {
       label: 'Apport en nature de Charly',
       texte: "dalle, réseaux (VRD) et gaines de l'atelier du rez-de-chaussée, à chiffrer",
     },
   ] as KhaldounLigne[],
-  note: `Les ${eur(48456.9)} qui pesaient sur ce lot sont devenus deux lots transitoires de Patricia à l'Est : personne ne porte de dette pour rien.`,
+  note: "Patricia ne transfère plus rien vers l'Ouest : ce qu'elle n'est pas remboursée en argent devient cinq lots à construire à l'Est.",
 }
 
 export const apportsOuest: ApportOuest[] = [
-  { associe: 'Patricia Salgon', montant: 115278.33, note: 'lodges + quote-part Khaldoun' },
+  { associe: 'Patricia Salgon', montant: 97932.16, note: 'terrain des lodges' },
+  { associe: 'Khaldoun Alshaar', montant: 17346.17, note: 'sa quote-part, apportée par lui' },
   { associe: 'Claire Orriols & Baptiste Fromont', montant: 89639 },
   { associe: 'Amandine Orriols & Charly Aubert', montant: 92500 },
   { associe: 'Orriols SARL', montant: 70078.54, note: 'quotes-parts seules' },
@@ -847,14 +874,9 @@ export const lexique: LexiqueEntree[] = [
       "Ce qu'un associé a avancé à la société au-delà de son capital ; une créance, remboursable, sans droits de vote.",
   },
   {
-    terme: 'Crédit vendeur',
+    terme: 'Lot à construire (transitoire)',
     definition:
-      'Un paiement différé entre associés : Khaldoun doit sa quote-part à Patricia selon un échéancier.',
-  },
-  {
-    terme: 'Lot transitoire',
-    definition:
-      "Un lot fait d'un droit de construire délimité et d'une quote-part de parties communes (loi ELAN). Les lots 8 et 9 de Patricia.",
+      "Un lot fait d'un droit de construire délimité et d'une quote-part de parties communes (loi ELAN) ; les lots 8 à 12 de Patricia.",
   },
   {
     terme: 'Frais annexes',

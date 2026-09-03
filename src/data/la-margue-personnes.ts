@@ -10,10 +10,12 @@
 
 import {
   apportsOuest,
+  CAPITAL_LOTS_A_CONSTRUIRE,
   eur,
   fraisAnnexesOuest,
   foyersEst,
   khaldoun,
+  lotsAConstruirePatricia,
   lotsOuest,
   m2,
   m2Court,
@@ -23,6 +25,7 @@ import {
   type FoyerEst,
   type Flux,
   type Ligne,
+  type LotAConstruire,
 } from './la-margue-2026'
 
 // ============================================================
@@ -128,6 +131,11 @@ function detailLignes(lignes: Ligne[]): string {
   return lignes.map((l) => `${l.label} ${eur(l.montant)}`).join(' · ')
 }
 
+/** Les lots à construire d'un foyer, en une ligne : « Lot 8 1 part 18 800,88 € ». */
+function detailLotsAConstruire(lots: LotAConstruire[]): string {
+  return lots.map((l) => `${l.lot} ${coef(l.part)} part ${eur(l.capital)}`).join(' · ')
+}
+
 /** Les frais annexes d'un foyer de l'Est : le total du classeur, puis son détail. */
 function fraisEst(f: FoyerEst): FicheFrais {
   return { total: f.fraisAnnexes, detail: detailLignes(f.fraisAnnexesDetail) }
@@ -220,22 +228,30 @@ const foyersDeLEst: Personne[] = [
     role: "Restante, à l'Est et à l'Ouest",
     groupe: 'est',
     misEnJeu: [
-      { label: "Sa créance dans l'indivision Est", montant: 214775.77 },
+      { label: "Sa créance dans l'indivision Est", montant: 232121.94 },
     ],
     flux: versements(patricia.alias),
     detient: [
       { label: patricia.lot, montant: 151987.93, note: 'capital dans la SCIA Est' },
-      { label: 'Lots 8 et 9, transitoires', montant: 48456.9, note: `2 × ${eur(24228.45)}` },
+      {
+        label: 'Lots 8 à 12, à construire',
+        montant: CAPITAL_LOTS_A_CONSTRUIRE,
+        note: detailLotsAConstruire(lotsAConstruirePatricia),
+      },
       {
         label: "Apport à la SCIA Ouest",
-        montant: 115278.33,
-        note: `terrain des lodges ${eur(97932.16)} + quote-part du lot de Khaldoun ${eur(17346.17)}, en crédit vendeur`,
+        montant: apportDe('Patricia Salgon'),
+        note: 'le terrain des lodges, seul apport Ouest',
       },
-      { label: 'Prêt à Khaldoun', montant: 30000, note: 'pour construire, hors SCIA' },
+      {
+        label: 'Prêt à Khaldoun',
+        montant: 30000,
+        note: 'pour construire, hors SCIA, à confirmer',
+      },
     ],
     frais: fraisEst(patricia),
     signe:
-      'Partage partiel, quittance partielle puis quittance finale, convention de crédit vendeur, contrat de prêt.',
+      'Partage partiel, quittance partielle puis quittance finale. Pas de crédit vendeur ; un contrat de prêt si le prêt à Khaldoun est confirmé.',
     verifier: [EST_FOYERS, OUEST_KHALDOUN],
   },
   {
@@ -469,14 +485,14 @@ const foyersDeLOuest: Personne[] = [
     misEnJeu: [
       {
         label: 'Sa quote-part du domaine',
-        montant: 17346.17,
-        note: 'financée par Patricia, en crédit vendeur',
+        montant: apportDe('Khaldoun Alshaar'),
+        note: "son apport à la SCIA Ouest, qu'il porte lui-même",
       },
     ],
     flux: lignesKhaldoun(),
-    detient: lotsDe('Khaldoun, crédit vendeur Patricia'),
+    detient: lotsDe('Khaldoun'),
     frais: fraisKhaldoun,
-    signe: 'Entrée aux statuts de la SCIA Ouest, convention de crédit vendeur, contrat de prêt.',
+    signe: `Entrée aux statuts de la SCIA Ouest, apport de sa quote-part ; un contrat de prêt si le prêt de ${eur(30000)} de Patricia est confirmé.`,
     verifier: [OUEST_KHALDOUN, OUEST_FRAIS],
     note: "Charly prend en charge la dalle, les réseaux et les gaines de l'atelier du rez-de-chaussée.",
   },
