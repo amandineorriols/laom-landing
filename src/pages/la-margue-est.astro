@@ -7,8 +7,7 @@ import {
   capitalDuLot,
   documents,
   documentsNote,
-  ecartSurface,
-  estCommunsTotaux,
+  estFraisAnnexesTotaux,
   estKeyFigures,
   estRegle,
   estTotals,
@@ -16,12 +15,10 @@ import {
   fluxFoyer,
   foyersEst,
   m2,
-  m2Signe,
+  m2Court,
   notionsEst,
   phases,
-  PRIX_M2_MODELE,
   prixM2Dpe,
-  valeurDpe,
   sortantsEst,
   sortantsNote,
   updatedLabel,
@@ -86,7 +83,7 @@ export const prerender = true
         eyebrow="Par foyer"
         title="Ce que chacun"
         accent="apporte"
-        intro="Le capital est la part de chaque foyer dans la SCIA. Les communs se paient en plus, une seule fois. La dernière colonne est ce que le foyer doit réellement sortir."
+        intro="Le capital est la part de chaque foyer dans la SCIA. Les frais annexes se paient en plus, une seule fois. La dernière colonne est ce que le foyer doit réellement sortir."
         size="text-3xl md:text-4xl"
         class="mb-10"
       />
@@ -98,7 +95,7 @@ export const prerender = true
               <th class="px-5 py-4 font-semibold text-[#412F1F]">Foyer</th>
               <th class="px-5 py-4 font-semibold text-[#412F1F]">Lot</th>
               <th class="px-5 py-4 font-semibold text-[#412F1F] text-right">Capital</th>
-              <th class="px-5 py-4 font-semibold text-[#412F1F] text-right">Communs</th>
+              <th class="px-5 py-4 font-semibold text-[#412F1F] text-right">Frais annexes</th>
               <th class="px-5 py-4 font-semibold text-[#412F1F] text-right">Total à prévoir</th>
             </tr>
           </thead>
@@ -108,7 +105,7 @@ export const prerender = true
                 <td class="px-5 py-4 text-[#412F1F] font-medium">{f.foyer}</td>
                 <td class="px-5 py-4 text-[#1D1B18]/70">
                   {f.lot}
-                  <span class="block text-xs text-[#1D1B18]/45 mt-1">{f.lotNote}</span>
+                  <span class="block text-xs text-[#1D1B18]/45 mt-1">{m2(f.surfaceDpe)} DPE</span>
                 </td>
                 <td class="px-5 py-4 text-right text-[#1D1B18] tabular-nums whitespace-nowrap">
                   {eur(f.capital)}
@@ -117,7 +114,7 @@ export const prerender = true
                   )}
                 </td>
                 <td class="px-5 py-4 text-right text-[#1D1B18] tabular-nums whitespace-nowrap">
-                  {eur(f.communs)}
+                  {eur(f.fraisAnnexes)}
                 </td>
                 <td class="px-5 py-4 text-right text-[#9A3922] font-semibold tabular-nums whitespace-nowrap">
                   {eur(f.total)}
@@ -135,7 +132,7 @@ export const prerender = true
                 {eur(estTotals.capital)}
               </td>
               <td class="px-5 py-4 text-right font-semibold text-[#412F1F] tabular-nums whitespace-nowrap" colspan="2">
-                {eur(estTotals.communs)}
+                {eur(estTotals.fraisAnnexes)}
               </td>
             </tr>
           </tfoot>
@@ -143,7 +140,7 @@ export const prerender = true
       </div>
 
       <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs text-[#1D1B18]/60">
-        {estCommunsTotaux.map((l) => (
+        {estFraisAnnexesTotaux.map((l) => (
           <li>
             {l.label} <span class="text-[#412F1F] font-medium tabular-nums">{eur(l.montant)}</span>
           </li>
@@ -196,16 +193,21 @@ export const prerender = true
 
             <div class="border-t border-[#412F1F]/10 p-6 md:p-8">
               <div class="grid gap-8 md:grid-cols-2">
-                <!-- Le lot : du modele au DPE, puis le capital retenu -->
+                <!-- Le lot : capital retenu, surface DPE, prix au m² -->
                 <div>
                   <h4 class="text-xs font-semibold uppercase tracking-[0.14em] text-[#412F1F] pb-3 border-b border-[#412F1F]/10">
                     Le lot
                   </h4>
                   <dl class="divide-y divide-[#412F1F]/10">
                     <div class="flex justify-between gap-4 py-2.5">
-                      <dt class="text-sm text-[#1D1B18]/65">Surface du modèle</dt>
-                      <dd class="text-sm text-[#412F1F] font-medium tabular-nums whitespace-nowrap">
-                        {m2(f.surfaceModele)}
+                      <dt class="text-sm font-semibold text-[#412F1F]">Capital retenu</dt>
+                      <dd class="text-right">
+                        <span class="block text-sm text-[#412F1F] font-semibold tabular-nums whitespace-nowrap">
+                          {eur(capitalDuLot(f))}
+                        </span>
+                        {f.capitalEnPlus && (
+                          <span class="block text-xs text-[#1D1B18]/45 mt-0.5">{f.capitalEnPlus}</span>
+                        )}
                       </dd>
                     </div>
                     <div class="flex justify-between gap-4 py-2.5">
@@ -215,94 +217,29 @@ export const prerender = true
                           {m2(f.surfaceDpe)}
                         </span>
                         <span class="block text-xs text-[#1D1B18]/45 mt-0.5">
-                          {m2Signe(ecartSurface(f))} par rapport au modèle
-                        </span>
-                        {f.surfaceDpeNote && (
-                          <span class="block text-xs text-[#1D1B18]/45">{f.surfaceDpeNote}</span>
-                        )}
-                      </dd>
-                    </div>
-                    <div class="flex justify-between gap-4 py-2.5">
-                      <dt class="text-sm text-[#1D1B18]/65">Prix au m² du modèle</dt>
-                      <dd class="text-sm text-[#412F1F] font-medium tabular-nums whitespace-nowrap">
-                        {eur(PRIX_M2_MODELE)}
-                      </dd>
-                    </div>
-                    <div class="flex justify-between gap-4 py-2.5">
-                      <dt class="text-sm text-[#1D1B18]/65">Valeur conventionnelle</dt>
-                      <dd class="text-sm text-[#412F1F] font-medium tabular-nums whitespace-nowrap">
-                        {eur(f.valeurConventionnelle)}
-                      </dd>
-                    </div>
-                    <div class="flex justify-between gap-4 py-2.5">
-                      <dt class="text-sm text-[#1D1B18]/65">
-                        Valeur au m² sur la surface DPE <span class="text-[#1D1B18]/45">(indicatif)</span>
-                      </dt>
-                      <dd class="text-sm text-[#412F1F] font-medium tabular-nums whitespace-nowrap">
-                        {eur(valeurDpe(f))}
-                      </dd>
-                    </div>
-                    <div class="flex justify-between gap-4 py-2.5">
-                      <dt class="text-sm font-semibold text-[#412F1F]">Capital retenu dans la SCIA</dt>
-                      <dd class="text-right">
-                        <span class="block text-sm text-[#412F1F] font-semibold tabular-nums whitespace-nowrap">
-                          {eur(capitalDuLot(f))}
-                        </span>
-                        <span class="block text-xs text-[#1D1B18]/45 mt-0.5 whitespace-nowrap">
-                          soit {eur(prixM2Dpe(f))} par m² DPE
+                          {m2Court(f.surfaceModele)} dans le modèle{f.surfaceModeleNote ? `, ${f.surfaceModeleNote}` : ''}
                         </span>
                       </dd>
                     </div>
-                    {f.pergola && (
-                      <div class="flex justify-between gap-4 py-2.5">
-                        <dt class="text-sm text-[#1D1B18]/65">Pergola : quote-part seule</dt>
-                        <dd class="text-right">
-                          <span class="block text-sm text-[#412F1F] font-medium tabular-nums whitespace-nowrap">
-                            {eur(f.pergola)}
-                          </span>
-                          <span class="block text-xs text-[#1D1B18]/45 mt-0.5">pas de surface</span>
-                        </dd>
-                      </div>
-                    )}
-                    {f.lotsTransitoires && (
-                      <div class="flex justify-between gap-4 py-2.5">
-                        <dt class="text-sm text-[#1D1B18]/65">
-                          {f.lotsTransitoires.titre}
-                          <span class="block text-xs text-[#1D1B18]/45 mt-1 leading-relaxed">
-                            {f.lotsTransitoires.note}
-                          </span>
-                        </dt>
-                        <dd class="text-right shrink-0">
-                          <span class="block text-sm text-[#412F1F] font-medium tabular-nums whitespace-nowrap">
-                            {eur(f.lotsTransitoires.capital)}
-                          </span>
-                          <span class="block text-xs text-[#1D1B18]/45 mt-0.5 whitespace-nowrap">
-                            {f.lotsTransitoires.nombre} × {eur(f.lotsTransitoires.capitalUnitaire)}
-                          </span>
-                        </dd>
-                      </div>
-                    )}
-                    {(f.pergola || f.lotsTransitoires) && (
-                      <div class="flex justify-between gap-4 py-2.5">
-                        <dt class="text-sm font-semibold text-[#412F1F]">Capital total dans la SCIA</dt>
-                        <dd class="text-sm text-[#412F1F] font-semibold tabular-nums whitespace-nowrap">
-                          {eur(f.capital)}
-                        </dd>
-                      </div>
-                    )}
+                    <div class="flex justify-between gap-4 py-2.5">
+                      <dt class="text-sm text-[#1D1B18]/65">Prix au m²</dt>
+                      <dd class="text-sm text-[#412F1F] font-medium tabular-nums whitespace-nowrap">
+                        {eur(prixM2Dpe(f))} / m²
+                      </dd>
+                    </div>
                   </dl>
                   {f.capitalCommentaire && (
                     <p class="text-sm text-[#1D1B18]/65 leading-relaxed mt-4">{f.capitalCommentaire}</p>
                   )}
                 </div>
 
-                <!-- Les communs, puis le total a prevoir -->
+                <!-- Les frais annexes, puis le total a prevoir -->
                 <div class="flex flex-col">
                   <h4 class="text-xs font-semibold uppercase tracking-[0.14em] text-[#412F1F] pb-3 border-b border-[#412F1F]/10">
-                    Les communs
+                    Frais annexes
                   </h4>
                   <dl class="divide-y divide-[#412F1F]/10">
-                    {f.communsDetail.map((c) => (
+                    {f.fraisAnnexesDetail.map((c) => (
                       <div class="flex justify-between gap-4 py-2.5">
                         <dt class="text-sm text-[#1D1B18]/65">{c.label}</dt>
                         <dd class="text-sm text-[#412F1F] font-medium tabular-nums whitespace-nowrap">
@@ -311,9 +248,9 @@ export const prerender = true
                       </div>
                     ))}
                     <div class="flex justify-between gap-4 py-2.5">
-                      <dt class="text-sm font-semibold text-[#412F1F]">Communs</dt>
+                      <dt class="text-sm font-semibold text-[#412F1F]">Sous-total frais annexes</dt>
                       <dd class="text-sm text-[#412F1F] font-semibold tabular-nums whitespace-nowrap">
-                        {eur(f.communs)}
+                        {eur(f.fraisAnnexes)}
                       </dd>
                     </div>
                   </dl>
@@ -321,8 +258,8 @@ export const prerender = true
                     <div class="rounded-2xl bg-[#9A3922]/8 p-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
                       <span class="min-w-0">
                         <span class="block text-sm font-semibold text-[#412F1F]">Total à prévoir</span>
-                        {f.totalNote && (
-                          <span class="block text-xs text-[#1D1B18]/55 mt-1">{f.totalNote}</span>
+                        {f.totalDetail && (
+                          <span class="block text-xs text-[#1D1B18]/55 mt-1">{f.totalDetail}</span>
                         )}
                       </span>
                       <span class="text-xl md:text-2xl font-extrabold text-[#9A3922] tabular-nums whitespace-nowrap">
@@ -333,7 +270,7 @@ export const prerender = true
                 </div>
               </div>
 
-              {(blocs.length > 0 || f.detail.length > 0) && (
+              {blocs.length > 0 && (
                 <div class="mt-8 pt-6 border-t border-[#412F1F]/10 space-y-6">
                   {blocs.map((b) => (
                     <div>
@@ -346,7 +283,6 @@ export const prerender = true
                             <span class="text-[#1D1B18]/70">
                               {x.payeur} <span class="text-[#9A3922]" aria-hidden="true">&rarr;</span>{' '}
                               <span class="text-[#412F1F] font-medium">{x.beneficiaire}</span>
-                              {x.note && <span class="text-[#1D1B18]/45"> · {x.note}</span>}
                             </span>
                             <span class="text-[#412F1F] font-medium tabular-nums whitespace-nowrap">
                               {eur(x.montant)}
@@ -356,14 +292,6 @@ export const prerender = true
                       </ul>
                     </div>
                   ))}
-
-                  {f.detail.length > 0 && (
-                    <div class="space-y-2">
-                      {f.detail.map((p) => (
-                        <p class="text-sm italic text-[#1D1B18]/60 leading-relaxed">{p}</p>
-                      ))}
-                    </div>
-                  )}
                 </div>
               )}
             </div>
@@ -495,7 +423,6 @@ export const prerender = true
             <h3 class="text-xl md:text-2xl font-extrabold text-[#412F1F] tracking-[-0.02em] text-balance">
               {v.titre}
             </h3>
-            <p class="text-[#1D1B18]/70 mt-3 leading-relaxed">{v.resume}</p>
             <ul class="mt-5 space-y-2.5">
               {v.points.map((p) => (
                 <li class="flex gap-3 text-sm text-[#1D1B18]/70 leading-relaxed">
@@ -524,7 +451,10 @@ export const prerender = true
         {notionsEst.map((n) => (
           <div class="rounded-2xl bg-[#FBF6EA] border border-[#412F1F]/10 p-6">
             <h3 class="text-base font-semibold text-[#412F1F] mb-2">{n.titre}</h3>
-            <p class="text-sm text-[#1D1B18]/70 leading-relaxed">{n.texte}</p>
+            <p class="text-sm text-[#1D1B18]/70 leading-relaxed">{n.avant}{n.chiffre && <strong class="font-semibold text-[#412F1F] tabular-nums whitespace-nowrap">{n.chiffre}</strong>}{n.apres}</p>
+            {n.contexte && (
+              <p class="text-sm text-[#1D1B18]/55 leading-relaxed mt-2">{n.contexte}</p>
+            )}
           </div>
         ))}
       </div>
