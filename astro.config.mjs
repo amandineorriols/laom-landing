@@ -79,6 +79,7 @@ export default defineConfig({
           '/ferme-jardin-guinguette', '/strategie-2026', '/previsionnel-2026',
           '/valorisation-fdv', '/perspectives-table',
           '/la-margue-est', '/la-margue-ouest', '/la-margue-notice',
+          '/la-margue-par-personne',
           '/devis-voda', '/tarifs-location-pdf', '/admin',
           '/candidater', '/quiz', '/liens', '/coliving-aout', '/semaine-libre',
           '/ds2', '/styleguide', '/planification', '/presentation',

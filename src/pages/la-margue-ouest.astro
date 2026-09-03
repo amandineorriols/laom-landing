@@ -51,11 +51,19 @@ export const prerender = true
           </div>
         ))}
       </div>
+
+      <p class="text-sm text-[#1D1B18]/65 mt-6">
+        Votre situation personnelle : <a
+          href="/la-margue-par-personne/"
+          class="text-[#9A3922] font-medium underline underline-offset-4 decoration-[#9A3922]/40 hover:decoration-[#9A3922] transition-colors"
+          >voir la page Par personne</a
+        >.
+      </p>
     </div>
   </section>
 
   <!-- 2 · Les lots -->
-  <section class="bg-[#FBF6EA] py-16 md:py-24">
+  <section id="lots" class="scroll-mt-20 bg-[#FBF6EA] py-16 md:py-24">
     <div class="max-w-5xl mx-auto px-6 md:px-10">
       <SectionHead
         eyebrow="État descriptif"
@@ -122,7 +130,7 @@ export const prerender = true
   </section>
 
   <!-- 3 · Ce que le montage Est deplace (unique bande sombre de la page) -->
-  <section class="bg-[#412F1F] py-16 md:py-24">
+  <section id="khaldoun" class="scroll-mt-20 bg-[#412F1F] py-16 md:py-24">
     <div class="max-w-5xl mx-auto px-6 md:px-10">
       <SectionHead
         eyebrow="Effet de bord"
@@ -188,7 +196,7 @@ export const prerender = true
   </section>
 
   <!-- 4 · Apports par associe -->
-  <section class="py-16 md:py-24">
+  <section id="apports" class="scroll-mt-20 py-16 md:py-24">
     <div class="max-w-5xl mx-auto px-6 md:px-10">
       <SectionHead
         eyebrow="Par associé"
@@ -234,7 +242,7 @@ export const prerender = true
   </section>
 
   <!-- 5 · Les frais annexes cote Ouest -->
-  <section class="bg-[#FBF6EA] py-16 md:py-24">
+  <section id="frais" class="scroll-mt-20 bg-[#FBF6EA] py-16 md:py-24">
     <div class="max-w-5xl mx-auto px-6 md:px-10">
       <SectionHead
         eyebrow="Frais annexes"

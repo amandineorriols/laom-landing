@@ -4,7 +4,8 @@
 // src/data/la-margue-2026.ts). C'est un texte de reference : pas de mise en
 // scene, une section = un bloc, un item = un point.
 import MargueShell from '~/components/margue/MargueShell.astro'
-import { notice, updatedLabel } from '~/data/la-margue-2026'
+import SectionHead from '~/components/laom/sections/SectionHead.astro'
+import { lexique, notice, updatedLabel } from '~/data/la-margue-2026'
 
 export const prerender = true
 
@@ -35,6 +36,14 @@ const COMPACT = [4, 11]
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href="#lexique"
+              class="inline-block rounded-full bg-[#9A3922]/10 border border-[#9A3922]/25 px-4 py-2 text-sm font-medium text-[#9A3922] hover:bg-[#9A3922]/15 transition-colors"
+            >
+              Lexique
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -105,4 +114,25 @@ const COMPACT = [4, 11]
       })}
     </div>
   </div>
+
+  <!-- Lexique — les mots du montage -->
+  <section id="lexique" class="scroll-mt-20 bg-[#FBF6EA] py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-6 md:px-10">
+      <SectionHead
+        eyebrow="Lexique"
+        title="Les mots du"
+        accent="montage"
+        size="text-3xl md:text-4xl"
+        class="mb-10"
+      />
+      <dl class="grid gap-x-10 gap-y-5 md:grid-cols-2">
+        {lexique.map((entree) => (
+          <div>
+            <dt class="font-bold text-[#412F1F]">{entree.terme}</dt>
+            <dd class="text-sm text-[#1D1B18]/70 leading-relaxed mt-1">{entree.definition}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
 </MargueShell>

@@ -37,6 +37,12 @@ export function coef(n: number): string {
 
 export const updatedLabel = '3 septembre 2026'
 
+/** Version du modèle, affichée en tête de chaque fiche. */
+export const VERSION = '4'
+
+/** Date et moment de la dernière mise à jour du modèle. */
+export const UPDATED = '3 septembre 2026, soir'
+
 // ============================================================
 // TYPES
 // ============================================================
@@ -202,12 +208,94 @@ export const estKeyFigures: KeyFigure[] = [
   { value: eur(estTotals.fraisAnnexes), label: 'Frais annexes Est, en plus des capitaux' },
 ]
 
-export const estRegle: string[] = [
-  "Chaque indivisaire qui sort est remboursé au centime de ce qu'il a mis. Rien de plus, rien de moins.",
-  "Le capital de chaque foyer dans la SCIA est égal à la valeur conventionnelle de son lot : personne n'achète le lot d'un autre, chacun apporte sa part.",
-  "Le prix de la Lyre est la variable qui boucle le système : il vaut ce qu'il faut pour que tout le monde soit remboursé.",
-  `Les deux lots transitoires de Patricia à l'Est, ${eur(50175.08)}, sont ce qui permet à la Lyre de sortir à ${eur(330000)} tout compris.`,
+/** Un point de la section « Pourquoi ce montage » : l'intention, puis ses précisions. */
+export interface PourquoiPoint {
+  titre: string
+  texte: string
+  /** Les phrases de l'ancienne « règle », gardées ici comme précisions. */
+  precisions?: string[]
+}
+
+export const estPourquoi: PourquoiPoint[] = [
+  {
+    titre: "Sortir proprement de l'indivision de 2021",
+    texte:
+      "Chaque indivisaire qui part est remboursé au centime de ce qu'il a mis, travaux compris.",
+  },
+  {
+    titre: 'Chacun propriétaire de son lot',
+    texte:
+      "Deux sociétés d'attribution, La Margue Est pour le hameau et La Margue Ouest pour le Grand Shambala et la ferme ; le capital de chacun est la valeur de son lot.",
+    precisions: [
+      "Personne n'achète le lot d'un autre : chacun apporte sa part, et son capital est la valeur conventionnelle de son lot.",
+    ],
+  },
+  {
+    titre: 'Personne ne porte de dette pour rien',
+    texte:
+      "Les apports des entrants et le prix de la Lyre paient les sortants ; ce qui manque devient un actif, deux terrains à construire, pas une dette sur quelqu'un.",
+    precisions: [
+      "Le prix de la Lyre est la variable qui boucle le système : il vaut ce qu'il faut pour que tout le monde soit remboursé.",
+      `Les deux lots transitoires de Patricia à l'Est, ${eur(50175.08)}, sont ce qui permet à la Lyre de sortir à ${eur(330000)} tout compris.`,
+    ],
+  },
+  {
+    titre: 'Rester ouvert aux suivants',
+    texte:
+      "La Lyre attend un foyer, deux terrains attendent des bâtisseurs, une deuxième clé fixe le prix d'entrée de ceux qui viendront.",
+  },
+  {
+    titre: 'Des frais annexes à équité',
+    texte:
+      'Fosse, main à la main, notaire et foyer commun se répartissent selon des clés écrites, pas à la tête du client.',
+  },
 ]
+
+/** Une colonne de l'encart « Où en est-on » : un statut, ses points. */
+export interface EtatColonne {
+  titre: string
+  /** Précision de date ou d'interlocuteur, sous le titre. */
+  note?: string
+  items: string[]
+}
+
+export const estEtat: { date: string; colonnes: EtatColonne[] } = {
+  date: '3 septembre 2026, au soir',
+  colonnes: [
+    {
+      titre: 'Décidé',
+      items: [
+        'Clé du main à la main à 11 parts.',
+        `Foyer commun à ${eur(12600)} par part.`,
+        'Lot de Khaldoun à sa quote-part, crédit vendeur et prêt de Patricia.',
+        "Deux lots transitoires de Patricia à l'Est, accord de Patricia obtenu.",
+        `Lyre à ${eur(330000)} tout compris.`,
+      ],
+    },
+    {
+      titre: 'À relire',
+      note: 'vendredi 4 septembre, avec Pierre Lévy',
+      items: ["L'ensemble du classeur."],
+    },
+    {
+      titre: 'À valider par le collectif',
+      items: [
+        'La clé du main à la main : Greg divise par 15.',
+        'La variante, avec ou sans prêts en compte courant.',
+        `Le foyer commun à ${eur(12600)}.`,
+      ],
+    },
+    {
+      titre: 'À faire',
+      items: [
+        'Refaire le partage partiel chez la notaire.',
+        "Rédiger l'EDD Est, lots 9 et 10 compris (Charly avec NILA).",
+        'Écrire la méthode de prix de la deuxième clé.',
+        "Dessiner l'emplacement des deux terrains.",
+      ],
+    },
+  ],
+}
 
 export const foyersEst: FoyerEst[] = [
   {
@@ -404,6 +492,47 @@ export const phase2: Phase = {
 }
 
 export const phases: Phase[] = [phase1, phase2]
+
+/** Une étape de la frise « Comment ça se passe ». */
+export interface EtapeMontage {
+  titre: string
+  texte: string
+  montant?: number
+  /** Ce que le montant représente, en petit sous le chiffre. */
+  montantNote?: string
+}
+
+export const estEtapes: EtapeMontage[] = [
+  {
+    titre: 'Validation du modèle',
+    texte: 'Vendredi 4 septembre, Charly, David Viala et Pierre Lévy.',
+  },
+  {
+    titre: 'Les actes chez la notaire',
+    texte: 'Partage partiel, statuts des deux SCIA, cessions et quittances.',
+    montant: phase1.total,
+    montantNote: 'phase 1, versés aux sortants à la signature',
+  },
+  {
+    titre: "L'entrant de la Lyre",
+    texte: `Il solde Isabelle, Caroline, Julian, Orriols et l'excédent de Patricia ; ${eur(estTotals.prixLyre)} tout compris pour lui.`,
+    montant: phase2.total,
+    montantNote: 'phase 2',
+  },
+  {
+    titre: "L'EDD de l'Est",
+    texte:
+      'Les lots sont attribués, dont les lots 9 et 10 de Patricia : chacun devient propriétaire de son lot.',
+  },
+  {
+    titre: "L'Ouest",
+    texte: "Travaux du Grand Shambala, lot de Khaldoun construit, EDD Ouest à l'achèvement.",
+  },
+  {
+    titre: 'Les terrains à construire',
+    texte: 'Vendus aux prochains entrants au prix de la deuxième clé, permis au nom de la SCIA.',
+  },
+]
 
 export interface FluxBloc {
   titre: string
@@ -676,3 +805,83 @@ export interface Notice {
 }
 
 export const notice: Notice = noticeRaw
+
+/** Une entrée du lexique de la notice : le mot, puis ce qu'il veut dire. */
+export interface LexiqueEntree {
+  terme: string
+  definition: string
+}
+
+export const lexique: LexiqueEntree[] = [
+  {
+    terme: 'SCIA',
+    definition:
+      "Société civile immobilière d'attribution : la société possède l'immeuble, chaque associé détient des parts qui donnent droit à un lot, en jouissance d'abord, en propriété à l'attribution.",
+  },
+  {
+    terme: 'Indivision',
+    definition:
+      "La situation de 2021 : le domaine acheté à plusieurs, chacun propriétaire d'une quote-part indivise, sans lot à soi. Le montage en sort.",
+  },
+  {
+    terme: 'EDD, état descriptif de division',
+    definition:
+      "Le document qui découpe l'immeuble en lots numérotés et fixe les millièmes de chacun. À l'Est il sera signé à l'arrivée de l'entrant, à l'Ouest à l'achèvement des travaux.",
+  },
+  {
+    terme: 'Quote-part du domaine',
+    definition: `La part des espaces extérieurs et des frais d'acquisition attachée à chaque lot : ${eur(17346.17)} par coefficient, ${eur(8673.09)} pour un demi. Déjà comprise dans le capital.`,
+  },
+  {
+    terme: 'Clé historique et deuxième clé',
+    definition: `La clé historique (${coef(19.04)} coefficients) est close avec les lots existants ; tout lot créé après entre par une deuxième clé, à un prix fixé par l'assemblée, plus élevé.`,
+  },
+  {
+    terme: 'Capital',
+    definition:
+      'Ce que chaque associé détient dans la SCIA : la valeur conventionnelle de son lot.',
+  },
+  {
+    terme: "Compte courant d'associé",
+    definition:
+      "Ce qu'un associé a avancé à la société au-delà de son capital ; une créance, remboursable, sans droits de vote.",
+  },
+  {
+    terme: 'Crédit vendeur',
+    definition:
+      'Un paiement différé entre associés : Khaldoun doit sa quote-part à Patricia selon un échéancier.',
+  },
+  {
+    terme: 'Lot transitoire',
+    definition:
+      "Un lot fait d'un droit de construire délimité et d'une quote-part de parties communes (loi ELAN). Les lots 9 et 10 de Patricia.",
+  },
+  {
+    terme: 'Frais annexes',
+    definition:
+      'Ce que chaque lot paie en plus de son capital : fosse, main à la main, frais de notaire, foyer commun.',
+  },
+  {
+    terme: 'Main à la main',
+    definition: `Les ${eur(53592)} avancés par les fondateurs depuis 2021 (conseil, structuration, matériel collectif), répartis en 11 parts.`,
+  },
+  {
+    terme: 'Foyer commun',
+    definition: `L'espace partagé du Grand Shambala : ${eur(12600)} par part de foyer, 11 parts.`,
+  },
+  {
+    terme: 'Phase 1, phase 2',
+    definition:
+      "La signature (les entrants paient), puis l'arrivée de l'entrant de la Lyre (il solde le reste).",
+  },
+  {
+    terme: 'Variantes A et B',
+    definition:
+      "Avec prêts en compte courant (les sortants soldés à la signature) ou sans (ils restent associés jusqu'à l'entrant).",
+  },
+  {
+    terme: 'Sortants, restants, entrants',
+    definition:
+      "Ceux qui partent (Isabelle, Caroline, Julian, Orriols côté Est), ceux qui restent (Patricia, Greg), ceux qui arrivent (Serge & Marie-Agnès, Magali, Charlotte & David, l'entrant de la Lyre).",
+  },
+]
