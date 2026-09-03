@@ -225,7 +225,7 @@ const foyersDeLEst: Personne[] = [
     flux: versements(patricia.alias),
     detient: [
       { label: patricia.lot, montant: 151987.93, note: 'capital dans la SCIA Est' },
-      { label: 'Lots 9 et 10, transitoires', montant: 50175.08, note: `2 × ${eur(25087.54)}` },
+      { label: 'Lots 8 et 9, transitoires', montant: 50175.08, note: `2 × ${eur(25087.54)}` },
       {
         label: "Apport à la SCIA Ouest",
         montant: 115278.33,

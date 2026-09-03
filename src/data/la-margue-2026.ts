@@ -289,7 +289,7 @@ export const estEtat: { date: string; colonnes: EtatColonne[] } = {
       titre: 'À faire',
       items: [
         'Refaire le partage partiel chez la notaire.',
-        "Rédiger l'EDD Est, lots 9 et 10 compris (Charly avec NILA).",
+        "Rédiger l'EDD Est, lots 8 et 9 compris (Charly avec NILA).",
         'Écrire la méthode de prix de la deuxième clé.',
         "Dessiner l'emplacement des deux terrains.",
       ],
@@ -327,10 +327,10 @@ export const foyersEst: FoyerEst[] = [
     valeurConventionnelle: 151987.93,
     capital: 202163.01,
     capitalLot: 151987.93,
-    capitalEnPlus: `+ lots 9 et 10 transitoires, 2 × ${eur(25087.54)}`,
-    capitalNote: 'La Grange + lots 9 et 10',
+    capitalEnPlus: `+ lots 8 et 9 transitoires, 2 × ${eur(25087.54)}`,
+    capitalNote: 'La Grange + lots 8 et 9',
     capitalCommentaire:
-      'Les lots 9 et 10 sont des terrains à construire, hors clé historique des quotes-parts.',
+      'Les lots 8 et 9 sont des terrains à construire, hors clé historique des quotes-parts.',
     fraisAnnexes: 22288.14,
     fraisAnnexesDetail: [
       { label: 'Fosse (1 WC)', montant: 2027.81 },
@@ -522,7 +522,7 @@ export const estEtapes: EtapeMontage[] = [
   {
     titre: "L'EDD de l'Est",
     texte:
-      'Les lots sont attribués, dont les lots 9 et 10 de Patricia : chacun devient propriétaire de son lot.',
+      'Les lots sont attribués, dont les lots 8 et 9 de Patricia : chacun devient propriétaire de son lot.',
   },
   {
     titre: "L'Ouest",
@@ -854,7 +854,7 @@ export const lexique: LexiqueEntree[] = [
   {
     terme: 'Lot transitoire',
     definition:
-      "Un lot fait d'un droit de construire délimité et d'une quote-part de parties communes (loi ELAN). Les lots 9 et 10 de Patricia.",
+      "Un lot fait d'un droit de construire délimité et d'une quote-part de parties communes (loi ELAN). Les lots 8 et 9 de Patricia.",
   },
   {
     terme: 'Frais annexes',
