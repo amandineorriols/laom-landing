@@ -225,7 +225,7 @@ const foyersDeLEst: Personne[] = [
     flux: versements(patricia.alias),
     detient: [
       { label: patricia.lot, montant: 151987.93, note: 'capital dans la SCIA Est' },
-      { label: 'Lots 8 et 9, transitoires', montant: 50175.08, note: `2 × ${eur(25087.54)}` },
+      { label: 'Lots 8 et 9, transitoires', montant: 48456.9, note: `2 × ${eur(24228.45)}` },
       {
         label: "Apport à la SCIA Ouest",
         montant: 115278.33,
@@ -350,7 +350,7 @@ const ceuxQuiSortent: Personne[] = [
     detient: [
       {
         label: "Compte courant, jusqu'à l'entrant",
-        montant: 53708.95,
+        montant: 53518.04,
         note: 'elle reste associée jusque-là, ou soldée dès la signature dans la variante avec prêts',
       },
       {
@@ -386,12 +386,12 @@ const ceuxQuiSortent: Personne[] = [
     misEnJeu: [{ label: "Ce qu'elle a mis", montant: 300000 }],
     flux: [
       ...versements(['Caroline Ader']),
-      { label: 'Total reçu à la signature', montant: 246291.05, note: 'les trois versements ci-dessus' },
+      { label: 'Total reçu à la signature', montant: 246481.96, note: 'les trois versements ci-dessus' },
     ],
     detient: [
       {
         label: "Compte courant, jusqu'à l'entrant",
-        montant: 53708.95,
+        montant: 53518.04,
         note: 'elle reste associée jusque-là',
       },
     ],
@@ -407,12 +407,12 @@ const ceuxQuiSortent: Personne[] = [
     misEnJeu: [{ label: "Ce qu'il a mis", montant: 150000 }],
     flux: [
       ...versements(['Julian Quero']),
-      { label: 'Total reçu à la signature', montant: 96291.05, note: 'les deux versements ci-dessus' },
+      { label: 'Total reçu à la signature', montant: 96481.95, note: 'les deux versements ci-dessus' },
     ],
     detient: [
       {
         label: "Compte courant, jusqu'à l'entrant",
-        montant: 53708.95,
+        montant: 53518.04,
         note: 'il reste associé jusque-là',
       },
     ],
