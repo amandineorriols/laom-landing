@@ -1,0 +1,161 @@
+{
+  "titre": "NOTICE — Montage financier La Margue Est & Ouest (état au 3 septembre 2026)",
+  "intro": "Ce document explique le classeur au collectif : d'où viennent les chiffres, quelles règles et quelles hypothèses ont été prises, quelles décisions ont été actées et quand, et ce qui reste à trancher. Il est rédigé pour être lu sans ouvrir les formules. Préparé par NILA pour Charly, David Viala et Pierre Lévy ; passe de vérification avec Pierre Lévy le 4 septembre.",
+  "sections": [
+    {
+      "titre": "1. Ce que ce classeur fait",
+      "items": [
+        {"point": "Objet", "detail": "Répartir, au centime, la sortie d'indivision du domaine de La Margue entre deux sociétés civiles immobilières d'attribution (SCIA) : La Margue Est (le hameau historique, 7 lots, 6 foyers) et La Margue Ouest / LAOM (le Grand Shambala et la ferme, 16 lots). Chaque indivisaire qui sort est remboursé de ce qu'il a mis ; chaque foyer qui reste ou entre reçoit un capital égal à la valeur conventionnelle de son lot.", "source": "", "date": ""},
+        {"point": "Deux fichiers, mêmes chiffres", "detail": "« Montage financier La Margue 02092026 » reprend le format d'origine de Charly (onglets DATA, SCIA LA MARGUE, SCIA LAOM, Financement SCI) ; « Montage financier La Margue - SCIA Est v3.2 » est la version de travail détaillée (scénario, proposition finale, frais de notaire, communs par lot, variantes). Les deux donnent les mêmes résultats.", "source": "Drive de Charly", "date": "3/09/2026"},
+        {"point": "Comment lire", "detail": "Les cellules jaunes sont des paramètres (hypothèses que l'on peut changer). Tout le reste est calculé. Les lignes « Contrôle » doivent être à zéro : si l'une ne l'est pas, une hypothèse est incohérente.", "source": "", "date": ""},
+        {"point": "La règle d'or", "detail": "Total des capitaux de la SCIA Est = total des créances retenues (ce que les indivisaires ont réellement mis). Le prix de la Lyre est la variable qui boucle le système : il vaut ce qu'il faut pour que tout le monde soit remboursé. Le transfert de Patricia vers l'Ouest est le levier pour que ce prix, tout compris, tombe sur la cible.", "source": "Charly", "date": "2/09/2026"}
+      ]
+    },
+    {
+      "titre": "2. Les sources qui font foi",
+      "items": [
+        {"point": "Actes et pièces de la notaire (Me Martinez)", "detail": "Projets de statuts des deux SCIA, partage partiel, cessions de parts et de créances, quittances, délibérations, tableau récapitulatif des 20 actes avec leurs provisions, quinze conventions d'honoraires.", "source": "Dossier notaire", "date": "été 2026"},
+        {"point": "Relevé de l'étude Ollivier (acquisition 2021)", "detail": "1 178 535 virés à Me Bonetto + taxe foncière au prorata + Infogreffe = 1 180 271,16 d'apports nets. C'est la valeur totale du domaine retenue (achat + matériel).", "source": "Étude Ollivier", "date": "2021"},
+        {"point": "Quittances et apports individuels", "detail": "Isabelle 238 419,84 (219 953,84 d'apports + 18 466 de travaux Lyre) ; Turquoise SARL 4 003,88 ; Julian 150 000 ; Caroline 300 000 (la cession de 80 000 à Greg n'a jamais été versée) ; Patricia 232 121,94 côté Est avant transfert ; Greg 113 228,98 (100 000 + 13 228,98 de travaux) ; Orriols SARL 200 000.", "source": "Quittances, relevé Ollivier, Greg 31/08", "date": ""},
+        {"point": "Classeur de Greg « Oasis La Margue - les montants »", "detail": "Main à la main (total avancé par les fondateurs et clé de répartition), fosse, toit, focus Isabelle, montant par foyer. Envoyé par WhatsApp le 1/09 ; c'est la source retenue pour le main à la main.", "source": "Greg", "date": "1/09/2026"},
+        {"point": "Devis fosse Est", "detail": "Agussol n° 201201364 du 21/11/2023, réémis le 9/03/2026 : 12 équivalents-habitants, 14 747,70 HT, 16 222,47 TTC. La version 15 EH vaut 23 850,42.", "source": "Greg", "date": "1/09/2026"},
+        {"point": "DPE du domaine", "detail": "Surfaces habitables mesurées : gîtes 50,45 m², Grange 55,15, Lyre 113,48, Ruisseau 61,70, Rivière 59,80 (58,80 + cave 5 m² pondérée 0,2), Source 81,05. Elles entrent dans l'état descriptif de division (EDD) mais ne servent pas à recalculer les valeurs.", "source": "DPE", "date": ""},
+        {"point": "Réunions du collectif", "detail": "Consensus du 20 avril (clé du main à la main), réunion du 15 juillet (cautions, équité des frais de notaire), réunion du 1er septembre avec la Coopérative Oasis, note de David et Charlotte avant le rendez-vous Pierre Lévy (3/09).", "source": "CR de réunions", "date": ""}
+      ]
+    },
+    {
+      "titre": "3. Comment les lots sont valorisés",
+      "items": [
+        {"point": "Valeur du domaine", "detail": "1 180 271,16 = 850 000 pour les lots privés + 200 000 pour les espaces extérieurs + 130 271,16 de frais d'acquisition (notaire, SAFER, agence, géomètre, Infogreffe).", "source": "DATA", "date": ""},
+        {"point": "Quote-part du domaine", "detail": "(200 000 + frais) / 19,04 coefficients = 17 346,17 par coefficient 1. Un foyer à l'année = 1, un lot touristique ou une résidence secondaire = 0,5, la ferme = 0,04, le terrain des lodges = 5, le lot de Khaldoun = 1. Le passage de 18,04 à 19,04 coefficients (lot Khaldoun) a fait baisser la quote-part de 18 307,71 à 17 346,17.", "source": "Charly", "date": "2/09/2026"},
+        {"point": "Prix au m² du modèle", "detail": "(850 000 + 6 quotes-parts + 155 434,82 de travaux réalisés) / 452,6 m² = 2 451,42 par m². Les surfaces du modèle restent celles du fichier de janvier : gîtes 60, Grange 62, Lyre 114, Ruisseau 69, Rivière 67,6, Source 80. On ne recalcule rien avec les m² du DPE.", "source": "Charly", "date": "2/09/2026"},
+        {"point": "Valeur conventionnelle d'un lot", "detail": "Prix au m² × surface du modèle. Gîtes 147 085,09 · Grange 151 987,93 · Lyre 279 461,67 · Ruisseau 169 147,85 · Rivière 165 715,87 · Source 196 113,45 · Pergola 8 673,09 (quote-part seule). Total 1 118 184,95.", "source": "SCIA LA MARGUE / SCENARIO V3.2", "date": ""},
+        {"point": "Capital retenu", "detail": "C'est la valeur conventionnelle, sauf deux exceptions : les gîtes de Serge & Marie-Agnès (leur capacité de 120 000 moins les communs, voir section 6) et la Lyre (le prix nécessaire pour boucler, 304 410,61, soit 24 948,94 au-dessus de sa valeur au m²). Total des capitaux Est : 1 101 299,16.", "source": "", "date": ""},
+        {"point": "Travaux retenus par lot", "detail": "Gîtes 74 766,44 · Grange 12 140 · Lyre 18 465,68 · Rivière 13 228,98 · Source 36 833,72 · Ruisseau 0. Ils entrent dans la base de prix et dans les créances de ceux qui les ont payés.", "source": "DATA", "date": ""}
+      ]
+    },
+    {
+      "titre": "4. Les décisions actées, dans l'ordre",
+      "items": [
+        {"point": "Serge & Marie-Agnès : capacité de 120 000", "detail": "Tout compris. Leur capital est ce qui reste après leurs communs (fosse, main à la main, frais de notaire, foyer commun).", "source": "Charly", "date": "31/08/2026"},
+        {"point": "Caroline : 300 000", "detail": "La cession de créance de 80 000 vers Greg n'a jamais été payée ; Caroline reste due de 300 000. La cession de créance Ader → Renevier est ramenée au complément strict de Greg.", "source": "Charly, Greg", "date": "2/09/2026"},
+        {"point": "Le toit se règle à part", "detail": "33 000 (3 050 pour chacun des quatre foyers non travailleurs, 8 800 de crédit, 12 000 de bénévolat). La compensation sur Isabelle et Caroline n'est pas dans le modèle.", "source": "Charly", "date": "2/09/2026"},
+        {"point": "Complément de Greg", "detail": "Greg complète jusqu'à la valeur de Rivière (165 715,87 − 113 228,98 = 52 486,89) par cession de créance vers Caroline, à la signature.", "source": "Charly", "date": "2/09/2026"},
+        {"point": "Un lot pour Khaldoun à l'Ouest", "detail": "Nouveau lot dans l'EDD de la SCIA Ouest, coefficient 1. Toutes les quotes-parts sont recalculées sur 19,04 coefficients.", "source": "Charly", "date": "2/09/2026"},
+        {"point": "Patricia bascule une partie de son apport à l'Ouest", "detail": "50 000 plus un complément calculé pour que la Lyre sorte à 330 000 tout compris : 66 396,94 en tout. Ils financent le lot de Khaldoun, contre un crédit vendeur du même montant de Khaldoun à Patricia. Sa créance Est passe de 232 121,94 à 165 725,00.", "source": "Charly", "date": "2/09/2026, recalculé le 3/09"},
+        {"point": "Apport d'Orriols à l'Ouest limité", "detail": "Orriols SARL ne couvre à l'Ouest que les quotes-parts des lots de la famille et de LAOM : Petit Shambala, coliving, lot de Claire & Baptiste, studio, les deux tinies, la ferme (4,04 coefficients = 70 078,54). Les quotes-parts de Laetitia, David Lin et David Coste (43 365,44) sont à leur charge. Sa créance Est remonte à 129 921,46.", "source": "Charly", "date": "2/09/2026"},
+        {"point": "Frais de notaire : le tableau de la notaire", "detail": "On prend ses provisions acte par acte et les quinze conventions d'honoraires, pas une clé forfaitaire. 46 240 de provisions connues, deux postes non chiffrés (augmentation de capital Est, attribution des lots Ouest).", "source": "Charly", "date": "2/09/2026"},
+        {"point": "Turquoise payée par l'Est", "detail": "Les 4 003,88 de la société d'Isabelle sont soldés à la signature par la SCIA Est, avec Isabelle, et sortent du passif Ouest du partage partiel.", "source": "Charly", "date": "2/09/2026"},
+        {"point": "Khaldoun ne paie pas de main à la main", "detail": "Il est retiré de la clé.", "source": "Charly", "date": "2/09/2026"},
+        {"point": "Fosse : la Lyre compte 2 WC", "detail": "8 WC raccordés en tout : Lyre 2, Ruisseau + Pergola 2, Grange, Rivière, Source, gîtes 1 chacun.", "source": "Charly", "date": "2/09/2026"},
+        {"point": "Pas de prix affiché pour la Lyre", "detail": "On ne raisonne plus avec un prix de cession de 320 000 : la Lyre s'annonce à son prix tout compris, capital + actes + fosse + main à la main + foyer commun.", "source": "Charly", "date": "2/09/2026"},
+        {"point": "Cible : 330 000 tout compris", "detail": "Atteinte en augmentant la bascule de Patricia vers l'Ouest.", "source": "Charly", "date": "2/09/2026"},
+        {"point": "Foyer commun : 12 600 par part", "detail": "Une part par foyer, 0,5 pour Serge & Marie-Agnès et David Coste, rien pour les lots LAOM (foyer, coliving, salle, serre, tinies, studio, lodges). Déduit des 120 000 de Serge & Marie-Agnès. Magalie remise à une part entière le 3/09.", "source": "Charly", "date": "2/09 et 3/09/2026"},
+        {"point": "Jamais de reconnaissance de dette", "detail": "Les sortants restent associés avec leur compte courant jusqu'à l'entrant (variante B), ou des prêts en compte courant soldent tout à la signature (variante A).", "source": "Charly", "date": "2/09/2026"},
+        {"point": "Main à la main : le fichier de Greg", "detail": "Total 53 592 (41 453 de conseil et structuration + 13 339 d'investissements collectifs) réparti selon la clé du 20 avril. Auparavant le modèle prenait 53 502 sur 13,04 parts.", "source": "Charly (note dans le fichier)", "date": "3/09/2026"}
+      ]
+    },
+    {
+      "titre": "5. Les communs : combien, et selon quelle clé",
+      "items": [
+        {"point": "Fosse Est", "detail": "16 222,47 TTC répartis par WC raccordé : 2 027,81 par WC. Lyre 4 055,62 · Ruisseau + Pergola 4 055,62 · les quatre autres lots 2 027,81. Va au fonds de travaux. La fosse Ouest n'est pas devisée.", "source": "Devis Agussol", "date": ""},
+        {"point": "Main à la main", "detail": "53 592 répartis en 13 parts : foyers à l'année 1 (Lyre, Source, Grange, Rivière, Ruisseau, Petit Shambala, Laetitia, Claire & Baptiste, David Lin), lots touristiques et résidences secondaires 0,5 (gîtes de Serge & Marie-Agnès, Pergola, David Coste, studio, atelier, les deux tinies, coliving), HLL et ferme 0, Khaldoun retiré. 4 122,46 par part entière, 2 061,23 par demi-part. Il revient aux fondateurs qui ont avancé (Patricia, Greg, Claire & Baptiste, Charly & Amandine).", "source": "Classeur de Greg, clé du 20 avril", "date": ""},
+        {"point": "Point d'attention sur le main à la main", "detail": "Greg affiche 3 573 par part parce qu'il divise par 15 parts, mais son tableau lot par lot n'en répartit que 42 874 sur 53 592. Avec sa clé et Khaldoun retiré, on est à 13 parts. À confirmer avec lui : 13 parts (4 122,46), 14 avec Khaldoun (3 828) ou 15 (3 573).", "source": "NILA", "date": "3/09/2026"},
+        {"point": "Foyer commun", "detail": "12 600 par part : Est 5,5 parts (69 300), Ouest 5,5 parts (Amandine & Charly, Laetitia, Claire & Baptiste, David Lin, Khaldoun 1 ; David Coste 0,5 ; 69 300). 11 parts, 138 600 en tout. Khaldoun à une part entière reste à confirmer.", "source": "Charly", "date": "2/09/2026"},
+        {"point": "Frais de notaire", "detail": "Affectés acte par acte à qui paie : par parts d'indivisaires (11, Charly & Amandine en portent 2), par apporteur (15 à l'Est, 9 à l'Ouest), par foyer restant (6, pour les cessions Turquoise, Isabelle et Orriols), par lot (7, pour l'EDD Est). Provisions connues par personne : entrant Lyre 4 811,31 · Charlotte & David 4 714,31 · Magalie 4 711,15 · Serge & Marie-Agnès 4 360,61 · Greg 4 042,22 · Ferme du Verseau 3 396,11 · Charly & Amandine 3 386,26 · Patricia 2 788,33 · Orriols SARL et Claire & Baptiste 2 128,69 · Isabelle, Caroline, Julian, Turquoise, Newake 1 257,58 · Khaldoun, Laetitia, David Lin, David Coste 871,11. Les quittances seront re-provisionnées sur les nouveaux montants.", "source": "Tableau de la notaire, 15 conventions d'honoraires", "date": ""},
+        {"point": "Quote-part du domaine", "detail": "Déjà comprise dans le capital de chaque lot (17 346,17 par coefficient). Elle n'est pas un commun à payer en plus.", "source": "", "date": ""},
+        {"point": "Ce que chaque lot Est paie en plus de son capital", "detail": "Gîtes 14 749,65 · Grange 21 538,60 · Lyre 25 589,39 · Ruisseau + Pergola 27 550,46 · Rivière 22 792,49 · Source 23 464,58. Total 135 685,17 (fosse 16 222,47 + main à la main 24 734,77 + notaire 25 427,93 + foyer commun 69 300). Khaldoun, à l'Ouest : 871,11 de notaire + 12 600 de foyer commun, pas de main à la main.", "source": "COMMUNS PAR LOT", "date": ""}
+      ]
+    },
+    {
+      "titre": "6. La convention Serge & Marie-Agnès",
+      "items": [
+        {"point": "Des 120 000 au capital", "detail": "120 000 − fosse 2 027,81 − main à la main 2 061,23 (0,5 part, résidence secondaire) − frais de notaire 4 360,61 − foyer commun 6 300 = capital 105 250,35. Chaque euro en moins chez eux est un euro de plus sur la Lyre.", "source": "SCIA LA MARGUE Q11:Q16 / COMMUNS PAR LOT", "date": ""},
+        {"point": "Où vont leurs 120 000", "detail": "105 250,35 à la SCIA Est à la signature (c'est le cash qui rembourse les sortants) · 2 027,81 au fonds de travaux · 2 061,23 aux fondateurs · 4 360,61 à la notaire · 6 300 au foyer commun.", "source": "", "date": ""}
+      ]
+    },
+    {
+      "titre": "7. Le prix de la Lyre pour l'entrant",
+      "items": [
+        {"point": "Tout compris : 330 000", "detail": "Valeur du lot, son capital 304 410,61 (va à la SCIA Est) + provision sur actes 4 811,31 (notaire) + fosse Est 2 WC 4 055,62 (fonds de travaux) + main à la main 4 122,46 (fondateurs) + foyer commun 12 600 (fonds de travaux / association).", "source": "SCIA LA MARGUE Q19:Q24 / COMMUNS PAR LOT", "date": ""},
+        {"point": "Le levier", "detail": "Le transfert de Patricia vers l'Ouest (66 396,94). Si un autre paramètre bouge, la cellule « transfert nécessaire » donne la nouvelle valeur à recopier.", "source": "SCIA LA MARGUE Q26 / SCENARIO V3.2 B11-B12", "date": ""}
+      ]
+    },
+    {
+      "titre": "8. Le fléchage : qui paie qui, et quand",
+      "items": [
+        {"point": "Ce que chacun apporte (836 082,25)", "detail": "Serge & Marie-Agnès 105 250,35 · Magalie 177 820,94 · Charlotte & David 196 113,45 · Greg 52 486,89 (à la signature) · entrant Lyre 304 410,61 (à son arrivée).", "source": "PROPOSITION FINALE A", "date": ""},
+        {"point": "Ce que chacun reçoit (836 082,25)", "detail": "Isabelle 238 419,84 · Caroline 300 000 · Julian 150 000 · Orriols SARL 129 921,46 · Patricia (excédent au-dessus de La Grange) 13 737,07 · Turquoise SARL 4 003,88.", "source": "PROPOSITION FINALE B", "date": ""},
+        {"point": "Phase 1, à la signature (531 671,63)", "detail": "Greg → Caroline 52 486,89 (cession de créance) · Magalie → Caroline 177 820,94 · Serge & Marie-Agnès → Caroline 16 108,14 et → Julian 89 142,21 · Charlotte & David → Julian 7 273,76, → Turquoise 4 003,88, → Isabelle 184 835,81. Reçu : Isabelle 184 835,81, Caroline 246 415,97, Julian 96 415,97. Chacun des trois garde 53 584,03 en compte courant et reste associé jusqu'à l'entrant.", "source": "PROPOSITION FINALE C", "date": ""},
+        {"point": "Phase 2, à l'arrivée de l'entrant (304 410,61)", "detail": "Entrant Lyre → Isabelle, Caroline, Julian 53 584,03 chacun (rachat de leurs parts et de leur compte courant, quittance finale) · → Orriols SARL 129 921,46 · → Patricia 13 737,07.", "source": "PROPOSITION FINALE D", "date": ""},
+        {"point": "Capital final Est (1 101 299,16)", "detail": "Serge & Marie-Agnès 105 250,35 (9,6 %) · Patricia 151 987,93 (13,8 %) · entrant Lyre 304 410,61 (27,6 %) · Magalie 177 820,94 (16,1 %) · Greg 165 715,87 (15,0 %) · Charlotte & David 196 113,45 (17,8 %). Égal aux créances Est retenues, Turquoise comprise.", "source": "PROPOSITION FINALE E", "date": ""},
+        {"point": "Côté Ouest", "detail": "Lot Khaldoun 66 396,94 (quote-part 17 346,17 + bâti 49 050,77), crédit vendeur Khaldoun → Patricia du même montant, échéancier à définir · Patricia apporte à l'Ouest 164 329,10 (97 932,16 du partage partiel + le lot Khaldoun) · Orriols SARL 70 078,54 · Laetitia 17 346,17, David Lin 17 346,17 et David Coste 8 673,09 apportent leur quote-part. Le partage partiel est à refaire avec ces attributions.", "source": "PROPOSITION FINALE F / SCIA LAOM", "date": ""},
+        {"point": "Isabelle + Turquoise : 246 423,75", "detail": "Créance d'Isabelle 238 419,84 + Turquoise 4 003,88 + rachat de ses 1 000 parts 1 000 + rachat des 1 000 parts de Turquoise 1 000,01 + deux soultes du partage 1 000,01 chacune. C'est le « 246 K ». Restent à négocier : 1 500 de deck et 2 570 de loyers bloqués contre 3 050 de toit, 920 de tricount et 1 200 de réparation cuisine.", "source": "PROPOSITION FINALE G", "date": ""}
+      ]
+    },
+    {
+      "titre": "9. Deux variantes en attendant l'entrant",
+      "items": [
+        {"point": "Variante A, avec prêts en compte courant", "detail": "Magalie 60 000, Greg 20 000, Charly & Amandine 70 000 = 150 000, au-dessus des capitaux, remboursés par l'entrant, jamais transformés en parts. Besoin pour solder les trois sortants : 160 752,09 ; il resterait 3 584,03 par sortant (monter le prêt de Charly & Amandine à 80 800 solde tout). À la signature : Isabelle 234 835,81, Caroline 296 415,97, Julian 146 415,97. Seule cette variante respecte la date butoir d'Isabelle (15 novembre 2026). Greg a dit le 17/08 ne pas vouloir prêter.", "source": "VARIANTES A ET B", "date": ""},
+        {"point": "Variante B, sans prêt", "detail": "Les trois sortants restent associés avec 53 584,03 chacun en compte courant jusqu'à ce que l'entrant les rachète. Aucune reconnaissance de dette.", "source": "VARIANTES A ET B", "date": ""},
+        {"point": "Dans les deux cas", "detail": "Tout le monde entre dans la SCIA à la signature avec son compte courant d'indivision, Turquoise est soldée, Orriols et l'excédent de Patricia attendent l'entrant.", "source": "", "date": ""}
+      ]
+    },
+    {
+      "titre": "10. Constituer les deux SCIA sans EDD",
+      "items": [
+        {"point": "Le principe", "detail": "La notaire constitue les deux sociétés maintenant ; l'état descriptif de division vient plus tard (à l'arrivée de l'entrant pour l'Est, à l'achèvement des travaux pour l'Ouest). Sans EDD personne n'est propriétaire d'un lot : chacun détient des parts et un compte courant, et une délibération de pré-affectation (sous seing privé) dit qui aura quoi.", "source": "Notaire 4/08, Charly 2/09", "date": ""},
+        {"point": "Actes inchangés", "detail": "Acte rectificatif (1), cession de créances Ferme du Verseau (3), cession Claire → Greg (12).", "source": "", "date": ""},
+        {"point": "Actes à refaire (montants)", "detail": "Cession Ader → Renevier à 52 486,89 (2) · partage partiel avec les nouvelles attributions Ouest et Turquoise sortie du passif (4) · délibération des cessions et remboursements (7) · cessions et quittances Quero, Ader, Turquoise, Isabelle (8, 9, 11) selon la variante · cessions Aubert (13), celle vers Khaldoun annulée.", "source": "", "date": ""},
+        {"point": "Actes reportés à l'entrant", "detail": "Quittance Patricia (10), cession Orriols (14), délibérations et actes d'EDD (15-17), augmentation de capital (18) ; à l'Ouest EDD et attribution (19, 20). Frais correspondants reportés (4 180 de provisions + deux postes à chiffrer). Pas de récupération de TVA côté LAOM tant que l'EDD Ouest n'est pas signé.", "source": "", "date": ""},
+        {"point": "À écrire en plus", "detail": "Délibération de pré-affectation pour les deux SCIA · conventions de compte courant (variante A) · promesse de cession au futur entrant Lyre · convention de crédit vendeur Patricia → Khaldoun.", "source": "", "date": ""}
+      ]
+    },
+    {
+      "titre": "11. Ce qui reste à trancher",
+      "items": [
+        {"point": "Variante A ou B", "detail": "Prêts en compte courant ou sortants associés jusqu'à l'entrant, face à la date butoir d'Isabelle.", "source": "", "date": ""},
+        {"point": "Clé du main à la main", "detail": "13 parts (retenu), 14 ou 15 : à valider avec Greg (section 5).", "source": "", "date": ""},
+        {"point": "Lots Ouest couverts par Orriols", "detail": "Le studio (8 673,09) est lu comme le « logement » de la dictée de Charly. Chaque demi-coefficient déplace 8 673,09 entre l'Ouest et la créance Est d'Orriols.", "source": "", "date": ""},
+        {"point": "Échéancier du crédit vendeur Khaldoun → Patricia", "detail": "66 396,94, durée et taux à définir.", "source": "", "date": ""},
+        {"point": "Foyer commun", "detail": "Khaldoun à une part entière ; montant global à confirmer par le collectif.", "source": "", "date": ""},
+        {"point": "Fosse Ouest", "detail": "Pas de devis.", "source": "", "date": ""},
+        {"point": "Isabelle", "detail": "Deck (1 500) et loyers (2 570) contre toit, tricount et cuisine ; date butoir du 15 novembre.", "source": "", "date": ""},
+        {"point": "Toit", "detail": "Compensation sur Isabelle et Caroline, vue à part.", "source": "", "date": ""},
+        {"point": "Notaire", "detail": "Deux postes non chiffrés (augmentation de capital Est, attribution Ouest) ; quittances à re-provisionner ; les 1 913,77 restitués par Me Bonetto, toujours chez Ollivier.", "source": "", "date": ""},
+        {"point": "Greg", "detail": "Prêteur ou non en variante A.", "source": "", "date": ""}
+      ]
+    },
+    {
+      "titre": "12. Guide des onglets",
+      "items": [],
+      "guides": {
+        "0209": [
+          {"point": "DATA", "detail": "Les données de base : acquisition 2021, apports de chacun, valeur du domaine, coefficients et quotes-parts des lots (colonnes B-F, lignes 133-151), main à la main (bloc Q-T, 53 592 sur 13 parts), foyer commun (bloc V-Y, 12 600 par part), apports Ouest à valoriser."},
+          {"point": "SCIA LA MARGUE", "detail": "L'Est : valeur de chaque lot (prix au m², quote-part, travaux), capital retenu (colonne N), convention Serge & Marie-Agnès et prix de la Lyre (P11:Q26), étape 1 (créances et apports, lignes 25-48), étape 2 (fléchage : qui rembourse qui, lignes 51-66)."},
+          {"point": "SCIA LAOM", "detail": "L'Ouest : lots, attributaires, apports de chacun (Patricia porte le lot de Khaldoun en B22), quotes-parts (colonne P), contrôle des totaux (ligne 26)."},
+          {"point": "Financement SCI", "detail": "Les deux SCI des communs (Grand Shambala, gîtes) et la quote-part par associé."}
+        ],
+        "v32": [
+          {"point": "NOTICE", "detail": "Ce document."},
+          {"point": "PROPOSITION FINALE", "detail": "Le résumé en huit blocs : apports, remboursements, phase 1, phase 2, capital final, Ouest, Isabelle + Turquoise, hors SCIA."},
+          {"point": "COMMUNS PAR LOT", "detail": "Fosse, main à la main, frais de notaire, foyer commun par lot ; convention Serge & Marie-Agnès ; prix de la Lyre tout compris et transfert nécessaire."},
+          {"point": "VARIANTES A ET B", "detail": "Avec ou sans prêts en compte courant, et l'impact acte par acte d'une constitution sans EDD."},
+          {"point": "SCENARIO V3.2", "detail": "Le moteur : paramètres (jaune), lots Ouest et quotes-parts, lots Est, valeurs conventionnelles, créances, ressources et dettes, prix nécessaire de la Lyre, contrôle."},
+          {"point": "FRAIS NOTAIRE", "detail": "Les 20 actes du tableau de la notaire, leurs provisions et leur affectation à chaque payeur."},
+          {"point": "FOYER COMMUN", "detail": "Les parts de chaque lot et le total."},
+          {"point": "SCENARIO V3.1 ACTES, SCENARIO V3, MATRICE EDD CIBLE, CONTROLES EST V2", "detail": "Versions précédentes et contrôles, conservés pour l'historique."},
+          {"point": "DATA, SCIA LA MARGUE, SCIA LAOM, Financement SCI", "detail": "Le modèle d'origine de Charly (format de janvier), aligné sur les mêmes chiffres."}
+        ]
+      }
+    },
+    {
+      "titre": "13. Comment modifier une hypothèse",
+      "items": [
+        {"point": "Une seule cellule par hypothèse", "detail": "Dans le fichier 02092026 : main à la main = DATA T167 (total) et R143:R166 (coefficients) ; foyer commun = DATA Y167 et W143:W166 ; fosse et frais de notaire de Serge & Marie-Agnès = SCIA LA MARGUE Q12 et Q14 ; provision sur actes de l'entrant = Q20 ; cible de la Lyre = Q25. Dans le v3.2 : les cellules jaunes de SCENARIO V3.2 et de COMMUNS PAR LOT.", "source": "", "date": ""},
+        {"point": "Après un changement", "detail": "Lire la cellule « transfert nécessaire » (SCIA LA MARGUE Q26 ou COMMUNS PAR LOT) et recopier sa valeur dans le transfert de Patricia (SCIA LAOM B22 et DATA D93 dans le 02092026 ; SCENARIO V3.2 B11 et B12 dans le v3.2). Vérifier que les contrôles sont à zéro.", "source": "", "date": ""},
+        {"point": "Ne pas toucher", "detail": "Les surfaces du modèle, la valeur du domaine et les créances : ce sont les pièces qui font foi, pas des hypothèses.", "source": "", "date": ""}
+      ]
+    }
+  ]
+}

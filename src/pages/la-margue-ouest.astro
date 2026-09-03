@@ -1,0 +1,306 @@
+---
+// SCIA La Margue Ouest (LAOM) — fiche interne, espace associes.
+// Tous les montants viennent de src/data/la-margue-2026.ts : rien en dur ici.
+import MargueShell from '~/components/margue/MargueShell.astro'
+import SectionHead from '~/components/laom/sections/SectionHead.astro'
+import {
+  apportsOuest,
+  coef,
+  communsOuest,
+  communsOuestNotaireTotal,
+  communsOuestNote,
+  deplacementsEst,
+  documents,
+  documentsNote,
+  eur,
+  lotsOuest,
+  lotsOuestNote,
+  notionsOuest,
+  ouestKeyFigures,
+  ouestTotals,
+  updatedLabel,
+} from '~/data/la-margue-2026'
+
+export const prerender = true
+---
+
+<MargueShell
+  page="ouest"
+  title="SCIA La Margue Ouest (LAOM)"
+  subtitle="Les lots du Grand Shambala et de la ferme, les quotes-parts du domaine, et ce que le montage Est déplace à l'Ouest"
+  updated={updatedLabel}
+>
+  <!-- 1 · Chiffres cles -->
+  <section class="pb-16 md:pb-24">
+    <div class="max-w-5xl mx-auto px-6 md:px-10">
+      <SectionHead
+        eyebrow="Vue d'ensemble"
+        title="Les chiffres"
+        accent="clés"
+        size="text-3xl md:text-4xl"
+        class="mb-10"
+      />
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {ouestKeyFigures.map((fig) => (
+          <div class="rounded-2xl bg-[#FBF6EA] border border-[#412F1F]/10 p-6">
+            <p class="text-2xl md:text-[1.75rem] font-extrabold text-[#9A3922] tabular-nums tracking-[-0.02em]">
+              {fig.value}
+            </p>
+            <p class="text-sm text-[#1D1B18]/70 mt-2 leading-snug">{fig.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · Les lots -->
+  <section class="bg-[#FBF6EA] py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-6 md:px-10">
+      <SectionHead
+        eyebrow="État descriptif"
+        title="Les lots de"
+        accent="l'Ouest"
+        intro="Le coefficient donne la part du domaine attachée au lot. La quote-part correspondante est déjà comprise dans la valeur du lot."
+        size="text-3xl md:text-4xl"
+        class="mb-10"
+      />
+
+      <div class="overflow-x-auto rounded-2xl border border-[#412F1F]/10 bg-[#F2EBDB]">
+        <table class="w-full min-w-[760px] text-sm">
+          <thead>
+            <tr class="border-b border-[#412F1F]/15 text-left">
+              <th class="px-5 py-4 font-semibold text-[#412F1F]">Lot</th>
+              <th class="px-5 py-4 font-semibold text-[#412F1F] text-right">Coef.</th>
+              <th class="px-5 py-4 font-semibold text-[#412F1F] text-right">Quote-part du domaine</th>
+              <th class="px-5 py-4 font-semibold text-[#412F1F]">Attributaire</th>
+              <th class="px-5 py-4 font-semibold text-[#412F1F] text-right">Valeur du lot</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#412F1F]/10">
+            {lotsOuest.map((l) => (
+              <tr class="align-top">
+                <td class="px-5 py-4 text-[#412F1F] font-medium">{l.lot}</td>
+                <td class="px-5 py-4 text-right text-[#1D1B18]/80 tabular-nums whitespace-nowrap">
+                  {coef(l.coefficient)}
+                  {l.coefficientNote && (
+                    <span class="block text-xs text-[#1D1B18]/45 mt-1 whitespace-normal">{l.coefficientNote}</span>
+                  )}
+                </td>
+                <td class="px-5 py-4 text-right text-[#1D1B18]/80 tabular-nums whitespace-nowrap">
+                  {l.quotePart === 0 ? '—' : eur(l.quotePart)}
+                </td>
+                <td class="px-5 py-4 text-[#1D1B18]/70">{l.attributaire}</td>
+                <td class="px-5 py-4 text-right text-[#1D1B18] tabular-nums whitespace-nowrap">
+                  {eur(l.valeur)}
+                  {l.valeurNote && (
+                    <span class="block text-xs text-[#1D1B18]/45 mt-1 whitespace-normal">{l.valeurNote}</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr class="border-t border-[#412F1F]/15">
+              <td class="px-5 py-4 font-semibold text-[#412F1F]">Total Ouest</td>
+              <td class="px-5 py-4 text-right font-semibold text-[#412F1F] tabular-nums whitespace-nowrap">
+                {coef(ouestTotals.coefficientsOuest)}
+              </td>
+              <td class="px-5 py-4 text-right font-semibold text-[#412F1F] tabular-nums whitespace-nowrap">
+                {eur(ouestTotals.quotesPartsOuest)}
+              </td>
+              <td class="px-5 py-4 text-[#1D1B18]/50 text-xs" colspan="2">
+                Est : {coef(ouestTotals.coefficientsEst)} coefficients, {eur(ouestTotals.quotesPartsEst)}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <p class="text-sm text-[#1D1B18]/60 mt-4 max-w-3xl leading-relaxed">{lotsOuestNote}</p>
+    </div>
+  </section>
+
+  <!-- 3 · Ce que le montage Est deplace (unique bande sombre de la page) -->
+  <section class="bg-[#412F1F] py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-6 md:px-10">
+      <SectionHead
+        eyebrow="Effet de bord"
+        title="Ce que le montage Est déplace à"
+        accent="l'Ouest"
+        light={true}
+        size="text-3xl md:text-4xl"
+        class="mb-10"
+      />
+      <div class="grid gap-5 md:grid-cols-2">
+        {deplacementsEst.map((d) => (
+          <div class="rounded-2xl bg-[#F2EBDB]/8 border border-[#F2EBDB]/15 p-6">
+            <h3 class="text-base font-semibold text-[#F2EBDB] mb-2">{d.titre}</h3>
+            <p class="text-sm text-[#F2EBDB]/70 leading-relaxed">{d.texte}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · Apports par associe -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-6 md:px-10">
+      <SectionHead
+        eyebrow="Par associé"
+        title="Ce que chacun porte dans la"
+        accent="SCIA"
+        intro="L'apport est la contrepartie du lot attribué, quote-part du domaine comprise."
+        size="text-3xl md:text-4xl"
+        class="mb-10"
+      />
+
+      <div class="overflow-x-auto rounded-2xl border border-[#412F1F]/10 bg-[#FBF6EA]">
+        <table class="w-full min-w-[420px] text-sm">
+          <thead>
+            <tr class="border-b border-[#412F1F]/15 text-left">
+              <th class="px-5 py-4 font-semibold text-[#412F1F]">Associé</th>
+              <th class="px-5 py-4 font-semibold text-[#412F1F] text-right">Apport</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#412F1F]/10">
+            {apportsOuest.map((a) => (
+              <tr>
+                <td class="px-5 py-4 text-[#412F1F]">
+                  {a.associe}
+                  {a.note && <span class="block text-xs text-[#1D1B18]/45 mt-1">{a.note}</span>}
+                </td>
+                <td class="px-5 py-4 text-right text-[#1D1B18] tabular-nums whitespace-nowrap align-top">
+                  {eur(a.montant)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr class="border-t border-[#412F1F]/15">
+              <td class="px-5 py-4 font-semibold text-[#412F1F]">Total</td>
+              <td class="px-5 py-4 text-right font-semibold text-[#9A3922] tabular-nums whitespace-nowrap">
+                {eur(ouestTotals.valeurLots)}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Les communs cote Ouest -->
+  <section class="bg-[#FBF6EA] py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-6 md:px-10">
+      <SectionHead
+        eyebrow="Communs"
+        title="Ce qui se paie en plus, côté"
+        accent="Ouest"
+        size="text-3xl md:text-4xl"
+        class="mb-10"
+      />
+
+      <div class="overflow-x-auto rounded-2xl border border-[#412F1F]/10 bg-[#F2EBDB]">
+        <table class="w-full min-w-[620px] text-sm">
+          <thead>
+            <tr class="border-b border-[#412F1F]/15 text-left">
+              <th class="px-5 py-4 font-semibold text-[#412F1F]">Foyer</th>
+              <th class="px-5 py-4 font-semibold text-[#412F1F] text-right">Main à la main</th>
+              <th class="px-5 py-4 font-semibold text-[#412F1F] text-right">Foyer commun</th>
+              <th class="px-5 py-4 font-semibold text-[#412F1F] text-right">Frais de notaire</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#412F1F]/10">
+            {communsOuest.map((c) => (
+              <tr class="align-top">
+                <td class="px-5 py-4 text-[#412F1F] font-medium">{c.foyer}</td>
+                <td class="px-5 py-4 text-right text-[#1D1B18]/80 tabular-nums whitespace-nowrap">
+                  {c.mainALaMain === 0 ? '—' : eur(c.mainALaMain)}
+                  {c.mainALaMainNote && (
+                    <span class="block text-xs text-[#1D1B18]/45 mt-1 whitespace-normal">{c.mainALaMainNote}</span>
+                  )}
+                </td>
+                <td class="px-5 py-4 text-right text-[#1D1B18]/80 tabular-nums whitespace-nowrap">
+                  {c.foyerCommun === 0 ? '—' : eur(c.foyerCommun)}
+                </td>
+                <td class="px-5 py-4 text-right text-[#1D1B18]/80 tabular-nums whitespace-nowrap">
+                  {eur(c.notaire)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr class="border-t border-[#412F1F]/15">
+              <td class="px-5 py-4 font-semibold text-[#412F1F]">Total</td>
+              <td class="px-5 py-4 text-right font-semibold text-[#412F1F] tabular-nums whitespace-nowrap">
+                {eur(ouestTotals.mainALaMain)}
+              </td>
+              <td class="px-5 py-4 text-right font-semibold text-[#412F1F] tabular-nums whitespace-nowrap">
+                {eur(ouestTotals.foyerCommun)}
+              </td>
+              <td class="px-5 py-4 text-right font-semibold text-[#412F1F] tabular-nums whitespace-nowrap">
+                {eur(communsOuestNotaireTotal)}
+                <span class="block text-xs font-normal text-[#1D1B18]/45 mt-1 whitespace-normal">
+                  somme des provisions listées
+                </span>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <p class="text-sm text-[#1D1B18]/60 mt-4 max-w-3xl leading-relaxed">{communsOuestNote}</p>
+    </div>
+  </section>
+
+  <!-- 6 · Comprendre -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-6 md:px-10">
+      <SectionHead
+        eyebrow="Lexique"
+        title="Comprendre le"
+        accent="calcul"
+        size="text-3xl md:text-4xl"
+        class="mb-10"
+      />
+      <div class="grid gap-4 md:grid-cols-2">
+        {notionsOuest.map((n) => (
+          <div class="rounded-2xl bg-[#FBF6EA] border border-[#412F1F]/10 p-6">
+            <h3 class="text-base font-semibold text-[#412F1F] mb-2">{n.titre}</h3>
+            <p class="text-sm text-[#1D1B18]/70 leading-relaxed">{n.texte}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · Documents -->
+  <section class="bg-[#FBF6EA] py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-6 md:px-10">
+      <SectionHead
+        eyebrow="Sources"
+        title="Les"
+        accent="documents"
+        size="text-3xl md:text-4xl"
+        class="mb-10"
+      />
+      <div class="grid gap-4 md:grid-cols-3">
+        {documents.map((d) => (
+          <a
+            href={d.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="lift rounded-2xl bg-[#F2EBDB] border border-[#412F1F]/10 p-6 block"
+          >
+            <h3 class="text-base font-semibold text-[#412F1F]">{d.titre}</h3>
+            <p class="text-sm text-[#1D1B18]/65 mt-2 leading-relaxed">{d.description}</p>
+            <span class="inline-block text-sm text-[#9A3922] font-medium mt-4">Ouvrir le classeur</span>
+          </a>
+        ))}
+      </div>
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <a href="/la-margue-notice/" class="pill pill-primary">Lire la notice du montage</a>
+        <p class="text-sm text-[#1D1B18]/55">{documentsNote}</p>
+      </div>
+    </div>
+  </section>
+</MargueShell>
