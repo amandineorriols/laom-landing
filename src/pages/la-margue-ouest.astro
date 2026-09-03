@@ -132,7 +132,7 @@ export const prerender = true
         size="text-3xl md:text-4xl"
         class="mb-10"
       />
-      <!-- Le lot de Khaldoun : le detail chiffre, puis le point de justice -->
+      <!-- Le lot de Khaldoun : le detail chiffre, puis ce que les lots transitoires changent -->
       <div class="rounded-3xl bg-[#F2EBDB]/8 border border-[#F2EBDB]/15 p-6 md:p-8">
         <h3 class="text-xl md:text-2xl font-extrabold text-[#F2EBDB] tracking-[-0.02em]">
           {khaldoun.titre}
@@ -170,11 +170,8 @@ export const prerender = true
         </dl>
 
         <div class="mt-7 pt-6 border-t border-[#F2EBDB]/12">
-          <h4 class="text-xs font-semibold uppercase tracking-[0.14em] text-[#CB7A5C] mb-3">
-            {khaldoun.justiceTitre}
-          </h4>
           <p class="text-sm md:text-base text-[#F2EBDB]/75 leading-relaxed max-w-3xl">
-            {khaldoun.justiceTexte}
+            {khaldoun.note}
           </p>
         </div>
       </div>

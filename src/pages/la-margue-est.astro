@@ -264,7 +264,25 @@ export const prerender = true
                         </dd>
                       </div>
                     )}
-                    {f.pergola && (
+                    {f.lotsTransitoires && (
+                      <div class="flex justify-between gap-4 py-2.5">
+                        <dt class="text-sm text-[#1D1B18]/65">
+                          {f.lotsTransitoires.titre}
+                          <span class="block text-xs text-[#1D1B18]/45 mt-1 leading-relaxed">
+                            {f.lotsTransitoires.note}
+                          </span>
+                        </dt>
+                        <dd class="text-right shrink-0">
+                          <span class="block text-sm text-[#412F1F] font-medium tabular-nums whitespace-nowrap">
+                            {eur(f.lotsTransitoires.capital)}
+                          </span>
+                          <span class="block text-xs text-[#1D1B18]/45 mt-0.5 whitespace-nowrap">
+                            {f.lotsTransitoires.nombre} × {eur(f.lotsTransitoires.capitalUnitaire)}
+                          </span>
+                        </dd>
+                      </div>
+                    )}
+                    {(f.pergola || f.lotsTransitoires) && (
                       <div class="flex justify-between gap-4 py-2.5">
                         <dt class="text-sm font-semibold text-[#412F1F]">Capital total dans la SCIA</dt>
                         <dd class="text-sm text-[#412F1F] font-semibold tabular-nums whitespace-nowrap">

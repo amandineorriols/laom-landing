@@ -51,6 +51,18 @@ export interface Ligne {
   montant: number
 }
 
+/**
+ * Lots créés après la constitution de la SCIA, portés sans surface et sans
+ * coefficient : ils n'entrent pas dans la clé historique des quotes-parts.
+ */
+export interface LotsTransitoires {
+  titre: string
+  nombre: number
+  capitalUnitaire: number
+  capital: number
+  note: string
+}
+
 export interface FoyerEst {
   foyer: string
   lot: string
@@ -70,6 +82,8 @@ export interface FoyerEst {
   capitalCommentaire?: string
   /** Quote-part portée sans surface (la Pergola de Magali). */
   pergola?: number
+  /** Lots transitoires portés par le foyer (les lots 9 et 10 de Patricia). */
+  lotsTransitoires?: LotsTransitoires
   communs: number
   communsDetail: Ligne[]
   total: number
@@ -168,7 +182,7 @@ export const documentsNote = 'Accès sur demande à Charly.'
 // ============================================================
 
 export const estTotals = {
-  capital: 1100174.85,
+  capital: 1150349.93,
   dettes: 834957.94,
   prixLyre: 330000,
   communs: 140182.4,
@@ -189,7 +203,7 @@ export const estRegle: string[] = [
   "Chaque indivisaire qui sort est remboursé au centime de ce qu'il a mis. Rien de plus, rien de moins.",
   "Le capital de chaque foyer dans la SCIA est égal à la valeur conventionnelle de son lot : personne n'achète le lot d'un autre, chacun apporte sa part.",
   "Le prix de la Lyre est la variable qui boucle le système : il vaut ce qu'il faut pour que tout le monde soit remboursé.",
-  `Le transfert de Patricia vers l'Ouest, ${eur(67521.25)}, est le levier qui met la Lyre à ${eur(330000)} tout compris.`,
+  `Les deux lots transitoires de Patricia à l'Est, ${eur(50175.08)}, sont ce qui permet à la Lyre de sortir à ${eur(330000)} tout compris.`,
 ]
 
 export const foyersEst: FoyerEst[] = [
@@ -211,7 +225,7 @@ export const foyersEst: FoyerEst[] = [
     ],
     total: 120000,
     totalNote: 'leur capacité, tout compris',
-    partCapital: '9,6 %',
+    partCapital: '9,1 %',
     alias: ['Serge & Marie-Agnès'],
     detail: ['Chaque euro en moins chez eux est un euro de plus sur la Lyre.'],
   },
@@ -222,7 +236,16 @@ export const foyersEst: FoyerEst[] = [
     surfaceModele: 62,
     surfaceDpe: 55.15,
     valeurConventionnelle: 151987.93,
-    capital: 151987.93,
+    capital: 202163.01,
+    capitalNote: `La Grange ${eur(151987.93)} + deux lots transitoires ${eur(50175.08)}`,
+    capitalLot: 151987.93,
+    lotsTransitoires: {
+      titre: 'Lots 9 et 10, transitoires',
+      nombre: 2,
+      capitalUnitaire: 25087.54,
+      capital: 50175.08,
+      note: "terrains à construire au hameau, lots transitoires (loi ELAN), hors clé historique des quotes-parts ; à la vente, l'acheteur rachète les parts de Patricia au prix de la deuxième clé, sous condition suspensive de permis ; permis au nom de la SCIA, qui construit et livre hors d'air",
+    },
     communs: 22288.14,
     communsDetail: [
       { label: 'Fosse Est, 1 WC', montant: 2027.81 },
@@ -232,11 +255,11 @@ export const foyersEst: FoyerEst[] = [
     ],
     total: 22288.14,
     totalNote: 'les communs seuls : sa créance couvre son capital',
-    partCapital: '13,8 %',
+    partCapital: '17,6 %',
     alias: ['Patricia Salgon'],
     detail: [
-      `Sa créance Est après transfert : ${eur(164600.69)}. Elle dépasse la valeur de La Grange de ${eur(12612.76)} : cet excédent lui est remboursé par l'entrant Lyre.`,
-      `${eur(67521.25)} sont basculés à l'Ouest pour financer le lot de Khaldoun, contre un crédit vendeur du même montant de Khaldoun vers elle.`,
+      `Sa créance Est après transfert : ${eur(214775.77)}. Elle dépasse son capital de ${eur(12612.76)} : cet excédent lui est remboursé par l'entrant Lyre.`,
+      `Elle ne bascule plus que ${eur(17346.17)} vers l'Ouest, pour la quote-part de Khaldoun, contre un crédit vendeur du même montant de Khaldoun vers elle.`,
       "Elle ne sort pas de cash : elle conserve son lot, et son capital est déjà couvert par ce qu'elle a apporté en 2021.",
     ],
   },
@@ -257,7 +280,7 @@ export const foyersEst: FoyerEst[] = [
       { label: 'Foyer commun, 1 part', montant: 12600 },
     ],
     total: 330000,
-    partCapital: '27,6 %',
+    partCapital: '26,4 %',
     alias: ['Entrant Lyre'],
     detail: [
       "On n'affiche plus un prix de cession : la Lyre s'annonce à son prix tout compris, capital plus actes, fosse, main à la main et foyer commun.",
@@ -282,7 +305,7 @@ export const foyersEst: FoyerEst[] = [
       { label: 'Foyer commun, 1 part', montant: 12600 },
     ],
     total: 206495.71,
-    partCapital: '16,1 %',
+    partCapital: '15,5 %',
     alias: ['Magali Rouby'],
     detail: ['Elle est remise à une part entière de foyer commun depuis le 3 septembre.'],
   },
@@ -305,7 +328,7 @@ export const foyersEst: FoyerEst[] = [
     ],
     total: 76028.92,
     totalNote: 'complément + communs',
-    partCapital: '15,0 %',
+    partCapital: '14,4 %',
     alias: ['Grégoire Renevier'],
     detail: [
       `Son apport historique est de ${eur(113228.98)}, dont ${eur(13228.98)} de travaux réalisés sur le lot.`,
@@ -328,7 +351,7 @@ export const foyersEst: FoyerEst[] = [
       { label: 'Foyer commun, 1 part', montant: 12600 },
     ],
     total: 220327.57,
-    partCapital: '17,8 %',
+    partCapital: '17,0 %',
     alias: ['Charlotte & David'],
     detail: [
       "Ce sont eux qui soldent la société d'Isabelle à la signature : Turquoise sort ainsi du passif du partage partiel.",
@@ -463,7 +486,7 @@ export const variantes: Variante[] = [
 export const notionsEst: Notion[] = [
   {
     titre: 'Valeur conventionnelle',
-    texte: `Prix au m² du modèle, ${eur(2451.42)}, multiplié par la surface du modèle. La quote-part du domaine, ${eur(17346.17)} par coefficient, y est déjà comprise : ce n'est pas un commun à payer en plus.`,
+    texte: `Prix au m² du modèle, ${eur(2451.42)}, multiplié par la surface du modèle. La quote-part du domaine, ${eur(17346.17)} par coefficient, y est déjà comprise : ce n'est pas un commun à payer en plus. La clé historique des quotes-parts est close avec les lots existants ; les lots créés ensuite entrent par une deuxième clé, au prix fixé par l'assemblée.`,
   },
   {
     titre: 'Fosse Est',
@@ -489,14 +512,14 @@ export const notionsEst: Notion[] = [
 // ============================================================
 
 export const ouestTotals = {
-  valeurLots: 1234854.05,
+  valeurLots: 1185803.29,
   quotePartUnitaire: 17346.17,
   coefficientsOuest: 12.54,
   coefficientsTotal: 19.04,
   coefficientsEst: 6.5,
   quotesPartsOuest: 217521.03,
   quotesPartsEst: 112750.13,
-  lotKhaldoun: 67521.25,
+  lotKhaldoun: 17346.17,
   mainALaMain: 24360,
   foyerCommun: 69300,
 }
@@ -508,7 +531,7 @@ export const ouestKeyFigures: KeyFigure[] = [
     value: `${coef(ouestTotals.coefficientsOuest)} / ${coef(ouestTotals.coefficientsTotal)}`,
     label: 'Coefficients Ouest sur le total du domaine',
   },
-  { value: eur(ouestTotals.lotKhaldoun), label: 'Lot de Khaldoun, nouveau' },
+  { value: eur(ouestTotals.lotKhaldoun), label: 'Lot de Khaldoun, sa quote-part' },
 ]
 
 export const lotsOuest: LotOuest[] = [
@@ -527,15 +550,15 @@ export const lotsOuest: LotOuest[] = [
   { lot: 'Ferme — serre, abris, terre', coefficient: 0.04, quotePart: 693.85, attributaire: 'Orriols SAS', valeur: 5249.54 },
   { lot: 'Accueil — salle, restaurant', coefficient: 0, quotePart: 0, attributaire: 'Ferme du Verseau', valeur: 180000 },
   { lot: 'Terrain des lodges', coefficient: 5, quotePart: 86730.87, attributaire: 'Patricia Salgon', valeur: 97932.16, valeurNote: 'attribué dans le partage partiel' },
-  { lot: 'Logement Khaldoun (nouveau)', coefficient: 1, quotePart: 17346.17, attributaire: 'Khaldoun — crédit vendeur Patricia', valeur: 67521.25 },
+  { lot: 'Logement Khaldoun (nouveau)', coefficient: 1, quotePart: 17346.17, attributaire: 'Khaldoun, crédit vendeur Patricia', valeur: 17346.17 },
 ]
 
-export const lotsOuestNote = `Le total des lots ci-dessus ne se lit pas comme le total des apports : plusieurs lots sont partagés entre attributaires — le foyer commun entre la Ferme du Verseau et l'association — et Orriols SARL n'apporte à l'Ouest que des quotes-parts. Le total qui fait foi est celui des apports, ${eur(1234854.05)}.`
+export const lotsOuestNote = `Le total des lots ci-dessus ne se lit pas comme le total des apports : plusieurs lots sont partagés entre attributaires — le foyer commun entre la Ferme du Verseau et l'association — et Orriols SARL n'apporte à l'Ouest que des quotes-parts. Le total qui fait foi est celui des apports, ${eur(ouestTotals.valeurLots)}.`
 
 export const deplacementsEst: Notion[] = [
   {
     titre: "Ce que Patricia apporte à l'Ouest",
-    texte: `${eur(165453.41)} en tout : ${eur(97932.16)} pour le terrain des lodges attribué dans le partage partiel, plus le lot de Khaldoun.`,
+    texte: `Patricia apporte à l'Ouest ${eur(115278.33)} : ${eur(97932.16)} du partage partiel plus la quote-part du lot Khaldoun.`,
   },
   {
     titre: "L'apport d'Orriols SARL est limité",
@@ -556,42 +579,39 @@ export interface KhaldounLigne {
 }
 
 /**
- * Le lot de Khaldoun : ce qu'il vaut, ce qui remonte à l'Est, ce qu'il doit à
- * Patricia. Le levier est la partie de la valeur du lot qui ne finance rien
- * pour lui : elle sert à faire baisser le prix de la Lyre côté Est.
+ * Le lot de Khaldoun : sa quote-part du domaine, financée par un crédit vendeur
+ * de Patricia, plus un prêt de Patricia pour la construction, hors SCIA.
+ * Khaldoun ne porte plus que sa quote-part depuis le 3 septembre au soir.
  */
 export const khaldoun = {
-  titre: 'Un lot pour Khaldoun',
+  titre: 'Le lot de Khaldoun',
   lignes: [
-    { label: 'Valeur du lot de Khaldoun', montant: 67521.25 },
-    { label: 'dont quote-part du domaine', montant: 17346.17 },
     {
-      label: "dont levier pour l'Est",
-      montant: 50175.08,
-      note: "il n'y a pas de bâti : Khaldoun construit 55 m²",
+      label: 'Valeur du lot',
+      montant: 17346.17,
+      note: 'sa quote-part du domaine',
     },
     {
       label: 'Crédit vendeur de Patricia à Khaldoun',
-      montant: 67521.25,
+      montant: 17346.17,
       note: 'échéancier à définir',
     },
     {
-      label: 'Prêt complémentaire de Patricia pour la construction',
+      label: 'Prêt de Patricia pour la construction',
       montant: 30000,
       note: 'un prêt, hors SCIA',
     },
-    { label: 'Dû à Patricia en tout', montant: 97521.25, total: true },
+    { label: 'Dû à Patricia en tout', montant: 47346.17, total: true },
     {
       label: 'Apport en nature de Charly',
       texte: "dalle, réseaux (VRD) et gaines de l'atelier du rez-de-chaussée, à chiffrer",
     },
   ] as KhaldounLigne[],
-  justiceTitre: 'Point de justice',
-  justiceTexte: `Les ${eur(50175.08)} de levier ne financent rien pour Khaldoun : ils remontent à l'Est et allègent le prix de la Lyre pour l'entrant. Le prêt de Patricia, la dalle, les réseaux et les gaines pris en charge par Charly, et son aide sur le chantier compensent en partie. Alternative à chiffrer : Patricia garde ces ${eur(50175.08)} en compte courant à l'Ouest, à son nom, et Khaldoun ne doit que sa quote-part ; le prix de la Lyre remonte alors d'autant pour l'entrant. À trancher avec le collectif.`,
+  note: `Les ${eur(50175.08)} qui pesaient sur ce lot sont devenus deux lots transitoires de Patricia à l'Est : personne ne porte de dette pour rien.`,
 }
 
 export const apportsOuest: ApportOuest[] = [
-  { associe: 'Patricia Salgon', montant: 165453.41, note: 'lodges + lot Khaldoun' },
+  { associe: 'Patricia Salgon', montant: 115278.33, note: 'lodges + quote-part du lot Khaldoun' },
   { associe: 'Claire Orriols & Baptiste Fromont', montant: 89639 },
   { associe: 'Amandine Orriols & Charly Aubert', montant: 92500 },
   { associe: 'Orriols SARL', montant: 70078.54, note: 'quotes-parts seules' },
