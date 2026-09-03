@@ -149,12 +149,12 @@ export const documentsNote = 'Accès sur demande à Charly.'
 // ============================================================
 
 export const estTotals = {
-  capital: 1101299.16,
-  dettes: 836082.25,
+  capital: 1100174.85,
+  dettes: 834957.94,
   prixLyre: 330000,
-  communs: 135685.17,
+  communs: 140182.4,
   fosse: 16222.47,
-  mainALaMain: 24734.77,
+  mainALaMain: 29232,
   notaire: 25427.93,
   foyerCommun: 69300,
 }
@@ -170,7 +170,7 @@ export const estRegle: string[] = [
   "Chaque indivisaire qui sort est remboursé au centime de ce qu'il a mis. Rien de plus, rien de moins.",
   "Le capital de chaque foyer dans la SCIA est égal à la valeur conventionnelle de son lot : personne n'achète le lot d'un autre, chacun apporte sa part.",
   "Le prix de la Lyre est la variable qui boucle le système : il vaut ce qu'il faut pour que tout le monde soit remboursé.",
-  `Le transfert de Patricia vers l'Ouest, ${eur(66396.94)}, est le levier qui met la Lyre à ${eur(330000)} tout compris.`,
+  `Le transfert de Patricia vers l'Ouest, ${eur(67521.25)}, est le levier qui met la Lyre à ${eur(330000)} tout compris.`,
 ]
 
 export const foyersEst: FoyerEst[] = [
@@ -178,11 +178,11 @@ export const foyersEst: FoyerEst[] = [
     foyer: 'Serge & Marie-Agnès Lièvremont',
     lot: 'Gîtes Lavande + Olivier (fusionnés)',
     lotNote: '60 m² modèle / 50,45 m² DPE — résidence secondaire',
-    capital: 105250.35,
-    communs: 14749.65,
+    capital: 104875.58,
+    communs: 15124.42,
     communsDetail: [
       { label: 'Fosse Est, 1 WC', montant: 2027.81 },
-      { label: 'Main à la main, 0,5 part', montant: 2061.23 },
+      { label: 'Main à la main, 0,5 part', montant: 2436 },
       { label: 'Frais de notaire', montant: 4360.61 },
       { label: 'Foyer commun, 0,5 part', montant: 6300 },
     ],
@@ -191,7 +191,7 @@ export const foyersEst: FoyerEst[] = [
     partCapital: '9,6 %',
     detail: [
       `Valeur conventionnelle au m² : ${eur(147085.09)}. Leur capital n'est pas cette valeur : c'est ce qui reste de leur capacité de ${eur(120000)} une fois les communs déduits.`,
-      `Ils apportent ${eur(105250.35)} à la signature : ${eur(16108.14)} versés à Caroline et ${eur(89142.21)} à Julian.`,
+      `Ils apportent ${eur(104875.58)} à la signature : ${eur(15983.22)} versés à Caroline et ${eur(88892.36)} à Julian.`,
       'Chaque euro en moins chez eux est un euro de plus sur la Lyre.',
     ],
   },
@@ -200,19 +200,19 @@ export const foyersEst: FoyerEst[] = [
     lot: 'La Grange',
     lotNote: '62 m² modèle / 55,15 m² DPE',
     capital: 151987.93,
-    communs: 21538.6,
+    communs: 22288.14,
     communsDetail: [
       { label: 'Fosse Est, 1 WC', montant: 2027.81 },
-      { label: 'Main à la main, 1 part', montant: 4122.46 },
+      { label: 'Main à la main, 1 part', montant: 4872 },
       { label: 'Frais de notaire', montant: 2788.33 },
       { label: 'Foyer commun, 1 part', montant: 12600 },
     ],
-    total: 21538.6,
+    total: 22288.14,
     totalNote: 'les communs seuls : sa créance couvre son capital',
     partCapital: '13,8 %',
     detail: [
-      `Sa créance Est après transfert : ${eur(165725)}. Elle dépasse la valeur de La Grange de ${eur(13737.07)} : cet excédent lui est remboursé par l'entrant Lyre.`,
-      `${eur(66396.94)} sont basculés à l'Ouest pour financer le lot de Khaldoun, contre un crédit vendeur du même montant de Khaldoun vers elle.`,
+      `Sa créance Est après transfert : ${eur(164600.69)}. Elle dépasse la valeur de La Grange de ${eur(12612.76)} : cet excédent lui est remboursé par l'entrant Lyre.`,
+      `${eur(67521.25)} sont basculés à l'Ouest pour financer le lot de Khaldoun, contre un crédit vendeur du même montant de Khaldoun vers elle.`,
       "Elle ne sort pas de cash : elle conserve son lot, et son capital est déjà couvert par ce qu'elle a apporté en 2021.",
     ],
   },
@@ -220,19 +220,19 @@ export const foyersEst: FoyerEst[] = [
     foyer: 'Entrant Lyre (foyer à trouver)',
     lot: 'La Lyre',
     lotNote: '114 m² modèle / 113,48 m² DPE',
-    capital: 304410.61,
-    communs: 25589.39,
+    capital: 303661.07,
+    communs: 26338.93,
     communsDetail: [
       { label: 'Provision sur actes', montant: 4811.31 },
       { label: 'Fosse Est, 2 WC', montant: 4055.62 },
-      { label: 'Main à la main, 1 part', montant: 4122.46 },
+      { label: 'Main à la main, 1 part', montant: 4872 },
       { label: 'Foyer commun, 1 part', montant: 12600 },
     ],
     total: 330000,
     partCapital: '27,6 %',
     detail: [
-      `Sa valeur au m² est de ${eur(279461.67)}. Le capital retenu est ${eur(24948.94)} au-dessus, parce que la Lyre porte l'équilibre du montage : c'est elle qui boucle le remboursement des sortants.`,
-      `À son arrivée, il paie ${eur(53584.03)} à Isabelle, autant à Caroline et autant à Julian, ${eur(129921.46)} à Orriols SARL et ${eur(13737.07)} à Patricia.`,
+      `Sa valeur au m² est de ${eur(279461.67)}. Le capital retenu est ${eur(24199.4)} au-dessus, parce que la Lyre porte l'équilibre du montage : c'est elle qui boucle le remboursement des sortants.`,
+      `À son arrivée, il paie ${eur(53708.95)} à Isabelle, autant à Caroline et autant à Julian, ${eur(129921.46)} à Orriols SARL et ${eur(12612.76)} à Patricia.`,
       "On n'affiche plus un prix de cession : la Lyre s'annonce à son prix tout compris, capital plus actes, fosse, main à la main et foyer commun.",
     ],
   },
@@ -242,14 +242,14 @@ export const foyersEst: FoyerEst[] = [
     lotNote: '69 m² modèle / 61,70 m² DPE — Pergola : quote-part seule',
     capital: 177820.94,
     capitalNote: `${eur(169147.85)} + ${eur(8673.09)} pour la Pergola`,
-    communs: 27550.46,
+    communs: 28674.77,
     communsDetail: [
       { label: 'Fosse Est, 2 WC', montant: 4055.62 },
-      { label: 'Main à la main, 1,5 part', montant: 6183.69 },
+      { label: 'Main à la main, 1,5 part', montant: 7308 },
       { label: 'Frais de notaire', montant: 4711.15 },
       { label: 'Foyer commun, 1 part', montant: 12600 },
     ],
-    total: 205371.4,
+    total: 206495.71,
     partCapital: '16,1 %',
     detail: [
       `La Pergola n'a pas de valeur de bâti dans le modèle : elle entre pour sa seule quote-part du domaine, ${eur(8673.09)}.`,
@@ -263,14 +263,14 @@ export const foyersEst: FoyerEst[] = [
     lotNote: '67,6 m² modèle / 59,80 m² DPE, cave pondérée comprise',
     capital: 165715.87,
     capitalNote: `apport historique ${eur(113228.98)} + complément ${eur(52486.89)}`,
-    communs: 22792.49,
+    communs: 23542.03,
     communsDetail: [
       { label: 'Fosse Est, 1 WC', montant: 2027.81 },
-      { label: 'Main à la main, 1 part', montant: 4122.46 },
+      { label: 'Main à la main, 1 part', montant: 4872 },
       { label: 'Frais de notaire', montant: 4042.22 },
       { label: 'Foyer commun, 1 part', montant: 12600 },
     ],
-    total: 75279.38,
+    total: 76028.92,
     totalNote: 'complément + communs',
     partCapital: '15,0 %',
     detail: [
@@ -284,17 +284,17 @@ export const foyersEst: FoyerEst[] = [
     lot: 'La Source (ex-maison commune)',
     lotNote: '80 m² modèle / 81,05 m² DPE',
     capital: 196113.45,
-    communs: 23464.58,
+    communs: 24214.12,
     communsDetail: [
       { label: 'Fosse Est, 1 WC', montant: 2027.81 },
-      { label: 'Main à la main, 1 part', montant: 4122.46 },
+      { label: 'Main à la main, 1 part', montant: 4872 },
       { label: 'Frais de notaire', montant: 4714.31 },
       { label: 'Foyer commun, 1 part', montant: 12600 },
     ],
-    total: 219578.03,
+    total: 220327.57,
     partCapital: '17,8 %',
     detail: [
-      `Ils versent ${eur(184835.81)} à Isabelle, ${eur(7273.76)} à Julian et ${eur(4003.88)} à Turquoise SARL.`,
+      `Ils versent ${eur(184710.89)} à Isabelle, ${eur(7398.69)} à Julian et ${eur(4003.88)} à Turquoise SARL.`,
       "Ce sont eux qui soldent la société d'Isabelle à la signature : Turquoise sort ainsi du passif du partage partiel.",
     ],
   },
@@ -312,7 +312,7 @@ export const sortantsEst: Sortant[] = [
   { nom: 'Caroline Ader', montant: 300000 },
   { nom: 'Julian Quero', montant: 150000 },
   { nom: 'Orriols SARL (part Est)', montant: 129921.46 },
-  { nom: 'Patricia Salgon (excédent)', montant: 13737.07 },
+  { nom: 'Patricia Salgon (excédent)', montant: 12612.76 },
   { nom: "Turquoise SARL (société d'Isabelle)", montant: 4003.88 },
 ]
 
@@ -320,33 +320,33 @@ export const sortantsNote = `Isabelle et Turquoise, avec le rachat des parts et 
 
 export const phase1: Phase = {
   titre: 'Phase 1 — à la signature',
-  total: 531671.63,
+  total: 531296.87,
   flux: [
     { payeur: 'Grégoire Renevier', beneficiaire: 'Caroline Ader', montant: 52486.89, note: 'cession de créance' },
     { payeur: 'Magali Rouby', beneficiaire: 'Caroline Ader', montant: 177820.94 },
-    { payeur: 'Serge & Marie-Agnès', beneficiaire: 'Caroline Ader', montant: 16108.14 },
-    { payeur: 'Serge & Marie-Agnès', beneficiaire: 'Julian Quero', montant: 89142.21 },
-    { payeur: 'Charlotte & David', beneficiaire: 'Julian Quero', montant: 7273.76 },
+    { payeur: 'Serge & Marie-Agnès', beneficiaire: 'Caroline Ader', montant: 15983.22 },
+    { payeur: 'Serge & Marie-Agnès', beneficiaire: 'Julian Quero', montant: 88892.36 },
+    { payeur: 'Charlotte & David', beneficiaire: 'Julian Quero', montant: 7398.69 },
     { payeur: 'Charlotte & David', beneficiaire: 'Turquoise SARL', montant: 4003.88 },
-    { payeur: 'Charlotte & David', beneficiaire: 'Isabelle Desplats', montant: 184835.81 },
+    { payeur: 'Charlotte & David', beneficiaire: 'Isabelle Desplats', montant: 184710.89 },
   ],
   recus: [
-    { nom: 'Isabelle Desplats', montant: 184835.81 },
-    { nom: 'Caroline Ader', montant: 246415.97 },
-    { nom: 'Julian Quero', montant: 96415.97 },
+    { nom: 'Isabelle Desplats', montant: 184710.89 },
+    { nom: 'Caroline Ader', montant: 246291.05 },
+    { nom: 'Julian Quero', montant: 96291.05 },
   ],
-  note: `Chacun des trois garde ${eur(53584.03)} en compte courant et reste associé jusqu'à l'arrivée de l'entrant.`,
+  note: `Chacun des trois garde ${eur(53708.95)} en compte courant et reste associé jusqu'à l'arrivée de l'entrant.`,
 }
 
 export const phase2: Phase = {
   titre: "Phase 2 — à l'arrivée de l'entrant Lyre",
-  total: 304410.61,
+  total: 303661.07,
   flux: [
-    { payeur: 'Entrant Lyre', beneficiaire: 'Isabelle Desplats', montant: 53584.03 },
-    { payeur: 'Entrant Lyre', beneficiaire: 'Caroline Ader', montant: 53584.03 },
-    { payeur: 'Entrant Lyre', beneficiaire: 'Julian Quero', montant: 53584.03 },
+    { payeur: 'Entrant Lyre', beneficiaire: 'Isabelle Desplats', montant: 53708.95 },
+    { payeur: 'Entrant Lyre', beneficiaire: 'Caroline Ader', montant: 53708.95 },
+    { payeur: 'Entrant Lyre', beneficiaire: 'Julian Quero', montant: 53708.95 },
     { payeur: 'Entrant Lyre', beneficiaire: 'Orriols SARL', montant: 129921.46 },
-    { payeur: 'Entrant Lyre', beneficiaire: 'Patricia Salgon', montant: 13737.07 },
+    { payeur: 'Entrant Lyre', beneficiaire: 'Patricia Salgon', montant: 12612.76 },
   ],
   note: 'Rachat des parts et des comptes courants des trois sortants, quittance finale.',
 }
@@ -360,8 +360,8 @@ export const variantes: Variante[] = [
     resume: `Trois prêts en compte courant, ${eur(150000)} au total, soldent les sortants dès la signature.`,
     points: [
       `Magali ${eur(60000)}, Greg ${eur(20000)}, Charly & Amandine ${eur(70000)}.`,
-      `Le besoin pour solder les trois sortants est de ${eur(160752.09)} : il resterait ${eur(3584.03)} par sortant.`,
-      `Isabelle recevrait ${eur(234835.81)} dès la signature.`,
+      `Le besoin pour solder les trois sortants est de ${eur(161126.85)} : il resterait ${eur(3708.95)} par sortant.`,
+      `Isabelle recevrait ${eur(234710.89)} dès la signature.`,
       "Seule variante compatible avec la date butoir d'Isabelle, le 15 novembre 2026.",
       "Les prêts sont remboursés par l'entrant, jamais transformés en parts. Greg a dit le 17 août ne pas vouloir prêter.",
     ],
@@ -369,7 +369,7 @@ export const variantes: Variante[] = [
   {
     cle: 'B',
     titre: 'Sans prêt',
-    resume: `Les trois sortants restent associés avec ${eur(53584.03)} chacun en compte courant.`,
+    resume: `Les trois sortants restent associés avec ${eur(53708.95)} chacun en compte courant.`,
     points: [
       "Ils attendent que l'entrant Lyre rachète leurs parts et leur compte courant.",
       "Aucune reconnaissance de dette n'est signée.",
@@ -390,7 +390,7 @@ export const notionsEst: Notion[] = [
   },
   {
     titre: 'Main à la main',
-    texte: `${eur(53592)} avancés par les fondateurs, répartis en 13 parts : ${eur(4122.46)} par part entière, ${eur(2061.23)} par demi-part. La clé reste à confirmer avec Greg, qui affiche 15 parts dans son fichier.`,
+    texte: `${eur(53592)} avancés par les fondateurs, répartis en 11 parts : ${eur(4872)} par part entière, ${eur(2436)} par demi-part. Clé arrêtée par Charly le 3 septembre : le coliving, le studio et les deux tinies n'en font pas partie. Greg affiche 15 parts dans son fichier ; à faire valider par le collectif.`,
   },
   {
     titre: 'Foyer commun',
@@ -415,8 +415,8 @@ export const ouestTotals = {
   coefficientsEst: 6.5,
   quotesPartsOuest: 217521.03,
   quotesPartsEst: 112750.13,
-  lotKhaldoun: 66396.94,
-  mainALaMain: 28857.23,
+  lotKhaldoun: 67521.25,
+  mainALaMain: 24360,
   foyerCommun: 69300,
 }
 
@@ -446,7 +446,7 @@ export const lotsOuest: LotOuest[] = [
   { lot: 'Ferme — serre, abris, terre', coefficient: 0.04, quotePart: 693.85, attributaire: 'Orriols SAS', valeur: 5249.54 },
   { lot: 'Accueil — salle, restaurant', coefficient: 0, quotePart: 0, attributaire: 'Ferme du Verseau', valeur: 180000 },
   { lot: 'Terrain des lodges', coefficient: 5, quotePart: 86730.87, attributaire: 'Patricia Salgon', valeur: 97932.16, valeurNote: 'attribué dans le partage partiel' },
-  { lot: 'Logement Khaldoun (nouveau)', coefficient: 1, quotePart: 17346.17, attributaire: 'Khaldoun — crédit vendeur Patricia', valeur: 66396.94 },
+  { lot: 'Logement Khaldoun (nouveau)', coefficient: 1, quotePart: 17346.17, attributaire: 'Khaldoun — crédit vendeur Patricia', valeur: 67521.25 },
 ]
 
 export const lotsOuestNote = `Le total des lots ci-dessus ne se lit pas comme le total des apports : plusieurs lots sont partagés entre attributaires — le foyer commun entre la Ferme du Verseau et l'association — et Orriols SARL n'apporte à l'Ouest que des quotes-parts. Le total qui fait foi est celui des apports, ${eur(1234854.05)}.`
@@ -454,11 +454,11 @@ export const lotsOuestNote = `Le total des lots ci-dessus ne se lit pas comme le
 export const deplacementsEst: Notion[] = [
   {
     titre: 'Un lot pour Khaldoun',
-    texte: `${eur(66396.94)} : quote-part du domaine ${eur(17346.17)} plus bâti et travaux ${eur(49050.77)}. Il est financé par le transfert de Patricia et remboursé par un crédit vendeur de Khaldoun vers Patricia du même montant, échéancier à définir.`,
+    texte: `${eur(67521.25)} : quote-part du domaine ${eur(17346.17)} plus bâti et travaux ${eur(50175.08)}. Il est financé par le transfert de Patricia et remboursé par un crédit vendeur de Khaldoun vers Patricia du même montant, échéancier à définir.`,
   },
   {
     titre: "Ce que Patricia apporte à l'Ouest",
-    texte: `${eur(164329.1)} en tout : ${eur(97932.16)} pour le terrain des lodges attribué dans le partage partiel, plus le lot de Khaldoun.`,
+    texte: `${eur(165453.41)} en tout : ${eur(97932.16)} pour le terrain des lodges attribué dans le partage partiel, plus le lot de Khaldoun.`,
   },
   {
     titre: "L'apport d'Orriols SARL est limité",
@@ -471,7 +471,7 @@ export const deplacementsEst: Notion[] = [
 ]
 
 export const apportsOuest: ApportOuest[] = [
-  { associe: 'Patricia Salgon', montant: 164329.1, note: 'lodges + lot Khaldoun' },
+  { associe: 'Patricia Salgon', montant: 165453.41, note: 'lodges + lot Khaldoun' },
   { associe: 'Claire Orriols & Baptiste Fromont', montant: 89639 },
   { associe: 'Amandine Orriols & Charly Aubert', montant: 92500 },
   { associe: 'Orriols SARL', montant: 70078.54, note: 'quotes-parts seules' },
@@ -483,13 +483,13 @@ export const apportsOuest: ApportOuest[] = [
 ]
 
 export const communsOuest: CommunOuest[] = [
-  { foyer: 'Amandine & Charly', mainALaMain: 6183.69, mainALaMainNote: '1 part + 0,5 studio', foyerCommun: 12600, notaire: 3386.26 },
-  { foyer: 'Claire & Baptiste', mainALaMain: 6183.69, mainALaMainNote: '1 part + 0,5 tiny', foyerCommun: 12600, notaire: 2128.69 },
-  { foyer: 'Laetitia Brene', mainALaMain: 6183.69, mainALaMainNote: '1 part + 0,5 atelier', foyerCommun: 12600, notaire: 871.11 },
-  { foyer: 'David Lin', mainALaMain: 4122.46, mainALaMainNote: '1 part', foyerCommun: 12600, notaire: 871.11 },
-  { foyer: 'David Coste', mainALaMain: 2061.23, mainALaMainNote: '0,5 part', foyerCommun: 6300, notaire: 871.11 },
+  { foyer: 'Amandine & Charly', mainALaMain: 4872, mainALaMainNote: '1 part (le studio est hors clé)', foyerCommun: 12600, notaire: 3386.26 },
+  { foyer: 'Claire & Baptiste', mainALaMain: 4872, mainALaMainNote: '1 part (la tiny est hors clé)', foyerCommun: 12600, notaire: 2128.69 },
+  { foyer: 'Laetitia Brene', mainALaMain: 7308, mainALaMainNote: '1 part + 0,5 atelier', foyerCommun: 12600, notaire: 871.11 },
+  { foyer: 'David Lin', mainALaMain: 4872, mainALaMainNote: '1 part', foyerCommun: 12600, notaire: 871.11 },
+  { foyer: 'David Coste', mainALaMain: 2436, mainALaMainNote: '0,5 part', foyerCommun: 6300, notaire: 871.11 },
   { foyer: 'Khaldoun', mainALaMain: 0, mainALaMainNote: 'retiré de la clé', foyerCommun: 12600, notaire: 871.11 },
-  { foyer: 'LAOM / Ferme du Verseau', mainALaMain: 4122.46, mainALaMainNote: '0,5 coliving + 0,5 tiny Eliott', foyerCommun: 0, notaire: 3396.11 },
+  { foyer: 'LAOM / Ferme du Verseau', mainALaMain: 0, mainALaMainNote: 'coliving et tiny Eliott hors clé depuis le 3/09', foyerCommun: 0, notaire: 3396.11 },
   { foyer: 'Orriols SARL', mainALaMain: 0, foyerCommun: 0, notaire: 2128.69 },
 ]
 
@@ -511,7 +511,7 @@ export const notionsOuest: Notion[] = [
   {
     titre: 'Les lots LAOM ne paient pas les communs des foyers',
     texte:
-      'Ni foyer commun, ni main à la main, sauf pour les lots touristiques — coliving et tiny Eliott — qui comptent une demi-part de main à la main.',
+      'Ni foyer commun, ni main à la main : le coliving et la tiny Eliott sont sortis de la clé du main à la main le 3 septembre.',
   },
   {
     titre: "Sans EDD Ouest, pas de TVA récupérable",
