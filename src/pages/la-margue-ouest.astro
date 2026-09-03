@@ -6,13 +6,13 @@ import SectionHead from '~/components/laom/sections/SectionHead.astro'
 import {
   apportsOuest,
   coef,
-  communsOuest,
-  communsOuestNotaireTotal,
-  communsOuestNote,
   deplacementsEst,
   documents,
   documentsNote,
   eur,
+  fraisAnnexesOuest,
+  fraisAnnexesOuestNotaireTotal,
+  fraisAnnexesOuestNote,
   khaldoun,
   lotsOuest,
   lotsOuestNote,
@@ -84,7 +84,7 @@ export const prerender = true
                 <td class="px-5 py-4 text-right text-[#1D1B18]/80 tabular-nums whitespace-nowrap">
                   {coef(l.coefficient)}
                   {l.coefficientNote && (
-                    <span class="block text-xs text-[#1D1B18]/45 mt-1 whitespace-normal">{l.coefficientNote}</span>
+                    <span class="block text-xs text-[#1D1B18]/45 mt-1 whitespace-normal">({l.coefficientNote})</span>
                   )}
                 </td>
                 <td class="px-5 py-4 text-right text-[#1D1B18]/80 tabular-nums whitespace-nowrap">
@@ -94,7 +94,7 @@ export const prerender = true
                 <td class="px-5 py-4 text-right text-[#1D1B18] tabular-nums whitespace-nowrap">
                   {eur(l.valeur)}
                   {l.valeurNote && (
-                    <span class="block text-xs text-[#1D1B18]/45 mt-1 whitespace-normal">{l.valeurNote}</span>
+                    <span class="block text-xs text-[#1D1B18]/45 mt-1 whitespace-normal">({l.valeurNote})</span>
                   )}
                 </td>
               </tr>
@@ -212,7 +212,7 @@ export const prerender = true
               <tr>
                 <td class="px-5 py-4 text-[#412F1F]">
                   {a.associe}
-                  {a.note && <span class="block text-xs text-[#1D1B18]/45 mt-1">{a.note}</span>}
+                  {a.note && <span class="block text-xs text-[#1D1B18]/45 mt-1">({a.note})</span>}
                 </td>
                 <td class="px-5 py-4 text-right text-[#1D1B18] tabular-nums whitespace-nowrap align-top">
                   {eur(a.montant)}
@@ -233,11 +233,11 @@ export const prerender = true
     </div>
   </section>
 
-  <!-- 5 · Les communs cote Ouest -->
+  <!-- 5 · Les frais annexes cote Ouest -->
   <section class="bg-[#FBF6EA] py-16 md:py-24">
     <div class="max-w-5xl mx-auto px-6 md:px-10">
       <SectionHead
-        eyebrow="Communs"
+        eyebrow="Frais annexes"
         title="Ce qui se paie en plus, côté"
         accent="Ouest"
         size="text-3xl md:text-4xl"
@@ -255,13 +255,13 @@ export const prerender = true
             </tr>
           </thead>
           <tbody class="divide-y divide-[#412F1F]/10">
-            {communsOuest.map((c) => (
+            {fraisAnnexesOuest.map((c) => (
               <tr class="align-top">
                 <td class="px-5 py-4 text-[#412F1F] font-medium">{c.foyer}</td>
                 <td class="px-5 py-4 text-right text-[#1D1B18]/80 tabular-nums whitespace-nowrap">
                   {c.mainALaMain === 0 ? '—' : eur(c.mainALaMain)}
                   {c.mainALaMainNote && (
-                    <span class="block text-xs text-[#1D1B18]/45 mt-1 whitespace-normal">{c.mainALaMainNote}</span>
+                    <span class="block text-xs text-[#1D1B18]/45 mt-1 whitespace-normal">({c.mainALaMainNote})</span>
                   )}
                 </td>
                 <td class="px-5 py-4 text-right text-[#1D1B18]/80 tabular-nums whitespace-nowrap">
@@ -283,9 +283,9 @@ export const prerender = true
                 {eur(ouestTotals.foyerCommun)}
               </td>
               <td class="px-5 py-4 text-right font-semibold text-[#412F1F] tabular-nums whitespace-nowrap">
-                {eur(communsOuestNotaireTotal)}
+                {eur(fraisAnnexesOuestNotaireTotal)}
                 <span class="block text-xs font-normal text-[#1D1B18]/45 mt-1 whitespace-normal">
-                  somme des provisions listées
+                  (somme des provisions)
                 </span>
               </td>
             </tr>
@@ -293,7 +293,7 @@ export const prerender = true
         </table>
       </div>
 
-      <p class="text-sm text-[#1D1B18]/60 mt-4 max-w-3xl leading-relaxed">{communsOuestNote}</p>
+      <p class="text-sm text-[#1D1B18]/60 mt-4 max-w-3xl leading-relaxed">{fraisAnnexesOuestNote}</p>
     </div>
   </section>
 
@@ -311,7 +311,10 @@ export const prerender = true
         {notionsOuest.map((n) => (
           <div class="rounded-2xl bg-[#FBF6EA] border border-[#412F1F]/10 p-6">
             <h3 class="text-base font-semibold text-[#412F1F] mb-2">{n.titre}</h3>
-            <p class="text-sm text-[#1D1B18]/70 leading-relaxed">{n.texte}</p>
+            <p class="text-sm text-[#1D1B18]/70 leading-relaxed">{n.avant}{n.chiffre && <strong class="font-semibold text-[#412F1F] tabular-nums whitespace-nowrap">{n.chiffre}</strong>}{n.apres}</p>
+            {n.contexte && (
+              <p class="text-sm text-[#1D1B18]/55 leading-relaxed mt-2">{n.contexte}</p>
+            )}
           </div>
         ))}
       </div>
