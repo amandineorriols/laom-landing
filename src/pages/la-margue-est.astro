@@ -5,6 +5,7 @@ import MargueShell from '~/components/margue/MargueShell.astro'
 import SectionHead from '~/components/laom/sections/SectionHead.astro'
 import {
   capitalDuLot,
+  coef,
   documents,
   documentsNote,
   estEtapes,
@@ -279,6 +280,30 @@ export const prerender = true
                       </dd>
                     </div>
                   </dl>
+                  {f.lotsAConstruire && (
+                    <div class="mt-5">
+                      <h5 class="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-[#1D1B18]/45">
+                        Les lots à construire
+                      </h5>
+                      <ul class="mt-2 divide-y divide-[#412F1F]/10 border-t border-[#412F1F]/10">
+                        {f.lotsAConstruire.map((l) => (
+                          <li class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5 py-2">
+                            <span class="text-sm text-[#1D1B18]/65">
+                              <span class="text-[#412F1F] font-medium">{l.lot}</span> · {l.nature}
+                            </span>
+                            <span class="text-right">
+                              <span class="block text-sm text-[#412F1F] font-medium tabular-nums whitespace-nowrap">
+                                {eur(l.capital)}
+                              </span>
+                              <span class="block text-xs text-[#1D1B18]/45">
+                                {coef(l.part)} part
+                              </span>
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                   {f.capitalCommentaire && (
                     <p class="text-sm text-[#1D1B18]/65 leading-relaxed mt-4">{f.capitalCommentaire}</p>
                   )}
@@ -464,7 +489,7 @@ export const prerender = true
         eyebrow="Déroulé"
         title="Comment ça se"
         accent="passe"
-        intro="De la validation du modèle à la vente des deux terrains, dans l'ordre."
+        intro="De la validation du modèle à la vente des cinq lots à construire, dans l'ordre."
         size="text-3xl md:text-4xl"
         class="mb-10"
       />
