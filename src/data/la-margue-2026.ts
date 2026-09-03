@@ -209,8 +209,9 @@ export const documentsNote = 'Accès sur demande à Charly.'
 export const estTotals = {
   capital: 1167696.1,
   dettes: 836676.12,
-  prixLyre: 330000,
-  fraisAnnexes: 133882.4,
+  prixLyre: 336910.21,
+  fraisAnnexes: 154613.02,
+  chaudiere: 20730.62,
   fosse: 16222.47,
   mainALaMain: 29232,
   notaire: 25427.93,
@@ -267,7 +268,7 @@ export const estPourquoi: PourquoiPoint[] = [
       "Les apports des entrants et le prix de la Lyre paient les sortants ; ce qui manque devient un actif, des lots à construire, pas une dette sur quelqu'un.",
     precisions: [
       "Le prix de la Lyre est la variable qui boucle le système : il vaut ce qu'il faut pour que tout le monde soit remboursé.",
-      `Les cinq lots à construire de Patricia à l'Est, ${eur(CAPITAL_LOTS_A_CONSTRUIRE)}, sont ce qui permet à la Lyre de sortir à ${eur(330000)} tout compris.`,
+      `Les cinq lots à construire de Patricia à l'Est, ${eur(CAPITAL_LOTS_A_CONSTRUIRE)}, sont ce qui permet à la Lyre de sortir à ${eur(330000)} hors chaudière, ${eur(estTotals.prixLyre)} avec.`,
     ],
   },
   {
@@ -300,7 +301,8 @@ export const estEtat: { date: string; colonnes: EtatColonne[] } = {
         `Foyer commun à ${eur(11454.55)} par part.`,
         "Khaldoun associé de l'Ouest, apporte sa quote-part ; plus de crédit vendeur.",
         "Cinq lots à construire de Patricia à l'Est (2 logements à l'année, 3 petits touristiques de 30 m²), accord de Patricia obtenu.",
-        `Lyre à ${eur(330000)} tout compris.`,
+        `Lyre à ${eur(estTotals.prixLyre)} tout compris (330 000 € + sa part de chaudière).`,
+        `Chaudière (devis Voda 20 730,62 €) partagée par tiers entre La Grange, la Lyre et la Source.`,
       ],
     },
     {
@@ -363,14 +365,15 @@ export const foyersEst: FoyerEst[] = [
     lotsAConstruire: lotsAConstruirePatricia,
     capitalCommentaire:
       "Les lots 8 à 12 sont des lots à construire, hors clé historique des quotes-parts : ce que Patricia n'est pas remboursée en argent.",
-    fraisAnnexes: 21142.69,
+    fraisAnnexes: 28052.9,
     fraisAnnexesDetail: [
       { label: 'Fosse (1 WC)', montant: 2027.81 },
       { label: 'Main à la main (1 part)', montant: 4872 },
       { label: 'Frais de notaire', montant: 2788.33 },
       { label: 'Foyer commun (1 part)', montant: 11454.55 },
+      { label: 'Chaudière (1/3 du devis Voda)', montant: 6910.21 },
     ],
-    total: 21142.69,
+    total: 28052.9,
     totalDetail: 'les frais annexes seuls : sa créance couvre son capital',
     partCapital: '18,7 %',
     alias: ['Patricia Salgon'],
@@ -383,14 +386,15 @@ export const foyersEst: FoyerEst[] = [
     valeurConventionnelle: 279461.67,
     capital: 304806.53,
     capitalCommentaire: 'Capital = le prix qui boucle le montage.',
-    fraisAnnexes: 25193.47,
+    fraisAnnexes: 32103.68,
     fraisAnnexesDetail: [
       { label: 'Provision sur actes', montant: 4811.31 },
       { label: 'Fosse (2 WC)', montant: 4055.62 },
       { label: 'Main à la main (1 part)', montant: 4872 },
       { label: 'Foyer commun (1 part)', montant: 11454.55 },
+      { label: 'Chaudière (1/3 du devis Voda)', montant: 6910.21 },
     ],
-    total: 330000,
+    total: 336910.21,
     partCapital: '26,1 %',
     alias: ['Entrant Lyre'],
   },
@@ -441,14 +445,15 @@ export const foyersEst: FoyerEst[] = [
     surfaceDpe: 81.05,
     valeurConventionnelle: 196113.45,
     capital: 196113.45,
-    fraisAnnexes: 23068.67,
+    fraisAnnexes: 29978.88,
     fraisAnnexesDetail: [
       { label: 'Fosse (1 WC)', montant: 2027.81 },
       { label: 'Main à la main (1 part)', montant: 4872 },
       { label: 'Frais de notaire', montant: 4714.31 },
       { label: 'Foyer commun (1 part)', montant: 11454.55 },
+      { label: 'Chaudière (1/3 du devis Voda)', montant: 6910.21 },
     ],
-    total: 219182.12,
+    total: 226092.33,
     partCapital: '16,8 %',
     alias: ['Charlotte & David'],
   },
@@ -477,6 +482,7 @@ export const estFraisAnnexesTotaux: Ligne[] = [
   { label: 'Main à la main', montant: estTotals.mainALaMain },
   { label: 'Frais de notaire', montant: estTotals.notaire },
   { label: 'Foyer commun', montant: estTotals.foyerCommun },
+  { label: 'Chaudière (devis Voda, trois lots)', montant: estTotals.chaudiere },
 ]
 
 export const sortantsEst: Sortant[] = [
@@ -881,7 +887,7 @@ export const lexique: LexiqueEntree[] = [
   {
     terme: 'Frais annexes',
     definition:
-      'Ce que chaque lot paie en plus de son capital : fosse, main à la main, frais de notaire, foyer commun.',
+      'Ce que chaque lot paie en plus de son capital : fosse, main à la main, frais de notaire, foyer commun, et la chaudière pour les trois lots raccordés (La Grange, la Lyre, la Source).',
   },
   {
     terme: 'Main à la main',
