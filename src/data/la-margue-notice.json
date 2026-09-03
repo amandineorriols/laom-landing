@@ -101,7 +101,7 @@
         },
         {
           "point": "Capital retenu",
-          "detail": "C'est la valeur conventionnelle, sauf deux exceptions : les gîtes de Serge & Marie-Agnès (leur capacité de 120 000 moins les communs, voir section 6) et la Lyre (le prix nécessaire pour boucler, 303 661,07, soit 24 199,40 au-dessus de sa valeur au m²). S'y ajoutent les deux lots transitoires de Patricia (50 175,08). Total des capitaux Est : 1 150 349,93.",
+          "detail": "C'est la valeur conventionnelle, sauf deux exceptions : les gîtes de Serge & Marie-Agnès (leur capacité de 120 000 moins les frais annexes, voir section 6) et la Lyre (le prix nécessaire pour boucler, 303 661,07, soit 24 199,40 au-dessus de sa valeur au m²). S'y ajoutent les deux lots transitoires de Patricia (50 175,08). Total des capitaux Est : 1 150 349,93.",
           "source": "",
           "date": ""
         },
@@ -124,7 +124,7 @@
       "items": [
         {
           "point": "Serge & Marie-Agnès : capacité de 120 000",
-          "detail": "Tout compris. Leur capital est ce qui reste après leurs communs (fosse, main à la main, frais de notaire, foyer commun).",
+          "detail": "Tout compris. Leur capital est ce qui reste après leurs frais annexes (fosse, main à la main, frais de notaire, foyer commun).",
           "source": "Charly",
           "date": "31/08/2026"
         },
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "titre": "5. Les communs : combien, et selon quelle clé",
+      "titre": "5. Les frais annexes : combien, et selon quelle clé",
       "items": [
         {
           "point": "Fosse Est",
@@ -279,13 +279,13 @@
         },
         {
           "point": "Quote-part du domaine",
-          "detail": "Déjà comprise dans le capital de chaque lot (17 346,17 par coefficient). Elle n'est pas un commun à payer en plus. La clé historique (19,04 coefficients) est close : les lots créés ensuite, dont les deux lots transitoires de Patricia, entrent par une deuxième clé.",
+          "detail": "Déjà comprise dans le capital de chaque lot (17 346,17 par coefficient). Elle n'est pas un frais annexe à payer en plus. La clé historique (19,04 coefficients) est close : les lots créés ensuite, dont les deux lots transitoires de Patricia, entrent par une deuxième clé.",
           "source": "",
           "date": ""
         },
         {
-          "point": "Ce que chaque lot Est paie en plus de son capital",
-          "detail": "Gîtes 15 124,42 · Grange 22 288,14 · Lyre 26 338,93 · Ruisseau + Pergola 28 674,77 · Rivière 23 542,03 · Source 24 214,12. Total 140 182,40 (fosse 16 222,47 + main à la main 29 232,00 + notaire 25 427,93 + foyer commun 69 300). Khaldoun, à l'Ouest : 871,11 de notaire + 12 600 de foyer commun, pas de main à la main.",
+          "point": "Frais annexes : ce que chaque lot Est paie en plus de son capital",
+          "detail": "Gîtes 15 124,42 · Grange 22 288,14 · Lyre 26 338,93 · Ruisseau + Pergola 28 674,77 · Rivière 23 542,03 · Source 24 214,12. Total des frais annexes 140 182,40 (fosse 16 222,47 + main à la main 29 232,00 + notaire 25 427,93 + foyer commun 69 300). Khaldoun, à l'Ouest : 871,11 de notaire + 12 600 de foyer commun, pas de main à la main.",
           "source": "SCIA LA MARGUE (convention SMA et prix de la Lyre)",
           "date": ""
         }
@@ -508,7 +508,7 @@
         "0209": [
           {
             "point": "DATA",
-            "detail": "Les données de base : acquisition 2021, apports de chacun, valeur du domaine, coefficients et quotes-parts des lots (colonnes B-F, lignes 133-151), main à la main (bloc Q-T, 53 592 sur 11 parts), foyer commun (bloc V-Y, 12 600 par part), apports Ouest à valoriser."
+            "detail": "Les données de base : acquisition 2021, apports de chacun, valeur du domaine, coefficients et quotes-parts des lots (colonnes B-F, lignes 125-153, dont les lots 9 et 10 transitoires en 133-134), main à la main (bloc Q-T, lignes 145-169, 53 592 sur 11 parts), foyer commun (bloc V-Y, lignes 145-170, 12 600 par part), apports Ouest à valoriser."
           },
           {
             "point": "SCIA LA MARGUE",
@@ -530,7 +530,7 @@
       "items": [
         {
           "point": "Une seule cellule par hypothèse",
-          "detail": "Dans le fichier 02092026 : main à la main = DATA T167 (total) et R143:R166 (coefficients) ; foyer commun = DATA Y167 et W143:W166 ; fosse et frais de notaire de Serge & Marie-Agnès = SCIA LA MARGUE Q12 et Q14 ; provision sur actes de l'entrant = Q20 ; cible de la Lyre = Q25 ; capital des lots transitoires de Patricia = N19 ; quote-part de Khaldoun = DATA E147.",
+          "detail": "Dans le fichier 02092026 : main à la main = DATA T169 (total) et R145:R168 (coefficients) ; foyer commun = DATA Y169 et W145:W168 ; fosse et frais de notaire de Serge & Marie-Agnès = SCIA LA MARGUE Q12 et Q14 ; provision sur actes de l'entrant = Q20 ; cible de la Lyre = Q25 ; capital des lots transitoires de Patricia = N19 ; quote-part de Khaldoun = DATA E149 ; lots 9 et 10 dans le tableau des lots de DATA (lignes 133-134, coefficient 0).",
           "source": "",
           "date": ""
         },
