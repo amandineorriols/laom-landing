@@ -1,0 +1,123 @@
+---
+// Notice du montage La Margue — fiche interne, espace associes.
+// Le contenu vient tel quel de src/data/la-margue-notice.json (typé dans
+// src/data/la-margue-2026.ts). C'est un texte de reference : pas de mise en
+// scene, une section = un bloc, un item = un point.
+import MargueShell from '~/components/margue/MargueShell.astro'
+import { notice, updatedLabel } from '~/data/la-margue-2026'
+
+export const prerender = true
+
+// Numero de section lu dans le titre (« 4. Les décisions actées… ») : il sert
+// d'ancre et designe les deux sections a rendre en liste compacte.
+const sections = notice.sections.map((section, i) => {
+  const parsed = Number.parseInt(section.titre, 10)
+  const num = Number.isNaN(parsed) ? i + 1 : parsed
+  return { ...section, num, anchor: `section-${num}` }
+})
+
+const COMPACT = [4, 11]
+---
+
+<MargueShell page="notice" title="Notice du montage" subtitle={notice.intro} updated={updatedLabel}>
+  <!-- Sommaire -->
+  <section class="pb-12 md:pb-16">
+    <div class="max-w-5xl mx-auto px-6 md:px-10">
+      <nav aria-label="Sommaire de la notice">
+        <ul class="flex flex-wrap gap-2">
+          {sections.map((section) => (
+            <li>
+              <a
+                href={`#${section.anchor}`}
+                class="inline-block rounded-full bg-[#FBF6EA] border border-[#412F1F]/10 px-4 py-2 text-sm text-[#412F1F] hover:text-[#9A3922] hover:border-[#9A3922]/30 transition-colors"
+              >
+                {section.titre}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Sections -->
+  <div class="pb-16 md:pb-24">
+    <div class="max-w-5xl mx-auto px-6 md:px-10 space-y-5">
+      {sections.map((section) => {
+        const compact = COMPACT.includes(section.num)
+        const guides = section.guides
+        return (
+          <section
+            id={section.anchor}
+            class="scroll-mt-24 rounded-2xl bg-[#FBF6EA] border border-[#412F1F]/10 p-6 md:p-8"
+          >
+            <h2 class="text-2xl md:text-3xl font-extrabold text-[#412F1F] tracking-[-0.02em] leading-[1.15] text-balance">
+              {section.titre}
+            </h2>
+
+            {section.items.length > 0 && (
+              <ul class="mt-6 divide-y divide-[#412F1F]/10 border-t border-[#412F1F]/10">
+                {section.items.map((item) =>
+                  compact ? (
+                    <li class="py-3.5 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
+                      <p class="text-sm md:text-base leading-relaxed">
+                        <span class="font-semibold text-[#412F1F]">{item.point}</span>
+                        <span class="text-[#1D1B18]/70"> — {item.detail}</span>
+                      </p>
+                      {item.date && (
+                        <span class="shrink-0 text-xs text-[#73673E]/70 tabular-nums sm:text-right">
+                          {item.date}
+                        </span>
+                      )}
+                    </li>
+                  ) : (
+                    <li class="py-5">
+                      <p class="font-semibold text-[#412F1F]">{item.point}</p>
+                      <p class="text-[#1D1B18]/70 leading-relaxed mt-2">{item.detail}</p>
+                      {(item.source || item.date) && (
+                        <p class="text-xs text-[#73673E]/70 mt-2.5">
+                          {[item.source, item.date].filter(Boolean).join(' · ')}
+                        </p>
+                      )}
+                    </li>
+                  )
+                )}
+              </ul>
+            )}
+
+            {guides && (
+              <div class="mt-6 grid gap-8 md:grid-cols-2">
+                <div>
+                  <h3 class="text-sm font-semibold text-[#412F1F] pb-3 border-b border-[#412F1F]/10">
+                    Fichier 02092026
+                  </h3>
+                  <ul class="mt-4 space-y-4">
+                    {guides['0209'].map((g) => (
+                      <li>
+                        <p class="font-semibold text-[#412F1F] text-sm">{g.point}</p>
+                        <p class="text-sm text-[#1D1B18]/70 leading-relaxed mt-1">{g.detail}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="text-sm font-semibold text-[#412F1F] pb-3 border-b border-[#412F1F]/10">
+                    Fichier SCIA Est v3.2
+                  </h3>
+                  <ul class="mt-4 space-y-4">
+                    {guides.v32.map((g) => (
+                      <li>
+                        <p class="font-semibold text-[#412F1F] text-sm">{g.point}</p>
+                        <p class="text-sm text-[#1D1B18]/70 leading-relaxed mt-1">{g.detail}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
+          </section>
+        )
+      })}
+    </div>
+  </div>
+</MargueShell>
