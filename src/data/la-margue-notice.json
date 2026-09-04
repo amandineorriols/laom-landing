@@ -75,6 +75,12 @@
           "detail": "Voda Energies, devis D-250215 du 2/10/2025 : reprise complète de la chaufferie (dépose, désembouage, accessoires, raccordement hydraulique, eau chaude solaire), 17 275,52 HT, 20 730,62 TTC.",
           "source": "Charly, téléchargements",
           "date": "4/09/2026"
+        },
+        {
+          "point": "Comptes rendus des réunions du collectif",
+          "detail": "Google Doc « CR NOS RÉUNIONS » tenu par Amandine, en ordre antichronologique, résumés Fathom compris. C'est là que sont les décisions datées du foyer commun (section 6). https://docs.google.com/document/d/1nXc2nO5ngCCkrO4mmRDUMwjllg5U59-4LCy8UUk-cSY/edit",
+          "source": "Drive d'Amandine",
+          "date": ""
         }
       ]
     },
@@ -107,7 +113,7 @@
         },
         {
           "point": "Capital retenu",
-          "detail": "C'est la valeur conventionnelle, sauf deux exceptions : les gîtes de Serge & Marie-Agnès (leur capacité de 120 000 moins les frais annexes, voir section 6) et la Lyre (le prix nécessaire pour boucler, 304 806,53, soit 25 344,86 au-dessus de sa valeur au m²). S'y ajoutent les cinq lots à construire de Patricia (65 803,07). Total des capitaux Est : 1 167 696,10.",
+          "detail": "C'est la valeur conventionnelle, sauf deux exceptions : les gîtes de Serge & Marie-Agnès (leur capacité de 120 000 moins les frais annexes, voir section 7) et la Lyre (le prix nécessaire pour boucler, 304 806,53, soit 25 344,86 au-dessus de sa valeur au m²). S'y ajoutent les cinq lots à construire de Patricia (65 803,07). Total des capitaux Est : 1 167 696,10.",
           "source": "",
           "date": ""
         },
@@ -316,7 +322,60 @@
       ]
     },
     {
-      "titre": "6. La convention Serge & Marie-Agnès",
+      "titre": "6. Le foyer commun : d'où viennent les chiffres",
+      "items": [
+        {
+          "point": "Modèle de janvier 2026",
+          "detail": "Le lot 4 du Grand Shambala (le foyer, 90 m²) est valorisé 106 518,60 à son prix de revient : deux tiers pour la Ferme du Verseau (71 012,40), un tiers pour l'association des habitants (35 506,20), soit 3 550,62 par foyer sur 10. C'est l'« ancien partage 70/30 » dont parle le compte rendu du 2 mars.",
+          "source": "Fichier 15012026, onglets SCIA LAOM et Financement SCI",
+          "date": "janvier 2026"
+        },
+        {
+          "point": "Réunion du 24 septembre 2025",
+          "detail": "« Nous avions convenu que LAOM possède 50 % des parts du foyer commun, ouverts à revoir ça, qu'est-ce que ça impliquerait sur chacune des parties ? »",
+          "source": "CR nos réunions (Google Doc « 💛😊 CR NOS RÉUNIONS 😊💛 », Amandine), réunion du 24 septembre 2025 (Patricia, Laetitia, Amandine, Claire, Grégoire)",
+          "date": "24/09/2025"
+        },
+        {
+          "point": "Réunion du 19 octobre 2025, « décisions à prendre »",
+          "detail": "« Participation LAOM au foyer commun : Charly n'est plus d'accord pour que LAOM finance 50 % si LAOM n'est pas propriétaire à 50 % (quote-part projetée à 15 K€/personne calculée à 100 % et non 50 %). » Et : « Faut-il mettre un coefficient comme pour la quote-part (David C, Serge, Eliott à 0,5) ? »",
+          "source": "CR nos réunions (Google Doc « 💛😊 CR NOS RÉUNIONS 😊💛 », Amandine), réunion du 19 octobre 2025",
+          "date": "19/10/2025"
+        },
+        {
+          "point": "Décision du 2 mars 2026 : propriété 50/50",
+          "detail": "« Propriété des espaces communs : la propriété de l'espace commun est désormais de 50/50 entre l'association des résidents et la SAS LAOM. Cela remplace l'ancien partage 70/30 afin d'assurer un équilibre des pouvoirs et une responsabilité partagée. » Puis : « Répartition de la propriété de l'espace commun : révisée à 50/50. Décision : 50 % association des résidents / 50 % SAS LAOM. Justification : cela crée un équilibre des pouvoirs, empêchant une entité de dominer les décisions (par exemple la planification d'événements) et assurant une responsabilité financière partagée pour la maintenance. » C'est la clé appliquée dans ce classeur : moitié LAOM, moitié les foyers via l'association.",
+          "source": "CR nos réunions (Google Doc « 💛😊 CR NOS RÉUNIONS 😊💛 », Amandine), bloc « 2/3/2026, Principales conclusions » et « Sujets abordés », rangé sous la réunion du 16 mars 2026",
+          "date": "02/03/2026"
+        },
+        {
+          "point": "Réunions du 23 mars et du 20 avril 2026",
+          "detail": "« Qu'est-ce qui est compris dans les 7 K€ par foyer pour le foyer commun : besoin de clarté sur les chiffres, les grandes masses. » Puis : « Charly revient vers nous avec le budget prévisionnel du foyer ; intention : avoir la clarté sur où nous amènent les 7 K€ par foyer. » Aucune décision sur le montant.",
+          "source": "CR nos réunions (Google Doc « 💛😊 CR NOS RÉUNIONS 😊💛 », Amandine), réunions du 23 mars et du 20 avril 2026",
+          "date": "23/03 et 20/04/2026"
+        },
+        {
+          "point": "Les 7 000 par foyer (classeur de Greg, page laom.fr de mars)",
+          "detail": "« Dernière estimation via Charly » dans le classeur de Greg, jamais actée en réunion. Ils correspondent à un foyer valorisé autour de 154 000 (77 000 par moitié, 11 foyers), cohérent avec les « 15 K€ par personne à 100 % » d'octobre 2025. La clé 50/50 était déjà là ; c'est la valeur du foyer qui fait l'écart avec aujourd'hui.",
+          "source": "Classeur de Greg, onglets questions et foyer ; ancienne page laom.fr/la-margue-est",
+          "date": "mars à août 2026"
+        },
+        {
+          "point": "Valeur retenue le 3 septembre 2026 (Charly)",
+          "detail": "90 m² × 2 800 = 252 000. Moitié LAOM (126 000), moitié les foyers via l'association selon les parts : une part par foyer, 0,5 pour Serge & Marie-Agnès et David Coste, Khaldoun compris, rien pour les lots LAOM. 11 parts : 11 454,55 par part entière, 5 727,27 par demi-part. La clé est celle du 2 mars ; la valeur à 2 800 € le m² est nouvelle et reste à présenter au collectif.",
+          "source": "Charly, dans le fichier Drive puis en dictée",
+          "date": "03/09/2026"
+        },
+        {
+          "point": "Ce qui reste à valider",
+          "detail": "Pas la clé, actée le 2 mars 2026. La valeur du foyer : le coût réel de construction (prix de revient, factures) ou une valeur conventionnelle à 2 800 € le m². Chaque option change la part de chaque foyer : 3 550 sur le prix de revient de janvier, 7 000 sur 154 000, 11 454,55 sur 252 000.",
+          "source": "",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "titre": "7. La convention Serge & Marie-Agnès",
       "items": [
         {
           "point": "Des 120 000 au capital",
@@ -333,7 +392,7 @@
       ]
     },
     {
-      "titre": "7. Le prix de la Lyre pour l'entrant",
+      "titre": "8. Le prix de la Lyre pour l'entrant",
       "items": [
         {
           "point": "Tout compris : 336 910,21",
@@ -350,7 +409,7 @@
       ]
     },
     {
-      "titre": "8. Le fléchage : qui paie qui, et quand",
+      "titre": "9. Le fléchage : qui paie qui, et quand",
       "items": [
         {
           "point": "Ce que chacun apporte (836 676,12)",
@@ -397,7 +456,7 @@
       ]
     },
     {
-      "titre": "9. Deux variantes en attendant l'entrant",
+      "titre": "10. Deux variantes en attendant l'entrant",
       "items": [
         {
           "point": "Variante A, avec prêts en compte courant",
@@ -420,7 +479,7 @@
       ]
     },
     {
-      "titre": "10. Constituer les deux SCIA sans EDD",
+      "titre": "11. Constituer les deux SCIA sans EDD",
       "items": [
         {
           "point": "Le principe",
@@ -455,7 +514,7 @@
       ]
     },
     {
-      "titre": "11. Ce qui reste à trancher",
+      "titre": "12. Ce qui reste à trancher",
       "items": [
         {
           "point": "Variante A ou B",
@@ -489,7 +548,7 @@
         },
         {
           "point": "Foyer commun",
-          "detail": "Règle fixée par Charly le 3/09 (moitié LAOM, moitié les foyers, 11 parts) : à présenter au collectif.",
+          "detail": "La clé 50/50 est actée (CR du 2 mars 2026, section 6). La valeur du foyer à 2 800 € le m² (Charly, 3/09) reste à présenter au collectif ; l'alternative est le coût réel.",
           "source": "",
           "date": ""
         },
@@ -526,7 +585,7 @@
       ]
     },
     {
-      "titre": "12. Guide des onglets",
+      "titre": "13. Guide des onglets",
       "items": [],
       "guides": {
         "0209": [
@@ -550,7 +609,7 @@
       }
     },
     {
-      "titre": "13. Comment modifier une hypothèse",
+      "titre": "14. Comment modifier une hypothèse",
       "items": [
         {
           "point": "Une seule cellule par hypothèse",
